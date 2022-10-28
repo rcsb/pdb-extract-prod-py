@@ -1,0 +1,6 @@
+include LICENSE.txt
+include CHANGES.txt
+include REQUIREMENTS.txt
+recursive-include data *
+recursive-include bin *
+
