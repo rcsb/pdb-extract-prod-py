@@ -18,7 +18,7 @@ from setuptools import setup
 
 setup(
     name="pdb-extract-prod-py",
-    version="4.0",
+    version="4.1",
     author="Chenghua Shao",
     author_email="chenghua.shao@rcsb.org",
     description="PDB Extract is a pre-deposition service for assembling structure files for wwPDB OneDep deposition",

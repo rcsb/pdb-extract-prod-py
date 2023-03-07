@@ -6,7 +6,8 @@ Created on Mon Dec  6 11:51:18 2021
 @author: chenghua
 """
 import os
-from extract.pdbx_v2.PdbxReader import PdbxReader
+#from extract.pdbx_v2.PdbxReader import PdbxReader
+from mmcif.io.IoAdapterCore import IoAdapterCore
 import extract.util.cifFileCheck as cifFileCheck
 
 ## os.environ["PDB_EXTRACT"] = "/Users/chenghua/Projects/pdb_extract"
@@ -25,7 +26,7 @@ class Template():
         self.d_template = {}  # ditionary for parsed template values
         self.d_track = {}  # tracking dictionary
         self.d_track["checkOK_format"] = None
-        self.d_track["openFile_OK"] = None
+        # self.d_track["openFile_OK"] = None
         self.d_track["parseFile_OK"] = None
         self.d_track["processValues_OK"] = None
 
@@ -85,22 +86,15 @@ class Template():
             parse succceeds or fails
 
         """
+        io = IoAdapterCore()
         try:
-            with open(filepath) as file:
-                self.d_track["openFile_OK"] = True
-                try:
-                    reader = PdbxReader(file)
-                    l_dc = []
-                    reader.read(l_dc)
-                    dc0 = l_dc[0]
-                    self.d_track["parseFile_OK"] = True
-                except Exception:
-                    self.d_track["parseFile_OK"] = False
-                    return False
-        except IOError:
-            self.d_track["openFile_OK"] = False
+            l_dc = io.readFile(filepath)
+            dc0 = l_dc[0]
+            self.d_track["parseFile_OK"] = True
+        except Exception:
+            self.d_track["parseFile_OK"] = False
             return False
-        
+
         try:
             for cat_name in dc0.getObjNameList():
                 self.d_template[cat_name] = {}
@@ -120,10 +114,7 @@ class Template():
 
 
 def main():
-    pdb_extract_folder = os.getenv("PDB_EXTRACT")    
-    folder = os.path.join(pdb_extract_folder, "tests/test_data/Templates")
-    filename = 'template_new_XRAY.cif'
-    filepath = os.path.join(folder, filename)
+    filepath = "/Users/chenghua/Projects/pdb-extract-prod-py/tests/test_data/Templates/template_new_XRAY.cif"
     template = Template()
     template.parse(filepath)
     print(template.d_template)

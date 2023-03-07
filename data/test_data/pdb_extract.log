@@ -1,0 +1,86 @@
+2023-02-06 15:50:38,301 - PDB_EX - INFO - pdb_extract - runPdbExtract:550 - Current working directory: /Users/chenghua/Projects/pdb-extract-prod-py/data/test_data
+2023-02-06 15:50:38,301 - PDB_EX - INFO - pdb_extract - runPdbExtract:552 - initiate pdb_extract processs
+2023-02-06 15:50:38,302 - PDB_EX - INFO - pdb_extract - runPdbExtract:555 - Parse input arguments starts
+2023-02-06 15:50:38,302 - PDB_EX - INFO - pdb_extract - runPdbExtract:556 - Author's arguments 
+2023-02-06 15:50:38,302 - PDB_EX - INFO - pdb_extract - runPdbExtract:557 - temp folder clean up set as True
+2023-02-06 15:50:38,303 - PDB_EX - DEBUG - pdb_extract - parseArgsInput:134 - d_manager after parsing input args: {'method': 'XRAY', 'folder': {}, 'model': {'format': 'PDB', 'filepath_author_in': '3bn6.pdb', 'filepath_author_out': 'pdb_extract_out.cif'}, 'software': {}, 'template': {}, 'status': {'parseArgsInput_OK': True}, 'log': {}, 'phasing_method': ''}
+2023-02-06 15:50:38,303 - PDB_EX - INFO - pdb_extract - runPdbExtract:563 - Parse input arguments finishes
+2023-02-06 15:50:38,303 - PDB_EX - INFO - pdb_extract - runPdbExtract:567 - Create temp run folder starts
+2023-02-06 15:50:38,303 - PDB_EX - INFO - pdb_extract - runPdbExtract:572 - Create temp run folder finishes
+2023-02-06 15:50:38,303 - PDB_EX - INFO - pdb_extract - runPdbExtract:575 - Copy input files to temp folder starts
+2023-02-06 15:50:38,307 - PDB_EX - INFO - pdb_extract - runPdbExtract:580 - Copy input files to temp folder finishes
+2023-02-06 15:50:38,307 - PDB_EX - INFO - pdb_extract - runPdbExtract:583 - Process input model file starts
+2023-02-06 15:50:38,307 - PDB_EX - INFO - pdb_extract - processModel:227 - input file in PDB format, run maxit to convert
+2023-02-06 15:50:38,307 - PDB_EX - DEBUG - pdb_extract - processModel:229 - maxit input file: /tmp/pdb_extract_jlfr1l7e/in.pdb
+2023-02-06 15:50:38,308 - PDB_EX.extract.process_model.convertPdbModel - DEBUG - convertPdbModel - convert:44 - Class PdbModel runs, filepath_in=/tmp/pdb_extract_jlfr1l7e/in.pdb; filepath_out=/tmp/pdb_extract_jlfr1l7e/maxit_out.cif,
+                     filepath_log=/tmp/pdb_extract_jlfr1l7e/maxit.log
+                     
+2023-02-06 15:50:38,309 - PDB_EX.extract.util.pdbFileCheck - DEBUG - pdbFileCheck - checkCryst1:84 - input PDB has CRYST1 record in line 312 of
+2023-02-06 15:50:38,309 - PDB_EX.extract.util.pdbFileCheck - DEBUG - pdbFileCheck - checkCryst1:85 - CRYST1   31.909   56.033   79.670  90.00  90.00  90.00 P 21 21 21    4          
+2023-02-06 15:50:38,309 - PDB_EX.extract.util.pdbFileCheck - DEBUG - pdbFileCheck - checkAtom:117 - input PDB has ATOM/HETATM in line 319 of
+2023-02-06 15:50:38,309 - PDB_EX.extract.util.pdbFileCheck - DEBUG - pdbFileCheck - checkAtom:118 - ATOM      1  N   CYS A   1       9.831  17.422  26.580  1.00 21.26           N
+2023-02-06 15:50:38,310 - PDB_EX.extract.process_model.convertPdbModel - INFO - convertPdbModel - convert:54 - Run Maxit pdb2cif within PdbModel Class
+2023-02-06 15:50:39,935 - PDB_EX - DEBUG - pdb_extract - processModel:235 - maxit output file: /tmp/pdb_extract_jlfr1l7e/maxit_out.cif
+2023-02-06 15:50:39,995 - PDB_EX.extract.util.cifFileCheck - INFO - cifFileCheck - __init__:44 - Parse cif file /tmp/pdb_extract_jlfr1l7e/maxit_out.cif OK
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - runPdbExtract:588 - Process input model file finishes
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - runPdbExtract:591 - Process software names and logs starts
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - parseSoftwareLog:307 - no log file for scaling
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - parseSoftwareLog:314 - no log file for indexing_integration
+2023-02-06 15:50:39,996 - PDB_EX - DEBUG - pdb_extract - parseSoftwareLog:348 - created new _software category: {'_software.classification': [], '_software.name': []}
+2023-02-06 15:50:39,996 - PDB_EX - DEBUG - pdb_extract - parseSoftwareLog:349 - stored parsed log data in self.d_log with keys: dict_keys([])
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - runPdbExtract:598 - Process software names and logs finishes
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - runPdbExtract:601 - Process author's template starts
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - parseTemplate:368 - no author-provided template
+2023-02-06 15:50:39,996 - PDB_EX - DEBUG - pdb_extract - parseTemplate:377 - stored parsed template data self.d_template with keys:dict_keys([])
+2023-02-06 15:50:39,996 - PDB_EX - INFO - pdb_extract - runPdbExtract:605 - Process author's template finishes
+2023-02-06 15:50:39,997 - PDB_EX - INFO - pdb_extract - runPdbExtract:608 - Merge log and template data into model file starts
+2023-02-06 15:50:39,997 - PDB_EX.extract.merge.mergeLogTemplateToModel - DEBUG - mergeLogTemplateToModel - readModel:46 - Merge starts by opening converted file at /tmp/pdb_extract_jlfr1l7e/maxit_out.cif
+2023-02-06 15:50:40,047 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - readModel:52 - Read converted model file into merger
+2023-02-06 15:50:40,048 - PDB_EX - INFO - pdb_extract - mergeLogTemplate:407 - truncate maxit output
+2023-02-06 15:50:40,048 - PDB_EX - INFO - pdb_extract - mergeLogTemplate:411 - add software category from author command line
+2023-02-06 15:50:40,048 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeLog:170 - No log data parsed, no merge
+2023-02-06 15:50:40,048 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeTemplate:228 - No template data parsed, no merge
+2023-02-06 15:50:40,048 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeCat:102 - merge log/template data into category refine
+2023-02-06 15:50:40,048 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeCat:124 - all data items in parsed log/template are present in                  converted model file on refine 
+2023-02-06 15:50:40,048 - PDB_EX - DEBUG - pdb_extract - mergeLogTemplate:444 - write merged file to: /tmp/pdb_extract_jlfr1l7e/out.cif
+2023-02-06 15:50:40,187 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - write:329 - wrote merged model data to file /tmp/pdb_extract_jlfr1l7e/out.cif
+2023-02-06 15:50:40,188 - PDB_EX - INFO - pdb_extract - runPdbExtract:614 - Merge log and template data into model file finishes
+2023-02-06 15:50:40,188 - PDB_EX - INFO - pdb_extract - runPdbExtract:617 - Run comprehensive mmCIF check against mmCIF dictionary starts
+2023-02-06 15:50:40,188 - PDB_EX.extract.util.cifDictCheck - INFO - cifDictCheck - __init__:45 - use dictionary file at /Users/chenghua/Projects/pdb-extract-prod-py/data/dictionary/mmcif_pdbx_v5_next.dic
+2023-02-06 15:50:41,619 - PDB_EX.extract.util.cifDictCheck - INFO - cifDictCheck - readModelCif:72 - check /tmp/pdb_extract_jlfr1l7e/out.cif against dictionary
+2023-02-06 15:50:41,670 - PDB_EX - DEBUG - pdb_extract - checkAgainstDict:471 - check output mmcif /tmp/pdb_extract_jlfr1l7e/out.cif against dictionary /Users/chenghua/Projects/pdb-extract-prod-py/data/dictionary/mmcif_pdbx_v5_next.dic
+2023-02-06 15:50:41,689 - PDB_EX.extract.util.cifDictCheck - INFO - cifDictCheck - reportError:242 - report error in /tmp/pdb_extract_jlfr1l7e/dictionary_violation.log
+2023-02-06 15:50:41,709 - PDB_EX - INFO - pdb_extract - runPdbExtract:621 - Run comprehensive mmCIF check against mmCIF dictionary finishes
+2023-02-06 15:50:41,709 - PDB_EX - INFO - pdb_extract - runPdbExtract:624 - Copy result files from temp folder to user's folder starts
+2023-02-06 15:50:41,719 - PDB_EX - INFO - pdb_extract - runPdbExtract:629 - Copy result files from temp folder to user's folder finishes
+2023-02-06 15:50:41,719 - PDB_EX - WARNING - pdb_extract - runPdbExtract:632 - ######Review operational dictionary######
+method:	XRAY
+##########
+status:
+	parseArgsInput_OK:	True
+	createTempFolder_OK:	True
+	copyToTemp_OK:	True
+	processModel_OK:	True
+	parseTemplate_OK:	None
+	mergeLog_OK:	None
+	mergeTemplate_OK:	None
+	checkAgainstDict_OK:	True
+	copyResultFromTemp_OK:	True
+##########
+folder:
+	current:	/Users/chenghua/Projects/pdb-extract-prod-py/data/test_data
+	temp:	/tmp/pdb_extract_jlfr1l7e
+##########
+model:
+	format:	PDB
+	filepath_author_in:	3bn6.pdb
+	filepath_author_out:	pdb_extract_out.cif
+	filepath_temp_in:	/tmp/pdb_extract_jlfr1l7e/in.pdb
+	filepath_temp_process:	/tmp/pdb_extract_jlfr1l7e/maxit_out.cif
+	filepath_temp_out:	/tmp/pdb_extract_jlfr1l7e/out.cif
+##########
+template:
+##########
+software:
+##########
+2023-02-06 15:50:41,720 - PDB_EX - INFO - pdb_extract - runPdbExtract:637 - Remove temp folder finishes

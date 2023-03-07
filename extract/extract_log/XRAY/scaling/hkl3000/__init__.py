@@ -54,7 +54,7 @@ def run(filepath):
     else:
         logger.info("import general parser")
         from extract.extract_log.XRAY.scaling.scalepack import scalepack as parser_general
-        log = parser_general.LogScalepack()  
+        log = parser_general.LogScalepack()
 
     try:
         if log.parse(filepath):
@@ -65,14 +65,14 @@ def run(filepath):
         logger.exception(e)
 
 def main():
-    filepath = "/Users/chenghua/Projects/pdb_extract/tests/test_data/PDB_HKL2000_Phaser_Refmac_2021_9_28_13_26368/file_scl_1"
+    filepath = "/Users/chenghua/Projects/pdb-extract-prod-py/tests/test_data/PDB_HKL2000_Phaser_Refmac_2021_9_28_13_26368/file_scl_1"
     d_ = run(filepath)
     for item in d_["reflns"]:
         print(item, d_["reflns"][item])
     print()
     for item in d_["reflns_shell"]:
         print(item, d_["reflns_shell"][item])
-    
+
 
 if __name__ == "__main__":
     main()

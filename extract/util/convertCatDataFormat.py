@@ -7,12 +7,12 @@
 """
 Convert Cat from obj to d_cat, and from d_cat to obj
 """
-import logging
-from extract.pdbx_v2.PdbxReader import PdbxReader
-from extract.pdbx_v2.DataCategory import DataCategory
-from extract.pdbx_v2.PdbxWriter import PdbxWriter
+from mmcif.api.DataCategory import DataCategory
+# from extract.pdbx_v2.DataCategory import DataCategory
 
-logger = logging.getLogger(__name__)
+import logging
+logger_name = '.'.join(["PDB_EX", __name__])
+logger = logging.getLogger(logger_name)
 
 
 def convertDictToCatObj(d_cat):
@@ -31,6 +31,10 @@ def convertDictToCatObj(d_cat):
         data category class for pdbx parser.
 
     """
+    if not d_cat:
+        logger.debug("cannot convert void cat dict to cat obj")
+        return None
+
     try:
         cat_name = list(d_cat.keys())[0].split('.')[0].strip('_')
         cat_obj = DataCategory(cat_name)  # create a new cat obj
@@ -44,12 +48,13 @@ def convertDictToCatObj(d_cat):
             for item in l_items:
                 l_row.append(d_cat[item][i])
             cat_obj.append(l_row)  # add data, one row as a list
-        logger.debug("convert cat dict to cat obj for %s" % cat_name)
+        # logger.debug("convert cat dict to cat obj for %s" % cat_name)
         return cat_obj
     except Exception as e:
-        logger.debug("cannot convert cat dict to cat obj for %s" % cat_name)
-        logger.exception(e)
+        logger.debug("cannot convert cat dict to cat obj")
+        logger.error(e)
         return None
+
 
 def convertCatObjToDict(cat_obj):
     """
@@ -67,20 +72,19 @@ def convertCatObjToDict(cat_obj):
         values as list for each key.
 
     """
-    d_cat = {}
-    try:
-        cat_name = cat_obj.getName()
-        l_items = cat_obj.getItemNameList()
-        for item in l_items:
-            d_cat[item] = []
-        for l_row in cat_obj.data:
-            for i in range(len(l_items)):
-                item = l_items[i]
-                value = l_row[i]
-                d_cat[item].append(value)
-        logger.debug("convert cat obj to cat dict for %s" % cat_name)
-        return d_cat
-    except Exception as e:
-        logger.debug("cannot convert cat obj to cat dict for %s" % cat_name)
-        logger.exception(e)
+    if not cat_obj:
+        logger.warning("cannot convert None type cat obj to cat dict")
         return {}
+
+    d_cat = {}
+    cat_name = cat_obj.getName()
+    l_items = cat_obj.getItemNameList()
+    for item in l_items:
+        d_cat[item] = []
+    for l_row in cat_obj.data:
+        for i in range(len(l_items)):
+            item = l_items[i]
+            value = l_row[i]
+            d_cat[item].append(value)
+    # logger.debug("convert cat obj to cat dict for %s" % cat_name)
+    return d_cat

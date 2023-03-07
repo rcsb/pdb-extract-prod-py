@@ -1,1 +1,24 @@
-PDB-Extract 4.0 2022-10Re-designed PDB-Extract 4.0 is all under python framework;Remove all difficult-to-maintain codes from mixture of programming languages;Remove dependency on outdated non-dictionary-compliant PDB-to-CIF converter by incorporating converter utilized by wwPDB OneDep system, so to ensure consistency on the file output; Improve mmCIF format checking and dictionary compliance by setting up a mechanism for users to check against the latest dictionary for now and future;  Collaborate with PDBj to use CIF editor for author's template file to ensure future compliance; Clean up dependencies on old refinement software packages; Simplify the features to support modern refinement packages only, and improve extraction of their log files.
+PDB-Extract 4.1 2023-03
+Speed up mmCIF file parsing by switching from Python parser to C++ parser, except for dictionary check
+Fix HKL-3000 log parsing error based on the latest template
+Add Aimless log parsing from the latest autoPROC template, and combine Aimless log parsing on diffrent tempaltes into one module
+Convert _software to _em_software for EM entries, and classify the software based on the dominant usage of the software on PDB entries
+Convert _software to _pdbx_nmr_software for NMR entries, classify the software based on the dominant usage of the software on PDB entries, and add software authors based on OneDep DepUI NMR software author dictionary
+Check duplicate diffraction id and provide warning
+On PDB-Extract server, add file upload exception handling for binary files or files with non-ASCII characters
+On PDB-Extract server, add _em_software and _pdbx_nmr_software example in mmCIF-formated templates
+On PDB-Extract server, allow author to update sequence if the uploaded mmCIF-formatted file already has sequence. 
+
+PDB-Extract 4.0 2022-11
+Re-designed PDB-Extract 4.0 is all under python framework;
+Remove all difficult-to-maintain codes from mixture of programming languages;
+Remove dependency on outdated non-dictionary-compliant PDB-to-CIF converter by 
+incorporating converter utilized by wwPDB OneDep system, so to ensure 
+consistency on the file output; Improve mmCIF format checking and dictionary 
+compliance by setting up a mechanism for users to check against the latest 
+dictionary for now and future;  
+Collaborate with PDBj to use CIF editor for author's template file to ensure 
+future compliance; 
+Clean up dependencies on old refinement software packages; 
+Simplify the features to support modern refinement packages only, and 
+improve extraction of their log files.

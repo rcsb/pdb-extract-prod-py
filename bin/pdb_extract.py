@@ -9,6 +9,7 @@
 pdb_extract run controller
 """
 import os
+import sys
 import warnings
 import tempfile
 import subprocess
@@ -25,7 +26,8 @@ from extract.util.cifDictCheck import Dict
 from extract.util.exceptions import *
 
 import logging
-log_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(module)s - %(funcName)s:%(lineno)d - %(message)s')
+log_format = logging.Formatter(
+    '%(asctime)s - %(name)s - %(levelname)s - %(module)s - %(funcName)s:%(lineno)d - %(message)s')
 f_handler = logging.FileHandler('pdb_extract.log')
 f_handler.setLevel(logging.DEBUG)
 f_handler.setFormatter(log_format)
@@ -47,6 +49,7 @@ class Process():
         run status
         file check status
     """
+
     def __init__(self):
         """
         create temporary run folder, all input files are copied to run folder
@@ -73,9 +76,9 @@ class Process():
         self.d_manager["template"] = {}  # record template filepaths
         self.d_manager["status"] = {}  # record run status of each step
         self.d_manager["log"] = {}  # record individual run log filepath
-        self.d_software = {}  # record _software categoory for Xray and EC
-        self.d_em_software = {}  # record _em_software category for EM
-        self.d_nmr_software = {}  # record _pdbx_nmr_software category for NMR
+        self.d_software = {}  # record software categoory for Xray and EC
+        self.d_em_software = {}  # record em_software category for EM
+        self.d_nmr_software = {}  # record pdbx_nmr_software category for NMR
 
     def __fileCopy(self, filepath_source, filepath_destination):
         """
@@ -154,7 +157,8 @@ class Process():
         if not folder_run:
             folder_run = os.getcwd()  # by default create temp in current dir
         try:
-            self.d_manager["folder"]["temp"] = tempfile.mkdtemp(prefix="pdb_extract_", dir=folder_run)
+            self.d_manager["folder"]["temp"] = tempfile.mkdtemp(
+                prefix="pdb_extract_", dir=folder_run)
             self.d_manager["status"]["createTempFolder_OK"] = True
         except OSError:
             self.d_manager["status"]["createTempFolder_OK"] = False
@@ -178,30 +182,34 @@ class Process():
         # copy model file
         if self.d_manager["model"]["filepath_author_in"]:
             if self.d_manager["model"]["format"] == "PDB":
-                filepath_model_in_temp = os.path.join(self.d_manager["folder"]["temp"], "in.pdb")
+                filepath_model_in_temp = os.path.join(
+                    self.d_manager["folder"]["temp"], "in.pdb")
             elif self.d_manager["model"]["format"] == "CIF":
-                filepath_model_in_temp = os.path.join(self.d_manager["folder"]["temp"], "in.cif")
+                filepath_model_in_temp = os.path.join(
+                    self.d_manager["folder"]["temp"], "in.cif")
 
             if self.__fileCopy(self.d_manager["model"]["filepath_author_in"], filepath_model_in_temp):
                 self.d_manager["model"]["filepath_temp_in"] = filepath_model_in_temp
             else:
                 tf_copyModelOK = False
-        
+
         # copy template file
         if self.d_manager["template"]:
             if "filepath_author_in" in self.d_manager["template"]:
                 if self.__fileCopy(self.d_manager["template"]["filepath_author_in"],
                                    os.path.join(self.d_manager["folder"]["temp"], "template")):
                     self.d_manager["template"]["filepath_temp_in"] = \
-                        os.path.join(self.d_manager["folder"]["temp"], "template")
+                        os.path.join(
+                            self.d_manager["folder"]["temp"], "template")
                 else:
                     tf_copyTemplateOK = False
-                    
+
         # copy log files
         if self.d_manager["software"]:
             for process in self.d_manager["software"]:
                 if "filepath_author_in" in self.d_manager["software"][process]:
-                    filepath_log_in_temp = os.path.join(self.d_manager["folder"]["temp"], process+".log")
+                    filepath_log_in_temp = os.path.join(
+                        self.d_manager["folder"]["temp"], process+".log")
                     if self.__fileCopy(self.d_manager["software"][process]["filepath_author_in"], filepath_log_in_temp):
                         self.d_manager["software"][process]["filepath_temp_in"] = filepath_log_in_temp
                     else:
@@ -211,7 +219,7 @@ class Process():
             self.d_manager["status"]["copyToTemp_OK"] = True
         else:
             self.d_manager["status"]["copyToTemp_OK"] = False
-    
+
     def processModel(self):
         """
         convert PDB model by either pdb2cif in run folder.
@@ -227,31 +235,43 @@ class Process():
             logger.info("input file in PDB format, run maxit to convert")
             filepath_in = self.d_manager["model"]["filepath_temp_in"]
             logger.debug("maxit input file: %s" % filepath_in)
-            filepath_maxit_out = os.path.join(self.d_manager["folder"]["temp"], "maxit_out.cif")
-            filepath_log = os.path.join(self.d_manager["folder"]["temp"], "maxit.log")
+            filepath_maxit_out = os.path.join(
+                self.d_manager["folder"]["temp"], "maxit_out.cif")
+            filepath_log = os.path.join(
+                self.d_manager["folder"]["temp"], "maxit.log")
 
             pdb_model = PdbModel()  # create model conversion processs instance
-            if pdb_model.convert(filepath_in, filepath_maxit_out, filepath_log):  # convert PDB to mmCIF
-                logger.debug("maxit output file: %s" % filepath_maxit_out)
-                if validateCif(filepath_maxit_out):
-                    self.d_manager["model"]["filepath_temp_process"] = filepath_maxit_out
-                    self.d_manager["status"]["processModel_OK"] = True
-                    self.d_manager["log"]["filepath_temp_maxit_log"] = filepath_log
+            # convert PDB to mmCIF
+            try:
+                if pdb_model.convert(filepath_in, filepath_maxit_out, filepath_log):
+                    logger.debug("maxit output file: %s" % filepath_maxit_out)
+                    if validateCif(filepath_maxit_out):
+                        self.d_manager["model"]["filepath_temp_process"] = filepath_maxit_out
+                        self.d_manager["status"]["processModel_OK"] = True
+                        self.d_manager["log"]["filepath_temp_maxit_log"] = filepath_log
+                    else:
+                        raise CifFormatError(
+                            "Wrong format for converted mmCIF file")
+                        self.d_manager["status"]["processModel_OK"] = False
                 else:
-                    raise CifFormatError("Wrong format for converted mmCIF file")
                     self.d_manager["status"]["processModel_OK"] = False
-            else:
-                self.d_manager["status"]["processModel_OK"] = False
+            except UnicodeDecodeError:
+                logger.error("PDB input file is not Unicode file, likely in wrong format or with special character. STOP!!!")
+                sys.exit()
         elif self.d_manager["model"]["format"] == "CIF":
             logger.info("input file in CIF format, no conversion")
             filepath_in = self.d_manager["model"]["filepath_temp_in"]
             logger.debug("cif input file: %s" % filepath_in)
-            if validateCif(filepath_in):
-                self.d_manager["model"]["filepath_temp_process"] = filepath_in
-                self.d_manager["status"]["processModel_OK"] = True
-            else:
-                raise CifFormatError("Wrong format for input mmCIF file")
-                self.d_manager["status"]["processModel_OK"] = False
+            try:
+                if validateCif(filepath_in):
+                    self.d_manager["model"]["filepath_temp_process"] = filepath_in
+                    self.d_manager["status"]["processModel_OK"] = True
+                else:
+                    raise CifFormatError("Wrong format for input mmCIF file")
+                    self.d_manager["status"]["processModel_OK"] = False
+            except UnicodeDecodeError:
+                logger.error("CIF input file is not Unicode file, likely in wrong format or with special character. STOP!!!")
+                sys.exit()
         else:
             pass
 
@@ -267,29 +287,35 @@ class Process():
 
         """
         if self.d_manager["method"] != "XRAY":
+            self.d_software = {}
             self.d_log = {}
-            logger.warning("log parsing for method %s currently not supported" % self.d_manager["method"])
+            logger.warning(
+                "log parsing for method %s currently not supported" % self.d_manager["method"])
             return
 
-        self.d_software = {"_software.classification":[],
-                           "_software.name":[]}  # record software in dict
+        self.d_software = {"_software.classification": [],
+                           "_software.name": []}  # record software in dict
         self.d_log = {}  # dictionary to store all parsed log data
         # record software name and log file location for each process
         for process in self.d_manager["software"]:
             software_name = self.d_manager["software"][process]["name"]
-            logger.debug("process software %s in %s" % (software_name, process))
+            logger.debug("process software %s in %s" %
+                         (software_name, process))
             self.d_manager["software"][process]["parseOK"] = None
             # prepare software dict to add in the next merge process
             self.d_software["_software.name"].append(software_name)
             if process == "refinement":
-                self.d_software["_software.classification"].append("refinement")
+                self.d_software["_software.classification"].append(
+                    "refinement")
             elif process == "scaling":
-                self.d_software["_software.classification"].append("data scaling")
+                self.d_software["_software.classification"].append(
+                    "data scaling")
             elif process == "indexing_integration":
-                self.d_software["_software.classification"].append("data reduction")
+                self.d_software["_software.classification"].append(
+                    "data reduction")
             elif process in ("phasing", "molecular_replacement"):
                 self.d_software["_software.classification"].append("phasing")
-            
+
             # record log file location in the temp folder if any
             if "filepath_temp_in" not in self.d_manager["software"][process]:
                 self.d_log[process] = {}
@@ -320,23 +346,24 @@ class Process():
             # match the software's parser filename in extract/extract_log
             # folder, so that the corresponding parser can be imported
             software_name_clean = re.sub('[-/ *]', '', software2parse)
-            
+
             # locate folder of individual log parser
             l_import_folder = ["extract",
-                                "extract_log",
-                                self.d_manager["method"],
-                                "scaling",
-                                software_name_clean.lower()]
+                               "extract_log",
+                               self.d_manager["method"],
+                               "scaling",
+                               software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
+            print(import_path)
             try:
                 # import log parser from __init__.py of the specific folder
                 # the __init__.py chooses version specific parser
                 log_parser = importlib.import_module(import_path)
                 logger.debug("software %s log parser import from %s" %
-                              (software_name, import_path))
+                             (software_name, import_path))
             except ModuleNotFoundError:
                 logger.warning("not support parsing log for software %s in process %s" %
-                                (software_name, process2parse))
+                               (software_name, process2parse))
                 self.d_manager["software"][process2parse]["parseOK"] = False
             else:
                 try:
@@ -406,41 +433,52 @@ class Process():
         if self.d_manager["model"]["format"] == "PDB":
             logger.info("truncate maxit output")
             merger.truncateMaxitCat()
-        
-        #  add software category into model from the author command line 
-        logger.info("add software category from author command line")
-        if self.d_software and self.d_software["_software.name"]:
-            merger.addCat(self.d_software)
 
         #  merge Log data from self.d_log to model
         try:
-            self.d_manager["status"]["mergeLog_OK"] = merger.mergeLog(self.d_log)
+            self.d_manager["status"]["mergeLog_OK"] = merger.mergeLog(
+                self.d_log)
         except Exception as e:
             self.d_manager["status"]["mergeLog_OK"] = False
             logger.exception(e)
 
-        #  merge template from self.d_template to model
+        #  merge template from self.d_template to mosdel
         try:
-            self.d_manager["status"]["mergeTemplate_OK"] = merger.mergeTemplate(self.d_template)
+            self.d_manager["status"]["mergeTemplate_OK"] = merger.mergeTemplate(
+                self.d_template)
         except Exception as e:
             self.d_manager["status"]["mergeTemplate_OK"] = False
             logger.exception(e)
-        
-        #  add an empty refine category if not exist, mandatory for X-Ray dep
+
+        #  process software
+        #  If model file has no software category, add software from author's commandline arg or webpage input
+        #  If model file has software category, for X-ray entries, merge author's software
+        #  For EM entries, convert software to em_software and merge
+        #  For NMR entries, convert software to pdbx_nmr_software and merge
+        logger.info(
+            "process software and merge software info from author command line")
         if self.d_manager["method"] == "XRAY":
-            d_refine = {}
-            d_refine["_refine.pdbx_refine_id"] = ["X-RAY DIFFRACTION"]
-            d_refine["_refine.pdbx_diffrn_id"] = ['1']
+            merger.processSoftwareXRAY(self.d_software)
+        elif self.d_manager["method"] == "EM":
+            merger.processSoftwareEM(self.d_em_software)
+        elif self.d_manager["method"] == "NMR":
+            merger.processSoftwareNMR(self.d_nmr_software)
+
+        #  For X-ray, merge phasing method from author's commandline or webpage input into refine category
+        #  If refine cat doesn't exist, add an empty refine category that is mandatory for X-ray OneDep DepUI
+        if self.d_manager["method"] == "XRAY":
             if self.d_manager["phasing_method"]:
-                d_refine["_refine.pdbx_method_to_determine_struct"] = [self.d_manager["phasing_method"]]
+                phasing_method = self.d_manager["phasing_method"]
             elif "molecular_replacement" in self.d_manager["software"]:
-                d_refine["_refine.pdbx_method_to_determine_struct"] = ["MOLECULAR REPLACEMENT"]
-            ## print(d_refine)
-            merger.mergeCat(d_refine)
+                phasing_method = "MOLECULAR REPLACEMENT"
+            else:
+                phasing_method = ''
+            merger.addRefine(phasing_method)
 
         # write merged file to temp folder
         filename_out = "out.cif"
-        filepath_out = os.path.join(self.d_manager["folder"]["temp"], filename_out)
+        filepath_out = os.path.join(
+            self.d_manager["folder"]["temp"], filename_out)
         logger.debug("write merged file to: %s" % filepath_out)
         try:
             merger.write(filepath_out)
@@ -448,7 +486,7 @@ class Process():
         except Exception as e:
             self.d_manager["model"]["filepath_temp_out"] = None
             logger.exception(e)
-            
+
     def checkAgainstDict(self):
         """
         check final mmcif output in temp against dictionry
@@ -463,21 +501,22 @@ class Process():
             folder_dict = os.path.join(pdb_extract_folder, "data/dictionary")
             filename_dict = "mmcif_pdbx_v5_next.dic"
             filepath_dict = os.path.join(folder_dict, filename_dict)
-            
+
             dict = Dict(filepath_dict)
 
             filepath = self.d_manager["model"]["filepath_temp_out"]
             dict.readModelCif(filepath)
-            logger.debug("check output mmcif %s against dictionary %s" % 
+            logger.debug("check output mmcif %s against dictionary %s" %
                          (filepath, filepath_dict))
             dict.check()  # check against mmCIF dictionary
-            filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_violation.log")
+            filepath_report = os.path.join(
+                self.d_manager["folder"]["temp"], "dictionary_violation.log")
             dict.reportError(filepath_report)
             self.d_manager["log"]["filepath_temp_dictionary_check"] = filepath_report
             self.d_manager["status"]["checkAgainstDict_OK"] = True
         except Exception as e:
             self.d_manager["status"]["checkAgainstDict_OK"] = False
-            logger.exception(e)            
+            logger.exception(e)
 
     def copyResultFromTemp(self):
         """
@@ -499,14 +538,17 @@ class Process():
             logger.exception(e)
 
         if "filepath_temp_dictionary_check" in self.d_manager["log"]:
-            filepath_author_dictionary_check = os.path.join(self.d_manager["folder"]["current"], "dictionary_violation.log")
+            filepath_author_dictionary_check = os.path.join(
+                self.d_manager["folder"]["current"], "dictionary_violation.log")
             if self.__fileCopy(self.d_manager["log"]["filepath_temp_dictionary_check"], filepath_author_dictionary_check):
                 self.d_manager["log"]["filepath_author_dictionary_check"] = filepath_author_dictionary_check
 
         if "filepath_temp_maxit_log" in self.d_manager["log"]:
-            filepath_author_maxit_log = os.path.join(self.d_manager["folder"]["current"], "maxit.log")
+            filepath_author_maxit_log = os.path.join(
+                self.d_manager["folder"]["current"], "maxit.log")
             if self.__fileCopy(self.d_manager["log"]["filepath_temp_maxit_log"], filepath_author_maxit_log):
                 self.d_manager["log"]["filepath_author_maxit_log"] = filepath_author_maxit_log
+
 
 def reviewDict(d_):
     l_lines = []
@@ -560,84 +602,93 @@ def runPdbExtract(args="", tf_cleanup=True):
     if not p.d_manager["status"]["parseArgsInput_OK"]:
         generateErrorLog("Fail to parse input arguments.")
         raise InputParameterError("Fail Step 1: Parse input arguments, stop")
-    logger.info("Parse input arguments finishes")    
+    logger.info("Parse input arguments finishes")
 
     # Step 2: Create temp run folder to store all files in the process
     # p.createTempFolder()  # create temp folder in current folder
-    logger.info("Create temp run folder starts")    
+    logger.info("Create temp run folder starts")
     p.createTempFolder("/tmp")  # create temp folder in system /tmp
     if not p.d_manager["status"]["createTempFolder_OK"]:
         generateErrorLog("Fail to create temp run folder.")
-        raise CreateFolderError("Fail Step 2: create temporary run folder to store all files in the process, stop")
-    logger.info("Create temp run folder finishes")    
+        raise CreateFolderError(
+            "Fail Step 2: create temporary run folder to store all files in the process, stop")
+    logger.info("Create temp run folder finishes")
 
     # Step 3: Copy input files to temp folder
-    logger.info("Copy input files to temp folder starts")    
+    logger.info("Copy input files to temp folder starts")
     p.copyToTemp()
     if not p.d_manager["status"]["copyToTemp_OK"]:
         generateErrorLog("Fail to copy input files to temp folder.")
-        raise FileCopyError("Fail Step 3: Copy input files to temp folder, stop")
-    logger.info("Copy input files to temp folder finishes")    
+        raise FileCopyError(
+            "Fail Step 3: Copy input files to temp folder, stop")
+    logger.info("Copy input files to temp folder finishes")
 
     # Step 4: Process input model file: PDB2mmCIF by Maxit; or validate mmCIF
-    logger.info("Process input model file starts")    
+    logger.info("Process input model file starts")
     p.processModel()  # Model.d_track tracks status of conversion substeps
     if not p.d_manager["status"]["processModel_OK"]:
         generateErrorLog("Fail to process input model file.")
-        raise Exception("Fail Step 4: Convert/Process input PDB/CIF model file, stop")
-    logger.info("Process input model file finishes")    
+        raise Exception(
+            "Fail Step 4: Convert/Process input PDB/CIF model file, stop")
+    logger.info("Process input model file finishes")
 
     # Step 5: Process software names and logs
-    logger.info("Process software names and logs starts")    
+    logger.info("Process software names and logs starts")
     p.parseSoftwareLog()
     for process in p.d_manager["software"]:
         software_name = p.d_manager["software"][process]["name"]
         if p.d_manager["software"][process]["parseOK"] == False:
             warnings.warn("Fail Step 5: Parse log file for process %s software %s, continue" %
                           (process, software_name))
-    logger.info("Process software names and logs finishes")    
+    logger.info("Process software names and logs finishes")
 
     # Step 6: Process author's template
-    logger.info("Process author's template starts")    
+    logger.info("Process author's template starts")
     p.parseTemplate()
     if p.d_manager["status"]["parseTemplate_OK"] == False:
         warnings.warn("Fail Step 6: Process user's template, continue")
-    logger.info("Process author's template finishes")    
+    logger.info("Process author's template finishes")
 
-    # Step 7: Merge log and template data into model file
-    logger.info("Merge log and template data into model file starts")    
+    # Step 7: Merge log and template data into model file, and implement other needed modifications
+    logger.info("Merge log and template data into model file starts")
     p.mergeLogTemplate()
     if p.d_manager["status"]["mergeLog_OK"] == False:
         warnings.warn("Fail Step 7A: Merge log data into model file, continue")
     if p.d_manager["status"]["mergeTemplate_OK"] == False:
-        warnings.warn("Fail Step 7B: Merge template data into model file, continue")
-    logger.info("Merge log and template data into model file finishes")    
-        
+        warnings.warn(
+            "Fail Step 7B: Merge template data into model file, continue")
+    logger.info("Merge log and template data into model file finishes")
+
     # Step 8: Run comprehensive mmCIF check against mmCIF dictionary
-    logger.info("Run comprehensive mmCIF check against mmCIF dictionary starts")    
+    logger.info("Run comprehensive mmCIF check against mmCIF dictionary starts")
     p.checkAgainstDict()
     if not p.d_manager["status"]["checkAgainstDict_OK"]:
-        warnings.warn("Fail Step 8: Check merged file against mmCIF dictionary, continue")
-    logger.info("Run comprehensive mmCIF check against mmCIF dictionary finishes")    
+        warnings.warn(
+            "Fail Step 8: Check merged file against mmCIF dictionary, continue")
+    logger.info(
+        "Run comprehensive mmCIF check against mmCIF dictionary finishes")
 
     # Step 9: Copy result files from temp folder to user's default folder
-    logger.info("Copy result files from temp folder to user's folder starts")    
+    logger.info("Copy result files from temp folder to user's folder starts")
     p.copyResultFromTemp()
     if not p.d_manager["status"]["copyResultFromTemp_OK"]:
         generateErrorLog("Fail to copy result file from temp folder.")
-        raise FileCopyError("Fail Step 9: Copy result files from temp folder to user's default folder, stop")
-    logger.info("Copy result files from temp folder to user's folder finishes")    
+        raise FileCopyError(
+            "Fail Step 9: Copy result files from temp folder to user's default folder, stop")
+    logger.info("Copy result files from temp folder to user's folder finishes")
 
     # Review tracking dictionary
-    logger.warning('\n'.join(reviewDict(p.d_manager)))  
-    
+    logger.warning('\n'.join(reviewDict(p.d_manager)))
+
     if tf_cleanup:
         if os.path.isdir(p.d_manager["folder"]["temp"]):
             shutil.rmtree(p.d_manager["folder"]["temp"])
-            logger.info("Remove temp folder finishes")    
+            logger.info("Remove temp folder finishes")
+
 
 def main():
     runPdbExtract()
+
 
 if __name__ == "__main__":
     main()

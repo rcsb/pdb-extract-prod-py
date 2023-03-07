@@ -6,14 +6,17 @@
 # =============================================================================
 """
 check file against wwPDB mmCIF dictionary
-Designed for checking in mmCIF input and output of PDB_extract only
+Designed for checking on mmCIF-formatted input and output of PDB_extract
 Skip the parent-child relationship check
 """
 import sys
 import os
 import re
-from extract.pdbx_v2.PdbxReader import PdbxReader
-from extract.pdbx_v2.DictionaryApi  import DictionaryApi
+from mmcif.io.IoAdapterCore import IoAdapterCore
+from mmcif.io.IoAdapterPy import IoAdapterPy
+#from extract.pdbx_v2.PdbxReader import PdbxReader
+#from extract.pdbx_v2.DictionaryApi  import DictionaryApi
+from mmcif.api.DictionaryApi  import DictionaryApi
 from extract.util.exceptions import *
 from extract.util.convertCatDataFormat import convertCatObjToDict
 
@@ -43,9 +46,11 @@ class Dict:
         if not os.path.isfile(filepath_dict):
             return False
         logger.info("use dictionary file at %s" % filepath_dict)
-        with open(filepath_dict) as file:
-            reader = PdbxReader(file)
-            reader.read(__containerList)    
+        # with open(filepath_dict) as file:
+        #     reader = PdbxReader(file)
+        #     reader.read(__containerList)   
+        io = IoAdapterPy()
+        __containerList = io.readFile(inputFilePath=filepath_dict, enforceAscii=False)
         self.dApi=DictionaryApi(containerList=__containerList,consolidate=True,verbose=__verbose,log=__lfh)
         self.catIndex = self.dApi.getCategoryIndex()
         self.l_dc = []
@@ -54,6 +59,7 @@ class Dict:
         self.d_value_failRE = {}
         self.d_value_failEnum = {}
         self.d_value_failBoundary = {}
+        self.l_item_with_duplicate_value = []
 
     def readModelCif(self, filepath):
         """
@@ -70,9 +76,11 @@ class Dict:
 
         """
         logger.info("check %s against dictionary" % filepath)
-        with open(filepath) as file:
-            reader = PdbxReader(file)
-            reader.read(self.l_dc)    
+        io = IoAdapterCore()
+        self.l_dc = io.readFile(filepath)
+        # with open(filepath) as file:
+        #     reader = PdbxReader(file)
+        #     reader.read(self.l_dc)    
     
 
     def valueInBoundary(self, value, l_boundary):
@@ -186,6 +194,10 @@ class Dict:
 
         """
         cat = cat_obj.getName()
+        if cat == "diffrn":
+            l_diffrn_id = cat.getAttributeValueList("id")
+            if len(l_diffrn_id) != len(set(l_diffrn_id)):
+                self.l_item_with_duplicate_value.append("_diffrn.id")
         d_cat = convertCatObjToDict(cat_obj)
         for item in cat_obj.getItemNameList():
             attr = item.split('.')[1]            
@@ -311,26 +323,37 @@ class Dict:
             file.write("\n")
         file.write("\n")
 
+        file.write("## List of key items with duplicate value:")
+        file.write("\n")
+        if self.l_item_with_duplicate_value:
+            for item in self.l_item_with_duplicate_value:
+                file.write("Item name: %s" % item)
+                file.write("\n")
+        else:
+            file.write("None")
+            file.write("\n")
+        file.write("\n")
+
         file.close()
 
+# # move all testing to unit test
+# def main():
+#     pdb_extract_folder = "/Users/chenghua/Projects/pdb-extract-prod-py"
+#     folder_dict = os.path.join(pdb_extract_folder, "data/dictionary")
+#     filename_dict = "mmcif_pdbx_v5_next.dic"
+#     filepath_dict = os.path.join(folder_dict, filename_dict)
+#     print(filepath_dict)
 
-def main():
-    pdb_extract_folder = os.getenv("PDB_EXTRACT_PY")
-    print(pdb_extract_folder)
-    folder_dict = os.path.join(pdb_extract_folder, "data/dictionary")
-    filename_dict = "mmcif_pdbx_v5_next.dic"
-    filepath_dict = os.path.join(folder_dict, filename_dict)
+#     dict = Dict(filepath_dict)
 
-    dict = Dict(filepath_dict)
-
-    folder = os.path.join(pdb_extract_folder, "tests/test_data/CIF4test")
-    filename = "wrong_value_type.cif"
-    filepath = os.path.join(folder, filename)
-    dict.readModelCif(filepath)
-    dict.check()
-    filepath_report = os.path.join(folder, "cifDictCheck.log")
-    dict.reportError(filepath_report)
+#     folder = os.path.join(pdb_extract_folder, "tests/test_data/CIF4test")
+#     filename = "wrong_value_type.cif"
+#     filepath = os.path.join(folder, filename)
+#     dict.readModelCif(filepath)
+#     dict.check()
+#     filepath_report = os.path.join(folder, "cifDictCheck.log")
+#     dict.reportError(filepath_report)
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

@@ -2,13 +2,12 @@
 # =============================================================================
 # Author:  Chenghua Shao
 # Date:    2022-07-28
-# Updates:  2022-02-11 improved the general parser to process all types of logs
 # =============================================================================
 """
 Extract scaling statistics from Aimless log fille.
-Deal with CCP4, HTML, and autoPROC logs
+Deal with both CCP4 log file format
 For CCP4 log format, Aimless stats may be only in part of the log file that
-has output from other upstream or downstream softwares, the parsing focuses
+has output from other upstream or downstream softwares, the parsing focues
 on Aimless output only
 """
 import os
@@ -39,7 +38,7 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
         # Use the parent class LogScaling to add mmCIF items for scaling
         LogScaling.__init__(self)
 
-    def getStartingIndex(self, pattern, n_occur="last"):
+    def getStartingIndex(self, pattern, n_occur=1):
         """
         Find the starting index of the self.l_file for a particular section
         Scalepack log file organizes in sections, so need to find section start
@@ -58,22 +57,15 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
 
         """
         re_pattern = re.compile(pattern)
-        index_line = -1
-        if n_occur == "last":
-            for i in range(self.n_lines):
-                line = self.l_file[i]
-                if re_pattern.search(line):
-                    index_line = i
+        i_occur = 0
+        for i in range(self.n_lines):
+            line = self.l_file[i]
+            if re_pattern.search(line):
+                i_occur += 1
+                if i_occur == n_occur:
+                    return i
         else:
-            i_occur = 0
-            for i in range(self.n_lines):
-                line = self.l_file[i]
-                if re_pattern.search(line):
-                    i_occur += 1
-                    if i_occur == n_occur:
-                        index_line = i
-                        break
-        return index_line
+            return -1
 
     def parse(self, filepath):
         """
@@ -132,10 +124,9 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
         None.
 
         """
-        # pattern = r'^Summary\s+data\s+for\s+Project:\s+'
-        pattern = r'^\s*Overall\s+InnerShell\s+OuterShell\s*$'
-        i_start = self.getStartingIndex(pattern) + 1
-        i_end = i_start + 17 # truncate the summary section
+        pattern = r'^Summary\s+data\s+for\s+Project:\s+'
+        i_start = self.getStartingIndex(pattern)
+        i_end = i_start + 21 # truncate the summary section
         l_summary_section = self.l_file[i_start:i_end]
         # print(l_summary_section)
         d_re = {}
@@ -143,30 +134,22 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
         d_re["High resolution limit"] = ("_reflns.d_resolution_high", '_reflns_shell.d_res_high')
         d_re["Total number unique"] = ("_reflns.number_obs", '_reflns_shell.number_unique_obs')
         d_re["Completeness"] = ("_reflns.percent_possible_obs", '_reflns_shell.percent_possible_obs')
-        d_re["Mean\(+I\)\/sd\(I\)+"] = ("_reflns.pdbx_netI_over_sigmaI", '_reflns_shell.pdbx_netI_over_sigmaI_obs')
+        d_re["Rmerge  \(all I\+ and I\-\)"] = ("_reflns.pdbx_Rmerge_I_obs", '_reflns_shell.Rmerge_I_obs')
+        d_re["Mean\(\(I\)\/sd\(I\)\)"] = ("_reflns.pdbx_netI_over_sigmaI", '_reflns_shell.pdbx_netI_over_sigmaI_obs')
         d_re["Multiplicity"] = ("_reflns.pdbx_redundancy", '_reflns_shell.pdbx_redundancy')
-        d_re["Rmeas\s+\(all I\+"] = ("_reflns.pdbx_Rrim_I_all", '_reflns_shell.pdbx_Rrim_I_all')
-        d_re["Rpim\s+\(all I\+"] = ("_reflns.pdbx_Rpim_I_all", '_reflns_shell.pdbx_Rpim_I_all')
+        d_re["Rmeas \(all I\+ \& I\-\)"] = ("_reflns.pdbx_Rrim_I_all", '_reflns_shell.pdbx_Rrim_I_all')
+        d_re["Rpim \(all I\+ \& I\-\)"] = ("_reflns.pdbx_Rpim_I_all", '_reflns_shell.pdbx_Rpim_I_all')
         d_re["Mn\(I\) half-set correlation CC\(1\/2\)"] = ("_reflns.pdbx_CC_half", '_reflns_shell.pdbx_CC_half')
         d_re["Total number of observations"] = ("_reflns.pdbx_number_measured_all", '_reflns_shell.number_measured_all')
         d_re["Mean\(Chi\^2\)"] = ("_reflns.pdbx_chi_squared", '_reflns_shell.pdbx_chi_squared')
-        # The following two rows set up alternate parsing for Rmerge, the Rmerge could be in either way, but not both
-        # Only one of them will return Rmerge value
-        d_re["Rmerge\s+\(all I\+"] = ("_reflns.pdbx_Rmerge_I_obs", '_reflns_shell.Rmerge_I_obs') 
-        d_re["Rmerge\s+\d"] = ("_reflns.pdbx_Rmerge_I_obs", '_reflns_shell.Rmerge_I_obs')
 
         for each in d_re:
-            re_ = re.compile(r"^\s*%s" % each)
+            re_ = re.compile(r"^\s*%s\s+(\d+\.?\d+)\s+(\d+.?\d+)\s+(\d+.?\d+)\s*$" % each)
             for line in l_summary_section:
                 if re_.search(line):
                     try:
-                        l_line = line.strip().split()
-                        item_overall = d_re[each][0]
-                        item_shell = d_re[each][1]
-                        value_overall = l_line[-3]
-                        value_shell = l_line[-1]
-                        self.d_["reflns"][item_overall].append(value_overall)
-                        self.d_["reflns_shell"][item_shell].append(value_shell)
+                        self.d_["reflns"][d_re[each][0]].append(re_.search(line).groups()[0])
+                        self.d_["reflns_shell"][d_re[each][1]].append(re_.search(line).groups()[2])
                         break
                     except IndexError as msg:
                         logger.warning(msg)

@@ -36,10 +36,15 @@ def checkVersion(filepath):
                 version = "html"
             else:
                 re_ccp4 = re.compile(r"^ ### CCP4.+AIMLESS.+##\s*$")
+                re_autoproc = re.compile(r'Global Phasing Limited')
                 for line in file:
                     if re_ccp4.search(line):
                         version = "ccp4"
                         break
+                    if re_autoproc.search(line):
+                        version = "autoproc"
+                        break
+
     except IOError as msg:
         logging.error(msg)
 
@@ -65,13 +70,18 @@ def run(filepath):
     # print(version)
     logging.info("Aimless version: %s" % version)
 
+    # 2/2023 update improved the general parser to process all types of logs
     if version == "ccp4":
         logger.info("import ccp4 versioned parser")
-        from extract.extract_log.XRAY.scaling.aimless import aimless as parser_ccp4
+        from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
         log = parser_ccp4.LogAimless()
     elif version == "html":
         logger.info("import html versioned parser")
-        from extract.extract_log.XRAY.scaling.aimless import aimless_html as parser_html
+        from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
+        log = parser_html.LogAimlessHtml()
+    elif version == "autoproc":
+        logger.info("import html versioned parser")
+        from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
         log = parser_html.LogAimlessHtml()
     else:
         logger.info("import general parser")

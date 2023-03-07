@@ -7,15 +7,23 @@ In the following instruction, text after '>' sign indicates command to run
 
 ====================== 0.  Requirements =============================
 1.  This python program has been tested on Linux and Mac platforms
-2.  Requires Python3
-3.  Python dependency: The program requires several python packages that can be 
-    installed by pip or pip3. Installation of one pacakge is demonstrated below
-    For required package ‘six, if your don't have it, please either 
-    intall for all, which needs system administrator's privilege, through
-    >pip3 install six
+2.  Requires Python3 >= 3.6
+3.  Python dependency: The program requires python packages 'six' and 'mmcif'.
+	These packages can be installed by pip or pip3. For example,
+    for required package ‘mmcif', please either intall for all, which needs
+    system administrator's privilege, through:
+    >pip3 install mmcif
     
-    or install for the current user only, through
-    >pip3 install --user six
+    or install for the current user only, through:
+    >pip3 install --user mmcif
+
+    * mmcif package requires CMake > 3.24, and cmake package subsequently requires
+    skbuild that may not be directly installed through pip for older version of
+    Python. If so, try the following:
+    pip3 install --upgrade pip
+    pip3 install scikit-build
+    pip3 install cmake
+    pip3 install mmcif
 
 ====================== 1.  Installation =============================
 1.	Uncompress the package:

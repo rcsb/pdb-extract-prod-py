@@ -2,7 +2,7 @@
 # =============================================================================
 # Author:  Chenghua Shao
 # Date:    2022-09-11
-# Updates:
+# Updates: 2023-02-01 Use mmCIF parser to replace pdbx_v2 parser
 # =============================================================================
 """
 pdb_extract_cgi is an abbreviated pdb_extract program for web server
@@ -10,6 +10,7 @@ implementation. It simply converts structure file and generates cgi_value that
 is used subsequently to create html pages
 """
 import os
+import sys
 import warnings
 import subprocess
 import argparse
@@ -17,7 +18,8 @@ import argparse
 from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
 from extract.util.exceptions import *
-from extract.pdbx_v2.PdbxReader import PdbxReader
+# from extract.pdbx_v2.PdbxReader import PdbxReader
+from mmcif.io.IoAdapterCore import IoAdapterCore
 from extract.util.convertCatDataFormat import convertCatObjToDict
 import extract.util.pdbFileCheck as pdbFileCheck
 from extract.util.addChainID import addChainID
@@ -99,9 +101,14 @@ def parseArgs(args):
 def processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
     filepath_log = "maxit.log"
     logger.info("Check input PDB format")
-    pdb_checker = pdbFileCheck.Check(filepath_in)
+    try:
+        pdb_checker = pdbFileCheck.Check(filepath_in)
+    except UnicodeDecodeError:
+        logger.error("PDB input file is not Unicode file, likely in wrong format or with special character. STOP!!!")
+        generateErrorLog("Error: PDB input file is not Unicode file, likely in wrong format or with special character.")
+        return False
     if not pdb_checker.checkFormat():
-        logger.info("Failed PDB format check")
+        logger.error("Failed PDB format check")
         generateErrorLog("Error: uploaded file is not standard PDB format file. Please make sure the file complies with PDB format.")
         return False
     logger.info("Passed prelimnary PDB format check, chain ID not checked yet")
@@ -149,34 +156,46 @@ def processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
         generateErrorLog("Error: Failed to convert PDB to mmCIF.")
         return False
 
-
 def processCifModel(filepath_in, filepath_out):
-    if validateCif(filepath_in):
-        logger.info("input mmCIF model file is OK")
-        if fileCopy(filepath_in, filepath_out):
-            return True
+    try:
+        if validateCif(filepath_in):
+            logger.info("input mmCIF model file is OK")
+            if fileCopy(filepath_in, filepath_out):
+                return True
+            else:
+                generateErrorLog("Error: Failed to copy input cif file.")
+                return False
         else:
-            generateErrorLog("Error: Failed to copy input cif file.")
+            logger.error("fail to validate input mmCCIF model file")
+            generateErrorLog("Error: uploaded file is not standard mmCIF format file. Please make sure the file complied with mmCIF format.")
             return False
-    else:
-        logger.error("fail to validate input mmCCIF model file")
-        generateErrorLog("Error: uploaded file is not standard mmCIF format file. Please make sure the file complied with mmCIF format.")
+    except UnicodeDecodeError:
+        logger.error("CIF input file is not Unicode file, likely in wrong format or with special character. STOP!!!")
+        generateErrorLog("Error: CIF input file is not Unicode file, likely in wrong format or with special character.")
         return False
-
 
 def generateSummaryForCGI(filename_processed, filename_cgi_value="cgi_value"):
     try:
-        with open(filename_processed) as file:
-            reader = PdbxReader(file)
-            logger.debug("opening converted file at %s" % filename_processed)
-            try:
-                l_dc = []
-                reader.read(l_dc)
-                dc0 = l_dc[0]
-                logger.info("Read converted model file")
-            except Exception as e:
-                logger.exception(e)
-                generateErrorLog("Error: Failed to parse converted mmCIF.")
+        # with open(filename_processed) as file:
+        #     reader = PdbxReader(file)
+        #     logger.debug("opening converted file at %s" % filename_processed)
+        #     try:
+        #         l_dc = []
+        #         reader.read(l_dc)
+        #         dc0 = l_dc[0]
+        #         logger.info("Read converted model file")
+        #     except Exception as e:
+        #         logger.exception(e)
+        #         generateErrorLog("Error: Failed to parse converted mmCIF.")
+        io = IoAdapterCore()
+        logger.debug("opening converted file at %s" % filename_processed)
+        try:
+            l_dc = io.readFile(filename_processed)
+            dc0 = l_dc[0]
+            logger.info("Read converted model file")
+        except Exception as e:
+            logger.exception(e)
+            generateErrorLog("Error: Failed to parse converted mmCIF.")
     except IOError as e:
         logger.exception(e)
         generateErrorLog("Error: Failed to read converted mmCIF.")
