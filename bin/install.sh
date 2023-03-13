@@ -22,10 +22,18 @@ if [ -z "$PDB_EXTRACT_PY" ]
 then
     echo "[*] Please run source setup.sh before executing this script"
 	exit 1
-else 
-	echo "[*] Change directory to Maxit installation folder of"
-	cd $PDB_EXTRACT_PY/packages
-	pwd
+else
+    cd $PDB_EXTRACT_PY
+    if [ ! -d packages ]
+    then
+	echo "[*] Make packages folder"
+	mkdir packages
+    else
+	echo "[*] Packages folder exists"
+    fi
+    echo "[*] Change directory to Maxit installation folder"
+    cd packages
+    pwd
 fi
 
 maxit_name="maxit-v11.100-prod-src"
@@ -41,5 +49,6 @@ echo "[*] Maxit installation starts"
 cd $PDB_EXTRACT_PY/packages/$maxit_name
 pwd
 make binary
+cd $PDB_EXTRACT_PY/bin
 echo "[*] Maxit installation finished"
 

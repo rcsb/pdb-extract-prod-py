@@ -3,4 +3,5 @@ include CHANGES.txt
 include REQUIREMENTS.txt
 recursive-include data *
 recursive-include bin *
-
+recursive-exclude packages
+recursive-exclude tests

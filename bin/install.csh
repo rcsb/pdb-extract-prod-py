@@ -10,8 +10,15 @@ else
 		echo "[*] Please run source setup.sh before executing this script"
 		exit 1
 	else
+		cd $PDB_EXTRACT_PY
+		if (-d packages) then
+		    echo "[*] Packages folder exists"
+		else
+		    echo "[*] Make packages folder"
+		    mkdir packages
+		endif
 		echo "[*] Change directory to Maxit installation folder of"
-		cd $PDB_EXTRACT_PY/packages
+		cd packages
 		pwd
 	endif
 endif
@@ -36,4 +43,5 @@ echo "[*] Maxit installation starts"
 cd $PDB_EXTRACT_PY/packages/$maxit_name
 pwd
 make binary
+cd $PDB_EXTRACT_PY/bin
 echo "[*] Maxit installation finished"

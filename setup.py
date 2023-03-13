@@ -21,7 +21,7 @@ setup(
     version="4.1",
     author="Chenghua Shao",
     author_email="chenghua.shao@rcsb.org",
-    description="PDB Extract is a pre-deposition service for assembling structure files for wwPDB OneDep deposition",
+    description="pdb_extract is a pre-deposition service for assembling structure files for wwPDB OneDep deposition",
     long_description="See README.txt",
     # url="https://github.com/rcsb/test.git",
     license="Apache 2.0",
