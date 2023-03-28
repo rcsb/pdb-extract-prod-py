@@ -74,15 +74,15 @@ def run(filepath):
     if version == "ccp4":
         logger.info("import ccp4 versioned parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
-        log = parser_ccp4.LogAimless()
+        log = parser_general.LogAimless()
     elif version == "html":
         logger.info("import html versioned parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
-        log = parser_html.LogAimlessHtml()
+        log = parser_general.LogAimlessHtml()
     elif version == "autoproc":
-        logger.info("import html versioned parser")
+        logger.info("import autoproc versioned parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
-        log = parser_html.LogAimlessHtml()
+        log = parser_general.LogAimlessHtml()
     else:
         logger.info("import general parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
