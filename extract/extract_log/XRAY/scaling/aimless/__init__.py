@@ -78,11 +78,11 @@ def run(filepath):
     elif version == "html":
         logger.info("import html versioned parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
-        log = parser_general.LogAimlessHtml()
+        log = parser_general.LogAimless()
     elif version == "autoproc":
         logger.info("import autoproc versioned parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
-        log = parser_general.LogAimlessHtml()
+        log = parser_general.LogAimless()
     else:
         logger.info("import general parser")
         from extract.extract_log.XRAY.scaling.aimless import aimless as parser_general
