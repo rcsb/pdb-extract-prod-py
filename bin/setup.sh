@@ -8,7 +8,7 @@
 ## e.g. export PDB_EXTRACT_PY=/home/username/pdb-extract-prod-py
 
 ## export PDB_EXTRACT_PY=/Users/chenghua/Projects/pdb-extract-prod-py
-export PDB_EXTRACT_PY=/data/wwpdb/pdb_extract_service/pdb-extract-prod-py
+export PDB_EXTRACT_PY=/Users/chenghua/Projects/pdb-extract-prod-py
 export RCSBROOT=$PDB_EXTRACT_PY/packages/maxit-v11.100-prod-src
 export PATH=$PDB_EXTRACT_PY/bin:$PATH
 if [ -z "$PYTHONPATH" ] 
