@@ -18,7 +18,6 @@ import argparse
 from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
 from extract.util.exceptions import *
-# from extract.pdbx_v2.PdbxReader import PdbxReader
 from mmcif.io.IoAdapterCore import IoAdapterCore
 from extract.util.convertCatDataFormat import convertCatObjToDict
 import extract.util.pdbFileCheck as pdbFileCheck

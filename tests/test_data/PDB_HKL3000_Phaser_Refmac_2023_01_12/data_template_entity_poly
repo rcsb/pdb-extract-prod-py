@@ -1,0 +1,128 @@
+data_template
+#
+
+_audit_conform.dict_name      mmcif_pdbx.dic
+_audit_conform.dict_version   5.329
+_audit_conform.dict_location  http://mmcif.pdb.org/dictionaries/ascii/mmcif_pdbx.dic
+#
+_pdbx_audit_support.funding_organization  "Other private"
+_pdbx_audit_support.country               " "
+_pdbx_audit_support.grant_number          " "
+_pdbx_audit_support.ordinal               1
+#   #
+loop_
+_audit_author.name
+_audit_author.pdbx_ordinal
+_audit_author.identifier_ORCID
+"Song, X."          1  " 0000-0003-0454-186X"  
+" Dong, A."         2  " 0000-0002-4444-4012"  
+"Arrowsmith, C.H."  3  " 0000-0002-4971-3250"  
+"Edwards, A.M."     4  ?  
+"Min, J."           5  " 0000-0001-5210-3130"  
+#   #
+loop_
+_pdbx_contact_author.id
+_pdbx_contact_author.name_last
+_pdbx_contact_author.name_first
+_pdbx_contact_author.name_mi
+_pdbx_contact_author.address_1
+_pdbx_contact_author.address_2
+_pdbx_contact_author.city
+_pdbx_contact_author.state_province
+_pdbx_contact_author.postal_code
+_pdbx_contact_author.country
+_pdbx_contact_author.email
+_pdbx_contact_author.phone
+_pdbx_contact_author.role
+_pdbx_contact_author.organization_type
+_pdbx_contact_author.identifier_ORCID
+1  " Min"  Jinrong  " "  " 101 College Street, Suite 700"   " "  " Toronto"  " Ontario"  " M5G1L7"  Canada  " minjinrong@gmail.com"  " "  "principal investigator/group leader"  academic  " 0000-0001-5210-3130"  
+2  Dong    Aiping   " "  "  101 College Street, Suite 700"  " "  " Toronto"  Ontario     M5G1L7     Canada  adong.sgc@gmail.com      " "  "responsible scientist"                academic  " 0000-0002-4444-4012"  
+#
+_citation.id                       primary
+_citation.title                    "Crystal Structure of PRMT3 with Compound YD1-214 "
+_citation.journal_abbrev           "To be published"
+_citation.year                     " "
+_citation.pdbx_database_id_PubMed  " "
+_citation.pdbx_database_id_DOI     " "
+#   #
+loop_
+_citation_author.citation_id
+_citation_author.name
+_citation_author.ordinal
+_citation_author.identifier_ORCID
+primary  "Lastname, F.M."  1  " "  
+primary  " "               2  " "  
+#
+_struct.entry_id  "TO BE ASSIGNED, DO NOT CHANGE"
+_struct.title     " "
+#
+_struct_keywords.entry_id       "TO BE ASSIGNED, DO NOT CHANGE"
+_struct_keywords.pdbx_keywords  "PRMT3,YD1-214 "
+_struct_keywords.text           " "
+#
+_pdbx_struct_assembly_depositor_info.id                1
+_pdbx_struct_assembly_depositor_info.details           "Dimeric "
+_pdbx_struct_assembly_depositor_info.oligomeric_count  " "
+#
+_pdbx_struct_assembly_auth_evidence_depositor_info.assembly_id           1
+_pdbx_struct_assembly_auth_evidence_depositor_info.id                    1
+_pdbx_struct_assembly_auth_evidence_depositor_info.experimental_support  none
+_pdbx_struct_assembly_auth_evidence_depositor_info.details               " "
+#
+_entity.id                1
+_entity.type              polymer
+_entity.src_method        man
+_entity.pdbx_description  " "
+_entity.pdbx_mutation     " "
+#
+_exptl.entry_id         "TO BE ASSIGNED, DO NOT CHANGE"
+_exptl.method           "X-RAY DIFFRACTION"
+_exptl.crystals_number  " "
+#
+_exptl_crystal.id                   1
+_exptl_crystal.density_Matthews     " "
+_exptl_crystal.density_percent_sol  " "
+#
+_exptl_crystal_grow.crystal_id     1
+_exptl_crystal_grow.method         "VAPOR DIFFUSION, HANGING DROP"
+_exptl_crystal_grow.pH             7.0
+_exptl_crystal_grow.temp           291
+_exptl_crystal_grow.pdbx_details   "2.4 M Sodium malonate pH 7.0"
+_exptl_crystal_grow.pdbx_pH_range  " "
+#
+_diffrn.id            1
+_diffrn.crystal_id    1
+_diffrn.ambient_temp  100
+#
+_diffrn_source.diffrn_id             1
+_diffrn_source.source                SYNCHROTRON
+_diffrn_source.type                  "APS BEAMLINE 24-ID-C"
+_diffrn_source.pdbx_wavelength_list  " 0.97918"
+#
+_diffrn_detector.diffrn_id             1
+_diffrn_detector.detector              PIXEL
+_diffrn_detector.type                  "DECTRIS EIGER2 X 16M"
+_diffrn_detector.pdbx_collection_date  " 2022-06-11"
+#
+_diffrn_radiation.diffrn_id                       1
+_diffrn_radiation.pdbx_scattering_type            x-ray
+_diffrn_radiation.pdbx_diffrn_protocol            " "
+_diffrn_radiation.wavelength_id                   0.97918
+_diffrn_radiation.pdbx_monochromatic_or_laue_m_l  M
+_diffrn_radiation.monochromator                   " "
+#
+_entity_poly.entity_id                 1
+_entity_poly.pdbx_seq_one_letter_code  
+;mgsshhhhhhssglvprgsDLQEDEDGVYFSSYGHYGIHEEMLKDKIRTESYRDFIYQNP
+HIFKDKVVLDVGCGTGILSMFAAKAGAKKVLGVDQSEILYQAMDIIRLNKLEDTITLIKG
+KIEEVHLPVEKVDVIISEWMGYFLLFESMLDSVLYAKNKYLAKGGSVYPDICTISLVAVS
+DVNKHADRIAFWDDVYGFKMSCMKKAVIPEAVVEVLDPKTLISEPCGIKHIDCHTTSISD
+LEFSSDFTLKITRTSMCTAIAGYFDIYFEKNCHNRVVFSTGPQSTKTHWKQTVFLLEKPF
+SVKAGEALKGKVTVHKNKKDPRSLTVTLTLNNSTQTYGLQ
+;
+
+_entity_poly.pdbx_strand_id            A
+_entity_poly.type                      polypeptide(L)
+_entity_poly.pdbx_target_identifier    ?
+##

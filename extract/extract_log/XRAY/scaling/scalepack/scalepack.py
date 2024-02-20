@@ -10,10 +10,8 @@ Extract scaling statistics from Scalepack log fille
 """
 import re
 import logging
-# currentdir = os.getcwd()
-# parentdir = os.path.dirname(currentdir)
-# sys.path.insert(0, parentdir)
-# sys.path.insert(0, "/Users/chenghua/Projects/pdb_extract/Dev_20211015/pdb_extract")
+
+from extract.util.findPattern import getStartingIndex
 from extract.extract_log.XRAY.scaling import LogScaling  # initiate data dictionary for scaling process
 # import extract.extract_log.XRAY.scaling.scalepack.ver_9_9_9
 # all versions are imported and handled internally using the versioned python file in this folder
@@ -37,42 +35,6 @@ class LogScalepack(LogScaling):  # parent class in parent folder's __init__.py
         self.d_ = {}
         # Use the parent class LogScaling to add mmCIF items for scaling
         LogScaling.__init__(self)
-
-    def getStartingIndex(self, pattern, n_occur="last"):
-        """
-        Find the starting index of the self.l_file for a particular section
-        Scalepack log file organizes in sections, so need to find section start
-
-        Parameters
-        ----------
-        pattern : str
-            text pattern of the section start
-        n_occur : int, optional
-            take the 1st/2nd/3rd appearance of the pattern. The default is 1.
-
-        Returns
-        -------
-        int
-            starting line number (index) of the pattern.
-
-        """
-        re_pattern = re.compile(pattern)
-        index_line = -1
-        if n_occur == "last":
-            for i in range(self.n_lines):
-                line = self.l_file[i]
-                if re_pattern.search(line):
-                    index_line = i
-        else:
-            i_occur = 0
-            for i in range(self.n_lines):
-                line = self.l_file[i]
-                if re_pattern.search(line):
-                    i_occur += 1
-                    if i_occur == n_occur:
-                        index_line = i
-                        break
-        return index_line
 
     def orderShell(self):
         """
@@ -161,7 +123,7 @@ class LogScalepack(LogScaling):  # parent class in parent folder's __init__.py
 
         """
         pattern = r'Summary of reflection intensities and R-factors by batch number'
-        i_start = self.getStartingIndex(pattern)
+        i_start = getStartingIndex(self.l_file, pattern)
         line_of_column_attr = self.l_file[i_start+2] # check the line of column attr list
         if line_of_column_attr.strip() != "Batch     # obs # obs > 1   <I/sigma> N. Chi**2    R-fac":
             self.d_["reflns"]["_reflns.pdbx_netI_over_sigmaI"].append('?')
@@ -191,7 +153,7 @@ class LogScalepack(LogScaling):  # parent class in parent folder's __init__.py
 
         """
         pattern = r"Average Redundancy Per Shell"
-        i_start = self.getStartingIndex(pattern)
+        i_start = getStartingIndex(self.l_file, pattern)
         re_value = re.compile(r'All hkl')
         for i in range(i_start, self.n_lines):
             line = self.l_file[i]
@@ -218,7 +180,7 @@ class LogScalepack(LogScaling):  # parent class in parent folder's __init__.py
         """
         # pattern = r'I/Sigma in resolution shells'
         pattern = r'Lower Upper      No. of reflections with I / Sigma less than'
-        i_start = self.getStartingIndex(pattern)
+        i_start = getStartingIndex(self.l_file, pattern)
         re_value = re.compile(r'^\s*All hkl')
         for i in range(i_start, self.n_lines):
             line = self.l_file[i]
@@ -246,7 +208,7 @@ class LogScalepack(LogScaling):  # parent class in parent folder's __init__.py
         """
         # pattern = r'I/Sigma in resolution shells'
         pattern = r'Lower Upper      % of of reflections with I / Sigma less than'
-        i_start = self.getStartingIndex(pattern)
+        i_start = getStartingIndex(self.l_file, pattern)
         re_value = re.compile(r'^\s*All hkl')
         for i in range(i_start, self.n_lines):
             line = self.l_file[i]
@@ -273,7 +235,7 @@ class LogScalepack(LogScaling):  # parent class in parent folder's __init__.py
 
         """
         pattern = r"Summary of reflections intensities and R-factors by shells"
-        i_start = self.getStartingIndex(pattern)
+        i_start = getStartingIndex(self.l_file, pattern)
 
         # first need to find the row with column attr and collect attr into a list
         # old scalepack has less attr than HKL2000/HKL3000

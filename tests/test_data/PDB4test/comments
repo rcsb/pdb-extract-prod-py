@@ -1,0 +1,4 @@
+chain ID must be present when there are two of more chains for maxit conversion.
+
+maxit can convert properly 2or2_two_chains_different_no_TER.pdb
+but produce wrong file for 2or2_two_chains_different_no_chainID.pdb where the result file has two chains combined. 

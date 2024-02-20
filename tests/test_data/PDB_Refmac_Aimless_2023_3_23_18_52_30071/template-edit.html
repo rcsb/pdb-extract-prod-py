@@ -1,0 +1,446 @@
+
+<!doctype html>
+<HTML>
+<!--<head><title>Extracting structure data </title></head>-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Version : pdb_extract</title>
+
+<meta name="description" content="pdb_extract is used to extract statistical 
+information from the output files produced by many software for protein structure 
+determination using Xray Crystallography and NMR methods" />
+
+<meta name="keywords" content="pdb extract, PDB deposition, x-ray crystallography, 
+data collection and reduction, molecular replacement, heavy atom phase 
+determination, density modification, structure refinement, nmr structure 
+determination, hkl/scalepack, d*trek, saint, scala(ccp4), xscale, mosflm, 
+x-gen, cns/cnx/xplor, amore(ccp4), epmr, phaser,beast, solve, mlphare(ccp4), 
+sharp/autosharp, shelxd/shelxs, phases, snb, bnp, bp3, dm(ccp4), solomon(ccp4), 
+resolve, shelxe, refmac5(ccp4), restrain(ccp4), ccp4, shelxl, tnt, phenix, 
+buster-tnt, arp/warp, cyana, xplor-nih" />
+
+<link href="https://pdb-extract.wwpdb.org//wwpdb_css/site.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+<div class="container">
+  <header class="container_12">
+
+    <div class="logo">
+      <a href="http://www.wwpdb.org/"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/wwpdb_logo.gif"  alt="pdb_extract Logo" width="187" height="58" /></a>
+    </div>
+
+    <div class="topnav frht bg-green ui-corner-all pall">
+        	<a href="https://pdb-extract.wwpdb.org//index.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Home"><span class="ui-button-text">Home</span></a>
+            <a href="https://pdb-extract.wwpdb.org//version.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Version"></span><span class="ui-button-text">Version</span></a>
+             <a href="https://pdb-extract.wwpdb.org//documentation.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Documentation"><span class="ui-button-text">Documentation</span></a>
+            <div class="clear">&nbsp;</div>
+    </div>
+
+    <div class="headercontent prefix_1">
+        <h1>pdb_extract</h1>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+    <div class="seperator"></div>
+  </header>
+
+  <div class="content container_12">
+
+<form ENCTYPE="multipart/form-data" action="https://pdb-extract.wwpdb.org//cgi-bin//template.cgi" method="POST">
+
+<tr>
+ <center> <H3>Template File for Non-electronically Extracted Information  </H3></center>
+
+<li>It is recommended to complete this form if you deposit multiple 
+related structures, since it can be reused without reentering the same information 
+about authors, release status, title, citation, and more. 
+
+<li>Alternatively, you can skip this step and fill in the information when you deposit your files.
+
+<li>To use this form, please fill the needed information in the text area below  
+ and then click the <font color=red> SAVE </font> button at the bottom.
+
+
+</tr>
+
+<tr><td></td>
+<td><TEXTAREA NAME="template" COLS=90 ROWS=50>
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    THE DATA_TEMPLATE.TEXT FILE	FOR X-RAY STRUCTURE DEPOSITION		
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+		REMINDER AND GUIDELINES FOR USING THIS FILE
+
+  1. Only strings (values) included between the 'lesser than' and 'greater than' 
+     signs (<.....>) will be parsed for evaluation. 
+
+  2. All the input strings CAN NOT contain the three characters (", < , >).
+     Blank spaces or carriage returns within <..> will be ignored.
+
+  3. NEVER change the data item names (first column) inside of the brackets.
+
+  4. NEVER remove the equal sign (=) after the data item in the brackets.
+     
+  5. If more groups are needed, same number of data item should be added.  
+   
+  6. The items marked by '!' are mandatory.
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+++++                        START INPUT DATA BELOW                      ++++
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+================CATEGORY 1:   Contact Authors=============================
+Enter information about the contact authors.(mandatory)    
+   
+1.  Information about the Principal investigator (PI). 
+
+<contact_author_PI_id= 1 >           !(must be given 1)
+<contact_author_PI_salutation=  >    !(Dr./Prof./Mr./Mrs./Ms.)
+<contact_author_PI_first_name=  >    !(e.g. John)
+<contact_author_PI_last_name=  >     !(e.g. Rodgers)
+<contact_author_PI_middle_name=  >         
+<contact_author_PI_role= principal investigator/group leader>  !(or responsible scientist)
+<contact_author_PI_organization_type= academic>  !(or commercial, government, other)
+<contact_author_PI_email=  >              !(e.g.   name@host.domain.country)      
+<contact_author_PI_address=  >            !(e.g. 610 Taylor road)
+<contact_author_PI_city=  >               !(e.g. Piscataway)
+<contact_author_PI_State_or_Province=  >  !(e.g.  New Jersey)
+<contact_author_PI_Zip_Code=  >           !(e.g.  08864)
+<contact_author_PI_Country=  >        !(e.g. United States, United Kindom, . )
+<contact_author_PI_fax_number=  >
+<contact_author_PI_phone_number=  >    !(e.g.  01(617) 555-1213 )
+
+2. Information about other contact authors (responsible scientist, investigator)
+
+<contact_author_id=  >              (e.g. 2,3 ..)
+<contact_author_salutation=  >
+<contact_author_first_name=  >      
+<contact_author_last_name=  >       
+<contact_author_middle_name=  >         
+<contact_author_role=  >    
+<contact_author_organization_type=  >  
+<contact_author_email=  >             
+<contact_author_address=  >            
+<contact_author_city=  >              
+<contact_author_State_or_Province=  >   
+<contact_author_Zip_Code=  >           
+<contact_author_Country=  >          
+<contact_author_fax_number=  >
+<contact_author_phone_number=  >
+
+
+...(add more groups if needed)...
+
+================CATEGORY 2:   Release Status==============================
+Enter release status for the coordinates, structure_factor, and sequence
+
+  Status must be chosen from one of the following:
+* for coordinate & structure_factor (RELEASE NOW, HOLD FOR PUBLICATION,  
+  HOLD FOR 8 WEEKS, HOLD FOR 6 MONTHS, HOLD FOR 1 YEAR)
+
+* for chemical sequence, (RELEASE NOW  or  HOLD FOR RELEASE)
+
+
+<Release_status_for_coordinates=  >      !(e.g. HOLD FOR PUBLICATION)
+<Release_status_for_structure_factor=  > !(e.g. HOLD FOR PUBLICATION)
+<Release_status_for_sequence=  >         !(RELEASE NOW  or  HOLD FOR RELEASE)
+
+================CATEGORY 3:   Title=======================================
+Enter the title for the structure
+
+<structure_title=  >     !(e.g. Crystal Structure Analysis of the B-DNA)
+<structure_details=  >  
+
+================CATEGORY 4: Authors of Structure============================
+Enter authors of the deposited structures (at least one author) 
+
+<structure_author_name=  >  !(e.g. Surname, F.M.)
+<structure_author_name=  >
+<structure_author_name=  >
+<structure_author_name=  >
+<structure_author_name=  >
+
+...add more name if needed...
+
+================CATEGORY 5a:  Primary  Citation ============================
+
+  The primary citation is the article in which the deposited coordinates 
+  were first reported. 
+
+  If the citation has not yet been published, give 'To be published' to the item
+  'primary_citation_journal_abbrev' and leave pages, year, volume blank. 
+
+Enter the author name of primary citation
+<primary_citation_author_name=  >    !(e.g. Surname, F.M.) 
+<primary_citation_author_name=  >
+<primary_citation_author_name=  >
+<primary_citation_author_name=  >
+
+...add more name if needed...
+
+Enter journal information of the primary citation 
+<primary_citation_id= primary>     
+<primary_citation_journal_abbrev=  >     (e.g. To be published)
+<primary_citation_title=  >   
+<primary_citation_year=  >
+<primary_citation_journal_volume=  > 
+<primary_citation_page_first=  >
+<primary_citation_page_last=  >
+
+
+================CATEGORY 5b:  other citations (optional) ================
+  Other related citations may also be provided, if applicable.
+
+1.Enter the author name of other citations
+<citation_author_id=  >    (e.g. 1, 2 ..)
+<citation_author_name=  >
+<citation_author_name=  >
+<citation_author_name=  >
+<citation_author_name=  >
+
+...add more name if needed...
+
+1. Enter journal information of the other citation 
+<citation_id= 1 >               (e.g. 1, 2, 3 ...)
+<citation_journal_abbrev=  >
+<citation_title=  >
+<citation_year=  >
+<citation_journal_volume=  > 
+<citation_page_first=  >
+<citation_page_last=  >
+
+...(add more other citations if needed)...
+
+
+================CATEGORY 6:   Molecule Information========================
+Enter the names of the molecules (entities) that are in the asymmetric unit
+ 
+NOTE: The name of molecule should be obtained from the appropriate 
+      sequence database reference, if available. Otherwise the gene name or
+      other common name of the entity may be used. 
+      e.g. HIV-1 integrase for protein , RNA Hammerhead Ribozyme
+
+
+1. For entity 1
+<molecule_id= 1 >        (e.g. 1 )
+<molecule_name=  >       (e.g.  RNA Hammerhead Ribozyme )
+<molecule_type= polymer >    (e.g. polymer , non-polymer, macrolide  )
+<molecule_source_method= >   (e.g. man , nat, syn)
+
+
+2. For entity 2 
+<molecule_id=  >     (e.g. 2 )
+<molecule_name=  >     
+<molecule_type=  >    
+<molecule_source_method= >    
+
+
+...(add more group if needed)...
+
+================CATEGORY 7:   Molecule Details============================
+Enter additional information about each entity, if known. (optional)
+
+
+1. For entity 1
+<Molecular_entity_id= 1 >       (e.g. 1 )
+<Fragment_name=  >             (e.g. ligand binding domain, hairpin)
+<Specific_mutation=  >         (e.g. C280S)
+<Enzyme_Comission_number=  >   (if known: e.g. 2.7.7.7)
+
+2. For entity 2
+<Molecular_entity_id=  >       (e.g.  2 )
+<Fragment_name=  >   
+<Specific_mutation=  >      
+<Enzyme_Comission_number=  > 
+
+...(add more group if needed)...
+
+================CATEGORY 8:   Genetically Manipulated Source=============
+Enter data in the genetically manipulated source category 
+
+  If the biomolecule has been genetically manipulated, describe its 
+  source and expression system here. 
+
+1. For entity 1
+<Manipulated_entity_id= 1 >               !(e.g. 1 )
+<Source_organism_scientific_name=  >      !(e.g. Homo sapiens)
+<Source_organism_gene=  >                 (e.g. RPOD, ALKA...)
+<Source_organism_strain=  >               (e.g. BH10 ISOLATE, K-12...)
+<Expression_system_scientific_name=  >    (e.g. Escherichia coli)
+<Expression_system_strain=  >	          (e.g. BL21(DE3))
+<Expression_system_vector_type=  >	  (e.g. plasmid)
+<Expression_system_plasmid_name=  >       (e.g. pET26)
+<Manipulated_source_details=  >           (any other relevant information)
+
+2. For entity 2
+
+...(add more group if needed)...
+
+================CATEGORY 9:   Natural Source (optional) ===================
+Enter data in the natural source category  (if applicable)
+
+  If the biomolecule was derived from a natural source, describe it here.
+      
+1. For entity 1
+<natural_source_entity_id=  >          (e.g. 1, 2..)
+<natural_source_scientific_name=  >    (e.g. Homo sapiens)
+<natural_source_organism_strain=  >    (e.g. DH5a , BMH 71-18)
+<natural_source_details=  >            (e.g. organ, tissue, cell ..)
+
+2. For entity 2
+
+...(add more group if needed)...
+
+================CATEGORY 10:  Synthetic Source (optional)==================
+If the biomolecule has not been genetically manipulated or synthesized, 
+describe its source here. 
+
+1. For entity 1
+<synthetic_source_entity_id=  >          (e.g. 1,2. )
+<synthetic_source_description=  >      (if known)
+
+
+2. For entity 2
+
+...(add more group if needed)...
+
+
+================CATEGORY 11:   Keywords===================================
+Enter a list of keywords that describe important features of the deposited
+structure.  
+
+  Example: beta barrel, protein-DNA complex, double helix, hydrolase, etc. 
+
+<structure_keywords=  >  !(e.g. beta barrel)
+
+================CATEGORY 12:   Biological Assembly ======================
+Enter data in the biological assembly category (if applicable)
+
+Enter the number of polymer chains that form the assembly in solution
+
+<biological_assembly_chain_number=  >  !(e.g.  1 for monomer, 2 for dimer ..)
+
+================CATEGORY 13:   Methods and Conditions=====================
+Enter the crystallization conditions for each crystal
+
+1. For crystal 1:				
+<crystal_number= 1 >	            (e.g. 1, )
+<crystallization_method=  >      (e.g. BATCH MODE, EVAPORATION) 
+<crystallization_pH=  >          (e.g. 7.5 ...)
+<crystallization_temperature=  > (e.g. 298) (in Kelvin) 
+<crystallization_details=  >     (e.g. PEG 4000, NaCl etc.)
+
+...(add more crystal groups if needed)...
+
+================CATEGORY 14:   Radiation Source (experiment)============
+Enter the details of the source of radiation, the X-ray generator, 
+and the wavelength for each diffraction.
+
+1. For experiment 1:
+<radiation_experiment= 1 >      !(e.g. 1, 2, ...)
+<radiation_source=  >           !(e.g. SYNCHROTRON, ROTATING ANODE ..)
+<radiation_source_type=  >      !(e.g. NSLS BEAMLINE X8C ..)
+<radiation_wavelengths=  >       !(e.g. 1.502, or a list 0.987,0.988 ..)
+<radiation_detector=  >         !(e.g. CCD, AREA DETECTOR, IMAGE PLATE ..)
+<radiation_detector_type=  >     !(e.g. ADSC QUANTUM 1,  ..)
+<radiation_detector_details=  >    (e.g. mirrors...)
+<data_collection_date=  >             !(e.g. 2004-01-07)
+<data_collection_temperature=  >      !(e.g. 100 for crystal  1:)
+<data_collection_protocol=  >          !(e.g. SINGLE WAVELENGTH, MAD, ...)
+<data_collection_monochromator=  >     (e.g. GRAPHITE, Ni FILTER ...)
+<data_collection_monochromatic_or_laue=  M >  !(default M, give L if Laue diffr.)
+
+
+....(add more experiment group if needed)....
+
+================CATEGORY 15:   refinement details (optional)============
+Enter the details of the structure refinement. (if applicable)
+
+<refinement_detail=   >  
+<refinement_start_model=   >    (e.g. pdbid 100D)
+
+================CATEGORY 16:   database (optional)======================
+Enter the database name for each molecule (entity), (IF KNOWN).
+
+1. For entity 1
+<database_entity_id= 1  >  (e.g. 1 )
+<database_name=  >  (e.g. BMCD, BMRB, EMDB, PDB, NDB, TargetTrack )
+<database_code=  >  (e.g. 1ABC, 100D, TNKS2_HUMAN )
+<database_accession=   >  (e.g. 100D, Q9H2K2  )
+
+
+...(add more group if needed)...
+
+================CATEGORY 17:   Ligand binding (optional)==================
+
+<binding_assay_id=   >     !(A unique identifier such as 1,2,..)
+<binding_assay_target_sequence_one_letter_code=   >  (Chemical sequence if known)
+<binding_assay_ligand_descriptor_type=   >  (e.g. SMILES, SMILES_CANONICAL, InChI,InChIKey) 
+<binding_assay_ligand_descriptor=   >   (e.g. Cc1cccc(c1)C1COc2cc(O)c(O)cc2C1 )
+<binding_assay_assay_type=   >        (Type of binding assay. e.g. 'competitive binding')
+<binding_assay_assay_value_type=   > (e.g. IC50, EC50,Ki,Kd)  
+<binding_assay_assay_value=   >     (The value measured. e.g. 8300.0)
+<binding_assay_assay_pH=   >       (pH value at which the assay was performed. e.g. 6.4)
+<binding_assay_assay_temperature=   > (temperature (K) at which the assay was performed. e.g.273)
+<binding_assay_details=   >  (details of the measurement).
+
+
+================CATEGORY 18:   Structure Genomic (optional)==============
+If it is the structure genome's project, give the information
+
+<SG_project_id=  1>  
+<SG_project_name=  >        (e.g. PSI, Protein Structure Initiative)
+<full_name_of_SG_center=  >   (e.g. Berkeley Structural Genomic Center)
+
+
+=====================================END==================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </TEXTAREA></td>
+</tr>
+
+<center><table cellpadding=3 border bgcolor="lightsteelblue">
+<tr>
+<td><INPUT TYPE=SUBMIT NAME="submit" VALUE="Save"> </td>
+</table> </center>
+
+<input type="hidden"  name="usr_dir" value="XRAY_2023_3_23_18_52_30071">
+<input type="hidden"  name="users_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data">
+<input type="hidden"  name="URL_users_path" value="https://pdb-extract.wwpdb.org//users_data">
+<input type="hidden"  name="URL" value="https://pdb-extract.wwpdb.org/">
+<input type="hidden"  name="exc_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-prod/bin">
+<input type="hidden"  name="exc_dir" value="CNS">
+
+
+  </div>
+  <footer class="container_12 ui-corner-all">
+    <p>&copy; <a href="http://www.rcsb.org">RCSB PDB</a></p>
+  </footer>
+</div>
+</body>
+</html>

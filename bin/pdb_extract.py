@@ -17,6 +17,9 @@ import importlib
 import re
 import shutil
 
+TOP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, TOP_DIR)
+
 from bin.parseArgs import create_parser, parseArgs
 from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
@@ -345,7 +348,8 @@ class Process():
             # remove python-filename-incompatible chars in software name to
             # match the software's parser filename in extract/extract_log
             # folder, so that the corresponding parser can be imported
-            software_name_clean = re.sub('[-/ *]', '', software2parse)
+            # e.g. d*TREK, cctbx.xfel
+            software_name_clean = re.sub('[-/ *\.]', '', software2parse)
 
             # locate folder of individual log parser
             l_import_folder = ["extract",
@@ -497,7 +501,7 @@ class Process():
 
         """
         try:
-            pdb_extract_folder = os.getenv("PDB_EXTRACT_PY")
+            pdb_extract_folder = TOP_DIR
             folder_dict = os.path.join(pdb_extract_folder, "data/dictionary")
             filename_dict = "mmcif_pdbx_v5_next.dic"
             filepath_dict = os.path.join(folder_dict, filename_dict)

@@ -1,0 +1,182 @@
+
+<!doctype html>
+<HTML>
+<!--<head><title>Extracting structure data </title></head>-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Version : PDB Extract</title>
+
+<meta name="description" content="PDB Extract is used to extract statistical 
+information from the output files produced by many software for protein structure 
+determination using Xray Crystallography and NMR methods" />
+
+<meta name="keywords" content="pdb extract, PDB deposition, x-ray crystallography, 
+data collection and reduction, molecular replacement, heavy atom phase 
+determination, density modification, structure refinement, nmr structure 
+determination, hkl/scalepack, d*trek, saint, scala(ccp4), xscale, mosflm, 
+x-gen, cns/cnx/xplor, amore(ccp4), epmr, phaser,beast, solve, mlphare(ccp4), 
+sharp/autosharp, shelxd/shelxs, phases, snb, bnp, bp3, dm(ccp4), solomon(ccp4), 
+resolve, shelxe, refmac5(ccp4), restrain(ccp4), ccp4, shelxl, tnt, phenix, 
+buster-tnt, arp/warp, cyana, xplor-nih" />
+
+<link href="https://pdb-extract.wwpdb.org//wwpdb_css/site.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+<div class="container">
+  <header class="container_12">
+
+    <div class="logo">
+      <a href="http://www.wwpdb.org/"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/wwpdb_logo.gif"  alt="PDB Extract Logo" width="187" height="58" /></a>
+    </div>
+
+    <div class="topnav frht bg-green ui-corner-all pall">
+        	<a href="https://pdb-extract.wwpdb.org//index.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Home"><span class="ui-button-text">Home</span></a>
+            <a href="https://pdb-extract.wwpdb.org//version.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Version"></span><span class="ui-button-text">Version</span></a>
+             <a href="https://pdb-extract.wwpdb.org//documentation.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Documentation"><span class="ui-button-text">Documentation</span></a>
+            <div class="clear">&nbsp;</div>
+    </div>
+
+    <div class="headercontent prefix_1">
+        <h1>PDB_Extract</h1>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+    <div class="seperator"></div>
+  </header>
+
+  <div class="content container_12">
+
+<center><font size=4 > <b>EXTRACTING INFORMATION FOR PDB DEPOSITION</b> </font></center>
+<p>
+<form ENCTYPE="multipart/form-data" action="https://pdb-extract.wwpdb.org//cgi-bin//pdb_extract_em_py.cgi" method="POST">
+<!--- <table> -->
+
+ <h4>Information about Authors, Structure Description, and Experiments ...&nbsp  
+<A  title="You have the option of including additional information that is mandatory for PDB deposition but which cannot be extracted from other input files.
+
+By using the “Click here” link, you can access an online portal (provided by PDBj) where you can build a completed template file containing this additional information.  You can upload the file here to incorporate its content into the coordinate file that PDB_extract will generate.
+
+The presence of this additional information in your coordinate file is not required for PDB deposition, but if it is absent, you will be required to enter the information manually  at the time of deposition. As such, if you are making multiple similar PDB depositions, you may save time and effort by preparing a completed template file containing mandatory additional information so that you can use it in all of your PDB_extract sessions and - as a result - not need to manually enter the additional information multiple times during your depositions. 
+ 
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A> 
+</h4>
+
+<table cellpadding=5 border bgcolor="#E0FFFF">
+
+<tr> <td colspan=2>
+&nbsp <A HREF="https://pdbj.org/cif-editor/#filterErroneousData=false,url=https://pdb-extract.wwpdb.org/help/data_template_em.cif " 
+TARGET="other"><font size=4><b>Click here </b></A>to edit and download a re-usable template via PDBj's mmCIF Editor if you haven't done so (*Note: click Editor's upper-left gear icon to save/download or access help)
+</td></tr>
+
+<tr> <td colspan=2>
+Upload completed mmCIF-format template:  <INPUT TYPE=file NAME="data_template_1"  SIZE=45 > (*Note: legacy template not in mmCIF format is no longer accepted)
+</td></tr>
+
+<tr> <td colspan=2>
+<b>Or</b> you can skip this step and fill in the information when you deposit your structure through wwPDB OneDep deposition system.
+</td></tr>
+
+
+<!--- ------------- -->
+</table> 
+<h4>Macromolecular Sequence Information (polymer entity) &nbsp &nbsp 
+<A  title="An ENTITY is defined as any unique molecule present in the asymmetric unit. Each unique biological polymer (protein or nucleic acids) in the structure is considered an entity. Thus, if there are five copies of a single protein in the asymmetric unit, the molecular entity is still only one. The entity detection is based on the extracted sequence observed in the model, so the same protein for different chains may appear as different entities if they have different model sequence (e.g. with unobserved residues or ALA/GLY modeling). Please provide sample sequence of each molecule in the empty text box, using standard one-letter codes. Please include the complete sequence of all residues used in the experiment including expression tags, linkers, mutations, and unobserved residues due to disorder. Non-standard residues should be input using the three-letter code in parenthesis, e.g. (MSE). 
+
+This section is extracted from your coordinate file. If you input a mmcif file which has no entity_poly category, the sequence may not be shown.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A>
+
+ </h4>
+
+Provide sample sequence of each molecule in the empty text box, using standard one-letter codes. Please include the complete sequence of all residues used in the experiment including expression tags, linkers, mutations, and unobserved residues due to disorder. Non-standard residues should be input using the three-letter code in parenthesis, e.g. (MSE).
+
+
+<table cellpadding=4 border bgcolor="#E0FFFF">
+<tr><th colspan=7 bgcolor="FAFAFA"></th></tr>
+
+    
+<!---Entity identifier  1 -->
+
+<tr><td colspan=3 bgcolor="FAFAFA">
+Entity identifier  <INPUT TYPE=TEXT NAME="entity_id_1" SIZE=2 VALUE= 1 >
+</font></font></b></td></tr>
+
+<tr><td> Sequence in Model</FONT></td>
+<td><NAME="one_lett_seq_1" COLS=80 ROWS=5>
+RATFGAWDYGVFATMLLVSTGIGLWQLAAVPVGLSLAASFMSAVQVLGVPAEAARYGLKFLWMCAGQLLNSLLTAFLFLP
+IFYRLGLTSTYQYLELRFSRAVRLCGTLQYLVATMLYTGIVIYAPALILNQVTGLDIWASLLSTGIICTLYTTVGGWTDV
+FQVVVMLVGFWVILARGVILLGGPRNVLSLAQQHSRINLMDFDPDPRSRYTFWTFIVGGTLVWLSMYGVNQAQVQRYVAC
+HTEGKAKLALLVNQLGLFLIVASAACCGIVMFVYYKDCDPLLTGRISAPDQYMPLLVLDIFEDLPGVPGLFLACAYSGTL
+STASTSINAMAAVTVEDLIKPRMPGLAPRKLVFISKGLSFIYGSACLTVAALSSLLGGGVLQGSFTVMGVISGPLLGAFT
+LGMLLPACNTPGVLSGLAAGLAVSLWVAVGATLYPPGEQTMGVLPTSAAGCGRPALADTFYAISYLYYGALGTLTTMLCG
+ALISYLTGPTKRSSLGPGLLWWD  </td>
+</tr>
+
+<tr><td> Provide Full Sequence in Sample</FONT></td>
+	<td><TEXTAREA NAME="one_lett_seq_1" COLS=80 ROWS=5>
+	</TEXTAREA></td>
+</tr>
+
+
+<tr><td>Chain ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="chain_id_1" SIZE=50 VALUE= A ></td>
+</tr>
+
+
+<tr><td>Polymer Type</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="entity_type_1" SIZE=60 VALUE= "polypeptide(L)"></td>
+</tr>
+
+<!-- 
+<tr><td>Target_DB ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="target_db_1" SIZE=50 VALUE= ?></td>
+</tr>
+-->
+
+
+<!--- ------------- -->
+<BR>
+<BR>
+<center><table cellpadding=3 border bgcolor="lightsteelblue">
+<tr>
+<!---
+<td><FONT SIZE=3 COLOR=red><b>
+<INPUT TYPE=SUBMIT NAME="review_ent" VALUE="Review Entry"> </b></FONT></td>
+-->
+
+<td>
+<FONT SIZE=3 COLOR=red><b>
+<INPUT TYPE=SUBMIT NAME="submit" VALUE="Run"> 
+<INPUT TYPE=RESET VALUE="Reset">
+</b></FONT></td>
+
+
+<BR>
+</table> <center>
+
+<!-- parameters passed from harv-main.cgi -->
+
+<input type="hidden"  name="usr_dir" value="EM_2022_12_9_15_55_11773">
+<input type="hidden"  name="exc_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-prod/bin">
+<input type="hidden"  name="cgi_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/cgi-bin/">
+<input type="hidden"  name="users_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data">
+
+<input type="hidden"  name="help_path" value="https://pdb-extract.wwpdb.org//help">
+<input type="hidden"  name="URL_users_path" value="https://pdb-extract.wwpdb.org//users_data">
+<input type="hidden"  name="URL_cgi_path" value="https://pdb-extract.wwpdb.org//cgi-bin/">
+<input type="hidden"  name="URL" value="https://pdb-extract.wwpdb.org/">
+
+<input type="hidden"  name="file_type" value="pdb">
+<input type="hidden"  name="pdbfile_inp" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data/EM_2022_12_9_15_55_11773/deposited_EM.pdb">
+<input type="hidden"  name="prog_ref" value="CNS">
+<input type="hidden"  name="exc_dir" value="/data/wwpdb/pdb_extract_service/pdb-extract-prod">
+<input type="hidden"  name="method" value="EM">
+
+  </div>
+  <footer class="container_12 ui-corner-all">
+    <p>&copy; <a href="http://www.rcsb.org">RCSB PDB</a></p>
+  </footer>
+</div>
+</body>
+</html>

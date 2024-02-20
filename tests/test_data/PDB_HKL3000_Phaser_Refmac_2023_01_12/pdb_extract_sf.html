@@ -1,0 +1,417 @@
+<HTML>
+<head><title> Data collection in details </title></head>
+<BODY >
+
+<form ENCTYPE="multipart/form-data" method="POST" Action="https://pdb-extract.wwpdb.org//cgi-bin//sf_detail.cgi">
+
+
+<H3>This table is used to multiple diffraction data sets into one mmCIF file with details. </H3>
+
+You can use this table if you want to merge all the SF files (which were obtained seperately from different sources) in one mmCIF format.
+<p>
+
+<li><b>Crystal ID : </b> the identification of the crystal used for diffraction.
+<li><b> Wavelength value : </b> the wavelength of Xray used for diffraction.
+<li><b>Diffrac. details : </b> give details how you obtain the data set (e.g
+beamline, temperature, methods...).
+<li><b>Data file name  : </b> the name of file containing structure factors.
+
+<p>
+<b>After you run the program, all the data sets will be merged into one mmCIF
+file for which each data set is identified by the IDs.</b>
+<p>
+<center>
+<table cellpadding=3  bgcolor="#E0FFFF">
+
+
+<tr>
+<th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"> 
+<font color="#900000"><b>Collecting All Reflection Data (if applicable) </b> </font>
+&nbsp &nbsp 
+<A HREF="http://pdb-ws-29.rutgers.edu/pdb-extract/help/extract_sf_phs.html " 
+TARGET="other"><font size=3>Help</font></A>
+</font></th>
+</tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_1">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_1" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_1" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_1" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_1" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_2">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_2" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_2" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_2" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_2" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_3">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_3" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_3" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_3" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_3" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_4">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_4" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_4" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_4" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_4" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_5">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_5" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_5" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_5" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_5" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_6">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_6" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_6" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_6" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_6" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_7">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_7" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_7" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_7" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_7" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_8">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_8" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_8" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_8" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_8" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+
+    <tr> 
+        <td><FONT SIZE=3 COLOR="#900000"><b>
+        <select name="sf_prog_9">
+        <option value="">Select Data Format
+        <option value="HKL">HKL
+        <option value="SCALEPACK">SCALEPACK
+        <option value="DTREK">D*TREK
+        <option value="SAINT">SAINT
+        <option value="XSCALE">XDS/XSCALE
+        <option value="SAINT">XPREP
+        <option value="3DSCALE">3DSCALE
+        <option value="OTHER">OTHER
+        </select>
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Crystal ID 
+        <input type=text size=8 maxlength=100 name="sf_ncryst_9" value ="" >
+        </b></FONT></td>
+
+        <td><FONT SIZE=3 COLOR="#900000"><b> Wavelength value
+        <input type=text size=8 maxlength=100 name="sf_wave_9" value ="" >
+        </b></FONT></td>
+
+
+       </tr>
+
+        <tr>
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b>Diffrac. details
+        <input type=text size=80 maxlength=10000 name="sf_detail_9" value ="">
+        </b></FONT></td>
+        </tr>
+
+        <tr> 
+        <td colspan=5> <FONT SIZE=3 COLOR="#900000"><b> Data file name 
+        <INPUT TYPE=file NAME="sf_file_9" SIZE=60>
+        </b></FONT></td>
+        </tr>
+        <tr><th colspan=5 bgcolor="#cccfff"><font size=4 color="#000000"></font></th></tr>
+
+   </table>    <table cellpadding=3 border bgcolor="#E0FFFF">
+        <tr>
+        <td><FONT SIZE=3 COLOR=red><b>
+        <INPUT TYPE=SUBMIT NAME="submit" VALUE="Run"> 
+        </b></FONT>
+        <INPUT TYPE=RESET VALUE="Reset">
+        </td>
+    </table> </center>
+
+<input type="hidden"  name="usr_dir" value="XRAY_2023_1_12_11_37_16391">
+<input type="hidden"  name="exc_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-prod/bin">
+<input type="hidden"  name="cgi_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/cgi-bin/">
+<input type="hidden"  name="users_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data">
+
+<input type="hidden"  name="help_path" value="https://pdb-extract.wwpdb.org//help">
+<input type="hidden"  name="URL" value="https://pdb-extract.wwpdb.org/">
+<input type="hidden"  name="URL_users_path" value="https://pdb-extract.wwpdb.org//users_data">
+<input type="hidden"  name="URL_cgi_path" value="https://pdb-extract.wwpdb.org//cgi-bin/">
+<input type="hidden"  name="ccp4_include" value="/data/wwpdb/pdb_extract_service/ccp4-7.0/include">
+</body>
+</html>
+

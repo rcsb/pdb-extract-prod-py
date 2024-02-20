@@ -1,0 +1,48 @@
+data_2HYV
+#
+   #
+loop_
+_audit_author.name_test
+_audit_author.pdbx_ordinal
+"Shao, C."      1  
+"Head, J.F."    2  
+"Seaton, B.A."  3  
+#
+_database_2.database_id_test    PDB
+_database_2.database_code  2HYV
+#
+_reflns.pdbx_diffrn_id              1
+_reflns.pdbx_ordinal                1
+_reflns.entry_id                    2HYV
+_reflns.observed_criterion_sigma_I  ?
+_reflns.observed_criterion_sigma_F  ?
+_reflns.d_resolution_low            50.000
+_reflns.d_resolution_high           1.420
+_reflns.number_obs                  75286
+_reflns.number_all                  ?
+_reflns.percent_possible_obs        97.9
+_reflns.pdbx_Rmerge_I_obs           0.05500
+_reflns.pdbx_Rsym_value             ?
+_reflns.pdbx_netI_over_sigmaI       41.5000
+_reflns.B_iso_Wilson_estimate       ?
+_reflns.pdbx_redundancy             5.000
+_reflns.test                        9999
+#
+_reflns_shell.pdbx_diffrn_id        1
+_reflns_shell.pdbx_ordinal          1
+_reflns_shell.d_res_high            1.42
+_reflns_shell.d_res_low             1.47
+_reflns_shell.percent_possible_all  83.5
+_reflns_shell.Rmerge_I_obs          0.37500
+_reflns_shell.pdbx_Rsym_value       ?
+_reflns_shell.meanI_over_sigI_obs   ?
+_reflns_shell.pdbx_redundancy       2.20
+#
+_pdbx_database_status.entry_id                      ToBeAssigned
+_pdbx_database_status.dep_release_code_coordinates  "HOLD FOR PUBLICATION"
+_pdbx_database_status.dep_release_code_sequence     "HOLD FOR RELEASE"
+#
+_pdbx_audit_support.funding_organization  "National Institutes of Health/National Institute of General Medical Sciences"
+_pdbx_audit_support.country               "United States"
+_pdbx_audit_support.grant_number          XX000000
+##

@@ -1,0 +1,107 @@
+Environment configuration...
+Python => /opt/xtal/ccp4-7.1/libexec/python2.7
+CCTBX => /opt/xtal/ccp4-7.1/lib/py2/site-packages
+CCP4 => /opt/xtal/ccp4-7.1
+CCP4_SCR => /tmp/tmppKgHDC
+Starting directory: /home/prasanna/xia2_24
+Working directory: /home/prasanna/xia2_24
+Free space:        1049.34 GB
+Host: prasanna-Precision-7920-Tower
+Contact: xia2.support@gmail.com
+XIA2 0.6.467-geb301d90-dials-2.2
+DIALS 2.2.5-g89235367c-release
+CCP4 7.1.008
+Command line: xia2 /home/prasanna/Documents/Mukund/Sync/WT
+Project directory: /home/prasanna/xia2_24
+-------------------- Spotfinding SWEEP1 --------------------
+74548 spots found on 161 images (max 1607 / bin)
+                                                           *
+*                                    *  *  *  *  *  *  *  **
+**  *  *  *  *  *  *  *  *  *  *  ** * *** ***** ** ********
+***************** ** ***************************************
+************************************************************
+************************************************************
+************************************************************
+************************************************************
+************************************************************
+************************************************************
+1001                       image                        1161
+------------------- Autoindexing SWEEP1 --------------------
+All possible indexing solutions:
+hP  60.09  60.09 122.38  90.00  90.00 120.00
+oC  60.08 104.09 122.37  90.00  90.00  90.00
+mC  60.08 104.08 122.37  90.00  89.99  90.00
+mP  60.08 122.38  60.09  90.00 119.99  90.00
+aP  60.08  60.09 122.39  90.00  89.99 119.99
+Indexing solution:
+hP  60.09  60.09 122.38  90.00  90.00 120.00
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1001 to 1161
+Standard Deviation in pixel range: 1.08 1.22
+Integration status per image (60/record):
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+"o" => good        "%" => ok        "!" => bad rmsd
+"O" => overloaded  "#" => many bad  "." => weak
+"@" => abandoned
+Mosaic spread: 0.139 < 0.139 < 0.139
+-------------------- Preparing DEFAULT ---------------------
+--------------------- Scaling DEFAULT ----------------------
+Resolution for sweep NATIVE/SWEEP1: 1.55 (cc_half > 0.3)
+--------------------- Scaling DEFAULT ----------------------
+---------------- Systematic absences check -----------------
+Most likely space group: P 31 2 1
+------------------- Unit cell refinement -------------------
+Overall:  60.08  60.08 122.38  90.00  90.00 120.00
+Overall twinning score: 2.58
+Your data do not appear twinned
+Project: AUTOMATIC
+Crystal: DEFAULT
+Sequence: 
+Wavelength name: NATIVE
+Wavelength 0.97947
+Sweeps:
+SWEEP SWEEP1 [WAVELENGTH NATIVE]
+TEMPLATE ods593-wt2-#####.mccd
+DIRECTORY /home/prasanna/Documents/Mukund/Sync/WT
+IMAGES (USER) 1001 to 1161
+MTZ file: /home/prasanna/xia2_24/DEFAULT/NATIVE/SWEEP1/integrate/12_integrated.refl
+For AUTOMATIC/DEFAULT/NATIVE                 Overall    Low     High
+High resolution limit                           1.55    4.21    1.55
+Low resolution limit                           47.89   47.91    1.58
+Completeness                                   99.0   100.0    86.2
+Multiplicity                                    8.8     9.1     4.4
+I/sigma                                         7.1    49.3     0.1
+Rmerge(I)                                     0.102   0.040   2.382
+Rmerge(I+/-)                                  0.097   0.038   2.150
+Rmeas(I)                                      0.108   0.042   2.693
+Rmeas(I+/-)                                   0.109   0.043   2.637
+Rpim(I)                                       0.035   0.014   1.217
+Rpim(I+/-)                                    0.048   0.019   1.503
+CC half                                       0.998   0.999   0.188
+Wilson B factor                              16.440
+Anomalous completeness                         98.6   100.0    83.5
+Anomalous multiplicity                          4.6     5.2     2.3
+Anomalous correlation                        -0.222   0.042  -0.251
+Anomalous slope                               0.174
+dF/F                                          0.076
+dI/s(dI)                                      0.181
+Total observations                           328664   18969    7113
+Total unique                                  37545    2088    1616
+Assuming spacegroup: P 31 2 1
+Unit cell (with estimated std devs):
+60.0816(3) 60.0816(3) 122.3824(6)
+90.0       90.0       120.0      
+mtz format:
+Scaled reflections: /home/prasanna/xia2_24/DataFiles/AUTOMATIC_DEFAULT_free.mtz
+mtz_unmerged format:
+Scaled reflections (NATIVE): /home/prasanna/xia2_24/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz
+Processing took 00h 06m 45s
+XIA2 used... ccp4, dials, dials.scale, xia2
+Here are the appropriate citations (BIBTeX in xia2-citations.bib.)
+Beilsten-Edmands, J. et al. (2020) Acta Cryst. D76.
+Winn, M. D. et al. (2011) Acta Cryst. D67, 235-242.
+Winter, G. (2010) J. Appl. Cryst. 43, 186-190.
+Winter, G. et al. (2018) Acta Cryst. D74, 85-97.
+Status: normal termination

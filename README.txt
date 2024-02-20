@@ -8,70 +8,24 @@ In the following instruction, text after '>' sign indicates command to run
 ====================== 0.  Requirements =============================
 1.  This python program has been tested on Linux and Mac platforms
 2.  Requires Python3 >= 3.6
-3.  Python dependency: The program requires python packages 'six' and 'mmcif'.
-	These packages can be installed by pip or pip3. For example,
-    for required package ‘mmcif', please either intall for all, which needs
-    system administrator's privilege, through:
+3.  Python dependency: The program requires python packages 'mmcif'.
+	These packages can be installed by pip or pip3. e.g.
     >pip3 install mmcif
-    
-    or install for the current user only, through:
-    >pip3 install --user mmcif
 
-    * mmcif package requires CMake > 3.24, and cmake package subsequently requires
-    skbuild that may not be directly installed through pip for older version of
-    Python. If so, try the following:
-    pip3 install --upgrade pip
-    pip3 install scikit-build
-    pip3 install cmake
-    pip3 install mmcif
+    * mmcif package requires cmake, flex, and bison
 
 ====================== 1.  Installation =============================
 1.	Uncompress the package:
-	>tar -zxvf pdb-extract-v4.0-prod-src.tar.gz
+	>tar -zxvf pdb-extract-v4.2-prod-src.tar.gz
 
-2.	Go to pdb-extract-prod-py/bin folder, edit the Shell-dependent setup file
+2.	Go to the extracted pdb-extract-prod-py/ folder, run install.sh, e.g.
+	>/bin/bash install.sh
+	This will install the required maxit package.
 
-2A.	For C shell users, edit "setup.csh"
-    Only need to modify the 1st row of the content by replacing the
-    directory with the full directory of your PDB-Extract folder
-    e.g. setenv PDB_EXTRACT_PY /home/username/pdb-extract-prod-py
-
-    Then implement the setup by sourcing the file
-     	>source setup.csh
-	For any future run, you can either source this file or copy the enviroment
-	variables setting into .tcshrc
-
-2B.	For Bourne shell users, edit "setup.sh"
-    Only need to modify the 1st row of the content by replacing the
-    directory with the full directory of your PDB-Extract folder
-    e.g. export PDB_EXTRACT_PY=/home/username/pdb-extract-prod-py
-
-    Then implement the setup by sourcing the file
-     	>source setup.sh
-	For any future run, you can either source this file or copy the enviroment
-	variables setting into .bashrc or .bash_profile
-
-3.  Install Maxit. Maxit suite is required and can be installed with a simple 
-    command:
-	
-3A.	For C shell users, run 
-	>$PDB_EXTRACT_PY/bin/install.csh
-	
-3B.	For Bourne shell users, run
-	>$PDB_EXTRACT_PY/bin/install.sh
-
-4.	(Optional) Dictionary update.
-    No need to run this step for the 1st-time installation. 
-	wwPDB mmCIF dictionary is used for output file validation. This dictionary 
-	is updated periodically. If you have installed the PDB-Extract previously 
-	and only want to synchronize with the latest wwPDB mmCIF dictionary, it can
-	be performed with a simple command:
-	
-4A.	For C shell users, run 
-	>$PDB_EXTRACT_PY/bin/updateDictionary.csh
-	
-4B.	For Bourne shell users, run
-	>$PDB_EXTRACT_PY/bin/updateDictionary.sh
+3.	(Optional) Dictionary update.
+    It is not necessary to run this step, unless you have installed the PDB-Extract 
+	previously and only want to synchronize with the latest wwPDB mmCIF dictionary, 
+	by running the updateDictionary.sh
 
 ====================== 2. Test run  =====================
 1.	Simply type
@@ -93,7 +47,7 @@ pdb_extract.py: error: one of the arguments -iPDB -iCIF is required
 	will provide detailed instruction on the input parameters and files
 
 3. 	Go to pdb-extract-prod-py/data/test_data, run a simplest example
-    >cd $PDB_EXTRACT_PY/data/test_data
+    >cd data/test_data
 	>pdb_extract.py -iPDB 3bn6.pdb
 	when it's finished, you should see the pdb_extract_out.cif result file in 
 	the folder. Congratulations, your installation and setup are good.

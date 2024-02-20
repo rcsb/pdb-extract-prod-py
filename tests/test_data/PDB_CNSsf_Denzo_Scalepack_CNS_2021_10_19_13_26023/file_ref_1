@@ -1,0 +1,2151 @@
+          ============================================================
+          |                                                          |
+          |            Crystallography & NMR System (CNS)            |
+          |                         CNSsolve                         |
+          |                                                          |
+          ============================================================
+           Version: 1.1
+           Status: General release
+          ============================================================
+           Written by: A.T.Brunger, P.D.Adams, G.M.Clore, W.L.DeLano,
+                       P.Gros, R.W.Grosse-Kunstleve, J.-S.Jiang,
+                       J.Kuszewski, M.Nilges, N.S.Pannu, R.J.Read,
+                       L.M.Rice, T.Simonson, G.L.Warren.
+           Copyright (c) 1997-2001 Yale University
+          ============================================================
+           Running on machine: tyler.bumc.bu.edu (Unix-g77,32-bit)
+           Program started by: sch
+           Program started at: 18:04:53 on 13-Dec-2007
+          ============================================================
+
+ FFT3C: Using FFTPACK4.1
+
+ CNSsolve>{+ file: bindividual.inp +} 
+ CNSsolve>{+ directory: xtal_refine +} 
+ CNSsolve>{+ description: Restrained, individual B-factor refinement +} 
+ CNSsolve>{+ authors: Axel T. Brunger, and Paul D. Adams +} 
+ CNSsolve>{+ copyright: Yale University +} 
+ CNSsolve> 
+ CNSsolve>{+ reference: A.T. Brunger, The Free R Value: a Novel Statistical 
+ CNSsolve>              Quantity for Assessing the Accuracy of Crystal Structures, 
+ CNSsolve>              Nature 355, 472-474 (1992) +} 
+ CNSsolve>{+ reference: N.S. Pannu and R.J. Read, Improved structure refinement 
+ CNSsolve>              through maximum likelihood, Acta Cryst. A52, 659-668 (1996) +} 
+ CNSsolve> 
+ CNSsolve>{- Guidelines for using this file: 
+ CNSsolve>   - all strings must be quoted by double-quotes 
+ CNSsolve>   - logical variables (true/false) are not quoted 
+ CNSsolve>   - do not remove any evaluate statements from the file -} 
+ CNSsolve> 
+ CNSsolve>{- begin block parameter definition -} define( 
+ DEFINE> 
+ DEFINE>{======================= molecular structure =========================} 
+ DEFINE> 
+ DEFINE>{* molecular topology file *} 
+ DEFINE>{===>} structure_infile="la.mtf"; 
+ DEFINE> 
+ DEFINE>{* parameter files *} 
+ DEFINE>{===>} parameter_infile_1="CNS_TOPPAR:protein_rep.param"; 
+ DEFINE>{===>} parameter_infile_2="CNS_TOPPAR:ion.param"; 
+ DEFINE>{===>} parameter_infile_3="CNS_TOPPAR:water_rep.param"; 
+ DEFINE>{===>} parameter_infile_4=""; 
+ DEFINE>{===>} parameter_infile_5=""; 
+ DEFINE> 
+ DEFINE>{* coordinate file *} 
+ DEFINE>{===>} coordinate_infile="a_la_1.pdb"; 
+ DEFINE> 
+ DEFINE>{====================== crystallographic data ========================} 
+ DEFINE> 
+ DEFINE>{* space group *} 
+ DEFINE>{* use International Table conventions with subscripts substituted 
+ DEFINE>   by parenthesis *} 
+ DEFINE>{===>} sg="P2(1)2(1)2(1)"; 
+ DEFINE> 
+ DEFINE>{* unit cell parameters in Angstroms and degrees *} 
+ DEFINE>{+ table: rows=1 "cell" cols=6 "a" "b" "c" "alpha" "beta" "gamma" +} 
+ DEFINE>{===>} a=31.909; 
+ DEFINE>{===>} b=56.033; 
+ DEFINE>{===>} c=79.670; 
+ DEFINE>{===>} alpha=90; 
+ DEFINE>{===>} beta=90; 
+ DEFINE>{===>} gamma=90; 
+ DEFINE> 
+ DEFINE>{* anomalous f' f'' library file *} 
+ DEFINE>{* If a file is not specified, no anomalous contribution will be included *} 
+ DEFINE>{+ choice: "CNS_XRAYLIB:anom_cu.lib" "CNS_XRAYLIB:anom_mo.lib" "" user_file +} 
+ DEFINE>{===>} anom_library=""; 
+ DEFINE> 
+ DEFINE>{* reflection files *} 
+ DEFINE>{* specify non-anomalous reflection files before anomalous reflection files. *} 
+ DEFINE>{* files must contain unique array names otherwise errors will occur *} 
+ DEFINE>{===>} reflection_infile_1="la.cv"; 
+ DEFINE>{===>} reflection_infile_2=""; 
+ DEFINE>{===>} reflection_infile_3=""; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing observed amplitudes: required *} 
+ DEFINE>{===>} obs_f="fobs"; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing sigma values for amplitudes: required *} 
+ DEFINE>{===>} obs_sigf="sigma"; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing test set for cross-validation: required *} 
+ DEFINE>{* cross-validation should always be used, with the possible exception 
+ DEFINE>   of a final round of refinement including all data *} 
+ DEFINE>{* cross-validation is always required for the maximum likelihood targets *} 
+ DEFINE>{===>} test_set="test"; 
+ DEFINE> 
+ DEFINE>{* number for selection of test reflections: required for cross-validation *} 
+ DEFINE>{* ie. reflections with the test set array equal to this number will be 
+ DEFINE>       used for cross-validation, all other reflections form the working set *} 
+ DEFINE>{===>} test_flag=1; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing weighting scheme for observed 
+ DEFINE>   amplitudes: optional *} 
+ DEFINE>{* only used for the "residual" and "vector" targets - this will 
+ DEFINE>   default to a constant value of 1 if array is not present *} 
+ DEFINE>{===>} obs_w=""; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing observed intensities: optional *} 
+ DEFINE>{* required for the "mli" target *} 
+ DEFINE>{===>} obs_i=""; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing sigma values for intensities: optional *} 
+ DEFINE>{* required for the "mli" target *} 
+ DEFINE>{===>} obs_sigi=""; 
+ DEFINE> 
+ DEFINE>{* reciprocal space arrays with experimental phase probability 
+ DEFINE>   distribution: optional *} 
+ DEFINE>{* Hendrickson-Lattman coefficients A,B,C,D *} 
+ DEFINE>{* required for the "mlhl" target *} 
+ DEFINE>{+ table: rows=1 "HL coefficients" cols=4 "A" "B" "C" "D" +} 
+ DEFINE>{===>} obs_pa=""; 
+ DEFINE>{===>} obs_pb=""; 
+ DEFINE>{===>} obs_pc=""; 
+ DEFINE>{===>} obs_pd=""; 
+ DEFINE> 
+ DEFINE>{* complex reciprocal space array containing experimental phases: optional *} 
+ DEFINE>{* required for the "mixed" and "vector" targets *} 
+ DEFINE>{===>} obs_phase=""; 
+ DEFINE> 
+ DEFINE>{* reciprocal space array containing experimental figures of merit: optional *} 
+ DEFINE>{* required for the "mixed" target *} 
+ DEFINE>{===>} obs_fom=""; 
+ DEFINE> 
+ DEFINE>{* resolution limits to be used in refinement *} 
+ DEFINE>{* the full resolution range of observed data should be used in refinement. 
+ DEFINE>   A bulk solvent correction should be applied to allow the use of low 
+ DEFINE>   resolution terms. If no bulk solvent correction is applied, data must 
+ DEFINE>   be truncated at a lower resolution limit of between 8 and 6 Angstrom. *} 
+ DEFINE>{+ table: rows=1 "resolution" cols=2 "lowest" "highest" +} 
+ DEFINE>{===>} low_res=50.0; 
+ DEFINE>{===>} high_res=1.67; 
+ DEFINE> 
+ DEFINE>{* apply rejection criteria to amplitudes or intensities *} 
+ DEFINE>{+ choice: "amplitude" "intensity" +} 
+ DEFINE>{===>} obs_type="amplitude"; 
+ DEFINE> 
+ DEFINE>{* Observed data cutoff criteria: applied to amplitudes or intensities *} 
+ DEFINE>{* reflections with magnitude(Obs)/sigma < cutoff are rejected. *} 
+ DEFINE>{===>} sigma_cut=0.0; 
+ DEFINE> 
+ DEFINE>{* rms outlier cutoff: applied to amplitudes or intensities *} 
+ DEFINE>{* reflections with magnitude(Obs) > cutoff*rms(Obs) will be rejected *} 
+ DEFINE>{===>} obs_rms=10000; 
+ DEFINE> 
+ DEFINE>{=================== non-crystallographic symmetry ===================} 
+ DEFINE> 
+ DEFINE>{* NCS-restraints/constraints file *} 
+ DEFINE>{* see auxiliary/ncs.def *} 
+ DEFINE>{===>} ncs_infile=""; 
+ DEFINE> 
+ DEFINE>{=========== initial B-factor and bulk solvent corrections ===========} 
+ DEFINE> 
+ DEFINE>{* initial B-factor correction *} 
+ DEFINE>{+ choice: "no" "isotropic" "anisotropic" "anisotropic_fixed_isotropic" +} 
+ DEFINE>{===>} bscale="anisotropic"; 
+ DEFINE> 
+ DEFINE>{* lower resolution limit for B-factor correction *} 
+ DEFINE>{* the correction can only be calculated using data truncated at a 
+ DEFINE>   lower resolution limit of between 8 and 6 A. The correction will be 
+ DEFINE>   applied to all reflections *} 
+ DEFINE>{===>} low_res_bscale=6.0; 
+ DEFINE> 
+ DEFINE>{* bulk solvent correction *} 
+ DEFINE>{* a mask is required around the molecule(s). The region 
+ DEFINE>   outside this mask is the solvent region *} 
+ DEFINE>{+ choice: true false +} 
+ DEFINE>{===>} bulk_sol=true; 
+ DEFINE> 
+ DEFINE>{* bulk solvent mask file *} 
+ DEFINE>{* mask will be read from O type mask file if a name is given 
+ DEFINE>   otherwise calculated from coordinates of selected atoms *} 
+ DEFINE>{===>} bulk_mask_infile=""; 
+ DEFINE> 
+ DEFINE>{* solvent density level *} 
+ DEFINE>{* if negative, determined automatically 
+ DEFINE>   if positive, fixed at value given *} 
+ DEFINE>{===>} sol_k=-1; 
+ DEFINE> 
+ DEFINE>{* solvent B-factor *} 
+ DEFINE>{* if negative, determined automatically 
+ DEFINE>   if positive, fixed at value given *} 
+ DEFINE>{===>} sol_b=-1; 
+ DEFINE> 
+ DEFINE>{========================== atom selection ===========================} 
+ DEFINE> 
+ DEFINE>{* select atoms to be included *} 
+ DEFINE>{===>} atom_select=(known and not hydrogen); 
+ DEFINE> 
+ DEFINE>{* select atoms whose B-factors will remain fixed *} 
+ DEFINE>{===>} atom_fixed=(none); 
+ DEFINE> 
+ DEFINE>{* select main chain atoms for target sigma assignment *} 
+ DEFINE>{* note: atoms outside this selection will be considered to be 
+ DEFINE>   side chain atoms *} 
+ DEFINE>{===>} atom_main=(name ca or name n or name c or name o or name ot+); 
+ DEFINE> 
+ DEFINE>{================ B-factor minimization parameters ===================} 
+ DEFINE> 
+ DEFINE>{* reset all atomic B factors to this number if positive *} 
+ DEFINE>{===>} reset_b=-1; 
+ DEFINE> 
+ DEFINE>{* number of steps of restrained individual B-factor minimization *} 
+ DEFINE>{===>} bfactor_nstep=30; 
+ DEFINE> 
+ DEFINE>{* weight for B-factor restraints *} 
+ DEFINE>{* if -1, the weight will be automatically determined. 
+ DEFINE>   At later stages of refinement the optimal value for rweight can 
+ DEFINE>   be determined using the optimize_rweight.inp script *} 
+ DEFINE>{===>} rweight=-1; 
+ DEFINE> 
+ DEFINE>{* B-factor limits *} 
+ DEFINE>{+ table: rows=1 "B-factor" cols=2 "minimum" "maximum" +} 
+ DEFINE>{===>} bmin=1; 
+ DEFINE>{===>} bmax=200; 
+ DEFINE> 
+ DEFINE>{* target sigma values for restrained B-factor refinement *} 
+ DEFINE> 
+ DEFINE>{* mainchain bonds *} 
+ DEFINE>{===>} bsig_main=1.5; 
+ DEFINE>{* mainchain angles *} 
+ DEFINE>{===>} asig_main=2.0; 
+ DEFINE> 
+ DEFINE>{* sidechain bonds *} 
+ DEFINE>{===>} bsig_side=2.0; 
+ DEFINE>{* sidechain angles *} 
+ DEFINE>{===>} asig_side=2.5; 
+ DEFINE> 
+ DEFINE>{* refinement target *} 
+ DEFINE>{+ list: mlf: maximum likelihood target using amplitudes 
+ DEFINE>         mli: maximum likelihood target using intensities 
+ DEFINE>        mlhl: maximum likelihood target using amplitudes 
+ DEFINE>              and phase probability distribution 
+ DEFINE>    residual: standard crystallographic residual 
+ DEFINE>      vector: vector residual 
+ DEFINE>       mixed: (1-fom)*residual + fom*vector 
+ DEFINE>        e2e2: correlation coefficient using normalized E^2 
+ DEFINE>        e1e1: correlation coefficient using normalized E 
+ DEFINE>        f2f2: correlation coefficient using F^2 
+ DEFINE>        f1f1: correlation coefficient using F +} 
+ DEFINE>{+ choice: "mlf" "mli" "mlhl" "residual" "vector" "mixed" 
+ DEFINE>           "e2e2" "e1e1" "f2f2" "f1f1" +} 
+ DEFINE>{===>} reftarget="mlf"; 
+ DEFINE> 
+ DEFINE>{* number of bins for refinement target *} 
+ DEFINE>{* this will be determined automatically if a negative value is given 
+ DEFINE>   otherwise the specified number of bins will be used *} 
+ DEFINE>{===>} target_bins=-1; 
+ DEFINE> 
+ DEFINE>{* memory allocation for FFT calculation *} 
+ DEFINE>{* this will be determined automatically if a negative value is given 
+ DEFINE>   otherwise the specified number of words will be allocated *} 
+ DEFINE>{===>} fft_memory=-1; 
+ DEFINE> 
+ DEFINE>{=========================== output files ============================} 
+ DEFINE> 
+ DEFINE>{* output coordinate file *} 
+ DEFINE>{===>} coordinate_outfile="bi_la.pdb"; 
+ DEFINE> 
+ DEFINE>{* format output coordinates for use in o *} 
+ DEFINE>{* if false then the default CNS output coordinate format will be used *} 
+ DEFINE>{+ choice: true false +} 
+ DEFINE>{===>} pdb_o_format=true; 
+ DEFINE> 
+ DEFINE>{===========================================================================} 
+ DEFINE>{         things below this line do not normally need to be changed         } 
+ DEFINE>{===========================================================================} 
+ DEFINE> 
+ DEFINE> ) {- end block parameter definition -} 
+ CNSsolve> 
+ CNSsolve> checkversion 1.1 
+ Program version= 1.1 File version= 1.1
+ CNSsolve> 
+ CNSsolve> evaluate ($log_level=quiet) 
+ Assuming literal string "QUIET"
+ EVALUATE: symbol $LOG_LEVEL set to "QUIET" (string)
+ CNSsolve> 
+ CNSsolve> structure @&structure_infile end 
+ ASSFIL: file la.mtf opened.
+ STRUcture>data_cns_mtf 
+ REMARKS FILENAME="la.mtf"
+ REMARKS disulphide added: from A    1    to A    158
+ REMARKS DATE:15-Jul-2006  13:31:40       created by user: sch
+ REMARKS VERSION:1.1
+ Status of internal molecular topology database:
+ -> NATOM=       1507(MAXA=       40000)  NBOND=       1312(MAXB=       40000)
+ -> NTHETA=      1785(MAXT=       80000)  NGRP=         395(MAXGRP=     40000)
+ -> NPHI=         806(MAXP=       80000)  NIMPHI=       600(MAXIMP=     40000)
+ -> NNB=            0(MAXNB=      40000) 
+ STRUcture> 
+ STRUcture> end 
+ CNSsolve> 
+ CNSsolve> coordinates @&coordinate_infile 
+ ASSFIL: file a_la_1.pdb opened.
+ COOR>REMARK coordinates from simulated annealing refinement 
+ COOR>REMARK refinement resolution: 50.0 - 1.67 A 
+ COOR>REMARK starting r= 0.1891 free_r= 0.2237 
+ COOR>REMARK final    r= 0.1895 free_r= 0.2244 
+ COOR>REMARK rmsd bonds= 0.004925  rmsd angles=  1.46924 
+ COOR>REMARK wa_initial= 0.469268  wa_dynamics= 0.51933  wa_final= 0.503721 
+ COOR>REMARK target= mlf  md-method= torsion  annealing schedule= slowcool 
+ COOR>REMARK starting temperature= 500  total md steps= 20 * 6 
+ COOR>REMARK sg= P2(1)2(1)2(1) a= 31.909 b= 56.033 c= 79.670 alpha= 90 beta= 90 gamma= 90 
+ COOR>REMARK parameter file 1  : CNS_TOPPAR:protein_rep.param 
+ COOR>REMARK parameter file 2  : CNS_TOPPAR:ion.param 
+ COOR>REMARK parameter file 3  : CNS_TOPPAR:water_rep.param 
+ COOR>REMARK molecular structure file: la.mtf 
+ COOR>REMARK input coordinates: m_la.pdb 
+ COOR>REMARK reflection file= la.cv 
+ COOR>REMARK ncs= none 
+ COOR>REMARK B-correction resolution: 6.0 - 1.67 
+ COOR>REMARK initial B-factor correction applied to fobs : 
+ COOR>REMARK   B11=  -3.666 B22=   1.311 B33=   2.355 
+ COOR>REMARK   B12=   0.000 B13=   0.000 B23=   0.000 
+ COOR>REMARK B-factor correction applied to coordinate array B:   -0.010 
+ COOR>REMARK bulk solvent: density level= 0.321325 e/A^3, B-factor= 44.548 A^2 
+ COOR>REMARK reflections with |Fobs|/sigma_F < 0.0 rejected 
+ COOR>REMARK reflections with |Fobs| > 10000 * rms(Fobs) rejected 
+ COOR>REMARK theoretical total number of refl. in resol. range:     17238 ( 100.0 % ) 
+ COOR>REMARK number of unobserved reflections (no entry or |F|=0):    454 (   2.6 % ) 
+ COOR>REMARK number of reflections rejected:                            0 (   0.0 % ) 
+ COOR>REMARK total number of reflections used:                      16784 (  97.4 % ) 
+ COOR>REMARK number of reflections in working set:                  15462 (  89.7 % ) 
+ COOR>REMARK number of reflections in test set:                      1322 (   7.7 % ) 
+ COOR>CRYST1   31.909   56.033   79.670  90.00  90.00  90.00 P 21 21 21 
+ COOR>REMARK FILENAME="a_la_1.pdb" 
+ COOR>REMARK DATE:15-Jul-2006  13:45:26       created by user: sch 
+ COOR>REMARK VERSION:1.1 
+ COOR>ATOM      1  C   CYS A   1      10.366  15.873  24.697  1.00 19.22      A 
+ CNSsolve> 
+ CNSsolve> parameter 
+ PARRDR>   if ( &BLANK%parameter_infile_1 = false ) then 
+ NEXTCD: condition evaluated as true
+ PARRDR>      @@&parameter_infile_1 
+ ASSFIL: file /home/swr/cns_solve_1.1/libraries/toppar/protein_rep.param opened.
+ PARRDR>remarks file toppar/protein_rep.param 
+ PARRDR>remarks   protein parameters for crystallographic structure determination 
+ PARRDR>remarks   with "soft" (purely repulsive) van der Waals parameters. 
+ PARRDR>remarks 
+ PARRDR>remarks file toppar/protein_rep.param 
+ PARRDR>remarks Parameter file including bond and angle parameters 
+ PARRDR>remarks derived from Cambridge Data Base model structures 
+ PARRDR>remarks (R. A. Engh and R. Huber, Acta Cryst. Sect. A., 1991). 
+ PARRDR>remarks 
+ PARRDR>remarks Nonbonded parameters taken from PROLSQ using REPEL function. 
+ PARRDR>remarks Small dihedral angle energy constants set to uniform small value. 
+ PARRDR>remarks All other dihedral and improper energy constants set to uniform 
+ PARRDR>remarks  large values. 
+ PARRDR>remarks 
+ PARRDR>remarks Warning: these parameters are not suitable for free MD simulations 
+ PARRDR>remarks 
+ PARRDR> 
+ PARRDR>! 
+ PARRDR>! References: 
+ PARRDR>! Engh, R.A. and  Huber, R. (1991). Accurate Bond and 
+ PARRDR>!  Angle Parameters for X-ray Protein-Structure Refinement, 
+ PARRDR>!  Acta Cryst. A47, 392-400. 
+ PARRDR>! 
+ PARRDR>! Hendrickson W.A. and Konnert J.H. in "Computing  in 
+ PARRDR>!  Crystallography"  (ed.   R.  Diamond, S. Ramaseshan 
+ PARRDR>!  and K. Venkatesan) (Bangalore, Indian Institute  of 
+ PARRDR>!  Science, 1980) 13.01-13.23 
+ PARRDR>! 
+ PARRDR> 
+ PARRDR>set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ PARRDR>   end if 
+ PARRDR>   if ( &BLANK%parameter_infile_2 = false ) then 
+ NEXTCD: condition evaluated as true
+ PARRDR>      @@&parameter_infile_2 
+ ASSFIL: file /home/swr/cns_solve_1.1/libraries/toppar/ion.param opened.
+ PARRDR>remarks file toppar/ion.param 
+ PARRDR>remarks nonbonded parameters for common ions 
+ PARRDR>remarks new parameters derived from literature for single atom species 
+ PARRDR>remarks PDA 02/09/99 
+ PARRDR> 
+ PARRDR>set echo=off end 
+ Program version= 1.1 File version= 1.1
+ PARRDR>   end if 
+ PARRDR>   if ( &BLANK%parameter_infile_3 = false ) then 
+ NEXTCD: condition evaluated as true
+ PARRDR>      @@&parameter_infile_3 
+ ASSFIL: file /home/swr/cns_solve_1.1/libraries/toppar/water_rep.param opened.
+ PARRDR>remarks file toppar/water.param 
+ PARRDR>remarks   water parameters for structure determination 
+ PARRDR>remarks 
+ PARRDR> 
+ PARRDR>set echo=false end 
+ Program version= 1.1 File version= 1.1
+ EVALUATE: symbol $VDW_RADIUS_O set to    2.90000     (real)
+ EVALUATE: symbol $VDW_RADIUS_HH set to    1.60000     (real)
+ EVALUATE: symbol $VDW_RADIUS_O set to    2.58361     (real)
+ EVALUATE: symbol $VDW_RADIUS_HH set to    1.42544     (real)
+ EVALUATE: symbol $VDW_RADIUS14_O set to    2.31634     (real)
+ EVALUATE: symbol $VDW_RADIUS14_HH set to    1.15817     (real)
+ EVALUATE: symbol $VDW_EPS set to   0.100000     (real)
+ PARRDR> 
+ PARRDR>   end if 
+ PARRDR>   if ( &BLANK%parameter_infile_4 = false ) then 
+ NEXTCD: condition evaluated as false
+ PARRDR>      @@&parameter_infile_4 
+ PARRDR>   end if 
+ PARRDR>   if ( &BLANK%parameter_infile_5 = false ) then 
+ NEXTCD: condition evaluated as false
+ PARRDR>      @@&parameter_infile_5 
+ PARRDR>   end if 
+ PARRDR> end 
+ CNSsolve> 
+ CNSsolve> xray 
+ XRAY> 
+ XRAY>   @CNS_XTALLIB:spacegroup.lib (sg=&sg; 
+ ASSFIL: file /home/swr/cns_solve_1.1/libraries/xtal/spacegroup.lib opened.
+ XRAY>! file  libraries/xtal/spacegroup.lib 
+ XRAY>! library of symmetry operators for CNS 
+ XRAY>! Automatically generated with SgInfo Version 2.00a13 
+ XRAY> 
+ XRAY>module 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>  &sg=$sg; 
+ MODULE-DECLARATION>  &sgparam=$sgparam; 
+ MODULE-DECLARATION>) 
+ &_2_SG set to &_1_SG 
+ MODULE-INVOCATION>                                sgparam=$sgparam;) 
+ &_2_SGPARAM set to $_1_SGPARAM 
+ XRAY> 
+ XRAY>set message ? end 
+ MESSage=NORM
+ XRAY>evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ XRAY>set echo ? end 
+ ECHO=TRUE {ON}
+ XRAY>evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ XRAY>set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+SYMMETRY: found symmetry operators for space group "P2(1)2(1)2(1)" in library
+ XRAY> 
+ XRAY> 
+ XRAY>   a=&a b=&b c=&c  alpha=&alpha beta=&beta gamma=&gamma 
+ XRAY> 
+ XRAY>   @CNS_XRAYLIB:scatter.lib 
+ ASSFIL: file /home/swr/cns_solve_1.1/libraries/xray/scatter.lib opened.
+ XRAY>! file libraries/xray/scatter.lib 
+ XRAY>! Atomic scattering factors without anomalous contribution 
+ XRAY>! Library for CNS 
+ XRAY> 
+ XRAY>! Authors: Paul Adams, Joe Jaeger, and Axel T. Brunger 
+ XRAY> 
+ XRAY>!BEWARE: 
+ XRAY>!(1) element Cf (Californium) has to be referred to as Cff 
+ XRAY>!(2) element Sm (Samarium) has to be referred to as Smm 
+ XRAY>!(3) element Np (Neptunium) has to be referred to as Npp 
+ XRAY>!(3) types of elements with ionic state (i.e., +/-) specifications have 
+ XRAY>!    to be put in double quotes in selection statements. 
+ XRAY> 
+ XRAY>set message ? end 
+ MESSage=NORM
+ XRAY>evaluate ($message_old_sclib=$result) 
+ EVALUATE: symbol $MESSAGE_OLD_SCLIB set to "NORM" (string)
+ XRAY>set echo ? end 
+ ECHO=TRUE {ON}
+ XRAY>evaluate ($echo_old_sclib=$result) 
+ EVALUATE: symbol $ECHO_OLD_SCLIB set to TRUE (logical)
+ XRAY>set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ XRAY> 
+ XRAY>   if ( &BLANK%reflection_infile_1 = false ) then 
+ NEXTCD: condition evaluated as true
+ XRAY>     reflection @@&reflection_infile_1 end 
+ ASSFIL: file la.cv opened.
+ REFLection> NREFlection=     17080 
+ XRAY: increasing space allocation for up to   17080 reflections.
+ REFLection> ANOMalous=FALSe { equiv. to HERMitian=TRUE} 
+ REFLection> DECLare NAME=IOBS                   DOMAin=RECIprocal   TYPE=REAL END 
+ XDECLARE: Object IOBS has been declared.
+ REFLection> DECLare NAME=SIGI                   DOMAin=RECIprocal   TYPE=REAL END 
+ XDECLARE: Object SIGI has been declared.
+ REFLection> DECLare NAME=FOBS                   DOMAin=RECIprocal   TYPE=REAL END 
+ XDECLARE: Object FOBS has been declared.
+ REFLection> DECLare NAME=SIGMA                  DOMAin=RECIprocal   TYPE=REAL END 
+ XDECLARE: Object SIGMA has been declared.
+ REFLection> DECLare NAME=TEST                   DOMAin=RECIprocal   TYPE=INTE END 
+ XDECLARE: Object TEST has been declared.
+ REFLection> INDE     0    0    2 IOBS=     0.300 SIGI=     1.700 FOBS=     0.550 
+ XSFAL: allocating space for real reciprocal space object.
+ XSFAL: allocating space for real reciprocal space object.
+ XSFAL: allocating space for real reciprocal space object.
+ XSFAL: allocating space for real reciprocal space object.
+ XSFAL: allocating space for integer reciprocal space object.
+ XRRR2:    17080 new h,k,l indices have been added.
+ XRAY>   end if 
+ XRAY>   if ( &BLANK%reflection_infile_2 = false ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>     reflection @@&reflection_infile_2 end 
+ XRAY>   end if 
+ XRAY>   if ( &BLANK%reflection_infile_3 = false ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>     reflection @@&reflection_infile_3 end 
+ XRAY>   end if 
+ XRAY> 
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> if ( &BLANK%anom_library = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   @@&anom_library 
+ CNSsolve> else 
+ CNSsolve>   set echo=off end 
+ ANOMalous=FALSe {OFF}
+ NEXTCD: condition evaluated as false
+ CNSsolve> end if 
+ CNSsolve> 
+ CNSsolve> {- copy define parameters of optional arrays into symbols so 
+ CNSsolve>    we can redefine them -} 
+ CNSsolve> 
+ CNSsolve> evaluate ($obs_i=&obs_i) 
+ EVALUATE: symbol $OBS_I set to "" (string)
+ CNSsolve> evaluate ($obs_sigi=&obs_sigi) 
+ EVALUATE: symbol $OBS_SIGI set to "" (string)
+ CNSsolve> evaluate ($obs_w=&obs_w) 
+ EVALUATE: symbol $OBS_W set to "" (string)
+ CNSsolve> xray 
+ XRAY>   @@CNS_XTALMODULE:checkrefinput ( 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/checkrefinput opened.
+ XRAY>! Module file: checkrefinput 
+ XRAY>! 
+ XRAY>! CNS module 
+ XRAY>! ********** 
+ XRAY>! 
+ XRAY>! Authors: Axel Brunger and Paul Adams 
+ XRAY>! 
+ XRAY>! copyright Yale University 
+ XRAY>! 
+ XRAY>! Function: 
+ XRAY>!    Checks the required input reciprocal space arrays 
+ XRAY>! 
+ XRAY>! Requirements: 
+ XRAY>!    Needs to be called within xray 
+ XRAY> 
+ XRAY>module {checkrefinput} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>  &reftarget="residual"; {string} 
+ MODULE-DECLARATION>  &obs_f;                {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_sigf;             {reciprocal space array} 
+ MODULE-DECLARATION>  &test_set;             {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_pa;               {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_pb;               {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_pc;               {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_pd;               {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_phase;            {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_fom;              {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_w;                {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_i;                {reciprocal space array} 
+ MODULE-DECLARATION>  &obs_sigi;             {reciprocal space array} 
+ MODULE-DECLARATION>) 
+ MODULE-INVOCATION>                                  reftarget=&reftarget; 
+ &_2_REFTARGET set to &_1_REFTARGET 
+ MODULE-INVOCATION>                                  obs_f=&obs_f; 
+ &_2_OBS_F set to &_1_OBS_F 
+ MODULE-INVOCATION>                                  obs_sigf=&obs_sigf; 
+ &_2_OBS_SIGF set to &_1_OBS_SIGF 
+ MODULE-INVOCATION>                                  test_set=&test_set; 
+ &_2_TEST_SET set to &_1_TEST_SET 
+ MODULE-INVOCATION>                                  obs_pa=&obs_pa; 
+ &_2_OBS_PA set to &_1_OBS_PA 
+ MODULE-INVOCATION>                                  obs_pb=&obs_pb; 
+ &_2_OBS_PB set to &_1_OBS_PB 
+ MODULE-INVOCATION>                                  obs_pc=&obs_pc; 
+ &_2_OBS_PC set to &_1_OBS_PC 
+ MODULE-INVOCATION>                                  obs_pd=&obs_pd; 
+ &_2_OBS_PD set to &_1_OBS_PD 
+ MODULE-INVOCATION>                                  obs_phase=&obs_phase; 
+ &_2_OBS_PHASE set to &_1_OBS_PHASE 
+ MODULE-INVOCATION>                                  obs_fom=&obs_fom; 
+ &_2_OBS_FOM set to &_1_OBS_FOM 
+ MODULE-INVOCATION>                                  obs_w=$obs_w; 
+ &_2_OBS_W set to $_1_OBS_W 
+ MODULE-INVOCATION>                                  obs_i=$obs_i; 
+ &_2_OBS_I set to $_1_OBS_I 
+ MODULE-INVOCATION>                                  obs_sigi=$obs_sigi; 
+ &_2_OBS_SIGI set to $_1_OBS_SIGI 
+ MODULE-INVOCATION>                                  ) 
+ XRAY> 
+ XRAY>set message ? end 
+ MESSage=NORM
+ XRAY>evaluate ($message_old_cri=$result) 
+ EVALUATE: symbol $MESSAGE_OLD_CRI set to "NORM" (string)
+ XRAY>set echo ? end 
+ ECHO=TRUE {ON}
+ XRAY>evaluate ($echo_old_cri=$result) 
+ EVALUATE: symbol $ECHO_OLD_CRI set to TRUE (logical)
+ XRAY>if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>  set echo=on message=normal end 
+ XRAY>else 
+ XRAY>  set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ XRAY> 
+ XRAY>   query name=fcalc domain=reciprocal end 
+ Reciprocal space object FCALC does not exist.
+ XRAY>   if ( $object_exist = false ) then 
+ NEXTCD: condition evaluated as true
+ XRAY>      declare name=fcalc domain=reciprocal type=complex end 
+ XDECLARE: Object FCALC has been declared.
+ XRAY>   end if 
+ XRAY>   declare name=fbulk domain=reciprocal type=complex end 
+ XDECLARE: Object FBULK has been declared.
+ XRAY>   do (fbulk=0) ( all ) 
+ XSFAL: allocating space for complex reciprocal space object.
+ Total of     17080 structure factor elements were selected.
+ XRAY> 
+ XRAY>   binresolution &low_res &high_res 
+ XRAY>   mapresolution &high_res 
+ XRAY> 
+ XRAY>   if ( &obs_type = "intensity" ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>     if ( &BLANK%obs_i = true ) then 
+ XRAY>       display  Error: observed intensity array is undefined 
+ XRAY>       display         aborting script 
+ XRAY>       abort 
+ XRAY>     end if 
+ XRAY>     evaluate ($reject_obs=&obs_i) 
+ XRAY>     evaluate ($reject_sig=&obs_sigi) 
+ XRAY>     show min (amplitude(&STRIP%obs_i)) (all) 
+ XRAY>     evaluate ($obs_lower_limit=$result-0.1) 
+ XRAY>   else 
+ XRAY>     evaluate ($reject_obs=&obs_f) 
+ EVALUATE: symbol $REJECT_OBS set to "fobs" (string)
+ XRAY>     evaluate ($reject_sig=&obs_sigf) 
+ EVALUATE: symbol $REJECT_SIG set to "sigma" (string)
+ XRAY>     evaluate ($obs_lower_limit=0) 
+ EVALUATE: symbol $OBS_LOWER_LIMIT set to    0.00000     (real)
+ XRAY>   end if 
+ XRAY> 
+ XRAY>   declare name=ref_active domain=reciprocal type=integer end 
+ XDECLARE: Object REF_ACTIVE has been declared.
+ XRAY>   declare name=tst_active domain=reciprocal type=integer end 
+ XDECLARE: Object TST_ACTIVE has been declared.
+ XRAY> 
+ XRAY>   do (ref_active=0) ( all ) 
+ XSFAL: allocating space for integer reciprocal space object.
+ Total of     17080 structure factor elements were selected.
+ XRAY>   do (ref_active=1) ( ( amplitude($STRIP%reject_obs) > $obs_lower_limit ) and 
+ DO>                       ( &low_res >= d >= &high_res ) ) 
+ Total of     16784 structure factor elements were selected.
+ XRAY> 
+ XRAY>   statistics overall 
+ STATistics>     completeness 
+ STATistics>     selection=( ref_active=1 ) 
+ Total of     16784 structure factor elements were selected.
+ STATistics>   end 
+ #bin | resolution range | #refl | 
+    1   1.67   50.00      16784      0.9737
+ XRAY>   evaluate ($total_compl=$expression1) 
+ EVALUATE: symbol $TOTAL_COMPL set to   0.973663     (real)
+ XRAY> 
+ XRAY>   show sum(1) ( ref_active=1 ) 
+ Sum of     16784 elements =             16784.0000
+ XRAY>   evaluate ($total_read=$select) 
+ EVALUATE: symbol $TOTAL_READ set to    16784.0     (real)
+ XRAY>   evaluate ($total_theor=int(1./$total_compl * $total_read)) 
+ EVALUATE: symbol $TOTAL_THEOR set to    17238.0     (real)
+ XRAY> 
+ XRAY>   show rms (amplitude($STRIP%reject_obs)) ( ref_active=1 ) 
+ Rms of     16784 elements =                58.6694
+ XRAY>   evaluate ($obs_high=$result*&obs_rms) 
+ EVALUATE: symbol $OBS_HIGH set to    586694.     (real)
+ XRAY>   show min (amplitude($STRIP%reject_obs)) ( ref_active=1 ) 
+ Minimum of     16784 elements =                 0.5500
+ XRAY>   evaluate ($obs_low=$result) 
+ EVALUATE: symbol $OBS_LOW set to   0.550000     (real)
+ XRAY> 
+ XRAY>   do (ref_active=0) ( all ) 
+ Total of     17080 structure factor elements were selected.
+ XRAY>   do (ref_active=1) 
+ DO>                  ( ( amplitude($STRIP%reject_obs) >= &sigma_cut*$STRIP%reject_sig ) and 
+ DO>                    ( $STRIP%reject_sig # 0 ) and 
+ DO>                    ( $obs_low <= amplitude($STRIP%reject_obs) <= $obs_high ) and 
+ DO>                    ( &low_res >= d >= &high_res ) ) 
+ Total of     16784 structure factor elements were selected.
+ XRAY> 
+ XRAY>   do (tst_active=0) (all) 
+ XSFAL: allocating space for integer reciprocal space object.
+ Total of     17080 structure factor elements were selected.
+ XRAY>   if ( &BLANK%test_set = false ) then 
+ NEXTCD: condition evaluated as true
+ XRAY>     do (tst_active=1) (ref_active=1 and &STRIP%test_set=&test_flag) 
+ Total of      1322 structure factor elements were selected.
+ XRAY>   end if 
+ XRAY> 
+ XRAY>   show sum(1) ( ref_active=1 and tst_active=0 ) 
+ Sum of     15462 elements =             15462.0000
+ XRAY>   evaluate ($total_work=$select) 
+ EVALUATE: symbol $TOTAL_WORK set to    15462.0     (real)
+ XRAY>   show sum(1) ( ref_active=1 and tst_active=1 ) 
+ Sum of      1322 elements =              1322.0000
+ XRAY>   evaluate ($total_test=$select) 
+ EVALUATE: symbol $TOTAL_TEST set to    1322.00     (real)
+ XRAY>   evaluate ($total_used=$total_work+$total_test) 
+ EVALUATE: symbol $TOTAL_USED set to    16784.0     (real)
+ XRAY> 
+ XRAY>   evaluate ($unobserved=$total_theor-$total_read) 
+ EVALUATE: symbol $UNOBSERVED set to    454.000     (real)
+ XRAY>   evaluate ($rejected=$total_read-$total_used) 
+ EVALUATE: symbol $REJECTED set to    0.00000     (real)
+ XRAY>   evaluate ($per_unobs=100*($unobserved/$total_theor)) 
+ EVALUATE: symbol $PER_UNOBS set to    2.63372     (real)
+ XRAY>   evaluate ($per_reject=100*($rejected/$total_theor)) 
+ EVALUATE: symbol $PER_REJECT set to    0.00000     (real)
+ XRAY>   evaluate ($per_used=100*($total_used/$total_theor)) 
+ EVALUATE: symbol $PER_USED set to    97.3663     (real)
+ XRAY>   evaluate ($per_work=100*($total_work/$total_theor)) 
+ EVALUATE: symbol $PER_WORK set to    89.6972     (real)
+ XRAY>   evaluate ($per_test=100*($total_test/$total_theor)) 
+ EVALUATE: symbol $PER_TEST set to    7.66910     (real)
+ XRAY> 
+ XRAY>   associate fcalc ( &atom_select ) 
+ SELRPN:   1507 atoms have been selected out of   1507
+ XRAY> 
+ XRAY>   tselection=( ref_active=1 ) 
+ XRAY> 
+ XRAY>   cvselection=( tst_active=1 ) 
+ XRAY> 
+ XRAY>   method=FFT 
+ XRAY> 
+ XRAY>   fft 
+ XFFT>     if ( &fft_memory < 0 ) then 
+ NEXTCD: condition evaluated as true
+ XFFT>       automemory=true 
+ XFFT>     else 
+ XFFT>       memory=&fft_memory 
+ XFFT>     end if 
+ XFFT>   end 
+ XRAY> 
+ XRAY>   tolerance=0.0 lookup=false 
+ XRAY> 
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> fix selection=(not(&atom_select) or &atom_fixed) end 
+ SELRPN:      0 atoms have been selected out of   1507
+ CNSsolve> 
+ CNSsolve> igroup interaction (&atom_select) (&atom_select) end 
+ SELRPN:   1507 atoms have been selected out of   1507
+ SELRPN:   1507 atoms have been selected out of   1507
+ CNSsolve> 
+ CNSsolve> flags exclude * include xref end 
+ CNSsolve> 
+ CNSsolve> if ( &BLANK%ncs_infile = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>    inline @&ncs_infile 
+ CNSsolve> end if 
+ CNSsolve> 
+ CNSsolve> if ( &reset_b > 0 ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>    do (b=&reset_b) (&atom_select) 
+ CNSsolve> end if 
+ CNSsolve> 
+ CNSsolve> xray 
+ XRAY>   predict 
+ PREDict>     mode=reciprocal 
+ PREDict>     to=fcalc 
+ PREDict>     selection=(ref_active=1) 
+ Total of     16784 structure factor elements were selected.
+ PREDict>     atomselection=( &atom_select ) 
+ SELRPN:   1507 atoms have been selected out of   1507
+ PREDict>   end 
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XSFAL: allocating space for complex reciprocal space object.
+ %XFFT-AUTOmem: increasing memory allocation to    2000000
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> @@CNS_XTALMODULE:scalenbulk (bscale=&bscale; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/scalenbulk opened.
+ CNSsolve>! Module file: scalenbulk 
+ CNSsolve>! 
+ CNSsolve>! Function: applies wilson-type scaling between Fobs and Fcalc 
+ CNSsolve>!           and also applies bulk-solvent correction if requested. 
+ CNSsolve>!           Anisotropic scaling possible. 
+ CNSsolve>! 
+ CNSsolve>! 
+ CNSsolve>! CNS module 
+ CNSsolve>! ********** 
+ CNSsolve>! 
+ CNSsolve>! Authors: Axel T. Brunger and Paul D. Adams 
+ CNSsolve>! 
+ CNSsolve>! copyright Yale University 
+ CNSsolve>! 
+ CNSsolve>! Requirements: 
+ CNSsolve>! This module can only be used from the main level of CNS. 
+ CNSsolve>! 
+ CNSsolve> 
+ CNSsolve>module {scalenbulk} 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION> !input: 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION> &bscale="no";         {"no" | "isotropic" | "anisotropic" | 
+ MODULE-DECLARATION>                        "anisotropic_fixed_isotropic"} 
+ MODULE-DECLARATION> &sel=all;             {all active structure factors} 
+ MODULE-DECLARATION> &sel_test=none;       {test set reflections} 
+ MODULE-DECLARATION> &res_bscale=6.0;      {lower resolution limit for calculation of 
+ MODULE-DECLARATION>                        B-factor correction} 
+ MODULE-DECLARATION> &atom_select=( all ); {atom selection} 
+ MODULE-DECLARATION> &bulk_sol=false;      {true or false (type logical) bulk solvent correction} 
+ MODULE-DECLARATION> &bulk_mask="";        {mask for bulk solvent - from file if name given, 
+ MODULE-DECLARATION>                        otherwise from coords of atoms selected (type: string)} 
+ MODULE-DECLARATION> &bulk_atoms=( all );  {atoms used to create solvent mask} 
+ MODULE-DECLARATION> &sol_k=-1;            {optional: fix solvent density level by setting this 
+ MODULE-DECLARATION>                        parameter to a positive value} 
+ MODULE-DECLARATION> &sol_b=-1;            {optional: fix solvent B factor by setting this 
+ MODULE-DECLARATION>                        parameter to a positive value} 
+ MODULE-DECLARATION> &fcalc=fcalc;         {name of structure factor array - scaling will be 
+ MODULE-DECLARATION>                        applied} 
+ MODULE-DECLARATION> &fobs=fobs;           {observed amplitude data - only anisotropic part will 
+ MODULE-DECLARATION>                        be applied} 
+ MODULE-DECLARATION> &sigma=sigma;         {name of corresponding sigma array} 
+ MODULE-DECLARATION> &iobs=iobs;           {observed intensity data - only anisotropic part will 
+ MODULE-DECLARATION>                        be applied} 
+ MODULE-DECLARATION> &sigi=sigi;           {name of corresponding sigma array} 
+ MODULE-DECLARATION> &fpart=fpart;         {bulk solvent structure factors} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION> ! output: 
+ MODULE-DECLARATION> &B2_11=$B2_11;   {output: overall anisotropic tensor} 
+ MODULE-DECLARATION> &B2_22=$B2_22;   {note: trace will be zero (isotropic} 
+ MODULE-DECLARATION> &B2_33=$B2_33;   {      contribution is applied to the atomic B array} 
+ MODULE-DECLARATION> &B2_12=$B2_12; 
+ MODULE-DECLARATION> &B2_13=$B2_13; 
+ MODULE-DECLARATION> &B2_23=$B2_23; 
+ MODULE-DECLARATION> &sol_k_ref=$sol_k_ref; 
+ MODULE-DECLARATION> &sol_b_ref=$sol_b_ref; 
+ MODULE-DECLARATION> &trace=$trace;   {the trace of the anisotropic correction tensor} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION> ! The inverse of the tensor is applied to &fobs, &iobs, &sigma and &sigi 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION> ! The overall isotropic B contribution is applied to the atomic 
+ MODULE-DECLARATION> ! B array with "aniso" option, with "aniso-iso" option no isotropic 
+ MODULE-DECLARATION> ! correction is applied 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION> &b_too_low=false; {does the correction produce low atomic B-values?} 
+ MODULE-DECLARATION>		   {those B-values lower than 0 will be set to 0} 
+ MODULE-DECLARATION> ) 
+ &_2_BSCALE set to &_1_BSCALE 
+ MODULE-INVOCATION>                             sel=( ref_active=1 ); 
+ &_2_SEL set to ( ref_active = 1 ) 
+ MODULE-INVOCATION>                             sel_test=( tst_active=1 ); 
+ &_2_SEL_TEST set to ( tst_active = 1 ) 
+ MODULE-INVOCATION>                             res_bscale=&low_res_bscale; 
+ &_2_RES_BSCALE set to &_1_LOW_RES_BSCALE 
+ MODULE-INVOCATION>                             atom_select=( &atom_select ); 
+ &_2_ATOM_SELECT set to ( &_1_ATOM_SELECT ) 
+ MODULE-INVOCATION>                             bulk_sol=&bulk_sol; 
+ &_2_BULK_SOL set to &_1_BULK_SOL 
+ MODULE-INVOCATION>                             bulk_mask=&bulk_mask_infile; 
+ &_2_BULK_MASK set to &_1_BULK_MASK_INFILE 
+ MODULE-INVOCATION>                             bulk_atoms=( &atom_select ); 
+ &_2_BULK_ATOMS set to ( &_1_ATOM_SELECT ) 
+ MODULE-INVOCATION>                             sol_k=&sol_k; 
+ &_2_SOL_K set to &_1_SOL_K 
+ MODULE-INVOCATION>                             sol_b=&sol_b; 
+ &_2_SOL_B set to &_1_SOL_B 
+ MODULE-INVOCATION>                             fcalc=fcalc; 
+ &_2_FCALC set to fcalc 
+ MODULE-INVOCATION>                             fobs=&STRIP%obs_f; 
+ &_2_FOBS set to &STRIP%_1_OBS_F 
+ MODULE-INVOCATION>                             sigma=&STRIP%obs_sigf; 
+ &_2_SIGMA set to &STRIP%_1_OBS_SIGF 
+ MODULE-INVOCATION>                             iobs=$STRIP%obs_i; 
+ &_2_IOBS set to $STRIP%_1_OBS_I 
+ MODULE-INVOCATION>                             sigi=$STRIP%obs_sigi; 
+ &_2_SIGI set to $STRIP%_1_OBS_SIGI 
+ MODULE-INVOCATION>                             fpart=fbulk; 
+ &_2_FPART set to fbulk 
+ MODULE-INVOCATION>                             B2_11=$aniso_11; 
+ &_2_B2_11 set to $_1_ANISO_11 
+ MODULE-INVOCATION>                             B2_22=$aniso_22; 
+ &_2_B2_22 set to $_1_ANISO_22 
+ MODULE-INVOCATION>                             B2_33=$aniso_33; 
+ &_2_B2_33 set to $_1_ANISO_33 
+ MODULE-INVOCATION>                             B2_12=$aniso_12; 
+ &_2_B2_12 set to $_1_ANISO_12 
+ MODULE-INVOCATION>                             B2_13=$aniso_13; 
+ &_2_B2_13 set to $_1_ANISO_13 
+ MODULE-INVOCATION>                             B2_23=$aniso_23; 
+ &_2_B2_23 set to $_1_ANISO_23 
+ MODULE-INVOCATION>                             trace=$trace; 
+ &_2_TRACE set to $_1_TRACE 
+ MODULE-INVOCATION>                             sol_k_ref=$sol_k_ref; 
+ &_2_SOL_K_REF set to $_1_SOL_K_REF 
+ MODULE-INVOCATION>                             sol_b_ref=$sol_b_ref; 
+ &_2_SOL_B_REF set to $_1_SOL_B_REF 
+ MODULE-INVOCATION>                             b_too_low=$low_b_flag;) 
+ &_2_B_TOO_LOW set to $_1_LOW_B_FLAG 
+ CNSsolve> 
+ CNSsolve> set message ? end 
+ MESSage=NORM
+ CNSsolve> evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ CNSsolve> set echo ? end 
+ ECHO=TRUE {ON}
+ CNSsolve> evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ CNSsolve> if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   set echo=on message=normal end 
+ CNSsolve> else 
+ CNSsolve>   set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ XSCALE: total number of data sets were selected    2
+ XSCALE: set 1 FOBS   is specified as the target data set
+ XSCLSQ: ---------------------- Cycle   0    0.0100 ----------------------
+ XSCLSQ: Target=  0.0450  Scale=    0.521  R-factor=   0.2012
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: ---------------------- Cycle   1    0.0100 ----------------------
+ XSCLSQ: Target=  0.0419  Scale=    0.520  R-factor=   0.1943
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FCALC   kscal=   0.974  bscal_tensor=
+ XSCLSQ: B11=  2.67 B22= -2.17 B33= -3.27 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: ---------------------- Cycle   2    0.0010 ----------------------
+ XSCLSQ: Target=  0.0419  Scale=    0.520  R-factor=   0.1938
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FCALC   kscal=   0.978  bscal_tensor=
+ XSCLSQ: B11=  2.83 B22= -2.06 B33= -3.05 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: ---------------------- Cycle   3    0.0001 ----------------------
+ XSCLSQ: Target=  0.0419  Scale=    0.520  R-factor=   0.1938
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FCALC   kscal=   0.978  bscal_tensor=
+ XSCLSQ: B11=  2.83 B22= -2.07 B33= -3.06 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCALE: ---------------------- Final ------------------------------------
+ XSCALE: Target=  0.0419  Scale=    0.520  R-factor=   0.1938
+ XSCALE: normal termination - convergence.
+ XSCALE: K<i> has been multiplied by the overall scale ($XSCFFK)   0.520
+ MULTiscale:  <i>    SET<i>      K<i>          B<i>_tensor
+               1      FOBS        -1.0000
+ B11=   0.000 B22=   0.000 B33=   0.000 B12=   0.000 B13=   0.000 B23=   0.000
+               2      FCALC        0.5086
+ B11=   2.825 B22=  -2.070 B33=  -3.063 B12=   0.000 B13=   0.000 B23=   0.000
+ MULTiscale: K<i> is stored in symbols $K<i>, and B<i>_tensor
+ MULTiscale: are stored in $B<i>_11, $B<i>_22, $B<i>_33, etc.
+ MULTiscale: the overall scale is stored in symbol $XSCFFK
+  Trace/3 of the B-factor tensor has been subtraced from
+  the B-factor atomic property array. The B-factor tensor has
+  been modified to make the trace zero.
+  modified tensor: B11=  -3.595 B22=   1.300 B33=   2.294 B12=   0.000 B13=   0.000 B23=   0.000
+ XMASK:     1507 atoms have been selected for mask calculation.
+ Minimum brick that covers asymmetric unit:
+   A=     0,...,    30  B=     0,...,    50  C=     0,...,   144
+ XMASK: average mask radius around selected atoms  1.6541 A
+ XMASK: probe radius=  1.0000 shrink radius=  1.0000
+ XMASK: volume inside mask=   75.9921% (MASK<=0)
+ XMASK: volume outside mask=   24.0079% (MASK=1)
+ |--------------------------- MULTiscale parameters ---------------------------
+ | least-squares: NCYC=  30   DIAG=  0   EPS=   0.0010
+ | initials: KINI=   1.000   BINI=   0.000
+ | restraints: KSMIn=   0.000   BMIN=  10.000   BMAX= 300.000
+ | two resolution-dependent scales are applied.  RESK=   5.000
+ | MULTiscale:  <i>    SET<i>      K<i>          B<i>
+ |             1      FOBS        -1.0000       0.0000
+ |             2      FCALC        1.0000       0.0000
+ |             3      FBULK    -9999.0000   -9999.0000
+ |------------------------------------------------------------------------------
+ XSCALE: total number of data sets were selected    3
+ XSCALE: set 1 FOBS   is specified as the target data set
+ XSCLSQ: ---------------------- Cycle   0    0.0100 ----------------------
+ XSCLSQ: Target=  0.2260  Scale=    0.399  R-factor=   0.3537
+ XSCLSQ: T-low =  0.0616  Scale=    0.219  R-factor=   0.5934
+ XSCLSQ: T-high=  0.1076  Scale=    0.464  R-factor=   0.3225
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 3 FBULK   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: ---------------------- Cycle   1    0.0100 ----------------------
+ XSCLSQ: Target=  0.0872  Scale=    0.492  R-factor=   0.2361
+ XSCLSQ: T-low =  0.0296  Scale=    0.390  R-factor=   0.3777
+ XSCLSQ: T-high=  0.0499  Scale=    0.512  R-factor=   0.2244
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 3 FBULK   kscal=   0.645  bscal=   10.00       -0.355    6.68
+ XSCLSQ: ---------------------- Cycle   2    0.0010 ----------------------
+ XSCLSQ: Target=  0.0492  Scale=    0.513  R-factor=   0.2002
+ XSCLSQ: T-low =  0.0121  Scale=    0.467  R-factor=   0.2427
+ XSCLSQ: T-high=  0.0359  Scale=    0.521  R-factor=   0.1961
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 3 FBULK   kscal=   0.467  bscal=   24.12       -0.178   14.12
+ XSCLSQ: ---------------------- Cycle   3    0.0001 ----------------------
+ XSCLSQ: Target=  0.0408  Scale=    0.514  R-factor=   0.1919
+ XSCLSQ: T-low =  0.0064  Scale=    0.476  R-factor=   0.1969
+ XSCLSQ: T-high=  0.0335  Scale=    0.520  R-factor=   0.1909
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 3 FBULK   kscal=   0.377  bscal=   39.39       -0.090   15.28
+ XSCLSQ: ---------------------- Cycle   4    0.0000 ----------------------
+ XSCLSQ: Target=  0.0399  Scale=    0.512  R-factor=   0.1912
+ XSCLSQ: T-low =  0.0055  Scale=    0.471  R-factor=   0.1909
+ XSCLSQ: T-high=  0.0333  Scale=    0.520  R-factor=   0.1905
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 3 FBULK   kscal=   0.336  bscal=   44.89       -0.041    5.49
+ XSCLSQ: ---------------------- Cycle   5    0.0000 ----------------------
+ XSCLSQ: Target=  0.0400  Scale=    0.512  R-factor=   0.1912
+ XSCLSQ: T-low =  0.0055  Scale=    0.468  R-factor=   0.1906
+ XSCLSQ: T-high=  0.0333  Scale=    0.519  R-factor=   0.1905
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 2 FCALC   kscal=   1.000  bscal=    0.00        0.000    0.00
+ XSCLSQ: set 3 FBULK   kscal=   0.323  bscal=   45.56       -0.014    0.67
+ XSCALE: ---------------------- Final ------------------------------------
+ XSCALE: Target=  0.0400  Scale=    0.512  R-factor=   0.1912
+ XSCALE: normal termination - convergence.
+ MULTiscale:  <i>    SET<i>      K<i>          B<i>
+              1      FOBS        -1.0000       0.0000
+              2      FCALC        1.0000       0.0000
+              3      FBULK        0.3227      45.5596
+ MULTiscale: K<i>, B<i> are stored in symbols $K<i>, $B<i>
+ MULTiscale: the overall scale is stored in symbol $XSCFFK
+ XSCALE: total number of data sets were selected    2
+ XSCALE: set 1 FOBS   is specified as the target data set
+ XSCLSQ: ---------------------- Cycle   0    0.0100 ----------------------
+ XSCLSQ: Target=  0.0406  Scale=    0.518  R-factor=   0.1973
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FBTOTA  kscal=   1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: ---------------------- Cycle   1    0.0100 ----------------------
+ XSCLSQ: Target=  0.0376  Scale=    0.517  R-factor=   0.1872
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FBTOTA  kscal=   1.017  bscal_tensor=
+ XSCLSQ: B11=  4.11 B22= -0.58 B33= -1.65 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: ---------------------- Cycle   2    0.0010 ----------------------
+ XSCLSQ: Target=  0.0376  Scale=    0.517  R-factor=   0.1869
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FBTOTA  kscal=   1.021  bscal_tensor=
+ XSCLSQ: B11=  4.40 B22= -0.54 B33= -1.57 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: ---------------------- Cycle   3    0.0001 ----------------------
+ XSCLSQ: Target=  0.0376  Scale=    0.517  R-factor=   0.1869
+ XSCLSQ: set 1 FOBS    kscal=  -1.000  bscal_tensor=
+ XSCLSQ: B11=  0.00 B22=  0.00 B33=  0.00 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCLSQ: set 2 FBTOTA  kscal=   1.021  bscal_tensor=
+ XSCLSQ: B11=  4.40 B22= -0.54 B33= -1.58 B12=  0.00 B13=  0.00 B23=  0.00
+ XSCALE: ---------------------- Final ------------------------------------
+ XSCALE: Target=  0.0376  Scale=    0.517  R-factor=   0.1869
+ XSCALE: normal termination - convergence.
+ XSCALE: K<i> has been multiplied by the overall scale ($XSCFFK)   0.517
+ MULTiscale:  <i>    SET<i>      K<i>          B<i>_tensor
+               1      FOBS        -1.0000
+ B11=   0.000 B22=   0.000 B33=   0.000 B12=   0.000 B13=   0.000 B23=   0.000
+               2      FBTOTA       0.5278
+ B11=   4.395 B22=  -0.543 B33=  -1.579 B12=   0.000 B13=   0.000 B23=   0.000
+ MULTiscale: K<i> is stored in symbols $K<i>, and B<i>_tensor
+ MULTiscale: are stored in $B<i>_11, $B<i>_22, $B<i>_33, etc.
+ MULTiscale: the overall scale is stored in symbol $XSCFFK
+  Trace/3 of the B-factor tensor has been subtraced from
+  the B-factor atomic property array. The B-factor tensor has
+  been modified to make the trace zero.
+  modified tensor: B11=  -3.637 B22=   1.301 B33=   2.337 B12=   0.000 B13=   0.000 B23=   0.000
+ SHOW: minimum of selected elements =       9.348809
+ CNSsolve> 
+ CNSsolve> xray 
+ XRAY>   @@CNS_XTALMODULE:refinementtarget (target=&reftarget; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/refinementtarget opened.
+ XRAY>! Module file: refinementtarget 
+ XRAY>! 
+ XRAY>! CNS module 
+ XRAY>! ********** 
+ XRAY>! 
+ XRAY>! Authors: Axel Brunger and Paul Adams 
+ XRAY>! 
+ XRAY>! copyright Yale University 
+ XRAY>! 
+ XRAY>! Function: 
+ XRAY>!    Defines the crystallographic refinement targets 
+ XRAY>! 
+ XRAY>! Requirements: 
+ XRAY>!    Needs to be called within xray 
+ XRAY> 
+ XRAY>module {refinementtarget} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>  &target="residual";    {string} 
+ MODULE-DECLARATION>  &sig_sigacv=0.07;      {real} 
+ MODULE-DECLARATION>  &mbins=10;             {real} 
+ MODULE-DECLARATION>  &fobs=fobs;            {reciprocal space array} 
+ MODULE-DECLARATION>  &sigma=sigma;          {reciprocal space array} 
+ MODULE-DECLARATION>  &weight=weight;        {reciprocal space array} 
+ MODULE-DECLARATION>  &iobs=iobs;            {reciprocal space array} 
+ MODULE-DECLARATION>  &sigi=sigi;            {reciprocal space array} 
+ MODULE-DECLARATION>  &test=test;            {reciprocal space array} 
+ MODULE-DECLARATION>  &fcalc=fcalc;          {reciprocal space array} 
+ MODULE-DECLARATION>  &fpart=fpart;          {reciprocal space array} 
+ MODULE-DECLARATION>  &pa=pa;                {reciprocal space array} 
+ MODULE-DECLARATION>  &pb=pb;                {reciprocal space array} 
+ MODULE-DECLARATION>  &pc=pc;                {reciprocal space array} 
+ MODULE-DECLARATION>  &pd=pd;                {reciprocal space array} 
+ MODULE-DECLARATION>  &phase=phase;          {reciprocal space array} 
+ MODULE-DECLARATION>  &fom=fom;              {reciprocal space array} 
+ MODULE-DECLARATION>  &sel=all;              {selection} 
+ MODULE-DECLARATION>  &sel_test=none;        {selection} 
+ MODULE-DECLARATION>  &statistics=false;     {logical} 
+ MODULE-DECLARATION>) 
+ &_2_TARGET set to &_1_REFTARGET 
+ MODULE-INVOCATION>                                     sig_sigacv=0.07; 
+ &_2_SIG_SIGACV set to 0.07 
+ MODULE-INVOCATION>                                     mbins=&target_bins; 
+ &_2_MBINS set to &_1_TARGET_BINS 
+ MODULE-INVOCATION>                                     fobs=&STRIP%obs_f; 
+ &_2_FOBS set to &STRIP%_1_OBS_F 
+ MODULE-INVOCATION>                                     sigma=&STRIP%obs_sigf; 
+ &_2_SIGMA set to &STRIP%_1_OBS_SIGF 
+ MODULE-INVOCATION>                                     weight=$STRIP%obs_w; 
+ &_2_WEIGHT set to $STRIP%_1_OBS_W 
+ MODULE-INVOCATION>                                     iobs=$STRIP%obs_i; 
+ &_2_IOBS set to $STRIP%_1_OBS_I 
+ MODULE-INVOCATION>                                     sigi=$STRIP%obs_sigi; 
+ &_2_SIGI set to $STRIP%_1_OBS_SIGI 
+ MODULE-INVOCATION>                                     test=tst_active; 
+ &_2_TEST set to tst_active 
+ MODULE-INVOCATION>                                     fcalc=fcalc; 
+ &_2_FCALC set to fcalc 
+ MODULE-INVOCATION>                                     fpart=fbulk; 
+ &_2_FPART set to fbulk 
+ MODULE-INVOCATION>                                     pa=&STRIP%obs_pa; 
+ &_2_PA set to &STRIP%_1_OBS_PA 
+ MODULE-INVOCATION>                                     pb=&STRIP%obs_pb; 
+ &_2_PB set to &STRIP%_1_OBS_PB 
+ MODULE-INVOCATION>                                     pc=&STRIP%obs_pc; 
+ &_2_PC set to &STRIP%_1_OBS_PC 
+ MODULE-INVOCATION>                                     pd=&STRIP%obs_pd; 
+ &_2_PD set to &STRIP%_1_OBS_PD 
+ MODULE-INVOCATION>                                     phase=&STRIP%obs_phase; 
+ &_2_PHASE set to &STRIP%_1_OBS_PHASE 
+ MODULE-INVOCATION>                                     fom=&STRIP%obs_fom; 
+ &_2_FOM set to &STRIP%_1_OBS_FOM 
+ MODULE-INVOCATION>                                     sel=(ref_active=1); 
+ &_2_SEL set to ( ref_active = 1 ) 
+ MODULE-INVOCATION>                                     sel_test=(tst_active=1); 
+ &_2_SEL_TEST set to ( tst_active = 1 ) 
+ MODULE-INVOCATION>                                     statistics=true;) 
+ &_2_STATISTICS set to true 
+ XRAY> 
+ XRAY>set message ? end 
+ MESSage=NORM
+ XRAY>evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ XRAY>set echo ? end 
+ ECHO=TRUE {ON}
+ XRAY>evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ XRAY>if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>  set echo=on message=normal end 
+ XRAY>else 
+ XRAY>  set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ Sum of      1322 elements =              1322.0000
+ Sum of      1322 elements =              1322.0000
+ Sum of     16784 elements =             16784.0000
+ Sum of         0 elements =                 0.0000
+ XSIGMAACV: Overall sigma for line restraint is       0.07000000
+ XSIGMAACV: gradient converged
+ XSIGMAACV: Refinement of SIGMAA has converged 
+            Overall mean FOM is   0.86463
+ #bin | resolution range | #refl | 
+    1   4.95   50.00        717      0.9619   38.7420    0.4752    0.9987    0.9987
+    2   3.93    4.95        674      0.9713   42.5481    0.4810    0.9984    0.9983
+    3   3.43    3.93        668      0.9617   50.2553    0.5231    0.9999    0.9999
+    4   3.12    3.43        677      0.9435   40.5582    0.5038    1.0000    1.0000
+    5   2.89    3.12        666      0.9254   36.7397    0.4871    0.9996    0.9997
+    6   2.72    2.89        667      0.9503   33.9045    0.5393    0.9998    0.9998
+    7   2.59    2.72        654      0.9304   30.1310    0.5066    1.0000    1.0000
+    8   2.47    2.59        660      0.9577   23.3526    0.5314    0.9985    0.9987
+    9   2.38    2.47        654      0.9565   19.7725    0.5435    1.0000    1.0000
+   10   2.30    2.38        655      0.9039   26.4923    0.5010    0.9992    0.9989
+   11   2.22    2.30        649      0.9204   25.6186    0.5275    1.0000    1.0000
+   12   2.16    2.22        648      0.9116   23.5083    0.5399    1.0000    0.9996
+   13   2.10    2.16        653      0.8901   24.5296    0.5091    1.0000    1.0000
+   14   2.05    2.10        641      0.9299   17.4462    0.5235    1.0000    1.0000
+   15   2.01    2.05        621      0.9184   19.3060    0.4870    1.0000    1.0000
+   16   1.96    2.01        662      0.9083   19.3411    0.4909    0.9996    0.9997
+   17   1.92    1.96        645      0.9420   13.7458    0.4875    1.0000    1.0000
+   18   1.89    1.92        608      0.9425   11.8374    0.4685    0.9989    0.9983
+   19   1.85    1.89        646      0.9271   12.7828    0.4993    1.0000    1.0000
+   20   1.82    1.85        636      0.9391   11.2152    0.4522    1.0000    1.0000
+   21   1.79    1.82        614      0.9132   11.9666    0.4336    0.9999    1.0000
+   22   1.77    1.79        610      0.9210   11.5747    0.4390    0.9997    0.9998
+   23   1.74    1.77        622      0.9207    9.1314    0.4464    1.0000    1.0000
+   24   1.72    1.74        632      0.9135    8.2278    0.4101    0.9994    0.9991
+   25   1.69    1.72        595      0.8797   10.2832    0.3953    1.0000    1.0000
+   26   1.67    1.69        610      0.8847    9.8665    0.3555    1.0000    1.0000
+ #bin | resolution range | #refl | 
+    1   4.95   50.00         61      0.1783
+    2   3.93    4.95         51      0.1581
+    3   3.43    3.93         54      0.1841
+    4   3.12    3.43         51      0.2159
+    5   2.89    3.12         64      0.2588
+    6   2.72    2.89         44      0.2196
+    7   2.59    2.72         52      0.2452
+    8   2.47    2.59         42      0.1921
+    9   2.38    2.47         44      0.2069
+   10   2.30    2.38         61      0.2709
+   11   2.22    2.30         54      0.2515
+   12   2.16    2.22         50      0.2699
+   13   2.10    2.16         62      0.2856
+   14   2.05    2.10         48      0.2346
+   15   2.01    2.05         47      0.2585
+   16   1.96    2.01         57      0.2556
+   17   1.92    1.96         46      0.2204
+   18   1.89    1.92         61      0.2190
+   19   1.85    1.89         52      0.2246
+   20   1.82    1.85         49      0.2309
+   21   1.79    1.82         33      0.2684
+   22   1.77    1.79         53      0.2588
+   23   1.74    1.77         45      0.2702
+   24   1.72    1.74         54      0.2852
+   25   1.69    1.72         30      0.3281
+   26   1.67    1.69         57      0.4026
+ #bin | resolution range | #refl | 
+    1   4.95   50.00        656      0.2072
+    2   3.93    4.95        623      0.1534
+    3   3.43    3.93        614      0.1658
+    4   3.12    3.43        626      0.1654
+    5   2.89    3.12        602      0.1863
+    6   2.72    2.89        623      0.1936
+    7   2.59    2.72        602      0.2007
+    8   2.47    2.59        618      0.1848
+    9   2.38    2.47        610      0.1573
+   10   2.30    2.38        594      0.1955
+   11   2.22    2.30        595      0.2007
+   12   2.16    2.22        598      0.1929
+   13   2.10    2.16        591      0.1966
+   14   2.05    2.10        593      0.1879
+   15   2.01    2.05        574      0.1924
+   16   1.96    2.01        605      0.1970
+   17   1.92    1.96        599      0.1891
+   18   1.89    1.92        547      0.1890
+   19   1.85    1.89        594      0.1909
+   20   1.82    1.85        587      0.2205
+   21   1.79    1.82        581      0.2333
+   22   1.77    1.79        557      0.2391
+   23   1.74    1.77        577      0.2473
+   24   1.72    1.74        578      0.2670
+   25   1.69    1.72        565      0.2960
+   26   1.67    1.69        553      0.3581
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> @@CNS_XTALMODULE:one_term_wa (wa=$wa;) 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/one_term_wa opened.
+ CNSsolve>! Module file: one_term_wa 
+ CNSsolve>! 
+ CNSsolve>! CNS module 
+ CNSsolve>! ********** 
+ CNSsolve>! 
+ CNSsolve>! Authors: Axel T. Brunger and Paul Adams 
+ CNSsolve>! 
+ CNSsolve>! copyright Yale University 
+ CNSsolve>! 
+ CNSsolve>! Function: 
+ CNSsolve>!    Calculate the weight for the crystallographic energy term 
+ CNSsolve>!    normalized such that rmsF * wa = 10 (empirical value) 
+ CNSsolve>! 
+ CNSsolve>! Requirements: 
+ CNSsolve>!    To be called from the main level 
+ CNSsolve> 
+ CNSsolve>module {one_term_wa} 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>  &wa=$wa_temp; 
+ MODULE-DECLARATION>) 
+ &_2_WA set to $_1_WA 
+ CNSsolve> 
+ CNSsolve>set message ? end 
+ MESSage=NORM
+ CNSsolve>evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ CNSsolve>set echo ? end 
+ ECHO=TRUE {ON}
+ CNSsolve>evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ CNSsolve>if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>  set echo=on message=normal end 
+ CNSsolve>else 
+ CNSsolve>  set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ --------------- cycle=     1 --------------------------------------------------
+ | Etotal =45937.874  grad(E)=10.772     E(XREF)=45937.874                     |
+ -------------------------------------------------------------------------------
+ one_term_wa: optimal value for wa= 0.928324
+ CNSsolve> 
+ CNSsolve> xray 
+ XRAY>    @@CNS_XTALMODULE:calculate_r (fobs=&STRIP%obs_f; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/calculate_r opened.
+ XRAY>! Module file: calculate_r 
+ XRAY>! 
+ XRAY>! CNS module 
+ XRAY>! ************ 
+ XRAY>! 
+ XRAY>! Authors: Axel Brunger and Paul Adams 
+ XRAY>! 
+ XRAY>! copyright Yale University 
+ XRAY>! 
+ XRAY>! Function: 
+ XRAY>!    Calculates crystallographic R-values 
+ XRAY>! 
+ XRAY>! Requirements: 
+ XRAY>!    Needs to be called within xray 
+ XRAY> 
+ XRAY>module {calculate_r} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>&fobs=fobs; 
+ MODULE-DECLARATION>&fcalc=fcalc; 
+ MODULE-DECLARATION>&fpart=fpart; 
+ MODULE-DECLARATION>&sel=all; 
+ MODULE-DECLARATION>&sel_test=none; 
+ MODULE-DECLARATION>&print=false; 
+ MODULE-DECLARATION>&output=OUTPUT; 
+ MODULE-DECLARATION>&r=$r; 
+ MODULE-DECLARATION>&test_r=$test_r; 
+ MODULE-DECLARATION>) 
+ &_2_FOBS set to &STRIP%_1_OBS_F 
+ MODULE-INVOCATION>                                 fcalc=fcalc; 
+ &_2_FCALC set to fcalc 
+ MODULE-INVOCATION>                                 fpart=fbulk; 
+ &_2_FPART set to fbulk 
+ MODULE-INVOCATION>                                 sel=(ref_active=1); 
+ &_2_SEL set to ( ref_active = 1 ) 
+ MODULE-INVOCATION>                                 sel_test=(tst_active=1); 
+ &_2_SEL_TEST set to ( tst_active = 1 ) 
+ MODULE-INVOCATION>                                 print=true; 
+ &_2_PRINT set to true 
+ MODULE-INVOCATION>                                 output=OUTPUT; 
+ &_2_OUTPUT set to OUTPUT 
+ MODULE-INVOCATION>                                 r=$start_r; 
+ &_2_R set to $_1_START_R 
+ MODULE-INVOCATION>                                 test_r=$start_test_r;) 
+ &_2_TEST_R set to $_1_START_TEST_R 
+ XRAY> 
+ XRAY>set message ? end 
+ MESSage=NORM
+ XRAY>evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ XRAY>set echo ? end 
+ ECHO=TRUE {ON}
+ XRAY>evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ XRAY>if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>  set echo=on message=normal end 
+ XRAY>else 
+ XRAY>  set echo=off message=off end 
+ DISPlay-file=OUTPUT
+ Program version= 1.1 File version= 1.1
+ Sum of     16784 elements =             16784.0000
+ Sum of      1322 elements =              1322.0000
+============================================
+     R-value by resolution for test set
+============================================
+ #bin | resolution range | #refl | 
+    1   4.95   50.00         61      0.1783
+    2   3.93    4.95         51      0.1581
+    3   3.43    3.93         54      0.1841
+    4   3.12    3.43         51      0.2159
+    5   2.89    3.12         64      0.2588
+    6   2.72    2.89         44      0.2196
+    7   2.59    2.72         52      0.2452
+    8   2.47    2.59         42      0.1921
+    9   2.38    2.47         44      0.2069
+   10   2.30    2.38         61      0.2709
+   11   2.22    2.30         54      0.2515
+   12   2.16    2.22         50      0.2700
+   13   2.10    2.16         62      0.2856
+   14   2.05    2.10         48      0.2347
+   15   2.01    2.05         47      0.2586
+   16   1.96    2.01         57      0.2556
+   17   1.92    1.96         46      0.2204
+   18   1.89    1.92         61      0.2190
+   19   1.85    1.89         52      0.2247
+   20   1.82    1.85         49      0.2309
+   21   1.79    1.82         33      0.2684
+   22   1.77    1.79         53      0.2588
+   23   1.74    1.77         45      0.2702
+   24   1.72    1.74         54      0.2853
+   25   1.69    1.72         30      0.3283
+   26   1.67    1.69         57      0.4027
+ #bin | resolution range | #refl | 
+    1   1.67   50.00       1322      0.2241
+>>>> Overall R-value for test set: 0.224103
+============================================
+    R-value by resolution for working set
+============================================
+ #bin | resolution range | #refl | 
+    1   4.95   50.00        656      0.2072
+    2   3.93    4.95        623      0.1534
+    3   3.43    3.93        614      0.1658
+    4   3.12    3.43        626      0.1654
+    5   2.89    3.12        602      0.1863
+    6   2.72    2.89        623      0.1936
+    7   2.59    2.72        602      0.2007
+    8   2.47    2.59        618      0.1849
+    9   2.38    2.47        610      0.1573
+   10   2.30    2.38        594      0.1955
+   11   2.22    2.30        595      0.2007
+   12   2.16    2.22        598      0.1928
+   13   2.10    2.16        591      0.1966
+   14   2.05    2.10        593      0.1879
+   15   2.01    2.05        574      0.1924
+   16   1.96    2.01        605      0.1970
+   17   1.92    1.96        599      0.1891
+   18   1.89    1.92        547      0.1890
+   19   1.85    1.89        594      0.1909
+   20   1.82    1.85        587      0.2205
+   21   1.79    1.82        581      0.2333
+   22   1.77    1.79        557      0.2391
+   23   1.74    1.77        577      0.2473
+   24   1.72    1.74        578      0.2670
+   25   1.69    1.72        565      0.2960
+   26   1.67    1.69        553      0.3581
+ #bin | resolution range | #refl | 
+    1   1.67   50.00      15462      0.1896
+>>>> Overall R-value for working set: 0.189602
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> if (&rweight < 0) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   @@CNS_XTALMODULE:get_rweight (selected=&atom_select; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/get_rweight opened.
+ CNSsolve>! Module file: get_rweight 
+ CNSsolve>! 
+ CNSsolve>! CNS module 
+ CNSsolve>! ********** 
+ CNSsolve>! 
+ CNSsolve>! Authors: Axel T. Brunger and Paul Adams 
+ CNSsolve>! 
+ CNSsolve>! copyright Yale University 
+ CNSsolve>! 
+ CNSsolve>! Function: 
+ CNSsolve>!    Calculate the weight for the restraint term in 
+ CNSsolve>!    individual B-factor refinement 
+ CNSsolve>! 
+ CNSsolve>! Requirements: 
+ CNSsolve>!    To be called from the main level of CNS 
+ CNSsolve>!    Uses comparision coordinate set and also vx, vy, vz 
+ CNSsolve> 
+ CNSsolve>module {get_rweight} 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>  &selected=(all); 
+ MODULE-DECLARATION>  &fixed=(none); 
+ MODULE-DECLARATION>  &rweight; 
+ MODULE-DECLARATION>) 
+ &_2_SELECTED set to &_1_ATOM_SELECT 
+ MODULE-INVOCATION>                                 fixed=&atom_fixed; 
+ &_2_FIXED set to &_1_ATOM_FIXED 
+ MODULE-INVOCATION>                                 rweight=$rweight_current;) 
+ &_2_RWEIGHT set to $_1_RWEIGHT_CURRENT 
+ CNSsolve> 
+ CNSsolve>set message ? end 
+ MESSage=NORM
+ CNSsolve>evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ CNSsolve>set echo ? end 
+ ECHO=TRUE {ON}
+ CNSsolve>evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ CNSsolve>if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>  set echo=on message=normal end 
+ CNSsolve>else 
+ CNSsolve>  set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ SHOW: sum over selected elements =    1507.000000
+ --------------- cycle=     2 --------------------------------------------------
+ | Etotal =0.000      grad(E)=0.000                                            |
+ -------------------------------------------------------------------------------
+ --------------- cycle=     3 --------------------------------------------------
+ | Etotal =42645.231  grad(E)=10.000     E(XREF)=42645.231                     |
+ -------------------------------------------------------------------------------
+ SHOW: sum over selected elements =  452099.903057
+ get_rweight: optimal rweight= 9.999999E-02
+ CNSsolve> else 
+ CNSsolve>   evaluate ($rweight_current=&rweight) 
+ CNSsolve> end if 
+ CNSsolve> 
+ CNSsolve> xray 
+ XRAY>   optimize bfactors 
+ XROPTI> 
+ XROPTI>     bmin=&bmin 
+ XROPTI>     bmax=&bmax 
+ XROPTI> 
+ XROPTI>     nstep=&bfactor_nstep 
+ XROPTI>     drop=10.0 
+ XROPTI> 
+ XROPTI>     bsigma=( (&atom_select and not(&atom_fixed)) and &atom_main )=&bsig_main 
+ SELRPN:    632 atoms have been selected out of   1507
+ XROPTI>     bsigma=( (&atom_select and not(&atom_fixed)) and 
+ SELRPN>               not(&atom_main) )=&bsig_side 
+ SELRPN:    875 atoms have been selected out of   1507
+ XROPTI> 
+ XROPTI>     asigma=( (&atom_select and not(&atom_fixed)) and &atom_main )=&asig_main 
+ SELRPN:    632 atoms have been selected out of   1507
+ XROPTI>     asigma=( (&atom_select and not(&atom_fixed)) and 
+ SELRPN>               not(&atom_main) )=&asig_side 
+ SELRPN:    875 atoms have been selected out of   1507
+ XROPTI> 
+ XROPTI>     rweight=$rweight_current 
+ XROPTI>   end 
+ XBREF:  1507 individual B-factors will be refined
+ XBSET: There are  1312 bond restraints on B-factors
+        Initial sum (bi-bj)/bsigma^2:    0.89945
+ XBSET: There are  1785 angle restraints on B-factors
+        Initial sum (bi-bj)/asigma^2:    1.08296
+ XBRMS: total number of bond B restraints =     1312 ( $BN_BOND   )
+ XBRMS: overall rmsd for bond B restraints =    1.623 ( $BRMS_BOND )
+ XBRMS: number of bond B restraints for group   1 =      631 ( $BN_BOND_1   )
+ XBRMS: rmsd for bond B restraints for group   1 =    1.166 ( $BRMS_BOND_1 )
+ XBRMS: number of bond B restraints for group   2 =      681 ( $BN_BOND_2   )
+ XBRMS: rmsd for bond B restraints for group   2 =    1.953 ( $BRMS_BOND_2 )
+ XBRMS: total number of angle B restraints =     1785 ( $BN_ANGL   )
+ XBRMS: overall rmsd for angle B restraints =    2.466 ( $BRMS_ANGL )
+ XBRMS: number of angle B restraints for group   1 =      787 ( $BN_ANGL_1   )
+ XBRMS: rmsd for angle B restraints for group   1 =    1.808 ( $BRMS_ANGL_1 )
+ XBRMS: number of angle B restraints for group   2 =      998 ( $BN_ANGL_2   )
+ XBRMS: rmsd for angle B restraints for group   2 =    2.881 ( $BRMS_ANGL_2 )
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     1 --------------------------------------------------
+ | Target= 0.430E+05 E(XREF)= 0.426E+05  E(BRES)= 0.315E+04  E(grad)= 0.111E+00|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     2 --------------------------------------------------
+ | Target= 0.430E+05 E(XREF)= 0.426E+05  E(BRES)= 0.316E+04  E(grad)= 0.706E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     3 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.318E+04  E(grad)= 0.597E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     4 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.417E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     5 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.392E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     6 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.220E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     7 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.247E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     8 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.163E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.225
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=     9 --------------------------------------------------
+ | Target= 0.430E+05 E(XREF)= 0.426E+05  E(BRES)= 0.329E+04  E(grad)= 0.196E+00|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    10 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.202E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    11 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.179E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    12 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.319E+04  E(grad)= 0.185E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    13 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.138E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    14 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.155E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    15 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.123E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    16 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.128E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    17 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.111E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    18 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.122E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    19 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.175E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    20 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.129E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    21 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    22 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    23 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    24 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    25 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    26 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    27 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    28 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    29 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XTAREXPR: ->[TEST SET]    monitor=  0.224
+ XTAREXPR: ->[WORKING SET] monitor=  0.190
+ --------------- cycle=    30 --------------------------------------------------
+ | Target= 0.429E+05 E(XREF)= 0.426E+05  E(BRES)= 0.317E+04  E(grad)= 0.170E-01|
+ -------------------------------------------------------------------------------
+ XBREF: step limit reached
+ XBREF: using the parameters (at cycle     29) which produce the minimum target. 
+ XBRMS: total number of bond B restraints =     1312 ( $BN_BOND   )
+ XBRMS: overall rmsd for bond B restraints =    1.627 ( $BRMS_BOND )
+ XBRMS: number of bond B restraints for group   1 =      631 ( $BN_BOND_1   )
+ XBRMS: rmsd for bond B restraints for group   1 =    1.168 ( $BRMS_BOND_1 )
+ XBRMS: number of bond B restraints for group   2 =      681 ( $BN_BOND_2   )
+ XBRMS: rmsd for bond B restraints for group   2 =    1.959 ( $BRMS_BOND_2 )
+ XBRMS: total number of angle B restraints =     1785 ( $BN_ANGL   )
+ XBRMS: overall rmsd for angle B restraints =    2.473 ( $BRMS_ANGL )
+ XBRMS: number of angle B restraints for group   1 =      787 ( $BN_ANGL_1   )
+ XBRMS: rmsd for angle B restraints for group   1 =    1.809 ( $BRMS_ANGL_1 )
+ XBRMS: number of angle B restraints for group   2 =      998 ( $BN_ANGL_2   )
+ XBRMS: rmsd for angle B restraints for group   2 =    2.891 ( $BRMS_ANGL_2 )
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> xray 
+ XRAY>    predict 
+ PREDict>      mode=reciprocal 
+ PREDict>      to=fcalc 
+ PREDict>      selection=(ref_active=1) 
+ Total of     16784 structure factor elements were selected.
+ PREDict>      atomselection=( &atom_select ) 
+ SELRPN:   1507 atoms have been selected out of   1507
+ PREDict>    end 
+ FCALC: #scatt.= 1507 #anomalous=  0 #special pos.=  0 occupancies=1
+ XFFT: using grid [  60, 100, 144] and sublattice [  60(  61), 100( 101), 144]
+ XRAY>    @@CNS_XTALMODULE:calculate_r (fobs=&STRIP%obs_f; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/calculate_r opened.
+ XRAY>! Module file: calculate_r 
+ XRAY>! 
+ XRAY>! CNS module 
+ XRAY>! ************ 
+ XRAY>! 
+ XRAY>! Authors: Axel Brunger and Paul Adams 
+ XRAY>! 
+ XRAY>! copyright Yale University 
+ XRAY>! 
+ XRAY>! Function: 
+ XRAY>!    Calculates crystallographic R-values 
+ XRAY>! 
+ XRAY>! Requirements: 
+ XRAY>!    Needs to be called within xray 
+ XRAY> 
+ XRAY>module {calculate_r} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>&fobs=fobs; 
+ MODULE-DECLARATION>&fcalc=fcalc; 
+ MODULE-DECLARATION>&fpart=fpart; 
+ MODULE-DECLARATION>&sel=all; 
+ MODULE-DECLARATION>&sel_test=none; 
+ MODULE-DECLARATION>&print=false; 
+ MODULE-DECLARATION>&output=OUTPUT; 
+ MODULE-DECLARATION>&r=$r; 
+ MODULE-DECLARATION>&test_r=$test_r; 
+ MODULE-DECLARATION>) 
+ &_2_FOBS set to &STRIP%_1_OBS_F 
+ MODULE-INVOCATION>                                 fcalc=fcalc; 
+ &_2_FCALC set to fcalc 
+ MODULE-INVOCATION>                                 fpart=fbulk; 
+ &_2_FPART set to fbulk 
+ MODULE-INVOCATION>                                 sel=(ref_active=1); 
+ &_2_SEL set to ( ref_active = 1 ) 
+ MODULE-INVOCATION>                                 sel_test=(tst_active=1); 
+ &_2_SEL_TEST set to ( tst_active = 1 ) 
+ MODULE-INVOCATION>                                 print=true; 
+ &_2_PRINT set to true 
+ MODULE-INVOCATION>                                 output=OUTPUT; 
+ &_2_OUTPUT set to OUTPUT 
+ MODULE-INVOCATION>                                 r=$full_r; 
+ &_2_R set to $_1_FULL_R 
+ MODULE-INVOCATION>                                 test_r=$full_test_r;) 
+ &_2_TEST_R set to $_1_FULL_TEST_R 
+ XRAY> 
+ XRAY>set message ? end 
+ MESSage=NORM
+ XRAY>evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ XRAY>set echo ? end 
+ ECHO=TRUE {ON}
+ XRAY>evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ XRAY>if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ XRAY>  set echo=on message=normal end 
+ XRAY>else 
+ XRAY>  set echo=off message=off end 
+ DISPlay-file=OUTPUT
+ Program version= 1.1 File version= 1.1
+ Sum of     16784 elements =             16784.0000
+ Sum of      1322 elements =              1322.0000
+============================================
+     R-value by resolution for test set
+============================================
+ #bin | resolution range | #refl | 
+    1   4.95   50.00         61      0.1771
+    2   3.93    4.95         51      0.1558
+    3   3.43    3.93         54      0.1842
+    4   3.12    3.43         51      0.2165
+    5   2.89    3.12         64      0.2582
+    6   2.72    2.89         44      0.2199
+    7   2.59    2.72         52      0.2477
+    8   2.47    2.59         42      0.1906
+    9   2.38    2.47         44      0.2070
+   10   2.30    2.38         61      0.2706
+   11   2.22    2.30         54      0.2515
+   12   2.16    2.22         50      0.2715
+   13   2.10    2.16         62      0.2845
+   14   2.05    2.10         48      0.2322
+   15   2.01    2.05         47      0.2583
+   16   1.96    2.01         57      0.2568
+   17   1.92    1.96         46      0.2180
+   18   1.89    1.92         61      0.2228
+   19   1.85    1.89         52      0.2277
+   20   1.82    1.85         49      0.2380
+   21   1.79    1.82         33      0.2786
+   22   1.77    1.79         53      0.2587
+   23   1.74    1.77         45      0.2730
+   24   1.72    1.74         54      0.2894
+   25   1.69    1.72         30      0.3352
+   26   1.67    1.69         57      0.4136
+ #bin | resolution range | #refl | 
+    1   1.67   50.00       1322      0.2244
+>>>> Overall R-value for test set: 0.22445
+============================================
+    R-value by resolution for working set
+============================================
+ #bin | resolution range | #refl | 
+    1   4.95   50.00        656      0.2047
+    2   3.93    4.95        623      0.1530
+    3   3.43    3.93        614      0.1655
+    4   3.12    3.43        626      0.1659
+    5   2.89    3.12        602      0.1862
+    6   2.72    2.89        623      0.1933
+    7   2.59    2.72        602      0.2004
+    8   2.47    2.59        618      0.1831
+    9   2.38    2.47        610      0.1562
+   10   2.30    2.38        594      0.1949
+   11   2.22    2.30        595      0.1992
+   12   2.16    2.22        598      0.1908
+   13   2.10    2.16        591      0.1951
+   14   2.05    2.10        593      0.1866
+   15   2.01    2.05        574      0.1932
+   16   1.96    2.01        605      0.1966
+   17   1.92    1.96        599      0.1891
+   18   1.89    1.92        547      0.1918
+   19   1.85    1.89        594      0.1926
+   20   1.82    1.85        587      0.2223
+   21   1.79    1.82        581      0.2383
+   22   1.77    1.79        557      0.2441
+   23   1.74    1.77        577      0.2552
+   24   1.72    1.74        578      0.2758
+   25   1.69    1.72        565      0.3071
+   26   1.67    1.69        553      0.3679
+ #bin | resolution range | #refl | 
+    1   1.67   50.00      15462      0.1896
+>>>> Overall R-value for working set: 0.189645
+ XRAY> end 
+ CNSsolve> 
+ CNSsolve> set display=&coordinate_outfile end 
+ ASSFIL: file bi_la.pdb opened.
+ CNSsolve> 
+ CNSsolve> display REMARK coordinates from restrained individual B-factor refinement 
+ CNSsolve> display REMARK refinement resolution: &low_res - &high_res A 
+ CNSsolve> if ( $total_test > 0 ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK starting r= $start_r[f6.4] free_r= $start_test_r[f6.4] 
+ CNSsolve>   display REMARK final    r= $full_r[f6.4] free_r= $full_test_r[f6.4] 
+ CNSsolve> else 
+ CNSsolve>   display REMARK starting r= $start_r[f6.4] 
+ CNSsolve>   display REMARK final    r= $full_r[f6.4] 
+ CNSsolve> end if 
+ CNSsolve> display REMARK B rmsd for bonded mainchain atoms= $brms_bond_1[f6.3]  target= &bsig_main 
+ CNSsolve> if ( $exist_brms_bond_2 = true ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK B rmsd for bonded sidechain atoms= $brms_bond_2[f6.3]  target= &bsig_side 
+ CNSsolve> end if 
+ CNSsolve> display REMARK B rmsd for angle mainchain atoms= $brms_angl_1[f6.3]  target= &asig_main 
+ CNSsolve> if ( $exist_brms_angl_2 = true ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK B rmsd for angle sidechain atoms= $brms_angl_2[f6.3]  target= &asig_side 
+ CNSsolve> end if 
+ CNSsolve> xray wa=? end 
+ WA= 0.92832    
+ CNSsolve> evaluate ($wa_print=$result) 
+ EVALUATE: symbol $WA_PRINT set to   0.928324     (real)
+ CNSsolve> display REMARK rweight=$b_rweight[f8.4] (with wa= $wa_print) 
+ CNSsolve> display REMARK target= &STRIP%reftarget  steps= &bfactor_nstep 
+ CNSsolve> display REMARK sg= &STRIP%sg a= &a b= &b c= &c alpha= &alpha beta= &beta gamma= &gamma 
+ CNSsolve> if ( &BLANK%parameter_infile_1 = false ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>    display REMARK parameter file 1  : &STRIP%parameter_infile_1 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%parameter_infile_2 = false ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>    display REMARK parameter file 2  : &STRIP%parameter_infile_2 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%parameter_infile_3 = false ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>    display REMARK parameter file 3  : &STRIP%parameter_infile_3 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%parameter_infile_4 = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>    display REMARK parameter file 4  : &STRIP%parameter_infile_4 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%parameter_infile_5 = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>    display REMARK parameter file 5  : &STRIP%parameter_infile_5 
+ CNSsolve> end if 
+ CNSsolve> display REMARK molecular structure file: &STRIP%structure_infile 
+ CNSsolve> display REMARK input coordinates: &STRIP%coordinate_infile 
+ CNSsolve> if ( &BLANK%anom_library = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   display REMARK anomalous f' f'' library: &STRIP%anom_library 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%reflection_infile_1 = false ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK reflection file= &STRIP%reflection_infile_1 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%reflection_infile_2 = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   display REMARK reflection file= &STRIP%reflection_infile_2 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%reflection_infile_3 = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   display REMARK reflection file= &STRIP%reflection_infile_3 
+ CNSsolve> end if 
+ CNSsolve> if ( &BLANK%ncs_infile = false ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   display REMARK ncs= &STRIP%ncs_type  ncs file= &STRIP%ncs_infile 
+ CNSsolve> else 
+ CNSsolve>   display REMARK ncs= none 
+ CNSsolve> end if 
+ CNSsolve> if ( &bscale # "no" ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK B-correction resolution: &low_res_bscale - &high_res 
+ CNSsolve>   if ( $low_b_flag = true ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>     display REMARK warning: B-correction gave atomic B-values less than zero 
+ CNSsolve>     display REMARK          they have been reset to zero 
+ CNSsolve>   end if 
+ CNSsolve> end if 
+ CNSsolve> if ( &bscale = "anisotropic" ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK initial B-factor correction applied to &STRIP%obs_f : 
+ CNSsolve>   display REMARK   B11=$aniso_11[f8.3] B22=$aniso_22[f8.3] B33=$aniso_33[f8.3] 
+ CNSsolve>   display REMARK   B12=$aniso_12[f8.3] B13=$aniso_13[f8.3] B23=$aniso_23[f8.3] 
+ CNSsolve>   display REMARK B-factor correction applied to coordinate array B: $trace[f8.3] 
+ CNSsolve> elseif ( &bscale = "anisotropic_fixed_isotropic" ) then 
+ CNSsolve>   display REMARK initial B-factor correction applied to &STRIP%obs_f : 
+ CNSsolve>   display REMARK   B11=$aniso_11[f8.3] B22=$aniso_22[f8.3] B33=$aniso_33[f8.3] 
+ CNSsolve>   display REMARK   B12=$aniso_12[f8.3] B13=$aniso_13[f8.3] B23=$aniso_23[f8.3] 
+ CNSsolve>   display REMARK no B-factor correction applied to coordinate array B 
+ CNSsolve> elseif ( &bscale = "isotropic" ) then 
+ CNSsolve>   display REMARK B-factor correction applied to coordinate array B: $trace[f8.3] 
+ CNSsolve> else 
+ CNSsolve>   display REMARK initial B-factor correction: none 
+ CNSsolve> end if 
+ CNSsolve> if ( &bulk_sol = true ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve>   display REMARK bulk solvent: density level= $sol_k_ref e/A^3, B-factor= $sol_b_ref A^2 
+ CNSsolve> else 
+ CNSsolve>   display REMARK bulk solvent: false 
+ CNSsolve> end if 
+ CNSsolve> if ( &obs_type = "intensity" ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   display REMARK reflections with Iobs/sigma_I < &sigma_cut rejected 
+ CNSsolve>   display REMARK reflections with Iobs > &obs_rms * rms(Iobs) rejected 
+ CNSsolve> else 
+ CNSsolve>   display REMARK reflections with |Fobs|/sigma_F < &sigma_cut rejected 
+ CNSsolve>   display REMARK reflections with |Fobs| > &obs_rms * rms(Fobs) rejected 
+ CNSsolve> end if 
+ CNSsolve> xray anomalous=? end 
+ ANOMalous=FALSe {OFF}
+ CNSsolve> if ( $result = true ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>   display REMARK anomalous diffraction data was input 
+ CNSsolve> end if 
+ CNSsolve> display REMARK theoretical total number of refl. in resol. range:    $total_theor[I6] ( 100.0 % ) 
+ CNSsolve> display REMARK number of unobserved reflections (no entry or |F|=0): $unobserved[I6] ( $per_unobs[f5.1] % ) 
+ CNSsolve> display REMARK number of reflections rejected:                       $rejected[I6] ( $per_reject[f5.1] % ) 
+ CNSsolve> display REMARK total number of reflections used:                     $total_used[I6] ( $per_used[f5.1] % ) 
+ CNSsolve> display REMARK number of reflections in working set:                 $total_work[I6] ( $per_work[f5.1] % ) 
+ CNSsolve> display REMARK number of reflections in test set:                    $total_test[I6] ( $per_test[f5.1] % ) 
+ CNSsolve> 
+ CNSsolve> remark 
+ CNSsolve> 
+ CNSsolve> @CNS_XTALMODULE:write_pdb (pdb_o_format=&pdb_o_format; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/write_pdb opened.
+ CNSsolve>! Module file: write_pdb 
+ CNSsolve>! 
+ CNSsolve>! CNS module 
+ CNSsolve>! ********** 
+ CNSsolve>! 
+ CNSsolve>! Authors: Axel Brunger and Paul Adams 
+ CNSsolve>! 
+ CNSsolve>! copyright Yale University 
+ CNSsolve>! 
+ CNSsolve>! Function: 
+ CNSsolve>!    Write out a PDB file - in CNS or O format 
+ CNSsolve>!    In O format the segid will be written in the chainid 
+ CNSsolve>!    column if it is one character 
+ CNSsolve>! 
+ CNSsolve>! Requirements: 
+ CNSsolve>!    Needs to be called from main level 
+ CNSsolve> 
+ CNSsolve>module {write_pdb} 
+ MODULE-DECLARATION> 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>  &pdb_o_format=false; 
+ MODULE-DECLARATION>  &coordinate_outfile="OUTPUT"; 
+ MODULE-DECLARATION>  &sgparam; 
+ MODULE-DECLARATION>) 
+ &_2_PDB_O_FORMAT set to &_1_PDB_O_FORMAT 
+ MODULE-INVOCATION>                            coordinate_outfile=&coordinate_outfile; 
+ &_2_COORDINATE_OUTFILE set to &_1_COORDINATE_OUTFILE 
+ MODULE-INVOCATION>                            sgparam=$sgparam;) 
+ &_2_SGPARAM set to $_1_SGPARAM 
+ CNSsolve> 
+ CNSsolve> if ( &pdb_o_format = true ) then 
+ NEXTCD: condition evaluated as true
+ CNSsolve> 
+ CNSsolve>   @@CNS_XTALMODULE:pdbgetsgname (sg=&sgparam.sg_number; 
+ ASSFIL: file /home/swr/cns_solve_1.1/modules/xtal/pdbgetsgname opened.
+ CNSsolve>! Module file: pdbsgname 
+ CNSsolve>! 
+ CNSsolve>! CNS module 
+ CNSsolve>! ********** 
+ CNSsolve>! 
+ CNSsolve>! Authors: Jian-Sheng Jiang and Axel T. Brunger 
+ CNSsolve>! 
+ CNSsolve>! copyright Yale University 
+ CNSsolve>! 
+ CNSsolve>! Function: 
+ CNSsolve>! Get the space group name in PDB's convention for a given number 
+ CNSsolve>! Return the name in "&sgname" 
+ CNSsolve>! 
+ CNSsolve>! Requirements: 
+ CNSsolve>!{ The name of space group in the PDB's convention           } 
+ CNSsolve>!{    (1) a string limits to 11 columns                      } 
+ CNSsolve>!{    (2) symmetry directions separate by a white-space      } 
+ CNSsolve>!{    (3) the screw rotation axes use a number with 2 digits } 
+ CNSsolve>!{    (4) inversion rotation axes with the minus sign "-"    } 
+ CNSsolve>!{    (5) perpendicular indicator "/" is allowed             } 
+ CNSsolve>!{    Examples: "P 21/C", "P 42/N B C","R -3","F 4 -3 M"     } 
+ CNSsolve>! 
+ CNSsolve> 
+ CNSsolve>module { pdbgetsgname } 
+ MODULE-DECLARATION>( 
+ MODULE-DECLARATION>   &sg=0;              { the number of the space group for input  } 
+ MODULE-DECLARATION>   &sgname=" ";        { the name of the space group for return   } 
+ MODULE-DECLARATION>) 
+ &_3_SG set to &_2_SGPARAM.SG_NUMBER 
+ MODULE-INVOCATION>                                  sgname=$sg_pdb;) 
+ &_3_SGNAME set to $_2_SG_PDB 
+ CNSsolve> 
+ CNSsolve>  set message ? end 
+ MESSage=NORM
+ CNSsolve>  evaluate ($message_old=$result) 
+ EVALUATE: symbol $MESSAGE_OLD set to "NORM" (string)
+ CNSsolve>  set echo ? end 
+ ECHO=TRUE {ON}
+ CNSsolve>  evaluate ($echo_old=$result) 
+ EVALUATE: symbol $ECHO_OLD set to TRUE (logical)
+ CNSsolve>  if ( $log_level = verbose ) then 
+ NEXTCD: condition evaluated as false
+ CNSsolve>    set echo=on message=normal end 
+ CNSsolve>  else 
+ CNSsolve>    set echo=off message=off end 
+ Program version= 1.1 File version= 1.1
+ CNSsolve> 
+ CNSsolve>   set display=? end 
+ DISPlay-file=bi_la.pdb
+ CNSsolve>   evaluate ($curr_display=$result) 
+ EVALUATE: symbol $CURR_DISPLAY set to "bi_la.pdb" (string)
+ CNSsolve> 
+ CNSsolve>   set display=&coordinate_outfile end 
+ CNSsolve> 
+ CNSsolve>   display CRYST1 $xrcell_1[f8.3] $xrcell_2[f8.3] $xrcell_3[f8.3] \ 
+  $xrcell_4[f6.2] $xrcell_5[f6.2] $xrcell_6[f6.2] $sg_pdb[a10] 
+ CNSsolve> 
+ CNSsolve>   set display=$curr_display end 
+ CNSsolve> 
+ CNSsolve>   write coordinates 
+ WRITE-COOR>     format=PDBO output=&coordinate_outfile 
+ WRITE-COOR>   end 
+ CNSsolve> 
+ CNSsolve> else 
+ CNSsolve> 
+ CNSsolve>   write coordinates 
+ CNSsolve>     output=&coordinate_outfile 
+ CNSsolve>   end 
+ CNSsolve> 
+ CNSsolve> end if 
+ CNSsolve> 
+ CNSsolve> stop 
+          ============================================================
+           Maximum dynamic memory allocation:    12303324 bytes
+           Maximum dynamic memory overhead:           592 bytes
+           Program started at: 18:04:53 on 13-Dec-2007
+           Program stopped at: 18:05:44 on 13-Dec-2007
+           CPU time used:      51.0100 seconds
+          ============================================================

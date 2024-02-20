@@ -11,10 +11,10 @@ Priority: model > template > log
 """
 import os
 import json
+
+TOP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from mmcif.io.IoAdapterCore import IoAdapterCore
-# from extract.pdbx_v2.PdbxReader import PdbxReader
-# from extract.pdbx_v2.DataCategory import DataCategory
-# from extract.pdbx_v2.PdbxWriter import PdbxWriter
 from extract.util.convertCatDataFormat import convertDictToCatObj, convertCatObjToDict
 from extract.util.mergeCats import mergeCatItemsUpdateValuesByRowIndex, mergeCatItemsUpdateValuesByKeys, mergeCatItemsUnionValuesByKeys
 # import dict with software class
@@ -451,9 +451,8 @@ class Merger():
                                                         "_pdbx_nmr_software.name", "_pdbx_nmr_software.classification"])
         if d_nmr_software:
             try:
-                pdb_extract_folder = os.getenv("PDB_EXTRACT_PY")
                 filepath_nmr_software_author = os.path.join(
-                    pdb_extract_folder, "data/em_nmr_software/nmr_software_author.json")
+                    TOP_DIR, "data/em_nmr_software/nmr_software_author.json")
                 with open(filepath_nmr_software_author) as file_nmr:
                     d_software_author = json.load(file_nmr)
 
