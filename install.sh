@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 ## For Bourne shell users:
-## Must run "source setup.sh" before executing this script to set up enviroment variables.
 
 function highlight_text {
     echo -ne "\e[93m$1\e[0m"
