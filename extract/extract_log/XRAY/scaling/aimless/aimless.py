@@ -16,6 +16,7 @@ import sys
 import re
 import logging
 from extract.extract_log.XRAY.scaling import LogScaling  # initiate data dictionary for scaling process
+from extract.util.findPattern import getStartingIndex
 
 # all versions are imported and handled internally using the versioned python file in this folder
 
@@ -39,42 +40,6 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
         # Use the parent class LogScaling to add mmCIF items for scaling
         LogScaling.__init__(self)
 
-    def getStartingIndex(self, pattern, n_occur="last"):
-        """
-        Find the starting index of the self.l_file for a particular section
-        Scalepack log file organizes in sections, so need to find section start
-
-        Parameters
-        ----------
-        pattern : str
-            text pattern of the section start
-        n_occur : int, optional
-            take the 1st/2nd/3rd appearance of the pattern. The default is 1.
-
-        Returns
-        -------
-        int
-            starting line number (index) of the pattern.
-
-        """
-        re_pattern = re.compile(pattern)
-        index_line = -1
-        if n_occur == "last":
-            for i in range(self.n_lines):
-                line = self.l_file[i]
-                if re_pattern.search(line):
-                    index_line = i
-        else:
-            i_occur = 0
-            for i in range(self.n_lines):
-                line = self.l_file[i]
-                if re_pattern.search(line):
-                    i_occur += 1
-                    if i_occur == n_occur:
-                        index_line = i
-                        break
-        return index_line
-
     def parse(self, filepath):
         """
         parse Aimless log file
@@ -95,16 +60,16 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
         except IOError as e:
             logger.exception(e)
             return False
-        
+
         try:
             self.n_lines = len(self.l_file)  # number of lines
             self.parseSummary()  # process summary section
-    
+
             # add static ordinal record for reflns
             self.d_["reflns"]["_reflns.entry_id"].append("UNNAMED")
             self.d_["reflns"]["_reflns.pdbx_diffrn_id"].append("1")
             self.d_["reflns"]["_reflns.pdbx_ordinal"].append("1")
-    
+
             # add static ordinal record for _reflns_shell
             n_shell = len(self.d_["reflns_shell"]["_reflns_shell.Rmerge_I_obs"])
             for i in range(n_shell):
@@ -134,7 +99,7 @@ class LogAimless(LogScaling):  # parent class in parent folder's __init__.py
         """
         # pattern = r'^Summary\s+data\s+for\s+Project:\s+'
         pattern = r'^\s*Overall\s+InnerShell\s+OuterShell\s*$'
-        i_start = self.getStartingIndex(pattern) + 1
+        i_start = getStartingIndex(self.l_file, pattern) + 1
         i_end = i_start + 17 # truncate the summary section
         l_summary_section = self.l_file[i_start:i_end]
         # print(l_summary_section)

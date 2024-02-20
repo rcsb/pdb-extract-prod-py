@@ -195,7 +195,7 @@ class Dict:
         """
         cat = cat_obj.getName()
         if cat == "diffrn":
-            l_diffrn_id = cat.getAttributeValueList("id")
+            l_diffrn_id = cat_obj.getAttributeValueList("id")
             if len(l_diffrn_id) != len(set(l_diffrn_id)):
                 self.l_item_with_duplicate_value.append("_diffrn.id")
         d_cat = convertCatObjToDict(cat_obj)

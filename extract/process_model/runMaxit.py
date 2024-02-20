@@ -18,8 +18,7 @@ __license__ = "Apache 2.0"
 import os
 import subprocess
 
-## os.environ["RCSBROOT"] = "/Users/chenghua/Projects/pdb_extract/packages/maxit-v11.100-prod-src/"
-## os.environ["PDB_EXTRACT"] = "/Users/chenghua/Projects/pdb_extract"
+
 
 class Maxit:
     """ Class to run maxit
@@ -33,9 +32,11 @@ class Maxit:
         None.
 
         """
-        self.maxit_path = os.getenv("RCSBROOT")
-        self.maxit_command = os.path.join(self.maxit_path, "bin", "maxit")
-        
+        TOP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+        MAXIT_DIR = os.path.join(TOP_DIR, "packages", "maxit-v11.100-prod-src")
+        os.environ["RCSBROOT"] = MAXIT_DIR
+        self.maxit_command = os.path.join(MAXIT_DIR, "bin", "maxit")
+
     def pdb2cif(self, filepath_input, filepath_output, filepath_log):
         """
         Run PDB to CIF conversion

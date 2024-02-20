@@ -45,7 +45,8 @@ class LogScaling():
                                '_reflns.observed_criterion_I_min': [], 
                                '_reflns.pdbx_d_res_high_opt': [], 
                                '_reflns.pdbx_d_res_low_opt': [], 
-                               '_reflns.details': []
+                               '_reflns.details': [],
+                               '_reflns.pdbx_R_split': [],
                                }, 
                    'reflns_shell': {'_reflns_shell.pdbx_diffrn_id': [], 
                                      '_reflns_shell.pdbx_ordinal': [], 
@@ -72,7 +73,8 @@ class LogScaling():
                                      '_reflns_shell.pdbx_Rrim_I_all': [], 
                                      '_reflns_shell.pdbx_Rpim_I_all': [], 
                                      '_reflns_shell.pdbx_CC_half': [], 
-                                     '_reflns_shell.pdbx_number_anomalous': []
+                                     '_reflns_shell.pdbx_number_anomalous': [],
+                                     '_reflns_shell.pdbx_R_split': [],
                                      }
                    }
 
