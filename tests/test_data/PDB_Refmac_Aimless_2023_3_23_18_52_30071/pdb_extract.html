@@ -1,0 +1,838 @@
+
+<!doctype html>
+<HTML>
+<!--<head><title>Extracting structure data </title></head>-->
+
+<head>
+<meta charset="UTF-8" />
+<title>Version : pdb_extract</title>
+
+<meta name="description" content="pdb_extract is used to extract statistical 
+information from the output files produced by many software for protein structure 
+determination using Xray Crystallography and NMR methods" />
+
+<meta name="keywords" content="pdb extract, PDB deposition, x-ray crystallography, 
+data collection and reduction, molecular replacement, heavy atom phase 
+determination, density modification, structure refinement, nmr structure 
+determination, hkl/scalepack, d*trek, saint, scala(ccp4), xscale, mosflm, 
+x-gen, cns/cnx/xplor, amore(ccp4), epmr, phaser,beast, solve, mlphare(ccp4), 
+sharp/autosharp, shelxd/shelxs, phases, snb, bnp, bp3, dm(ccp4), solomon(ccp4), 
+resolve, shelxe, refmac5(ccp4), restrain(ccp4), ccp4, shelxl, tnt, phenix, 
+buster-tnt, arp/warp, cyana, xplor-nih" />
+
+<link href="https://pdb-extract.wwpdb.org//wwpdb_css/site.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+
+<body>
+<div class="container">
+  <header class="container_12">
+
+    <div class="logo">
+      <a href="http://www.wwpdb.org/"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/wwpdb_logo.gif"  alt="pdb_extract Logo" width="187" height="58" /></a>
+    </div>
+
+    <div class="topnav frht bg-green ui-corner-all pall">
+        	<a href="https://pdb-extract.wwpdb.org//index.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Home"><span class="ui-button-text">Home</span></a>
+            <a href="https://pdb-extract.wwpdb.org//version.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Version"></span><span class="ui-button-text">Version</span></a>
+             <a href="https://pdb-extract.wwpdb.org//documentation.html" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Documentation"><span class="ui-button-text">Documentation</span></a>
+            <div class="clear">&nbsp;</div>
+    </div>
+
+    <div class="headercontent prefix_1">
+        <h1>pdb_extract</h1>
+    </div>
+
+    <div class="clear">&nbsp;</div>
+    <div class="seperator"></div>
+  </header>
+
+  <div class="content container_12">
+
+
+<center><font size=4 > <b>EXTRACTING INFORMATION FOR PDB DEPOSITION
+<A HREF="https://pdb-extract.wwpdb.org//help/pdb_extract_help.html" TARGET="other">help in each step</A>
+
+</b> </font></center>
+
+<p>
+<li>MTZ Structure Factor file does not need to be converted to mmCIF for wwPDB deposition. You may skip the conversion, and upload MTZ file directly at wwPDB OneDep deposition system.
+<!-- <li>The LOG/output files in the fields marked by <font color=red ><b>*</b></font> are strongly recommended. -->
+<li>All other information asked on this page is also optional. However, the information extracted from your template and log files will save time during your subsequent wwPDB deposition. 
+<li>Click the  <font color=red > Run </font> button at the bottom to complete the pdb_extract session. 
+<p>
+<form ENCTYPE="multipart/form-data" action="https://pdb-extract.wwpdb.org//cgi-bin//pdb_extract_py.cgi" method="POST">
+<!--- <table> -->
+
+ <h4>Information about Authors, Structure Description, and Experiments ...&nbsp  
+<A  title="You have the option of including additional information that is mandatory for PDB deposition but which cannot be extracted from other input files.
+
+By using the “Click here” link, you can access an online portal (provided by PDBj) where you can build a completed template file containing this additional information.  You can upload the file here to incorporate its content into the coordinate file that pdb_extract will generate.
+
+The presence of this additional information in your coordinate file is not required for PDB deposition, but if it is absent, you will be required to enter the information manually  at the time of deposition. As such, if you are making multiple similar PDB depositions, you may save time and effort by preparing a completed template file containing mandatory additional information so that you can use it in all of your pdb_extract sessions and - as a result - not need to manually enter the additional information multiple times during your depositions. 
+ 
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A> 
+</h4>
+
+<table cellpadding=5 border bgcolor="#E0FFFF">
+
+<tr> <td colspan=2>
+&nbsp <A HREF="https://pdbj.org/cif-editor/#filterErroneousData=false,url=https://pdb-extract.wwpdb.org/help/data_template_xray.cif " 
+TARGET="other"><font size=4><b>Click here </b></A>to edit and download a re-usable template via PDBj's mmCIF Editor if you haven't done so (*Note: click Editor's upper-left gear icon to save/download or access help)
+</td></tr>
+
+<tr> <td colspan=2>
+Upload completed mmCIF-format template:  <INPUT TYPE=file NAME="data_template_1"  SIZE=45 > (*Note: legacy template not in mmCIF format is no longer accepted)
+</td></tr>
+
+<tr> <td colspan=2>
+<b>Or</b> you can skip this step and fill in the information when you deposit your structure through wwPDB OneDep deposition system.
+</td></tr>
+
+
+<!--- ------------- -->
+</table> 
+
+<!--  start print entity -->
+<p>
+<h4>Convert Structure Factor file to mmCIF format &nbsp 
+<A  title=" This section is used to convert 
+1. the structure factors used for final refinement.
+2. the structure factors used for phase determination or other data set that you want to deposit.
+3. MTZ Structure Factor file upload is optional. You may skip the conversion, and upload MTZ file directly at wwPDB OneDep deposition system.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+</h4>
+
+<table cellpadding=4 border bgcolor="#E0FFFF">
+
+<tr><th colspan=3 bgcolor="#cccfff"> <!-- <font color="red"> <b>*</b></font> -->
+<b>&nbsp Reflection Data Used for Final Structure Refinement (Optional for MTZ file) </b>&nbsp &nbsp 
+<A  title="The structure factors used for final refinement.
+It is automatically converted to mmcif format. 
+
+The supported input format is one of the follows. 
+mmCIF, CIF, MTZ, CNS, Xplor, HKL2000, Scalepack, XSCALE, XPREP, Dtrek, TNT, SHELX, SAINT, EPMR, XTALVIEW, X-GEN, XENGEN, MULTAN, MAIN,
+
+Data type : The data type is either F (amplitude) or I (intensity) that corresponds to your input file. If your data format is shelx, you need to select the type. Otherwise, the data type will be determined by the sf_convert.
+
+Test set flag number : The number indicates which data set was used for the test set in the refinement. Please select the correct number in you data set. (By default, 0 is used for ccp4/refmac, 1 for phenix, -1 for shelx).
+
+Data details (optional) : If you add any information about your structure factors to data detail text area, the information will be written to the output cif file. (It is a good way to have memo of your data file).
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+</th></tr>
+
+
+<tr>
+
+<td>
+ Data Type<select name="sf_data_type_ref">
+<option value="">
+<option value="F">Amplitude ( F )
+<option value="I">Intensity ( I )
+</select>
+</td>
+
+<td>
+&nbsp &nbsp <b>Test set flag number</b> <select name="freer_1">
+<OPTION VALUE=""> 
+<OPTION VALUE="-1">-1
+<OPTION VALUE="0">0
+<OPTION VALUE="1">1
+<OPTION VALUE="2">2
+<OPTION VALUE="3">3
+<OPTION VALUE="4">4
+<OPTION VALUE="5">5
+<OPTION VALUE="6">6
+<OPTION VALUE="7">7
+<OPTION VALUE="8">8
+<OPTION VALUE="9">9
+<OPTION VALUE="10">10
+<OPTION VALUE="11">11
+<OPTION VALUE="12">12
+<OPTION VALUE="13">13
+<OPTION VALUE="14">14
+<OPTION VALUE="15">15
+<OPTION VALUE="16">16
+<OPTION VALUE="17">17
+<OPTION VALUE="18">18
+<OPTION VALUE="19">19
+</SELECT> </td>
+
+</tr>
+
+<tr> 
+<td colspan=2> 
+Data file name <INPUT TYPE=file NAME="sf_file_ref"  SIZE=45  >
+</td>
+<td> &nbsp &nbsp Wavelength
+<input type=text size=8 maxlength=15 name="sf_wave_ref" >
+</td>
+</tr>
+
+<tr>
+<th colspan=5 >Data details (optional) 
+<TEXTAREA NAME="sf_detail_ref" COLS=70 ROWS=2> </TEXTAREA>
+</tr>
+
+<tr><th colspan=4 bgcolor="#cccfff">
+
+<b>&nbsp Other Reflection Data </b> (Optional) &nbsp &nbsp 
+<A  title="This section is the data (unmerged or unique) used for phasing or other reflection data that you want to deposit.
+
+You may add the wavelength and write a memo for the section.
+
+The supported input format is one of the follows. 
+mmCIF, CIF, MTZ, CNS, Xplor, HKL2000, Scalepack, XSCALE, XPREP, Dtrek, TNT, SHELX, SAINT, EPMR, XTALVIEW, X-GEN, XENGEN, MULTAN, MAIN,
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+</th></tr>
+
+<tr>
+
+<td> 
+Data Type<select name="sf_data_type_phs">
+<option value="I">Intensity ( I )
+<option value="F">Amplitude ( F )
+<option value="">
+</select>
+</td></tr>
+
+<tr><th colspan=5 bgcolor="#cccfff"></th></tr>
+
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2> Data file name
+<INPUT TYPE=file NAME="sf_file_phs_1" SIZE=45  >
+</td>
+<td> &nbsp &nbsp Wavelength 
+<input type=text size=8 maxlength=20 name="sf_wavelength_1" >
+</td>
+
+
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2> Data file name
+<INPUT TYPE=file NAME="sf_file_phs_2" SIZE=45  >
+</td>
+<td> &nbsp &nbsp Wavelength 
+<input type=text size=8 maxlength=20 name="sf_wavelength_2" >
+</td>
+
+
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2> Data file name
+<INPUT TYPE=file NAME="sf_file_phs_3" SIZE=45  >
+</td>
+<td> &nbsp &nbsp Wavelength 
+<input type=text size=8 maxlength=20 name="sf_wavelength_3" >
+</td>
+
+
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2> Data file name
+<INPUT TYPE=file NAME="sf_file_phs_4" SIZE=45  >
+</td>
+<td> &nbsp &nbsp Wavelength 
+<input type=text size=8 maxlength=20 name="sf_wavelength_4" >
+</td>
+
+
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2> Data file name
+<INPUT TYPE=file NAME="sf_file_phs_5" SIZE=45  >
+</td>
+<td> &nbsp &nbsp Wavelength 
+<input type=text size=8 maxlength=20 name="sf_wavelength_5" >
+</td>
+
+<tr>
+<th colspan=5 >Data details (optional) 
+<TEXTAREA NAME="sf_detail_phs" COLS=70 ROWS=2> </TEXTAREA>
+</tr>
+</table>
+
+<h4> Extract Information from Steps of Structure Determination &nbsp
+<A  title="
+This section is used to provide program names and log file extraction for reflection data collection/index, data scaling/merging, phasing, and the final structure refinement from the log files produced by many structure determination applications, especially the data scaling process. 
+
+For each of the following process, you can provide program name and upload the log files if available. All information in this section is optional, but a log file parsing for data scaling process might save you time during deposition.  
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A>
+</h4>
+
+<!--- !!!!for reflection data collection and Index !!!!!  -->
+<table cellpadding=3 border bgcolor="#E0FFFF">
+
+<tr><th colspan=4 bgcolor="#cccfff">
+<b>&nbsp  Data Collection/Indexing </b> (Optional) &nbsp &nbsp 
+<A  title="Upload the log file that was generated from the indexing and integration step.
+
+If you do not have the log file, it is still helpful to give the program name that was used for indexing and integration.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+</th></tr>
+
+<tr> 
+<td colspan=4 align=middle>
+Select Program <select name="prog_index">
+<option value="">
+<option value="XDS">XDS
+<option value="HKL-2000">HKL-2000
+<option value="HKL-3000">HKL-3000
+<option value="MOSFLM">MOSFLM
+<option value="iMOSFLM">iMOSFLM
+<option value="xia2">XIA2
+<option value="DIALS">DIALS
+<option value="DENZO">DENZO
+<option value="d*TREK">D*TREK
+<option value="SAINT">SAINT
+</select>
+If Other: <FONT SIZE=3><INPUT TYPE=TEXT NAME="prog_index_oth" SIZE=10
+VALUE="" TABINDEX=2></FONT>
+
+</td></tr>
+
+<!--- ------------- -->
+
+    <tr> 
+    <td colspan=2> 
+    Upload Log File <INPUT TYPE=file NAME="file_index_1"  SIZE=45>
+   
+    <!-- 
+    <td colspan=2>
+    File type    <select name="file_format_index_1">
+    <option value="LOG">LOG
+    <option value="CIF">mmCIF
+    </select>
+    </td>
+    -->
+
+    </tr>
+    <!--- ------------- -->
+<!------------------- for  data scaling/merging/averaging  ----------------------->
+
+<tr><th colspan=4 bgcolor="#cccfff"><!-- <font size=4 color="red">  <b>*</b></font> -->
+<b>&nbsp Data Scaling/Merging (Log file upload is strongly recommended)&nbsp &nbsp </b>
+
+<A title="Upload the log file which was generated from 'Data Scaling/Merging'. Please provide log file for the scaling/merging processs that lead to the reflection data set used for the final struture solution and refinement
+
+It is strongly recommended to upload your log file for the process, so that the statistics will be extracted, so that you don't have to manually fill in the information at wwPDB OneDep deposition interface. 
+
+If you do not have the log file, it is still helpful to give the program name that was used for data scaling/merging.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+
+</th></tr>
+
+<tr> 
+<td colspan=4 align=middle>
+Select Program
+<select name="prog_scl">
+<option value="">
+<option value="Aimless">AIMLESS
+<option value="HKL-2000">HKL-2000
+<option value="HKL-3000">HKL-3000
+<option value="XSCALE">XSCALE
+<option value="XDS">XDS
+<option value="SCALA">SCALA
+<option value="SCALEPACK">SCALEPACK
+<option value="xia2">XIA2
+<option value="DIALS">DIALS
+<option value="pointless">POINTLESS
+<option value="d*TREK">d*TREK
+<option value="SAINT">SAINT
+</select>
+If Other: <FONT SIZE=3><INPUT TYPE=TEXT NAME="prog_scl_oth" SIZE=10
+VALUE="" TABINDEX=2></FONT>
+</tr>
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2>
+Upload Log File <INPUT TYPE=file NAME="file_scl_1"  SIZE=45>
+</td>
+
+<!--
+<td colspan=2>
+<b>File type</b> <select name="file_format_scl_1">
+<option value="LOG">LOG
+<option value="CIF">mmCIF
+</select>
+</td>
+-->
+
+</tr>
+<!--- ------------- -->
+<!--- for molecular replacement  -->
+<tr><th colspan=4 bgcolor="#cccfff">
+<b>&nbsp Molecular Replacement </b> (Optional) &nbsp &nbsp 
+<A  title="Upload the log file that was generated from the step of Molecular Replacement.
+
+If you do not have the log file, it is still helpful to give the program name that was used for MR.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+</th></tr>
+
+<tr> 
+<td colspan=4 align=middle>
+Select Program 
+<select name="prog_mr">
+<option value="">
+<option value="PHASER">PHASER
+<option value="MOLREP">MOLREP
+<option value="MoRDa">MoRDa
+<option value="AMoRE">AMoRE
+<option value="BALBES">BALBES
+<option value="PHENIX">PHENIX
+<option value="REFMAC">REFMAC
+<option value="CNS">CNS/CNX
+<option value="X-PLOR">X-PLOR
+<option value="SHELX">SHELX
+</select>
+If Other: <FONT SIZE=3><INPUT TYPE=TEXT NAME="prog_mr_oth" SIZE=10
+VALUE="" TABINDEX=2></FONT>
+</td>
+</tr>
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2>
+Upload Log File <INPUT TYPE=file NAME="file_mr_1"  SIZE=45>
+</td>
+
+<!--
+<td colspan=2> 
+File type <select name="file_format_mr_1">
+<option value="LOG">LOG
+<option value="CIF">mmCIF
+</select>
+</td>
+-->
+
+
+</tr>
+<!--- ------------- -->
+<!--- for heavy atom phasing -->
+<tr><th colspan=4 bgcolor="#cccfff">
+<b>&nbsp Phasing (if not by Molecular Replacement) </b> (Optional) &nbsp &nbsp 
+<A  title="Upload the log file that was generated from the step of Phasing.
+
+If you did phasing but you do not have the log file, it is still helpful to give the phasing method and the program name that was used for phasing.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+
+</th></tr>
+
+<tr> 
+<td colspan=4 align=middle>
+Phasing Method
+<select name="exp_phs">
+<option value="">
+<option value="MAD">MAD
+<option value="SAD">SAD
+<option value="MIR">MIR
+<option value="SIR">SIR
+<option value="SIRAS">SIRAS
+<option value="MIRAS">MIRAS
+<option value="AB INITIO PHASING">AB INITIO
+</select>
+Select Program 
+<select name="prog_phs">
+<option value="">
+<option value="PHASER">PHASER
+<option value="SOLVE">SOLVE
+<option value="AutoSol">AutoSol
+<option value="CRANK2">CRANK2
+<option value="SHARP">SHARP
+<option value="Auto-Rickshaw">Auto-Rickshaw
+<option value="MLPHARE">MLPHARE
+<option value="SHELX">SHELX
+<option value="Arcimboldo">Arcimboldo
+<option value="PHASES">PHASES
+</select>
+If Other: <FONT SIZE=3><INPUT TYPE=TEXT NAME="prog_phs_oth" SIZE=10
+VALUE="" TABINDEX=2></FONT>
+</td>
+</tr>
+
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2> 
+Upload Log File <INPUT TYPE=file NAME="file_phs_1"  SIZE=45>
+</td>
+
+
+<!--
+<td colspan=2>
+File type <select name="file_format_phs_1">
+<option value="LOG">LOG
+<option value="PDB">PDB 
+<option value="CIF">mmCIF
+</select>
+</td>
+-->
+
+</tr>
+<!--- for density modification  -->
+<!--
+<tr><th colspan=4 bgcolor="#cccfff">
+<b>&nbsp Density Modification </b> (Optional) &nbsp &nbsp 
+<A  title="Upload the log file that was generated from the step of Density Modification.
+
+If you did density modification but you do not have the log file, it is still helpful to give the program name that was used for Density Modification.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /></A>
+
+</th></tr>
+-->
+<!--
+<tr> 
+<td colspan=4 align=middle>
+Select Program 
+<select name="prog_dm">
+<option value="">
+<option value="RESOLVE">RESOLVE
+<option value="DM">DM
+<option value="CNS">CNS/CNX
+<option value="CNS">X-PLOR
+<option value="SOLOMON">SOLOMON
+</select>
+If Other: <FONT SIZE=3><INPUT TYPE=TEXT NAME="prog_dm_oth" SIZE=10
+VALUE="" TABINDEX=2></FONT>
+</td>
+
+</tr>
+-->
+<!--- ------------- -->
+<!--
+<tr> 
+<td colspan=2>
+Upload Log File <INPUT TYPE=file NAME="file_dm_1"  SIZE=45>
+</td>
+
+<td colspan=2>
+File type<select name="file_format_dm_1">
+<option value="LOG">LOG
+<option value="CIF">mmCIF
+</select>
+</td>
+
+</tr>
+-->
+<!--- ------------- -->
+<!--
+<tr> 
+<td colspan=2>
+Upload Log File <INPUT TYPE=file NAME="file_dm_2"  SIZE=45>
+</td>
+
+<td colspan=2>
+File type<select name="file_format_dm_2">
+<option value="LOG">LOG
+<option value="CIF">mmCIF
+</select>
+</td>
+
+</tr>
+-->
+<!--- ------------- -->
+<!--- for Final Structure Refinement -->
+<tr><th colspan=4 bgcolor="#cccfff">
+<b>&nbsp Final Structure Refinement </b> (Optional) &nbsp &nbsp 
+
+<A  title="
+The refinement statistics are normally extracted from the header of your PDB file. You may skip this step if you have the full 'REMARK 3' in your PDB file. 
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A>
+</th></tr>
+    
+<tr> 
+<td colspan=4 align=middle>
+Select Program
+<select name="prog_ref">
+                    <option value=""></option>
+                    <option value="PHENIX">PHENIX</option>
+                    <option value="REFMAC">REFMAC</option>
+                    <option value="BUSTER">BUSTER</option>
+                    <option value="CNS">CNS/CNX</option>
+                    <option value="X-PLOR">X-PLOR</option>
+                    <option value="SHELX">SHELX</option>
+                    <option value="TNT">TNT</option>
+</select>
+If Other: <FONT SIZE=3><INPUT TYPE=TEXT NAME="prog_ref_oth" SIZE=10
+VALUE="" TABINDEX=2></FONT>
+</td>
+</tr>
+<!--- ------------- -->
+
+<tr> 
+<td colspan=2>
+Upload Log File <INPUT TYPE=file NAME="file_ref_1"  SIZE=45>
+</td>
+<!--
+<td colspan=2> 
+File type<select name="file_format_ref_1">
+<option value="LOG">LOG
+<option value="CIF">mmCIF
+</select>
+
+</td>
+-->
+
+</tr>
+<!--- ------------- -->
+</table>
+<p> 
+<h4>The unit cell parameters (please verify) &nbsp &nbsp
+<A  title="
+The parameters are the three cell axes (a, b, c) and the three angles (alpha, beta, gamma) as well as the space group. 
+
+The values are normally extracted from your coordinate file. However, if the values are not extracted due to the incorrect PDB format, you must type in the correct values.
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A>
+
+
+ </h4>
+<!--- for cell parameters -->
+
+<table cellpadding=8 border bgcolor="#E0FFFF">
+<tr><th colspan=7 bgcolor="#cccfff"> </th></tr>
+
+<tr>
+<td><b> a </b><br>
+<INPUT type=text size=7 maxlength=10 name="cell_a" value=  50.471 >
+ </td>
+<td> <b>b </b><br>
+<INPUT type=text size=7 maxlength=10 name="cell_b" value=  77.647 >
+ </td>
+<td> <b>c  </b><br>
+<INPUT type=text size=7 maxlength=10 name="cell_c" value= 108.484 >
+</td>
+<td><b>alpha </b> <br>
+<INPUT type=text size=7 maxlength=10 name="alpha" value= 86.13 >
+</td>
+<td><b>beta </b> <br>
+<INPUT type=text size=7 maxlength=10 name="beta" value= 79.09 >
+</td>
+<td><b>gamma </b> <br>
+<INPUT type=text size=7 maxlength=10 name="gamma" value= 71.08 >
+ </td>
+
+<td><b>Space Group </b><br> 
+<INPUT type=text size=10 maxlength=15 name="space_group" value="P 1">
+ </td>
+
+</tr>
+</table>
+
+<h4>Macromolecular Sequence Information (polymer entity) &nbsp &nbsp 
+<A  title="An ENTITY is defined as any unique molecule present in the asymmetric unit. Each unique biological polymer (protein or nucleic acids) in the structure is considered an entity. Thus, if there are five copies of a single protein in the asymmetric unit, the molecular entity is still only one. The entity detection is based on the extracted sequence observed in the model, so the same protein for different chains may appear as different entities if they have different model sequence (e.g. with unobserved residues or ALA/GLY modeling). Please provide sample sequence of each molecule in the empty text box, using standard one-letter codes. Please include the complete sequence of all residues used in the experiment including expression tags, linkers, mutations, and unobserved residues due to disorder. Non-standard residues should be input using the three-letter code in parenthesis, e.g. (MSE). 
+
+This section is extracted from your coordinate file. If you input a mmcif file which has no entity_poly category, the sequence may not be shown. 
+
+"><img src="https://pdb-extract.wwpdb.org//wwpdb_img/help_icon.jpg" alt="help_icon" width="20" height="20" /> </A>
+
+ </h4>
+
+Provide sample sequence of each molecule in the empty text box, using standard one-letter codes. Please include the complete sequence of all residues used in the experiment including expression tags, linkers, mutations, and unobserved residues due to disorder. Non-standard residues should be input using the three-letter code in parenthesis, e.g. (MSE).
+
+
+<table cellpadding=4 border bgcolor="#E0FFFF">
+<tr><th colspan=7 bgcolor="FAFAFA"></th></tr>
+
+    
+<!---Entity identifier  1 -->
+
+<tr><td colspan=3 bgcolor="FAFAFA">
+Entity identifier  <INPUT TYPE=TEXT NAME="entity_id_1" SIZE=2 VALUE= 1 >
+</font></font></b></td></tr>
+
+<tr><td> Sequence in Model</FONT></td>
+<td><NAME="one_lett_seq_1" COLS=80 ROWS=5>
+SIENGKYTCEEPYYYMEGVNVLGPKCVPVCGVPREPFEEKIIGGSDADIKNFPWQVFFDNPWAGGALINEYWVLTAAHVV
+EGNREPTMYVGSTSVQTSRLAKMLTPEHVFIHPGWKLLAVPEGRTNFDNDIALVRLKDPVKMGPTVSPICLPGTSSDYNL
+MDGDLGLISGWGRTEKRDRAVRLKAARLPVAPLRKCKEVKVEAYVFTPNMICAGGEKGMDSCKGDSGGAFAVQDPNDKTK
+FYAAGLVSWGPQCGTYGLYTRVKNYVDWIMKTMQEN  </td>
+</tr>
+
+<tr><td> Provide Full Sequence in Sample</FONT></td>
+	<td><TEXTAREA NAME="one_lett_seq_1" COLS=80 ROWS=5>
+	</TEXTAREA></td>
+</tr>
+
+
+<tr><td>Chain ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="chain_id_1" SIZE=50 VALUE= A ></td>
+</tr>
+
+
+<tr><td>Polymer Type</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="entity_type_1" SIZE=60 VALUE= "polypeptide(L)"></td>
+</tr>
+
+<!-- 
+<tr><td>Target_DB ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="target_db_1" SIZE=50 VALUE= ?></td>
+</tr>
+-->
+
+    
+<!---Entity identifier  2 -->
+
+<tr><td colspan=3 bgcolor="FAFAFA">
+Entity identifier  <INPUT TYPE=TEXT NAME="entity_id_2" SIZE=2 VALUE= 2 >
+</font></font></b></td></tr>
+
+<tr><td> Sequence in Model</FONT></td>
+<td><NAME="one_lett_seq_2" COLS=80 ROWS=5>
+IENGYTCEEPYYYMEGPKCVPVCGVPREPFEEKIIGGSDADIKNFPWQVFFDNPWAGGALINEYWVLTAAHVVEGNREPT
+MYVGSTSVQTSRLAKSKMLTPEHVFIHPGWKLLAVPEGRTNFDNDIALVRLKDPVKMGPTVSPICLPGTSSDYNLMDGDL
+GLISGWGRTEKRDRAVRLKAARLPVAPLRKCKEVKVEEAYVFTPNMICAGGEKGMDSCKGDSGGAFAVQDPNDKTKFYAA
+GLVSWGPQCGTYGLYTRVKNYVDWIMKTMQENS  </td>
+</tr>
+
+<tr><td> Provide Full Sequence in Sample</FONT></td>
+	<td><TEXTAREA NAME="one_lett_seq_2" COLS=80 ROWS=5>
+	</TEXTAREA></td>
+</tr>
+
+
+<tr><td>Chain ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="chain_id_2" SIZE=50 VALUE= B ></td>
+</tr>
+
+
+<tr><td>Polymer Type</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="entity_type_2" SIZE=60 VALUE= "polypeptide(L)"></td>
+</tr>
+
+<!-- 
+<tr><td>Target_DB ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="target_db_2" SIZE=50 VALUE= ?></td>
+</tr>
+-->
+
+    
+<!---Entity identifier  3 -->
+
+<tr><td colspan=3 bgcolor="FAFAFA">
+Entity identifier  <INPUT TYPE=TEXT NAME="entity_id_3" SIZE=2 VALUE= 3 >
+</font></font></b></td></tr>
+
+<tr><td> Sequence in Model</FONT></td>
+<td><NAME="one_lett_seq_3" COLS=80 ROWS=5>
+IENEEPYYYCVPVCGVPREPFEEIIGGSDADIKNFPWQVFFDNPWAGGALINEYWVLTAAHVVEGNREPTMYVGSTSVQT
+KMLTPEHVFIHPGWKLLAVPEGRTNFDNDIALVRLKDPVKMGPTVSPICLPGTSSDYNLMDGDLGLISGWGRTEKRDRAV
+RLKAARLPVAPLRKCKEVKVEKPTADAEAYVFTPNMICAGGEKGMDSCKGDSGGAFAVQDPNDKTKFYAAGLVSWGPQCG
+TYGLYTRVKNYVDWIMKTMQENST  </td>
+</tr>
+
+<tr><td> Provide Full Sequence in Sample</FONT></td>
+	<td><TEXTAREA NAME="one_lett_seq_3" COLS=80 ROWS=5>
+	</TEXTAREA></td>
+</tr>
+
+
+<tr><td>Chain ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="chain_id_3" SIZE=50 VALUE= C ></td>
+</tr>
+
+
+<tr><td>Polymer Type</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="entity_type_3" SIZE=60 VALUE= "polypeptide(L)"></td>
+</tr>
+
+<!-- 
+<tr><td>Target_DB ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="target_db_3" SIZE=50 VALUE= ?></td>
+</tr>
+-->
+
+    
+<!---Entity identifier  4 -->
+
+<tr><td colspan=3 bgcolor="FAFAFA">
+Entity identifier  <INPUT TYPE=TEXT NAME="entity_id_4" SIZE=2 VALUE= 4 >
+</font></font></b></td></tr>
+
+<tr><td> Sequence in Model</FONT></td>
+<td><NAME="one_lett_seq_4" COLS=80 ROWS=5>
+IENCEYYYMELPKCVPVCGVPREPFIIGGSDADIKNFPWQVFFDNPWAGGALINEYWVLTAAHVVEGNREPTMYVGSTSV
+QKMLTPEHVFIHPGWKLLAVPEGRTNFDNDIALVRLKDPVKMGPTVSPICLPGTSSDYNLMDGDLGLISGWGRTEKDRAV
+RLKAARLPVAPLRKCKEVKVEKPTADAEAYVFTPNMICAGGEKGMDSCKGDSGGAFAVQDPNDKTKFYAAGLVSWGPQCG
+TYGLYTRVKNYVDWIMKTMQENST  </td>
+</tr>
+
+<tr><td> Provide Full Sequence in Sample</FONT></td>
+	<td><TEXTAREA NAME="one_lett_seq_4" COLS=80 ROWS=5>
+	</TEXTAREA></td>
+</tr>
+
+
+<tr><td>Chain ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="chain_id_4" SIZE=50 VALUE= D ></td>
+</tr>
+
+
+<tr><td>Polymer Type</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="entity_type_4" SIZE=60 VALUE= "polypeptide(L)"></td>
+</tr>
+
+<!-- 
+<tr><td>Target_DB ID</td>
+<td><INPUT ALIGN=LEFT TYPE=TEXT NAME="target_db_4" SIZE=50 VALUE= ?></td>
+</tr>
+-->
+
+
+
+<!--- ------------- -->
+<BR>
+<BR>
+<center><table cellpadding=3 border bgcolor="#E0FFFF">
+<tr>
+<!--- -------------
+<td>
+<FONT SIZE=3 COLOR=red><b>
+<INPUT TYPE=SUBMIT NAME="review_ent" VALUE="Review Entry"> 
+</b></FONT></td>
+-->
+
+<td>
+<FONT SIZE=3 COLOR=red><b>
+<INPUT TYPE=SUBMIT NAME="submit" VALUE="Run"> 
+<INPUT TYPE=RESET VALUE="Reset">
+</b></FONT></td>
+
+
+<BR>
+</table> <center>
+
+<!-- parameters passed from harv-main.cgi -->
+
+<input type="hidden"  name="usr_dir" value="XRAY_2023_3_23_18_52_30071">
+<input type="hidden"  name="exc_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-prod/bin">
+<input type="hidden"  name="cgi_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/cgi-bin/">
+<input type="hidden"  name="users_path" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data">
+
+<input type="hidden"  name="help_path" value="https://pdb-extract.wwpdb.org//help">
+<input type="hidden"  name="URL_users_path" value="https://pdb-extract.wwpdb.org//users_data">
+<input type="hidden"  name="URL_cgi_path" value="https://pdb-extract.wwpdb.org//cgi-bin/">
+<input type="hidden"  name="URL" value="https://pdb-extract.wwpdb.org/">
+
+<input type="hidden"  name="file_type" value="pdb">
+<input type="hidden"  name="pdbfile_inp" value="/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data/XRAY_2023_3_23_18_52_30071/deposited_XRAY.pdb">
+<input type="hidden"  name="prog_ref" value="/data/wwpdb/pdb_extract_service/pdb-extract-prod">
+<input type="hidden"  name="prog_ref_oth" value="">
+<input type="hidden"  name="exc_dir" value="CNS">
+
+<input type="hidden"  name="ccp4_include" value="/data/wwpdb/pdb_extract_service/ccp4-7.0/include">
+
+
+
+  </div>
+  <footer class="container_12 ui-corner-all">
+    <p>&copy; <a href="http://www.rcsb.org">RCSB PDB</a></p>
+  </footer>
+</div>
+</body>
+</html>

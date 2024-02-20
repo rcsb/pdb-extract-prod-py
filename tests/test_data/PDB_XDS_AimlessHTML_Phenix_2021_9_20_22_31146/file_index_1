@@ -1,0 +1,611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<!-- Baubles info
+     Version 0.0.8
+     Java loggraph:
+          archive  = JLogGraph.jar
+          codebase = file:\\C:\CCP4-7\7.1\bin
+          code     = JLogGraph.class
+-->
+<!-- Inline stylesheet -->
+<style type="text/css"><!-- /* Hide the stylesheet from older browsers */
+  body { font-family: Verdana, Arial, sans-serif;
+         font-size: 17px;
+         background-color: white; }
+  h1 { background-color: gray; }
+  h2 { background-color: lightgray; }
+  .logfile { background-color: #fffddc; }
+  .ccp4i   { font-weight: bold; }
+  .banner  { background-color: lightgray;
+             border-top-style: solid;
+             border-bottom-style: solid;
+             border-color: gray;
+             border-width: 2px; }
+  .summary  { font-weight: bold;
+              color: red;
+              font-size: 90%;
+              white-space: pre;
+              background-color: #ffffc6;
+              border-style: solid;
+              border-width: 1px;
+              border-color: orange; }
+  .non_summary { font-size: 80%; }
+  .result   { margin-left:5%; margin-right:5%; }
+  .references { font-size: 70%; }
+  .progname { font-size: 150%; font-weight: bold; }
+  .proginfo { font-size: 90%; font-style: italic; }
+  .progvers { font-size: 90%; font-style: italic; font-weight: bold; }
+  .progterm { font-size: 90%; font-style: italic; font-weight: bold; }
+  .doclink { font-size: 90%; position: absolute; right: 5%;}
+  .applet  { border-bottom: 1px solid gray; }
+  table,td,th { border-style: solid;
+                border-width: 2px;
+                border-spacing: 0;
+                border-color: gray;
+                padding: 1px;
+                font-size: 90%; }
+  td,th { padding-left: 8px; padding-right: 8px; }
+  .loggraph_tables      { border-style: none;
+                          background-color: #cfcdff; }
+  table.loggraph_tables { padding: 8px;
+                          background-color: white; }
+  .inner_control > a { font-size: 70%;
+                       background-color: white;
+                       position: relative; bottom: 0px; left: 80%; }
+-->
+</style>
+<!-- Javascript functions to hide/display folder content -->
+<script type="text/javascript">
+<!--  to hide script contents from old browsers
+
+// Pick loggraph
+// Hides all loggraphs and then shows just the one of
+// interest
+function pick_loggraph(name,i,nloggraphs)
+{
+    hide_all_loggraphs(name,nloggraphs);
+    show_loggraph(name,i);
+}
+
+// Function to display a loggraph associated with a log
+function show_loggraph(name,i)
+{
+    var loggraph_name = name + "_loggraph_" + i;
+    var loggraph_title = name + "_loggraph_title_" + i;
+    showElement(loggraph_name);
+    // Also make the title link bold
+    var obj = document.getElementById(loggraph_title);
+    obj.style.fontWeight = "bold";
+}
+
+// Function to hide a loggraph associated with a log
+function hide_loggraph(name,i)
+{
+    var loggraph_name = name + "_loggraph_" + i;
+    var loggraph_title = name + "_loggraph_title_" + i;
+    hideElement(loggraph_name);
+    // Also make the title link normal
+    var obj = document.getElementById(loggraph_title);
+    obj.style.fontWeight = "normal";
+}
+
+// Function to hide all loggraphs associated with a log
+function hide_all_loggraphs(name,n)
+{
+    // Loop over all graphs up to n and hide each one
+    for (var i=0; i<n; i++){
+      hide_loggraph(name,i);
+    }
+}
+
+// Function to open the complete log file from the
+// hidden state
+function open_full_logfile(name) {
+
+    // Show the entire logfile
+    var classname = name + "_logfile";
+    setDisplayByClass(classname,"block");
+    
+    // Show the controls for toggling between
+    // summary and complete views
+    classname = name + "_logfile_open_controls";
+    setDisplayByClass(classname,"block");
+    
+    // Hide the controls for accessing the logfile
+    // when it's hidden
+    classname = name + "_logfile_closed_controls";
+    setDisplayByClass(classname,"none");
+
+    // Show the full view
+    show_full_logfile(name);
+}
+
+// Function to open the log file summary from the
+// hidden state
+function open_summary_logfile(name) {
+
+    // Show the entire logfile
+    var classname = name + "_logfile";
+    setDisplayByClass(classname,"block");
+    
+    // Show the controls for toggling between
+    // summary and complete views
+    classname = name + "_logfile_open_controls";
+    setDisplayByClass(classname,"block");
+    
+    // Hide the controls for accessing the logfile
+    // when it's hidden
+    classname = name + "_logfile_closed_controls";
+    setDisplayByClass(classname,"none");
+
+    // Show the summary view
+    show_only_summary(name);
+}
+
+// Function to hide the complete log file
+function close_logfile(name)
+{
+    // Hide the entire logfile
+    var classname = name + "_logfile";
+    setDisplayByClass(classname,"none");
+    
+    // Hide the controls for toggling between
+    // summary and complete views
+    classname = name + "_logfile_open_controls";
+    setDisplayByClass(classname,"none");
+    
+    // Show the controls for accessing the logfile
+    // when it's hidden
+    classname = name + "_logfile_closed_controls";
+    setDisplayByClass(classname,"block");
+}
+
+// Function to show only summary for a program log
+function show_only_summary(name)
+{
+    // Hide everything that isn't a summary
+    // i.e. all the elements that have belong to
+    // classes ending with "_non_summary"
+    var classname = name + "_non_summary";
+    setDisplayByClass(classname,"none");
+
+    // Now deal with control elements
+
+    // Hide all controls that offer the option of
+    // showing the summary only
+    classname = name + "_show_summary_control";
+    setDisplayByClass(classname,"none");
+
+    // Show all controls that offer the option if
+    // showing the full log file
+    classname = name + "_show_full_logfile_control";
+    setDisplayByClass(classname,"block");
+}
+
+// Function to show full version of a program log
+function show_full_logfile(name)
+{
+    // Show all the associated elements that
+    // have class ending with "_non_summary"
+    var classname = name + "_non_summary";
+    setDisplayByClass(classname,"block");
+
+    // Now deal with control elements
+
+    // Show all controls that offer the option of
+    // showing the summary only
+    classname = name + "_show_summary_control";
+    setDisplayByClass(classname,"block");
+
+    // Hide all controls that offer the option if
+    // showing the full log file
+    classname = name + "_show_full_logfile_control";
+    setDisplayByClass(classname,"none");
+}
+
+// Open the view of a logfile fragment
+function open_fragment(n)
+{
+   var closed_classname = "fragment_closed_" + n;
+   setDisplayByClass(closed_classname,"none");
+   var open_classname = "fragment_open_" + n;
+   setDisplayByClass(open_classname,"block");
+}
+
+// Close the view of a logfile fragment
+function close_fragment(n)
+{
+   var closed_classname = "fragment_open_" + n;
+   setDisplayByClass(closed_classname,"none");
+   var open_classname = "fragment_closed_" + n;
+   setDisplayByClass(open_classname,"block");
+}
+
+// General function to reveal a specific element
+// Specify the id of an element and its display
+// style will be changed to "block"
+function showElement(name)
+{
+    // This changes the display style to be "block"
+    var obj = document.getElementById(name);
+    obj.style.display = "block";
+}
+
+// General function to hide a specific element
+// Specify the id of an element and its display
+// style will be changed to "none"
+function hideElement(name)
+{
+    // This changes the display style to be "none"
+    var obj = document.getElementById(name);
+    obj.style.display = "none";
+}
+
+// General function to set the display property for all elements
+// with a specific class
+// This is able to deal with elements that belong to multiple
+// classes
+function setDisplayByClass(classname,value)
+{
+    // Get all elements in the document
+    var elements = document.getElementsByTagName("*");
+
+    // For each element look for the "class" attribute
+    for (var i = 0; i < elements.length; i++) {
+        var node = elements.item(i);
+        // First try to get the class attribute using 'class'
+        // This seems to work on Firefox 2.* and 1.5
+        var classes = node.getAttribute('class');
+        if (classes == null) {
+            // If the attribute is null then try using the
+            // 'className' attribute instead
+            // This works for IE7 and IE6
+            classes = node.getAttribute('className');
+        }
+        if (classes != null) {
+            classes = classes.split(" ");
+            for (var k in classes) {
+                if (classes[k] == classname) {
+	            node.style.display = value;
+                }
+            }
+        }
+    }
+}
+
+// end hiding contents from old browsers  -->
+</script>
+<title>baubles: 92_pointless.log</title>
+</head>
+<body>
+<!-- Start of logfile -->
+<!-- baubles $Id: baubles.py,v 1.9 2010/01/12 15:45:25 rmk65 Exp $ -->
+<h1>92_pointless.log</h1>
+<!-- List of references for programs -->
+<div class="references">Please consider citing the following papers:
+<ul>
+<li> Pointless
+<ul>
+<li> P.R.Evans, 'Scaling and assessment  of data quality' Acta Cryst. D62, 72-82  (2006).
+<a href="http://journals.iucr.org/d/issues/2006/01/00/ba5084/index.html">
+<b>PDF</b></a>
+P.R.Evans, 'An introduction to data reduction: space-group determination, scaling and intensity statistics' Acta Cryst. D67, 282-292 (2011)
+<a href="http://journals.iucr.org/d/issues/2011/04/00/ba5158/index.html">
+<b>PDF</b></a> </li>
+</ul>
+</ul>
+</div>
+<div class="banner">
+<a name="Pointless_0">
+<span class="progname">Pointless</span>
+<span class="progvers">Version 1.12.2</span>
+<span class="proginfo">Run at 12:51:55 on 16/12/2020</span>
+</a>
+</div>
+<div class="doclink"><p><a href="C:\CCP4-7\7.1\html\pointless.html">[Documentation]</a></p></div>
+
+<!-- Top-level visibility controls for POINTLESS_0 -->
+
+<div class="POINTLESS_0_logfile_closed_controls">
+   <!-- Controls available when logfile is completely hidden -->
+   <p>
+   <a href="javascript://"
+      onclick="open_summary_logfile('POINTLESS_0')">[Show logfile summary]</a>
+   <a href="javascript://"
+      onclick="open_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+   </p>
+</div>
+
+    <div class="POINTLESS_0_logfile_open_controls" style="display: none">
+   <!-- Controls available if some or all the logfile is visible -->
+   <div class="POINTLESS_0_show_full_logfile_control" style="display: none">
+      <p>Current view: summary only
+      <a href="javascript://"
+         onclick="show_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+     </p>
+   </div>
+   <div class="POINTLESS_0_show_summary_control">
+      <p>Current view: full logfile
+      <a href="javascript://"
+         onclick="show_only_summary('POINTLESS_0')">[Show logfile summary]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+      </p>
+   </div>
+</div>
+
+<!-- Start of the POINTLESS_0 logfile -->
+<div class="POINTLESS_0_logfile" style="display: none">
+
+<div class="logfile">
+
+<div class="summary"><pre> ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 7.1.004: POINTLESS         version 1.12.2 : 24/06/20##
+ ###############################################################
+ User: hebatalla  Run date: 16/12/2020 Run time: 12:51:55 
+
+ Please reference: Collaborative Computational Project, Number 4. 2011.
+ &quot;Overview of the CCP4 suite and current developments&quot;. Acta Cryst. D67, 235-242.
+ as well as any specific reference in the program write-up.
+
+==== Input command lines ====
+
+NAME PROJECT XDSproject CRYSTAL XDScrystal DATASET XDSdataset
+XDSIN C:/MmarCYP105Q4_JULY_2019_10/test_2/XDS_ASCII.HKL
+HKLOUT C:/CCP4-7/7.1/XDS_ASCII_test_2_3.07A.MTZ
+COPY
+## This script run with the command   ##########
+# pointless
+################################################
+
+====     End of input    ====
+
+Release Date: 24th June 2020
+
+        ******************************************************
+        *                                                    *
+        *                     POINTLESS                      *
+        *                       1.12.2                       *
+        *                                                    *
+        *   Determine Laue group from unmerged intensities   *
+        *     Phil Evans MRC LMB, Cambridge                  *
+        * Uses cctbx routines by Ralf Grosse-Kunstleve et al.*
+        *                                                    *
+        ******************************************************
+
+Reading XDS ascii file from file C:/MmarCYP105Q4_JULY_2019_10/test_2/XDS_ASCII.HKL
+
+Header lines:
+
+!FORMAT=XDS_ASCII    MERGE=FALSE    FRIEDEL'S_LAW=FALSE
+!OUTPUT_FILE=XDS_ASCII.HKL        DATE=16-Dec-2020
+!Generated by CORRECT   (VERSION Jan 31, 2020  BUILT=20200417)
+!PROFILE_FITTING= TRUE 
+!NAME_TEMPLATE_OF_DATA_FRAMES=/uofaresstor/xray2/Heba/MX1_JULY_2019_10_0371/ASP0632_10_0371_??????.h5 GENERIC
+!DATA_RANGE=       1    3600
+!ROTATION_AXIS=  0.999995 -0.001129  0.002830
+!OSCILLATION_RANGE=  0.100000
+!STARTING_ANGLE=     0.000
+!STARTING_FRAME=       1
+!INCLUDE_RESOLUTION_RANGE=    45.000     3.060
+!SPACE_GROUP_NUMBER=   19
+!UNIT_CELL_CONSTANTS=    57.563    64.734   127.475  90.000  90.000  90.000
+!UNIT_CELL_A-AXIS=    47.137   -26.405    19.860
+!UNIT_CELL_B-AXIS=    28.303     7.061   -57.789
+!UNIT_CELL_C-AXIS=    47.404   112.416    36.951
+!REFLECTING_RANGE_E.S.D.=     0.303
+!BEAM_DIVERGENCE_E.S.D.=     0.022
+!X-RAY_WAVELENGTH=  0.953729
+!INCIDENT_BEAM_DIRECTION= -0.000799  0.001710  0.999998
+!FRACTION_OF_POLARIZATION=   0.980
+!POLARIZATION_PLANE_NORMAL=  0.000000  1.000000  0.000000
+!AIR=  0.000291
+!SILICON=  3.423504
+!SENSOR_THICKNESS=  0.450000
+!DETECTOR=EIGER                                             
+!OVERLOAD=     25383
+!NX=  4150  NY=  4371    QX=  0.075000  QY=  0.075000
+!ORGX=   2085.28  ORGY=   2232.50
+!DETECTOR_DISTANCE=   249.351
+!DIRECTION_OF_DETECTOR_X-AXIS=   1.00000   0.00000   0.00000
+!DIRECTION_OF_DETECTOR_Y-AXIS=   0.00000   1.00000   0.00000
+!VARIANCE_MODEL=  7.389E-01  8.504E-03
+!NUMBER_OF_ITEMS_IN_EACH_DATA_RECORD=12
+!ITEM_H=1
+!ITEM_K=2
+!ITEM_L=3
+!ITEM_IOBS=4
+!ITEM_SIGMA(IOBS)=5
+!ITEM_XD=6
+!ITEM_YD=7
+!ITEM_ZD=8
+!ITEM_RLP=9
+!ITEM_PEAK=10
+!ITEM_CORR=11
+!ITEM_PSI=12
+!END_OF_HEADER
+
+Matrix to transform XDS axis system to CCP4 frame:
+| -0.002828,  0.001712,         1|
+| -0.001134,        -1,  0.001709|
+|         1, -0.001129,   0.00283|
+
+Matrix to transform XDS detector coordinates to CCP4 frame:
+| -0.002828,  0.001712,         1|
+| -0.001134,        -1,  0.001709|
+|         1, -0.001129,   0.00283|
+
+Rotation axis in CCP4 frame: ( 0.000 -0.000  1.000)
+
+Incident beam in CCP4 frame: ( 1.000  0.000  0.002)
+
+  125545 observations accepted
+         Resolution range   43.016    3.060
+   19960 accepted incomplete observations with PART &lt; 0.98, minimum 0.75
+     418 observations flagged as MISFITS in XDS: KEEP MISFIT in Aimless to accept
+
+Reconstructing orientation matrix [U] from  199 observations
+   
+Orientation matrix [U]:
+|    0.3423,   -0.8938,    0.2897|
+|    0.4574,   -0.1108,   -0.8823|
+|    0.8208,    0.4345,    0.3709|
+      Determinant = 1.000
+
+Time for reading file(s):    0.915 secs
+
+===============================================================
+
+&gt;*&gt; Summary of test data read in:
+   Resolution range accepted:    43.02        3.06
+
+   Number of reflections      =          9502
+   Number of observations     =        125545
+   Number of parts            =        125545
+   Number of batches in file  =          3597
+   Number of datasets         =             1
+ 
+      Project: XDSproject Crystal: XDScrystal Dataset: XDSdataset
+      Run number:   1 consists of batches 3 - 3599
+         Resolution range for run:    43.02        3.06
+         Phi range:     0.20 to   359.90   Time range:     0.20 to   359.90
+         Closest reciprocal axis to spindle: a* (angle   34.8 degrees)
+   Unit cell for dataset:    57.56   64.73  127.47   90.00   90.00   90.00
+         Wavelength:  0.95373
+
+Numbers of observations marked in the FLAG column
+By default all flagged observations are rejected
+Observations may be counted in more than one category
+
+                             Flagged  Accepted   Maximum   MaxAccepted
+   BGratio too large              0       0       0.000       0.000
+   PKratio too large              0       0       0.000       0.000
+   Negative &lt; 5sigma              0       0
+   Gradient too large             0       0       0.000       0.000
+   Profile-fitted overloads       0       0
+   Spots on edge                  0       0
+   XDS misfits (outliers)       418       0
+
+===============================================================
+
+Writing unmerged data to file C:/CCP4-7/7.1/XDS_ASCII_test_2_3.07A.MTZ  in space group P 21 21 21
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 16-Dec-2020 from images /uofar
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 XDSproject
+          XDScrystal
+          XDSdataset
+             57.5630   64.7340  127.4750   90.0000   90.0000   90.0000
+             0.95373
+
+ * Number of Columns = 13
+
+ * Number of Reflections = 125545
+
+ * Missing value set to NaN in input mtz file
+
+ * Number of Batches = 3597
+
+ * Column Labels :
+
+ H K L M/ISYM BATCH I SIGI FRACTIONCALC XDET YDET ROT LP FLAG
+
+ * Column Types :
+
+ H H H Y B J Q R R R R R I
+
+ * Associated datasets :
+
+ 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   57.5630   64.7340  127.4750   90.0000   90.0000   90.0000 
+
+ *  Resolution Range :
+
+    0.00054    0.10680     (     43.016 -      3.060 A )
+
+ * Sort Order :
+
+      1     2     3     4     5
+
+ * Space group = 'P 21 21 21' (number     19)
+
+  (spacegroup is known)
+
+$TEXT:Reference: $$ Please cite $$
+P.R.Evans, 'Scaling and assessment  of data quality' Acta Cryst. D62, 72-82  (2006).
+
+PDF
+P.R.Evans, 'An introduction to data reduction: space-group determination, scaling and intensity statistics' Acta Cryst. D67, 282-292 (2011)
+
+PDF
+$$
+
+#CCP4I TERMINATION STATUS 1 
+#CCP4I TERMINATION TIME 16 Dec 2020  12:51:57
+#CCP4I MESSAGE Task completed successfully
+
+</pre></div>
+
+
+</div>
+
+<!-- Tail-end visibility controls for POINTLESS_0 -->
+
+<div class="POINTLESS_0_logfile_closed_controls">
+   <!-- Controls available when logfile is completely hidden -->
+   <p>
+   <a href="javascript://"
+      onclick="open_summary_logfile('POINTLESS_0')">[Show logfile summary]</a>
+   <a href="javascript://"
+      onclick="open_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+   </p>
+</div>
+
+    <div class="POINTLESS_0_logfile_open_controls" style="display: none">
+   <!-- Controls available if some or all the logfile is visible -->
+   <div class="POINTLESS_0_show_full_logfile_control" style="display: none">
+      <p>Current view: summary only
+      <a href="javascript://"
+         onclick="show_full_logfile('POINTLESS_0')">[Show full logfile]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+     </p>
+   </div>
+   <div class="POINTLESS_0_show_summary_control">
+      <p>Current view: full logfile
+      <a href="javascript://"
+         onclick="show_only_summary('POINTLESS_0')">[Show logfile summary]</a>
+      <a href="javascript://"
+         onclick="close_logfile('POINTLESS_0')">[Hide logfile]</a>
+      </p>
+   </div>
+</div>
+
+</div>
+<!-- End of POINTLESS_0 logfile -->
+
+<hr />
+<p><em>Generated for you by baubles 0.0.8 on Wed Dec 16 12:51:58 2020</em></p>
+</body>
+</html>

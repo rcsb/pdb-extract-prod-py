@@ -1,0 +1,16 @@
+data_entity
+#
+loop_ 
+_entity_poly.entity_id 
+_entity_poly.pdbx_seq_one_letter_code 
+_entity_poly.pdbx_strand_id 
+_entity_poly.type 
+_entity_poly.pdbx_target_identifier 
+1
+;GCNRLNKKCNSDADCCRYGERCISTGVNYYCRPDVGP
+;
+;A
+;
+;polypeptide(L)
+;
+?

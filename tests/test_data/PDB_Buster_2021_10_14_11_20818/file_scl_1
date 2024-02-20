@@ -1,0 +1,920 @@
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<html> <!-- CCP4 HTML LOGFILE -->
+<hr>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<pre>
+ 
+ ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 7.0.067: UNIQUE           version 7.0.067 :         ##
+ ###############################################################
+ User: unknown  Run date: 17/ 1/2019 Run time: 12:50:45 
+
+
+ Please reference: Collaborative Computational Project, Number 4. 2011.
+ "Overview of the CCP4 suite and current developments". Acta Cryst. D67, 235-242.
+ as well as any specific reference in the program write-up.
+
+<!--SUMMARY_END--></FONT></B>
+ Data line--- CELL    99.9840   53.6690  203.5710   90.0000   94.3070   90.0000  
+ Data line--- RESOLUTION 2.786 
+ Data line--- LABOUT F=FUNI SIGF=SIGFUNI
+ Data line--- SYMMETRY 'P 1 21 1'
+Reciprocal space symmetry: 
+Space group: "P 1 21 1" Point group: "PG2" Laue group: "2/m" 
+Reference asymmetric unit: "k>=0 and (l>0 or (l=0 and h>=0))" 
+  (change of basis may be applied) 
+
+ Spacegroup 4 "P 1 21 1" 
+ Original indices for reflection hkl with symmetry number ISYM 
+
+                              Bijvoet positive 
+       ISYM              ISYM              ISYM              ISYM              
+  ISYM   1  +h,+k,+l       3  -h,+k,-l    
+
+                              Bijvoet negative 
+       ISYM              ISYM              ISYM              ISYM              
+  ISYM   2  -h,-k,-l       4  +h,-k,+l    
+
+ Maximum and minimum Bragg spacings     2.786 10000.000 Angstroms
+
+
+ Limits on H,K,L.. -35 to  35      0 to  19      0 to  73
+
+
+ WRITTEN OUTPUT MTZ FILE 
+ Logical Name: HKLOUT   Filename: /tmp/uniq30107.mtz 
+
+ * Title:
+
+ 
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 0
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+
+ * Number of Columns = 5
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H F Q
+
+ * Associated datasets :
+
+ 0 0 0 0 0
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+
+
+     105080 reflections tested
+      54783 reflections within resolution limits written to output file
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+ UNIQUE:  Normal Termination
+Times: User:       0.1s System:    0.0s Elapsed:     0:00  
+</pre>
+</html>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<html> <!-- CCP4 HTML LOGFILE -->
+<hr>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<pre>
+ 
+ ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 7.0.067: CAD              version 7.0.067 :         ##
+ ###############################################################
+ User: unknown  Run date: 17/ 1/2019 Run time: 12:50:45 
+
+
+ Please reference: Collaborative Computational Project, Number 4. 2011.
+ "Overview of the CCP4 suite and current developments". Acta Cryst. D67, 235-242.
+ as well as any specific reference in the program write-up.
+
+<!--SUMMARY_END--></FONT></B>
+ Comment line---  
+ Data line--- LABI FILE 1  ALLIN
+ Data line--- LABI FILE 2  E1=FUNI E2=SIGFUNI
+ Data line--- XNAME FILE 2  E1=A E2=A
+ Data line--- DNAME FILE 2  E1=1 E2=1
+ Data line--- END
+ No CTYP lines input for file:  1
+ No CTYP lines input for file:  2
+    Indices output even if all data items flagged "missing"
+ Warning, NOT all LABOUT data lines given
+ Warning, NOT all LABOUT data lines given
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN1   Filename: /tmp/gda2-1547729136-aP_scale__12064.parent.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 14
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+Reciprocal space symmetry: 
+Space group: "P 1 21 1" Point group: "PG2" Laue group: "2/m" 
+Reference asymmetric unit: "k>=0 and (l>0 or (l=0 and h>=0))" 
+  (change of basis may be applied) 
+
+ Spacegroup 4 "P 1 21 1" 
+ Original indices for reflection hkl with symmetry number ISYM 
+
+                              Bijvoet positive 
+       ISYM              ISYM              ISYM              ISYM              
+  ISYM   1  +h,+k,+l       3  -h,+k,-l    
+
+                              Bijvoet negative 
+       ISYM              ISYM              ISYM              ISYM              
+  ISYM   2  -h,-k,-l       4  +h,-k,+l    
+
+
+ Chosen Asymmetric unit of reciprocal space: 
+ [2/m] hkl:k>=0, l>=0  hk0:h>=0
+
+
+ ** "Missing" flag set in HKLIN1 to Nan:
+
+
+ ** "Missing" entries LISTED as           -999.000
+ Data line--- LABIN  E1=IMEAN  E2=SIGIMEAN  E3=I(+)  E4=SIGI(+)  E5=I(-)  E6=SIGI(-)  E7=N(+)  E8=N(-)  E9=F  E10=SIGF  E11=FreeR_flag
+
+
+ After Processing File_Number:  1
+ Number of columns so far    :  14
+ Accumulated Out_Put_MTZ_labels are:
+  E11=IMEAN  E21=SIGIMEAN  E31=I(+)  E41=SIGI(+)
+  E51=I(-)  E61=SIGI(-)  E71=N(+)  E81=N(-)
+  E91=F  E101=SIGF  E111=FreeR_flag 
+
+
+ MTZOUT_LABELS are H K L and -
+  IMEAN  SIGIMEAN  I(+)  SIGI(+)
+  I(-)  SIGI(-)  N(+)  N(-)
+  F  SIGF  FreeR_flag 
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN2   Filename: /tmp/uniq30107.mtz 
+
+ * Title:
+
+ 
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 0
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+
+ * Number of Columns = 5
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H F Q
+
+ * Associated datasets :
+
+ 0 0 0 0 0
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+ Data line--- LABIN  E1=FUNI E2=SIGFUNI
+
+
+ After Processing File_Number:  2
+ Number of columns so far    :  16
+ Accumulated Out_Put_MTZ_labels are:
+  E11=IMEAN  E21=SIGIMEAN  E31=I(+)  E41=SIGI(+)
+  E51=I(-)  E61=SIGI(-)  E71=N(+)  E81=N(-)
+  E91=F  E101=SIGF  E111=FreeR_flag  E12=FUNI
+  E22=SIGFUNI 
+
+
+ MTZOUT_LABELS are H K L and -
+  IMEAN  SIGIMEAN  I(+)  SIGI(+)
+  I(-)  SIGI(-)  N(+)  N(-)
+  F  SIGF  FreeR_flag  FUNI
+  SIGFUNI 
+        3 sort keys, in columns    1   2   3
+
+
+
+
+ Data line--- LABIN  E1=IMEAN  E2=SIGIMEAN  E3=I(+)  E4=SIGI(+)  E5=I(-)  E6=SIGI(-)  E7=N(+)  E8=N(-)  E9=F  E10=SIGF  E11=FreeR_flag
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN1   Filename: /tmp/gda2-1547729136-aP_scale__12064.parent.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 14
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+
+ Column pairs - SIGs:  7     9
+
+
+ Column pairs - SIGs:  9     7
+
+
+ Column pairs - I+ I-:  6     8
+
+
+ Column pairs - I+ I-:  8     6
+
+
+ Reading from HKLIN mtz file_Number = :1
+ This file written with MTZLIB Version Number : MTZ:V1.1  
+ File HKLIN1 contains a total of     14 Columns
+ and a total of      54783 Reflections
+
+  ******   EPSILON ZONES -  Reflection Classes and their multiplicity ****** 
+
+  EPSILON Zone   1
+  Reflections of type  0k0 
+  Multiplicity   2
+
+  EPSILON Zone   2
+  Reflections of type  hkl 
+  Multiplicity   1
+
+  ******   CENTRIC ZONES  ****** 
+
+  CENTRIC Zone   1
+  Reflections of type  h0l 
+
+
+
+ For file HKLIN1
+ Total Number of HKL read                         =      54783
+ Total Number of HKL systematic absent            =          0
+ Total Number of HKL reject for resolution limits =          0
+ Total Number of HKL passed to sort for this file =      58891
+ Data line--- LABIN  E1=FUNI E2=SIGFUNI
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN2   Filename: /tmp/uniq30107.mtz 
+
+ * Title:
+
+ 
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 0
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+
+ * Number of Columns = 5
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H F Q
+
+ * Associated datasets :
+
+ 0 0 0 0 0
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+ Data line--- XNAME  E1=A E2=A
+ Data line--- DNAME  E1=1 E2=1
+
+ Reading from HKLIN mtz file_Number = :2
+ This file written with MTZLIB Version Number : MTZ:V1.1  
+ File HKLIN2 contains a total of      5 Columns
+ and a total of      54783 Reflections
+
+
+ For file HKLIN2
+ Total Number of HKL read                         =      54783
+ Total Number of HKL systematic absent            =          0
+ Total Number of HKL reject for resolution limits =          0
+ Total Number of HKL passed to sort for this file =      58891
+
+
+ Total number read for all files    =     109566
+ Total passed to sort for all files =     117782
+ Total number systematic absent     =          0
+ Total number rejected outside resol=          0
+
+
+ Number of columns per file:
+ File_Number =    1 Number_Columns_Selected =    11
+
+ File_Number =    2 Number_Columns_Selected =     2
+
+ Data line--- LABOUT E11=IMEAN E21=SIGIMEAN E31=I(+) E41=SIGI(+) E51=I(-) E61=SIGI(-) E71=N(+) E81=N(-) E91=F E101=SIGF E111=FreeR_flag E12=FUNI E22=SIGFUNI
+
+ WRITTEN OUTPUT MTZ FILE 
+ Logical Name: HKLOUT   Filename: /tmp/uniq230107.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 16
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I F Q
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+
+
+ Total number from Sorting Routine =     117782
+ Final Total of Unique records to HKLOUT =      54783
+ Final Total of Missing records to HKLOUT =          0
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+ CAD:   *** Normal Termination of CAD ***
+Times: User:       0.4s System:    0.1s Elapsed:     0:00  
+</pre>
+</html>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<html> <!-- CCP4 HTML LOGFILE -->
+<hr>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<pre>
+ 
+ ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 7.0.067: FREERFLAG            version 2.2 : 10/07/16##
+ ###############################################################
+ User: unknown  Run date: 17/ 1/2019 Run time: 12:50:46 
+
+
+ Please reference: Collaborative Computational Project, Number 4. 2011.
+ "Overview of the CCP4 suite and current developments". Acta Cryst. D67, 235-242.
+ as well as any specific reference in the program write-up.
+
+<!--SUMMARY_END--></FONT></B>
+ Data line--- COMPLETE FREE=FreeR_flag
+ Data line--- END
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN   Filename: /tmp/uniq230107.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 16
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I F Q
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+
+  ******   EPSILON ZONES -  Reflection Classes and their multiplicity ****** 
+
+  EPSILON Zone   1
+  Reflections of type  0k0 
+  Multiplicity   2
+
+  EPSILON Zone   2
+  Reflections of type  hkl 
+  Multiplicity   1
+
+ Grid of reflections initialized:
+ H K L min   -38 -21 -75
+ H K L max    38  21  75
+ H K L inc    77  43 151
+ ngrid       499961
+
+***** Twin laws are not used but reflections that are symmetry equivalent in the crystal 
+point group acquire the same flag.
+ lookup =            1           2           3          14
+ lsprgi = H                             K                             L                             FREE                          
+***** COMPLETE keyword was used.
+The number of missing flags =        603
+*****   All Reflections binned into  20 segments
+ *** labelled 0 through to  19 ***** 
+
+ Number of symmetry operations in the composition point group:  2
+
+
+ WRITTEN OUTPUT MTZ FILE 
+ Logical Name: HKLOUT   Filename: /tmp/uniq330107.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 16
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I F Q
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+ Number of reflections:   54783
+ Number for flagged reflections for each bin: 
+ Reflection flag =:      Number:
+                     0              2678    2652
+                     1              2792    2764
+                     2              2789    2750
+                     3              2753    2733
+                     4              2786    2764
+                     5              2762    2742
+                     6              2727    2693
+                     7              2749    2714
+                     8              2761    2728
+                     9              2715    2685
+                    10              2837    2798
+                    11              2693    2659
+                    12              2816    2781
+                    13              2623    2594
+                    14              2773    2737
+                    15              2686    2666
+                    16              2636    2617
+                    17              2713    2676
+                    18              2723    2688
+                    19              2771    2739
+Averages:     9.468    2739    2709
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+ FREERFLAG:  Normal termination
+Times: User:       0.3s System:    0.0s Elapsed:     0:00  
+</pre>
+</html>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<html> <!-- CCP4 HTML LOGFILE -->
+<hr>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<pre>
+ 
+ ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 7.0.067: MTZUTILS         version 7.0.067 :         ##
+ ###############################################################
+ User: unknown  Run date: 17/ 1/2019 Run time: 12:50:46 
+
+
+ Please reference: Collaborative Computational Project, Number 4. 2011.
+ "Overview of the CCP4 suite and current developments". Acta Cryst. D67, 235-242.
+ as well as any specific reference in the program write-up.
+
+<!--SUMMARY_END--></FONT></B>
+ Data line--- EXCLUDE FUNI SIGFUNI
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN   Filename: /tmp/uniq330107.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 16
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag FUNI SIGFUNI
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I F Q
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+
+ Reading from HKLIN MTZ File_Number = : 1
+ This file written with MTZLIB Version Number : MTZ:V1.1  
+ File HKLIN contains a total of     16 Columns
+ and a total of      54783 Reflections
+Reciprocal space symmetry: 
+Space group: "P 1 21 1" Point group: "PG2" Laue group: "2/m" 
+Reference asymmetric unit: "k>=0 and (l>0 or (l=0 and h>=0))" 
+  (change of basis may be applied) 
+
+ Spacegroup 4 "P 1 21 1" 
+ Original indices for reflection hkl with symmetry number ISYM 
+
+                              Bijvoet positive 
+       ISYM              ISYM              ISYM              ISYM              
+  ISYM   1  +h,+k,+l       3  -h,+k,-l    
+
+                              Bijvoet negative 
+       ISYM              ISYM              ISYM              ISYM              
+  ISYM   2  -h,-k,-l       4  +h,-k,+l    
+ For EXCLUDE Option, Column Label >> FUNI                          
+ will be Excluded from File_Number:   1
+ For EXCLUDE Option, Column Label >> SIGFUNI                       
+ will be Excluded from File_Number:   1
+  Reflections are forwarded to output file:     54783
+
+ WRITTEN OUTPUT MTZ FILE 
+ Logical Name: HKLOUT   Filename: gda2-1547729136-aP_scale__12064.parent-unique.mtz 
+
+ * Title:
+
+ From XDS file XDS_ASCII.HKL, XDS run on 17-Jan-2019 from images Images
+
+ * Base dataset:
+
+        0 HKL_base
+          HKL_base
+          HKL_base
+
+ * Number of Datasets = 1
+
+ * Dataset ID, project/crystal/dataset names, cell dimensions, wavelength:
+
+        1 Test
+          A
+          1
+             99.9840   53.6690  203.5710   90.0000   94.3070   90.0000
+             0.97625
+
+ * Number of Columns = 14
+
+ * Number of Reflections = 54783
+
+ * Missing value set to NaN in input mtz file
+
+ * Column Labels :
+
+ H K L IMEAN SIGIMEAN I(+) SIGI(+) I(-) SIGI(-) N(+) N(-) F SIGF FreeR_flag
+
+ * Column Types :
+
+ H H H J Q K M K M I I F Q I
+
+ * Associated datasets :
+
+ 0 0 0 1 1 1 1 1 1 1 1 1 1 1
+
+ * Cell Dimensions : (obsolete - refer to dataset cell dimensions above)
+
+   99.9840   53.6690  203.5710   90.0000   94.3070   90.0000 
+
+ *  Resolution Range :
+
+    0.00002    0.12883     (    202.996 -      2.786 A )
+
+ * Sort Order :
+
+      1     2     3     0     0
+
+ * Space group = 'P 1 21 1' (number     4)
+
+  (spacegroup is known)
+
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+ MTZUTILS:  Normal termination
+Times: User:       0.2s System:    0.0s Elapsed:     0:00  
+</pre>
+</html>
+<!--SUMMARY_END--></FONT></B>

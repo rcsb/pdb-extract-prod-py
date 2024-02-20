@@ -1,0 +1,1355 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN//2.0">
+<HTML>
+<HEAD><TITLE>Refining</TITLE></HEAD>
+<BODY BGCOLOR="#FFFAFO" TEXT="#00000O" ALINK="#FF0000" LINK="#0000C0">
+  <B>BUSTER 2.X</B>: A suite of programs for macromolecular structure refinement by maximum-likelihood and Bayesian methods<BR>
+  Copyright &copy; 1992-2020 Global Phasing Ltd.<BR>
+  All rights reserved.<BR>
+  Authors: G. Bricogne, E. Blanc, M. Brandl, C. Flensburg, P. Keller, W. Paciorek, P. Roversi, O. Smart, C. Vonrhein, T. Womack<BR>
+  <p>
+  Please reference use of the software as:
+  <UL>
+    <LI>BUSTER-TNT 2.X, Global Phasing Ltd, Sheraton House, Cambridge CB3 0AX, UK</LI>
+  </UL>
+  <p>
+  Version: 2.10.4 for linux64-ifort made on Feb 24 2021 at 01:20:38<BR>
+  Licenced to: University of California, Los Angeles, Molecular Biology Institute<BR>
+<PRE>
+<HR NOSHADE>
+<H3>Parsing of the <A HREF="CRD">BUSTER cardfile</A></H3>
+ <B><U>TITLE&nbsp;:&nbsp;</U>autoBUSTER refinement</B>
+
+   <A HREF="cell.html">Cell information</A>
+
+   <A HREF="symmetry.html">Symmetry information</A>
+
+ <B>Using CCP4 X-ray form factors.</B>
+
+   <A HREF="chemical.html">Missing structure chemical composition</A>
+
+ <B>Using ATOM block for chemical composition.</B>
+
+
+   <A HREF="shell.01.html">Shell information</A>
+<H3>Parsing of the <A HREF="TNT">TNT cardfile</A></H3>
+<HR NOSHADE>
+<H3>Reading observations file</H3>
+
+     <B> Number of reflexions in input:  49530</B>
+
+     <B> Number of accepted reflexions:  48797</B>
+
+     <B> Number of rejected reflexions:      0</B>
+
+   Preparing complete.mtz containing:      49530 reflexions
+
+
+   <A HREF="tnt_free.hkl">Reflexions in test set</A>:            4880
+
+   <A HREF="tnt_work.hkl">Reflexions in working set</A>:        43917
+<HR NOSHADE>
+<H3>1.&nbsp;Generating initial model</H3>
+
+ <B> 2.10 * Shannon sampling rate. NX NY NZ:   144  180  180</B>
+
+
+ <B> Effective Shannon rates are:    2.32    2.31    2.25</B>
+
+
+ <B>  Allocated BUFFER of size:     18.045 Mb.</B>
+
+   <A HREF="shell.01/screen_initial.txt">Initial Geometry Information</A>
+
+
+ <B>No missing atoms declared</B>
+
+
+   <A HREF="shell.01/volumes.html">Summary of model volumes</A>
+
+ <B>No missing atoms declared: no prior computed</B>
+
+
+ <B>Computing bulk solvent model scattering</B>
+
+
+ <B>NCSMASK PDB radius for solvent mask:     2.15 Angstrom</B>
+
+ running PDBSET (setting cell and spacegroup P1) ... done
+ running NCSMASK [1] (creating mask, SMOOTH 0.902333) ... done
+ running MAPDUMP (to check if reduction to unit cell is needed) ... done
+ running MAPMASK (converting mask to map and reduction to unit cell) ... done
+
+   <A HREF="shell.01/babslv.html">Generation of babslv by theta-filter</A>
+
+   <A HREF="shell.01/rhofrg.html">Electron density in frg mask:  0.420 &Aring;<SUP>-1</SUP></A>
+
+ FOBS  put on rough absolute scale by <A HREF="shell.01/wilson_start.mtv">Wilson plot</A> :
+           K        =  0.71270E+00
+           B        =     -5.844
+
+ <B><H3><U> <A NAME="cycle0001">Cycle</A> 0001: MaxLik scaling and refinement </U></H3></B>
+
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0001.html">MaxLik Scaling Cycle 0001</A>
+
+   <A HREF="shell.01/Fplots/wilson_0000.mtv">Wilson plot</A>
+
+   <B>Statistics in resolution bins just after scaling</B>
+   </PRE>
+   <TABLE><TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD>
+      <ul>
+        <li>&nbsp;<A HREF="shell.01/CCplots/R_Rfree.0000.mtv">Rxpct factors plot</A>
+        <li>&nbsp;<A HREF="shell.01/R_Rfree.html#Cycle0000">Rxpct factors table</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/LLG.0000.mtv">&lt;Log-Lik Gain&gt;</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/Ln_sigmaa.0000.mtv">Ln Sigma A</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/cos_ccoef.0000.mtv">Correlation Coefficients</A>
+      </ul>
+      </TD>
+   </TR></TABLE>
+   <PRE>
+
+   <A HREF="shell.01/LogLik0.html">&lt;Log-Likelihood&gt; of null-hypothesis</A>
+<P>
+   <A HREF="shell.01/Fplots/avgf.0001.mtv">Structure Factor Amplitudes</A>
+
+
+   <A HREF="shell.01/FOMs/cycle_0001.mtv">Average Figure of Merit</A>
+
+ <B>Switching off refinement of overall temperature factor</B>
+
+
+ <B>Added B =     0.3487 &Aring;<SUP>2</SUP> to all atoms in fragment</B>
+
+
+ <B>Added B =     0.3487 &Aring;<SUP>2</SUP> to B_SOLV</B>
+
+<pre><big><big><b>gelly refinement module</b></big></big>
+ Authors (2004-2009) O. S. Smart, C. Flensburg, W. Paciorek, C. Vonrhein, 
+                     M. Brandl, T. O. Womack and G. Bricogne
+         (2010-2011) O. S. Smart, C. Flensburg, W. Paciorek, C. Vonrhein, 
+                     T. O. Womack and G. Bricogne
+         (2012-2014) O. S. Smart, C. Flensburg, W. Paciorek, C. Vonrhein, 
+                     and G. Bricogne
+         (2015-2020) G. Bricogne, C. Flensburg, W. Paciorek, C. Vonrhein
+ Copyright &copy; 2004-2020 Global Phasing Ltd. 
+ All rights reserved.
+ gelly module compilation date Feb 24 2021 01:17:37
+ 
+ gelly uses routines from TNT geometry. References: 
+     Tronrud, D. E., Ten Eyck, L. F., Matthews, B. W. (1987)
+     "An Efficient General-Purpose Least-Squares Refinement Program 
+     for Macromolecular Structures". Acta Crystallogr A, 43:489-501.
+     Tronrud, D. E. (1997). "The TNT Refinement Package", 
+     in Macromolecular Crystallography, Part B, Eds Charlie Carter 
+     and Robert Sweet, Methods in Enzymology, 277:306-319.
+ wildcard matching function by Julian Robichaux http://www.nsftools.com
+
+ No -random_seed flag found. Random number stream initialised using:
+2147483562
+2147483398
+
+ Control flags set to:  -autoncs -hydrogens_input_occ2zero \
+                     -hydrogens_output_occ2heavy -screen \
+                     100 -screen_sigma \
+                     3.0 -keeppdb \
+                     1000000 -taomonitor_verbose \
+                     2 
+ 
+
+ ############### Starting setup via TNT routines
+
+ Setting up tnt routines including license check:
+
+                   TNT Stereochemistry Program
+ Version: 5.22.3.0
+ Licence for University of California, Los Angeles, Molecular Biology Institute is valid
+ 
+ Using TNT geometry routines to load the tnt control file: gelly.tnt
+ Using TNT routines to load initial coordinates from file fragment.cor
+ Expecting 5058 atoms
+
+ Found     2159 "NOTE BUSTER_RESIDUE_ATOM_DATA" cards
+ Have copied information for    5058 atoms from TNT to gelly's store 
+ 
+ The TNT WEIGHT cards used by this run:
+ -----WEIGHT       BOND     2.0
+ -----WEIGHT       ANGLE    2.0
+ -----WEIGHT       IMPROPER 0.0
+ -----WEIGHT       TORSION  2.0
+ -----WEIGHT       PSEUDO   0.0
+ -----WEIGHT       TRIGONAL 2.0
+ -----WEIGHT       PLANE    5.0
+ -----WEIGHT       CONTACT  5.0
+ -----WEIGHT       BCORREL  10.0
+ -----WEIGHT       CHIRAL   5.0
+ -----WEIGHT       NCS      50.0
+ -----WEIGHT       IDEAL    4.0
+ -----WEIGHT       RFACTOR  6.59
+ 
+ Dictionary versions picked up from NOTE BUSTER_RESTRAINT_DICT cards as: 
+ ------ protgeo_eh99.dat (V1.6.4.17) 20191001  STANDARD AMINO ACID DICTIONARY. BONDS AND ANGLES FROM ENGH AND HUBER EH99. OTHER VALUES BASED ON PREVIOUS TNT OR TAKEN FROM CCP4. INCLUDES HYDROGEN ATOMS.
+ ------ exoticaa.dat (V1.3.4.15) 20200327  COLLECTION OF NON-STANDARD AMINO ACIDS, MAINLY EH91 WITHOUT IDEAL DISTANCE INFO
+ ------ nuclgeo.dat (V1.13.4.8) 20190909
+ ------ bcorrel.dat (V1.15.10.2) 20190616
+ ------ contact.dat (V1.15.12.10) 20191121
+ ------ idealdist_contact.dat (V1.3.4.12) 20191001  IDEAL-DISTANCE CONTACT TERM DATA AS USED IN PROLSQ. VALUES USED HERE ARE BASED ON DATA HARVESTING OF PDB AS OF 20190109.
+ ------ restraints for GOL (GLYCEROL) from cif dictionary GOL.cif; buster common-compounds v 2.0 (19 Dec 2011)
+ ------ assume.dat (V1.9.4.2) 20180705
+ 
+ Have picked up spacegroup name for pdb output as 'P 1 21 1  '
+ Setting up Chain/Residue arrays
+ 
+ Have command line specification -autoncs*
+     Have found       2 NCS relations
+     Pairwise matching residue number and type between chains: 
+                    A        B        C        D        S    
+          A         .       99%       -        -        -   
+          B                  .        -        -        -   
+          C                           .      100%       -   
+          D                                    .        -   
+          S                                             .   
+       Table key--                                                       
+          all   : two chains have 100% match and same number of residues 
+         multi  : ditto and they contribute to a multi chain ncs cluster 
+          ***%  : two chains have >80% matching residue number/type      
+           -    : chains appear to be unrelated                          
+      chain A     have identified ncs to     1 other chains. So will weight each autoncs by (       6.666/#)=      6.6660
+      chain B     have identified ncs to     1 other chains. So will weight each autoncs by (       6.666/#)=      6.6660
+      chain C     have identified ncs to     1 other chains. So will weight each autoncs by (       6.666/#)=      6.6660
+      chain D     have identified ncs to     1 other chains. So will weight each autoncs by (       6.666/#)=      6.6660
+      chain S     have identified ncs to     0 other chains. 
+     For .Gelly cards produced see below - after pruning
+ 
+ Setting up BUSTER_SET groups
+ Have found    90 BUSTER_SET cards
+ Now silently applying automatic/dictionary set definitions. For a verbose listing use '-verbose_set' flag.
+ Applying user defined set definitions:
+ =====NOTE BUSTER_SET ncsautoXcld = Water --> set 'ncsautoXcld' now has   192 atoms 
+ =====NOTE BUSTER_SET ncsautoABset = Chain_B \ ncsautoXcld --> set 'ncsautoABset' now has  2405 atoms 
+ =====NOTE BUSTER_SET ncsautoCDset = Chain_D \ ncsautoXcld --> set 'ncsautoCDset' now has    42 atoms 
+ Have defined    51 sets: 
+      set:                 'All' has   5058 atoms in    831 residues - automatically defined
+      set:               'Empty' has      0 atoms in      0 residues - automatically defined
+      set:            'ExoticAA' has      0 atoms in      0 residues - defined by dictionary file
+      set:           'ExoticNUC' has      0 atoms in      0 residues - defined by dictionary file
+      set:              'NotHET' has   4788 atoms in    626 residues - defined by dictionary file
+      set:             'Chain_A' has   2383 atoms in    313 residues - automatically defined
+      set:             'Chain_B' has   2405 atoms in    313 residues - automatically defined
+      set:             'Chain_C' has     36 atoms in      6 residues - automatically defined
+      set:             'Chain_D' has     42 atoms in      7 residues - automatically defined
+      set:             'Chain_S' has    192 atoms in    192 residues - automatically defined
+      set:               'Water' has    192 atoms in    192 residues - defined by dictionary file
+      set:          'StdProtein' has   4788 atoms in    626 residues - defined by dictionary file
+      set:             'Protein' has   4788 atoms in    626 residues - defined by dictionary file
+      set:                'Back' has   2505 atoms in    626 residues - defined by dictionary file
+      set:                'Side' has   2283 atoms in    573 residues - defined by dictionary file
+      set:        'RnaCanonical' has      0 atoms in      0 residues - defined by dictionary file
+      set:        'DnaCanonical' has      0 atoms in      0 residues - defined by dictionary file
+      set:     'RnaDnaCanonical' has      0 atoms in      0 residues - defined by dictionary file
+      set:     'DnaRnaCanonical' has      0 atoms in      0 residues - defined by dictionary file
+      set:         'RnaExtended' has      0 atoms in      0 residues - defined by dictionary file
+      set:         'DnaExtended' has      0 atoms in      0 residues - defined by dictionary file
+      set:      'RnaDnaExtended' has      0 atoms in      0 residues - defined by dictionary file
+      set:      'DnaRnaExtended' has      0 atoms in      0 residues - defined by dictionary file
+      set:                 'Dna' has      0 atoms in      0 residues - defined by dictionary file
+      set:                 'Rna' has      0 atoms in      0 residues - defined by dictionary file
+      set:              'RnaDna' has      0 atoms in      0 residues - defined by dictionary file
+      set:              'DnaRna' has      0 atoms in      0 residues - defined by dictionary file
+      set:             'Nucleic' has      0 atoms in      0 residues - defined by dictionary file
+      set:             'Polymer' has   4788 atoms in    626 residues - defined by dictionary file
+      set: 'BufferWeichenberger' has     78 atoms in     13 residues - defined by dictionary file
+      set:    'BufferAdditional' has      0 atoms in      0 residues - defined by dictionary file
+      set:              'Buffer' has     78 atoms in     13 residues - defined by dictionary file
+      set:         'MetalAlkali' has      0 atoms in      0 residues - defined by dictionary file
+      set:  'MetalAlkalineEarth' has      0 atoms in      0 residues - defined by dictionary file
+      set:     'MetalTransition' has      0 atoms in      0 residues - defined by dictionary file
+      set: 'MetalPostTransition' has      0 atoms in      0 residues - defined by dictionary file
+      set:    'MetalLanthanides' has      0 atoms in      0 residues - defined by dictionary file
+      set:               'Metal' has      0 atoms in      0 residues - defined by dictionary file
+      set:         'SugarAlphaD' has      0 atoms in      0 residues - defined by dictionary file
+      set:         'SugarAlphaL' has      0 atoms in      0 residues - defined by dictionary file
+      set:               'Sugar' has      0 atoms in      0 residues - defined by dictionary file
+      set:               'Other' has     78 atoms in     13 residues - defined by dictionary file
+      set:            'Hydrogen' has      0 atoms in      0 residues - defined by dictionary file
+      set:         'nonHydrogen' has   5058 atoms in    831 residues - defined by dictionary file
+      set:             'OccZero' has      0 atoms in      0 residues - defined by dictionary file
+      set:          'OccNonZero' has   5058 atoms in    831 residues - defined by dictionary file
+      set:             'OccFull' has   5036 atoms in    830 residues - defined by dictionary file
+      set:          'OccNonFull' has     22 atoms in      1 residues - defined by dictionary file
+      set:         'ncsautoXcld' has    192 atoms in    192 residues - user specified
+      set:        'ncsautoABset' has   2405 atoms in    313 residues - user specified
+      set:        'ncsautoCDset' has     42 atoms in      7 residues - user specified
+ No command line arguments '-occ_allhet' or '-occ_restyp' so will not setup automated occcupancy refinement
+ 
+ Interpreting CONSTANT and FREE cards: 
+ =====CONSTANT     OCC
+ Have found and interpreted      1 CONSTANT cards in the TNT input. 
+ Before any COMBINE - Number of atoms with fixed XYZ =     0
+ Before any COMBINE - Number of atoms with fixed B   =     0
+ Before any COMBINE - Number of atoms with fixed OCC =  5058
+ Before any COMBINE - Number of atoms with fixed BIJ =   270
+                            cf total number of atoms =  5058
+ 
+ There are no COMBINE cards to be found in the TNT card input 
+ 
+ There are no NOTE BUSTER_COMBINE_RES cards to be found in the TNT card input 
+
+ ############### Working out full connectivity list
+
+
+ ############### Working out equivalent atoms
+
+
+ Residue with most atoms given below:
+        A|571:N(TRP)        
+        A|571:CA(TRP)       
+        A|571:C(TRP)        
+        A|571:O(TRP)        
+        A|571:CB(TRP)       
+        A|571:CG(TRP)       
+        A|571:CD1(TRP)      
+        A|571:CD2(TRP)      
+        A|571:NE1(TRP)      
+        A|571:CE2(TRP)      
+        A|571:CE3(TRP)      
+        A|571:CZ2(TRP)      
+        A|571:CZ3(TRP)      
+        A|571:CH2(TRP)      
+
+
+ Have no '-equiv_check_plus' argument - so will take atom type into
+ account when checking for equivalence of otherwise identical atoms.
+ 
+
+ ############### Looking at dihedrals
+
+
+ ############### Looking at chirals
+
+ NOTE BUSTER_CHIRAL_ANGLECUT card found - read value=    -31.00 degs from it
+ NOTE BUSTER_CHIRAL_SIGMA card found - read value=      1.70 degs from it
+ RANGE allowed for B variables in refinement:   from      3.00000 to    300.00000
+
+ ############### Preparing for PDB output
+
+
+ ############### Processing extra restraints explicitly defined
+
+ No 'NOTE BUSTER_TARGET' cards or -target?? args found (used to read coordinates files for soft ncs to external)
+ No 'NOTE BUSTER_OCCSUM'     cards found - so not using sum of occupancy restraints
+ No 'NOTE BUSTER_DISTANCE'   cards found - so not setting up any additional atom-atom distance restraints
+ No 'NOTE BUSTER_UTILANGLE'  cards found - so not setting up any additional restraints on any angle
+ No 'NOTE BUSTER_UTILTOR'    cards found - so not setting up any additional sinusoidal restraints on torsions
+ 
+ --- Have some similarity definitions 
+     Similarity restraints on RMSD use superposition routines from: 
+     Coutsias, E.A., Seok, C., Dill, K.A.(2004)
+     "Using quaternions to calculate RMSD", J. Comput. Chem., 25:1849-1857 
+
+ Have found    2 'NOTE BUSTER_SIM_DEFINE' cards 
+     Maximum number of chains involved in any SIM group (excluding the template)=     1
+
+
+ ########## Interpreting card: NOTE BUSTER_SIM_DEFINE ncsautoAB ncsautoABset A
+     Number of atoms in template set=  2405
+     Number of related chains (other than template) in SIM set=    1
+     List of chains to be restrained (excluding template)=   A   
+     Pairwise RMSD, XYZ in Angstroms, for SIM group: ncsautoAB
+                 B         A   
+     B         -----     ----- 
+     A         0.735     ----- 
+     Overall RMSD,XYZ for the SIM group is     0.735 Angstroms
+     Pairwise rms deviation of [individual B's minus their set/chain average] in Angs**2
+                 B         A         Bavg
+     B         -----     -----     43.21
+     A         13.08     -----     50.90
+     Overall RMSD,B   for the SIM group is    13.081 Angs**2
+     The number of common atoms for the above fits:
+                 B         A   
+     B         -----     ----- 
+     A          2357     ----- 
+     (compared to the template set that has    2405 atoms in it)
+     List of atoms that are absent in one or more chains for this group: 
+                                    B    A   
+                    CE      573     +    -
+                    NZ      573     +    -
+                    CG      597     +    -
+                    CD      597     +    -
+                    OE1     597     +    -
+                    OE2     597     +    -
+                    N.A     607     +    -
+                    CA.A    607     +    -
+                    C.A     607     +    -
+                    O.A     607     +    -
+                    CB.A    607     +    -
+                    CG.A    607     +    -
+                    CD.A    607     +    -
+                    NE.A    607     +    -
+                    CZ.A    607     +    -
+                    NH1.A   607     +    -
+                    NH2.A   607     +    -
+                    N.B     607     +    -
+                    CA.B    607     +    -
+                    C.B     607     +    -
+                    O.B     607     +    -
+                    CB.B    607     +    -
+                    CG.B    607     +    -
+                    CD.B    607     +    -
+                    NE.B    607     +    -
+                    CZ.B    607     +    -
+                    NH1.B   607     +    -
+                    NH2.B   607     +    -
+                    CG      627     +    -
+                    CD      627     +    -
+                    CE      627     +    -
+                    NZ      627     +    -
+                    CG      632     +    -
+                    CD      632     +    -
+                    CE      632     +    -
+                    NZ      632     +    -
+                    CG      658     +    -
+                    CD      658     +    -
+                    OE1     658     +    -
+                    OE2     658     +    -
+                    CD      689     +    -
+                    CE      689     +    -
+                    NZ      689     +    -
+                    CG      702     +    -
+                    CD      702     +    -
+                    CE      702     +    -
+                    NZ      702     +    -
+                    OH      ENDA    +    -
+     (key  +  atom present for this chain 
+           -  atom absent  for this chain)
+ transforms for each of the superpositions orthogonal matrix r11 r12 r13 r21 r22 r23 r31 r32 r33 tx ty tz (PDBSET syntax): 
+TRANS_BA -0.786311  0.539870 -0.300425  0.518726  0.312734 -0.795689 -0.335616 -0.781497 -0.525951   -44.179    68.085    83.202
+ reverse transforms 
+TRANS_AB -0.786311  0.518726 -0.335616  0.539870  0.312734 -0.781497 -0.300425 -0.795689 -0.525951   -42.132    67.581    84.662
+
+
+ ########## Interpreting card: NOTE BUSTER_SIM_DEFINE ncsautoCD ncsautoCDset C
+     Number of atoms in template set=    42
+     Number of related chains (other than template) in SIM set=    1
+     List of chains to be restrained (excluding template)=   C   
+     Pairwise RMSD, XYZ in Angstroms, for SIM group: ncsautoCD
+                 D         C   
+     D         -----     ----- 
+     C        14.584     ----- 
+     Overall RMSD,XYZ for the SIM group is    14.584 Angstroms
+     Pairwise rms deviation of [individual B's minus their set/chain average] in Angs**2
+                 D         C         Bavg
+     D         -----     -----     61.93
+     C         22.27     -----     65.59
+     Overall RMSD,B   for the SIM group is    22.273 Angs**2
+     The number of common atoms for the above fits:
+                 D         C   
+     D         -----     ----- 
+     C            36     ----- 
+     (compared to the template set that has      42 atoms in it)
+     List of atoms that are absent in one or more chains for this group: 
+                                    D    C   
+                    C1      807     +    -
+                    C2      807     +    -
+                    C3      807     +    -
+                    O1      807     +    -
+                    O2      807     +    -
+                    O3      807     +    -
+     (key  +  atom present for this chain 
+           -  atom absent  for this chain)
+ transforms for each of the superpositions orthogonal matrix r11 r12 r13 r21 r22 r23 r31 r32 r33 tx ty tz (PDBSET syntax): 
+TRANS_DC -0.671208  0.566437 -0.478151  0.679519  0.212423 -0.702233 -0.296200 -0.796257 -0.527485   -35.696    76.433    82.559
+ reverse transforms 
+TRANS_CD -0.671208  0.679519 -0.296200  0.566437  0.212423 -0.796257 -0.478151 -0.702233 -0.527485   -51.443    69.722    80.154
+ 
+ Setting up LSSR interatomic distance restraints
+ Interpreting card: NOTE BUSTER_SIM_RESTRAIN_LSSR ncsautoAB 6.666
+        setting up interatomic distance pair restraints with:
+        Dmin=         0.00
+        Dmax=         5.50
+        sigma=        0.20
+        Vmax=         3.00
+        weight=       6.67
+        number of distance pairs defined for this set is      29243
+ Interpreting card: NOTE BUSTER_SIM_RESTRAIN_LSSR ncsautoCD 6.666
+        setting up interatomic distance pair restraints with:
+        Dmin=         0.00
+        Dmax=         5.50
+        sigma=        0.20
+        Vmax=         3.00
+        weight=       6.67
+        number of distance pairs defined for this set is         30
+ Have not supplied either '-sim_swap_equiv' or '-sim_swap_equiv_plus' argument 
+   so will not try swaping equivalent atoms to improve NCS and/or target agreement.
+ 
+ NCS by LSSR outlier analysis
+ -autoncs option automatic NCS prune routine -------- 
+ Residues pruned out by gradient condition:
+          A|391     A|392     A|456     A|458     A|467     A|485     A|495
+          A|498     A|499     A|500     A|530     A|540     A|542     A|556
+          A|559     A|560     A|574     A|575     A|579     A|581     A|582
+          A|583     A|585     A|586     A|597     A|606     A|608     A|620
+          A|621     A|622     A|631     A|646     A|647     A|648     A|649
+          A|655     A|656     A|658     A|659     A|660     A|665     A|667
+          A|682     A|688     A|689     A|693     A|694     A|695     A|702
+          B|391     B|392     B|456     B|458     B|467     B|485     B|495
+          B|498     B|499     B|500     B|505     B|530     B|540     B|542
+          B|556     B|559     B|560     B|574     B|575     B|579     B|581
+          B|582     B|583     B|585     B|586     B|606     B|608     B|620
+          B|621     B|622     B|631     B|646     B|647     B|648     B|649
+          B|655     B|656     B|660     B|665     B|667     B|682     B|688
+          B|693     B|694     B|695
+  
+ Residues pruned out by function/max condition:
+          A|499!    A|500!    A|503     A|504     A|505     A|577     A|578 
+          A|584     A|631!    A|677     B|499!    B|500!    B|503     B|504 
+          B|505!    B|577     B|578     B|584     B|631!    B|677     C|801 
+          C|804     C|805     D|801     D|804     D|805 
+  
+ Total number of residues for which LSSR restraints have been pruned out is      113 out of      634 participating
+ Number of LSSR restraints pruned out is      8038 this is   27.5% of the total           29273
+  
+ -autoncs .Gelly cards suitable for adaptation for manual definition/pruning
+           (note auto pruning is done in a slightly different way so exact results may differ slightly)
+ -autoncs option .Gelly cards also written to file  <A HREF="shell.01/auto_gelly_cards.txt">auto_gelly_cards.txt</A>
+NOTE BUSTER_SET ncsautoXcld = Water    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|391 B|392 B|456 B|458 B|467 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|485 B|495 B|498 B|499 B|500 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|503 B|504 B|505 B|530 B|540 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|542 B|556 B|559 B|560 B|574 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|575 B|577 B|578 B|579 B|581 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|582 B|583 B|584 B|585 B|586 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|606 B|608 B|620 B|621 B|622 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|631 B|646 B|647 B|648 B|649 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|655 B|656 B|660 B|665 B|667 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|677 B|682 B|688 B|693 B|694 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoXcld = ncsautoXcld + { B|695 D|801 D|804 D|805 }    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoABset = Chain_B \ ncsautoXcld    # card added - produced by -autoncs
+NOTE BUSTER_SIM_DEFINE ncsautoAB ncsautoABset A    # card added - produced by -autoncs
+NOTE BUSTER_SIM_RESTRAIN_LSSR ncsautoAB 6.666    # card added - produced by -autoncs
+NOTE BUSTER_SET ncsautoCDset = Chain_D \ ncsautoXcld    # card added - produced by -autoncs
+NOTE BUSTER_SIM_DEFINE ncsautoCD ncsautoCDset C    # card added - produced by -autoncs
+NOTE BUSTER_SIM_RESTRAIN_LSSR ncsautoCD 6.666    # card added - produced by -autoncs
+
+ LSSR function contribution before pruning     62514.6
+                             after pruning     18869.9
+ Graph of which residues pruned from LSSR: <A HREF="shell.01/ncs_pruned.mtv">ncs_pruned.mtv</A>
+ Graph of LSSR function outliers <A HREF="shell.01/ncs_function_outliers.mtv">ncs_function_outliers.mtv</A>
+ Graph of LSSR gradient outliers <A HREF="shell.01/ncs_gradient_outliers.mtv">ncs_gradient_outliers.mtv</A>
+ LSSR - analysis of distance difference distribution for NCS
+         DeltaD less than 0.5 Angs:  proportion of population= 96.44% average DeltaD of subset     0.018 Angs
+ Histogram of LSSR deltaD distribution <A HREF="shell.01/ncs_histogram.mtv">ncs_histogram.mtv</A>
+ 
+ Interpreting card: NOTE BUSTER_TLS_SET tlsA1 {A|389 - 595}
+ Interpreting card: NOTE BUSTER_TLS_SET tlsA2 {A|596 - 702}
+ Interpreting card: NOTE BUSTER_TLS_SET tlsB1 {B|389 - 595}
+ Interpreting card: NOTE BUSTER_TLS_SET tlsB2 {B|596 - 702}
+ Interpreting card: NOTE BUSTER_TLS_SET tlsA1 {A|389 - 595}
+ Interpreting card: NOTE BUSTER_TLS_T   tlsA1     -6.76301E-02 -1.97818E-01  1.15710E-01 -2.04817E-02 -1.49688E-01  3.90529E-02
+ Interpreting card: NOTE BUSTER_TLS_L   tlsA1      2.30434E+00  1.65840E+00  1.25686E+00 -1.01990E-01  6.07362E-01  3.31570E-01
+ Interpreting card: NOTE BUSTER_TLS_S   tlsA1      7.92435E-02 -2.96390E-01  1.52990E-02  1.60734E-01 -1.23618E-01  9.75445E-02 -1.00710E-01  8.06970E-02
+ Interpreting card: NOTE BUSTER_TLS_O   tlsA1     -3.72649E+00  2.79826E+01  7.47941E+01
+ Interpreting card: NOTE BUSTER_TLS_SET tlsA2 {A|596 - 702}
+ Interpreting card: NOTE BUSTER_TLS_T   tlsA2     -2.28552E-01 -1.22258E-02  2.52841E-01  6.47599E-02 -7.24842E-02  1.44690E-01
+ Interpreting card: NOTE BUSTER_TLS_L   tlsA2      3.08367E+00  3.07281E+00  3.87353E+00 -7.12800E-01  1.87387E+00 -1.63058E-01
+ Interpreting card: NOTE BUSTER_TLS_S   tlsA2     -3.52992E-01  6.09022E-02  3.32845E-01  1.84459E-01 -8.36246E-01 -1.43421E-01  1.82842E-01  9.16353E-01
+ Interpreting card: NOTE BUSTER_TLS_O   tlsA2      2.38820E+01  1.59046E+01  7.05495E+01
+ Interpreting card: NOTE BUSTER_TLS_SET tlsB1 {B|389 - 595}
+ Interpreting card: NOTE BUSTER_TLS_T   tlsB1     -9.11816E-02 -1.32602E-01  1.44003E-01 -8.41788E-03  4.78170E-02  3.58809E-02
+ Interpreting card: NOTE BUSTER_TLS_L   tlsB1      3.38815E+00  1.04865E+00  1.21053E+00 -1.95429E-01  9.95891E-01 -9.21828E-02
+ Interpreting card: NOTE BUSTER_TLS_S   tlsB1     -3.17432E-02 -1.61726E-01  3.50702E-01  1.21610E-01 -2.85045E-01 -2.16057E-01 -7.29747E-04  1.57731E-01
+ Interpreting card: NOTE BUSTER_TLS_O   tlsB1     -8.37626E+00  6.09231E+00  4.35055E+01
+ Interpreting card: NOTE BUSTER_TLS_SET tlsB2 {B|596 - 702}
+ Interpreting card: NOTE BUSTER_TLS_T   tlsB2     -6.67362E-02 -1.09744E-01  1.09021E-01  2.23519E-03 -6.33374E-02  6.19242E-03
+ Interpreting card: NOTE BUSTER_TLS_L   tlsB2      1.10947E+00  1.78411E+00  8.38876E-01  3.34948E-01  5.79115E-01  6.31662E-01
+ Interpreting card: NOTE BUSTER_TLS_S   tlsB2     -7.93271E-02  5.62806E-02 -6.20356E-02 -6.99153E-03  2.25352E-01 -6.25858E-03 -3.16099E-02 -6.25147E-02
+ Interpreting card: NOTE BUSTER_TLS_O   tlsB2     -3.67094E+01  1.14452E+01  5.28750E+01
+ Interpreting card: NOTE BUSTER_TLS_FIX tlsA1 ALL
+ Interpreting card: NOTE BUSTER_TLS_FIX tlsA2 ALL
+ Interpreting card: NOTE BUSTER_TLS_FIX tlsB1 ALL
+ Interpreting card: NOTE BUSTER_TLS_FIX tlsB2 ALL
+
+
+ TLS information. Total number of groups:     4
+
+
+ Group   Natoms    FixRB   FixTLS   Group Tag    Group Spec
+     1     1527      Y        Y     tlsA1    {A|389 - 595}
+     2      856      Y        Y     tlsA2    {A|596 - 702}
+     3     1518      Y        Y     tlsB1    {B|389 - 595}
+     4      887      Y        Y     tlsB2    {B|596 - 702}
+ 
+NOTE BUSTER_TLS_SET tlsA1 {A|389 - 595}
+NOTE BUSTER_TLS_T   tlsA1     -6.76301E-02 -1.97818E-01  1.15710E-01 -2.04817E-02 -1.49688E-01  3.90529E-02
+NOTE BUSTER_TLS_L   tlsA1      2.30434E+00  1.65840E+00  1.25686E+00 -1.01990E-01  6.07362E-01  3.31570E-01
+NOTE BUSTER_TLS_S   tlsA1      7.92435E-02 -2.96390E-01  1.52990E-02  1.60734E-01 -1.23618E-01  9.75445E-02 -1.00710E-01  8.06970E-02
+NOTE BUSTER_TLS_O   tlsA1     -3.72649E+00  2.79826E+01  7.47941E+01
+NOTE BUSTER_TLS_FIX tlsA1 ALL
+ 
+NOTE BUSTER_TLS_SET tlsA2 {A|596 - 702}
+NOTE BUSTER_TLS_T   tlsA2     -2.28552E-01 -1.22258E-02  2.52841E-01  6.47599E-02 -7.24842E-02  1.44690E-01
+NOTE BUSTER_TLS_L   tlsA2      3.08367E+00  3.07281E+00  3.87353E+00 -7.12800E-01  1.87387E+00 -1.63058E-01
+NOTE BUSTER_TLS_S   tlsA2     -3.52992E-01  6.09022E-02  3.32845E-01  1.84459E-01 -8.36246E-01 -1.43421E-01  1.82842E-01  9.16353E-01
+NOTE BUSTER_TLS_O   tlsA2      2.38820E+01  1.59046E+01  7.05495E+01
+NOTE BUSTER_TLS_FIX tlsA2 ALL
+ 
+NOTE BUSTER_TLS_SET tlsB1 {B|389 - 595}
+NOTE BUSTER_TLS_T   tlsB1     -9.11816E-02 -1.32602E-01  1.44003E-01 -8.41788E-03  4.78170E-02  3.58809E-02
+NOTE BUSTER_TLS_L   tlsB1      3.38815E+00  1.04865E+00  1.21053E+00 -1.95429E-01  9.95891E-01 -9.21828E-02
+NOTE BUSTER_TLS_S   tlsB1     -3.17432E-02 -1.61726E-01  3.50702E-01  1.21610E-01 -2.85045E-01 -2.16057E-01 -7.29747E-04  1.57731E-01
+NOTE BUSTER_TLS_O   tlsB1     -8.37626E+00  6.09231E+00  4.35055E+01
+NOTE BUSTER_TLS_FIX tlsB1 ALL
+ 
+NOTE BUSTER_TLS_SET tlsB2 {B|596 - 702}
+NOTE BUSTER_TLS_T   tlsB2     -6.67362E-02 -1.09744E-01  1.09021E-01  2.23519E-03 -6.33374E-02  6.19242E-03
+NOTE BUSTER_TLS_L   tlsB2      1.10947E+00  1.78411E+00  8.38876E-01  3.34948E-01  5.79115E-01  6.31662E-01
+NOTE BUSTER_TLS_S   tlsB2     -7.93271E-02  5.62806E-02 -6.20356E-02 -6.99153E-03  2.25352E-01 -6.25858E-03 -3.16099E-02 -6.25147E-02
+NOTE BUSTER_TLS_O   tlsB2     -3.67094E+01  1.14452E+01  5.28750E+01
+NOTE BUSTER_TLS_FIX tlsB2 ALL
+
+
+ TLS: mmCIF group specification begin
+
+
+#
+loop_
+_pdbx_refine_tls_group.id
+_pdbx_refine_tls_group.refine_tls_id
+_pdbx_refine_tls_group.beg_PDB_ins_code
+_pdbx_refine_tls_group.beg_auth_asym_id
+_pdbx_refine_tls_group.beg_auth_seq_id
+_pdbx_refine_tls_group.end_PDB_ins_code
+_pdbx_refine_tls_group.end_auth_asym_id
+_pdbx_refine_tls_group.end_auth_seq_id
+_pdbx_refine_tls_group.selection
+_pdbx_refine_tls_group.selection_details
+   1   1 . A  389 . A  595 . '{A|389 - 595}'
+   2   2 . A  596 . A  702 . '{A|596 - 702}'
+   3   3 . B  390 . B  595 . '{B|389 - 595}'
+   4   4 . B  596 . B  702 . '{B|596 - 702}'
+#
+
+
+ TLS: mmCIF group specification end
+
+
+ Interpreting card: NOTE BUSTER_ANISO_SET Empty
+ Interpreting card: NOTE BUSTER_ANISO_WEIGHT SCA  16.0
+ Interpreting card: NOTE BUSTER_ANISO_WEIGHT SPH   0.6    0.6
+ Interpreting card: NOTE BUSTER_ANISO_WEIGHT SIM   7.8    4.8    2.6    0
+ Interpreting card: NOTE BUSTER_ANISO_WEIGHT RIG  21.5   21.5    3.7    0
+
+
+ After TLS and ANISO: Number of atoms with fixed/combined xyz =     0
+ After TLS and ANISO: Number of atoms with fixed/combined B   =     0
+ After TLS and ANISO: Number of atoms with fixed/combined OCC =  5058
+ After TLS and ANISO: Number of atoms with fixed/combined BIJ =  5058
+ After TLS and ANISO: Number of atoms in a TLS group          =  4788
+                                     cf total number of atoms =  5058
+ 
+
+ ############### Setup state vector
+
+ No free_vect_ulim_xyz argument found: using default of  100.000
+ No free_vect_llim_xyz argument found: using default of -100.000
+ No free_vect_ulim_bij argument found: using default of   50.000
+ No free_vect_llim_bij argument found: using default of  -50.000
+ Number of parameters added for TLS description                 =       0
+ Number of parameters to describe molecular conformation        =   20232
+
+ ############### Setup free vector
+
+ Number of free parameters to be adjusted in refinement   =   20232
+
+ ############### Setting up own geometry
+
+
+ No command line argument '-tnt_fn' so will use gelly to do geometry function calculations
+
+ ============= Call TNT functions
+
+
+ ============= Get TNT symmetry information
+
+ 
+      Getting symmetry operators from TNT. 
+          gelly will classify symmetry using pdb-like convention: 
+               SYMOP   SYMMETRY
+              NNNMMM   OPERATOR
+                1555   X,Y,Z
+                2555   -X,1/2+Y,-Z
+          where NNN -> operator number and MMM -> translation vector
+ 
+
+ ============= Own Gelly geometry/restraints setup
+
+
+ ----------- Identify bond-types
+
+
+    Setting up GEOMBONDREC_TYPE_HASH* to be able to map a given bond type (e.g.
+    "single") to an internal integer (GBOND_TYPE=1) etc.
+
+    Using default  GEOMBONDREC_TYPE_HASH_STR='SING* 1 DOUB* 2 TRIP* 3 AROM* 4 DELO* 4 METAL* 5':
+    to override default use a NOTE BUSTER_GEOMBONDREC_TYPE_HASH_STR gelly card.
+
+ ----------- Classify torsion into peptide omega and other
+
+
+ ----------- Setup of non-bonded terms
+
+ Ideal-distance contact term setup:
+    Restraint function constants (normally these values are from NOTE BUSTER_IDEAL_CONTACT_* cards)
+    Sigma for general contacts      0.200 Angs
+    Sigma for 1-4 contacts          0.100 Angs (contacts across a torsion)
+    Sigma for 1-5 contacts          0.150 Angs
+    Sigma for 1-N contacts          0.200 Angs
+    Sigma for HBOND pairs           0.100 Angs (contacts between HB_types A and D or B's)
+    Contact distance increment for each atom in HBOND          -0.150 Angs 
+    Contact distance increment for H-bond acceptor              0.100 Angs 
+    Contact distance increment for 1-4 with an O atom          -0.050 Angs 
+    Contact distance increment for 1-4 with an N atom          -0.180 Angs 
+    Contact distance increment for 1-4 with an C atom          -0.370 Angs 
+    Contact distance increment for 1-4 with an S atom          -0.150 Angs 
+    Contact distance increment for 1-4 with an P atom          -0.150 Angs 
+    Contact distance increment for 1-4 with any other atom     -0.150 Angs 
+    All atoms matched for CCP4 atom type.
+    Number of CCP4 atom types used is         22 (H-bound and not H-bound counted separately)
+
+ Setting up short/ideal-distance contacts
+   Using gelly special position handling. (For TNT instead rerun with argument '-special_tnt')
+
+   No command line argument '-special_all' specified. We will auto-generate
+   EXCLUDE cards only for atom-atom contacts across symmetry (i.e. on special
+   position) when this involves a contact within a residue to itself.
+
+   Have set up non-bonded exclusions - 1-3 contacts
+   Atom B|606:CA        makes the most 1-3 contacts:  6
+
+   Have set up non-bonded exclusions - 1-4 contacts
+   Atom B|606:N         makes the most 1-4 contacts:  7
+
+   Have set up non-bonded exclusions - 1-5 contacts
+   Atom B|606:C         makes the most 1-5 contacts:  9
+
+ ############################################################################################################
+ ###################################################### setting up contact terms
+ ############################################################################################################
+
+
+ ============= Call Gelly versions of TNT functions
+
+
+       TERM      weight      number      TNT_fn    Gelly_fn        diff
+       BOND       2.000        4921    1651.975    1651.975       0.000
+       ANGL       2.000        6633    4221.640    4221.640       0.000
+       IMPR       0.000           0       0.000       0.000       0.000
+       TORS       2.000        1728    1837.139    1837.139      -0.000
+       TRIG       2.000           0       0.000       0.000       0.000
+       PLAN       5.000         822    2357.765    2357.765       0.000
+       CONT       5.000           0       0.000       0.000       0.000
+       BCOR      10.000        4856    7423.332    6800.950     622.382
+
+
+ ============= Call Gelly geometry functions
+
+   Switching torsion functional form to sinusoidal rather than split harmonic functional.
+      if you want this not to happen then rerun with '-torsharm'
+      Weight for sinusoidal torsion=     2.000
+   BCOR function/gradient will be split between H and non-H atoms (as for any atom pair). Use '-bcorrel_all_in_hydrogens' to change this.
+
+ ----------- Fix B-correlation restraints
+
+ 
+ Checking for bonds that do not have a bcorrel restraint defined
+ We will wipe all existing BCORrels if OCC=0.0 atom(s) is/are involved. This can be' switched off via the '-bcorrel_nowipe_zeroocc' flag.
+ We will wipe all existing BCORrels if only non-hydrogen atom(s) with fixed B(iso) are involved. This can be switched off via the '-bcorrel_nowipe_fixb_nonhydrogens' flag.
+ We will keep all existing BCORrels if hydrogen atom(s) with fixed B(iso) is/are involved. This can be switched off via the '-bcorrel_wipe_fixb_hydrogens' flag.
+ No -bcorrel_missing_sigma found. So will set sigma to     2.5 Ang**2 for any bond with no existing BCORrel
+ No -bcorrel_missing_sigma_hydrogens found. So will set sigma to     1.0 Ang**2 for any bond with no existing BCORrel involving hydrogens
+
+ No active BCORels found involving OCC=0.0 atom(s)
+
+
+ No active BCORels found involving fixed-B (only) non-hydrogen atom(s)
+
+    add a default BCOR for bond C|801:C1(GOL) C|801:O1(GOL)
+    add a default BCOR for bond C|801:C1(GOL) C|801:C2(GOL)
+    add a default BCOR for bond C|801:C2(GOL) C|801:O2(GOL)
+    add a default BCOR for bond C|801:C2(GOL) C|801:C3(GOL)
+    add a default BCOR for bond C|801:C3(GOL) C|801:O3(GOL)
+    add a default BCOR for bond C|802:C1(GOL) C|802:O1(GOL)
+    add a default BCOR for bond C|802:C1(GOL) C|802:C2(GOL)
+    add a default BCOR for bond C|802:C2(GOL) C|802:O2(GOL)
+    add a default BCOR for bond C|802:C2(GOL) C|802:C3(GOL)
+    add a default BCOR for bond C|802:C3(GOL) C|802:O3(GOL)
+    add a default BCOR for bond C|803:C1(GOL) C|803:O1(GOL)
+    add a default BCOR for bond C|803:C1(GOL) C|803:C2(GOL)
+    add a default BCOR for bond C|803:C2(GOL) C|803:O2(GOL)
+    add a default BCOR for bond C|803:C2(GOL) C|803:C3(GOL)
+    add a default BCOR for bond C|803:C3(GOL) C|803:O3(GOL)
+    add a default BCOR for bond C|804:C1(GOL) C|804:O1(GOL)
+    add a default BCOR for bond C|804:C1(GOL) C|804:C2(GOL)
+    add a default BCOR for bond C|804:C2(GOL) C|804:O2(GOL)
+    add a default BCOR for bond C|804:C2(GOL) C|804:C3(GOL)
+    add a default BCOR for bond C|804:C3(GOL) C|804:O3(GOL)
+    add a default BCOR for bond C|805:C1(GOL) C|805:O1(GOL)
+    add a default BCOR for bond C|805:C1(GOL) C|805:C2(GOL)
+    add a default BCOR for bond C|805:C2(GOL) C|805:O2(GOL)
+    add a default BCOR for bond C|805:C2(GOL) C|805:C3(GOL)
+    add a default BCOR for bond C|805:C3(GOL) C|805:O3(GOL)
+    add a default BCOR for bond C|806:C1(GOL) C|806:O1(GOL)
+    add a default BCOR for bond C|806:C1(GOL) C|806:C2(GOL)
+    add a default BCOR for bond C|806:C2(GOL) C|806:O2(GOL)
+    add a default BCOR for bond C|806:C2(GOL) C|806:C3(GOL)
+    add a default BCOR for bond C|806:C3(GOL) C|806:O3(GOL)
+    add a default BCOR for bond D|801:C1(GOL) D|801:O1(GOL)
+    add a default BCOR for bond D|801:C1(GOL) D|801:C2(GOL)
+    add a default BCOR for bond D|801:C2(GOL) D|801:O2(GOL)
+    add a default BCOR for bond D|801:C2(GOL) D|801:C3(GOL)
+    add a default BCOR for bond D|801:C3(GOL) D|801:O3(GOL)
+    add a default BCOR for bond D|802:C1(GOL) D|802:O1(GOL)
+    add a default BCOR for bond D|802:C1(GOL) D|802:C2(GOL)
+    add a default BCOR for bond D|802:C2(GOL) D|802:O2(GOL)
+    add a default BCOR for bond D|802:C2(GOL) D|802:C3(GOL)
+    add a default BCOR for bond D|802:C3(GOL) D|802:O3(GOL)
+    add a default BCOR for bond D|803:C1(GOL) D|803:O1(GOL)
+    add a default BCOR for bond D|803:C1(GOL) D|803:C2(GOL)
+    add a default BCOR for bond D|803:C2(GOL) D|803:O2(GOL)
+    add a default BCOR for bond D|803:C2(GOL) D|803:C3(GOL)
+    add a default BCOR for bond D|803:C3(GOL) D|803:O3(GOL)
+    add a default BCOR for bond D|804:C1(GOL) D|804:O1(GOL)
+    add a default BCOR for bond D|804:C1(GOL) D|804:C2(GOL)
+    add a default BCOR for bond D|804:C2(GOL) D|804:O2(GOL)
+    add a default BCOR for bond D|804:C2(GOL) D|804:C3(GOL)
+    add a default BCOR for bond D|804:C3(GOL) D|804:O3(GOL)
+    add a default BCOR for bond D|805:C1(GOL) D|805:O1(GOL)
+    add a default BCOR for bond D|805:C1(GOL) D|805:C2(GOL)
+    add a default BCOR for bond D|805:C2(GOL) D|805:O2(GOL)
+    add a default BCOR for bond D|805:C2(GOL) D|805:C3(GOL)
+    add a default BCOR for bond D|805:C3(GOL) D|805:O3(GOL)
+    add a default BCOR for bond D|806:C1(GOL) D|806:O1(GOL)
+    add a default BCOR for bond D|806:C1(GOL) D|806:C2(GOL)
+    add a default BCOR for bond D|806:C2(GOL) D|806:O2(GOL)
+    add a default BCOR for bond D|806:C2(GOL) D|806:C3(GOL)
+    add a default BCOR for bond D|806:C3(GOL) D|806:O3(GOL)
+    add a default BCOR for bond D|807:C1(GOL) D|807:O1(GOL)
+    add a default BCOR for bond D|807:C1(GOL) D|807:C2(GOL)
+    add a default BCOR for bond D|807:C2(GOL) D|807:O2(GOL)
+    add a default BCOR for bond D|807:C2(GOL) D|807:C3(GOL)
+    add a default BCOR for bond D|807:C3(GOL) D|807:O3(GOL)
+
+ Have added a total of        65 BCORrels for bonds which do not already have a BCORrel
+
+
+ No bonds (for potential BCORrel addition) were skipped due to both atoms having constant/fixed B(iso)
+
+
+ ----------- Deactivate hydrogen-free planes if hydrogen atoms present
+
+ A total of       0 planes have been deactivated because they are duplicated hydrogen-free and with-hydrogen forms.
+
+ ----------- Handle peptide omega angle(s)
+
+      Torsion angles split into peptide omega and other
+         Number of peptide omega angles is       623
+         Number of other torsion is             1105
+      Peptide omega angles are monitored rather than directly restrained (PLANE used instead).
+
+ ----------- Fix cis-PRO
+
+ Now apply the fix to get correct restraints for cis PRO residues
+   Have got      11 bonds records and      26 angles
+   from GEOMETRY cards for the special PROC residue
+   Weight for ideal-distance contact term=     4.000
+
+ ----------- Prepare SSBOND/LINK for output PDB file
+
+
+ ----------- Prepare for QM
+
+
+ ----------- Prepare symmetry in utility distance restraints
+
+
+ ############### Setting up Rhofit contacts (if needed)
+
+ No ligand-(fixed protein) contact term will be used
+
+ ############### Working out initial function and gradient
+
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0002.html">MaxLik Scaling Cycle 0002</A>
+ 
+ Initial functional value = 1.381976E+06 rms gradient=      18.1411
+ X-ray contribution to function value = 1.338724E+06
+ Geometry contribution (inc ncs)      =      43252.2
+ Geometry function summary
+     term                           number     weight       rms        GooF      function     fn/numb
+     ================================================================================================
+     BOND bond lengths (angs)       4921       2.000      0.0081       0.410      1651.97       0.336
+     ANGL bond angles (degs)        6633       2.000        0.95       0.564      4221.64       0.636
+     TORS split-harmonic tors       1105       0.000       14.23       0.912         0.00       0.000
+     SINTOR sinusoidal tors         1105       2.000       14.23                  1454.52       1.316
+     PLAN general plane (angs)       822       5.000      0.0151       0.757      2357.76       2.868
+     BCORrelations (angs^2)         4921      10.000       1.043       0.373      6837.10       1.389
+     CONT (bad contacts)               0       5.000                                 0.00
+     IDEAL(ideal-dist contact)      3771       4.000                              7847.22
+     CHIRAL (gelly semiharmon)       664       5.000                                12.14
+     SIM similarity restraint for NCS and/or TARGET                              18869.87
+     OCCSUM restraint on sum of occupanies                                           0.00       as none defined
+     DISTAN utility restraints interatomic distance                                  0.00       as none defined
+     UTILANGLE utility angle restraints                                              0.00       as none defined
+     UTILTOR utility restraints on torsion angles                                    0.00       as none defined
+     Peptide omega torsion angles                           3.09 degs - monitor only
+
+ Weighted rms      0.0081         0.950  (temporary rms bond and angle for BUSTER to pick up!)
+ Weighted intra-residual rms(bond) for StdProtein (excluding H)      0.0080
+ Weighted intra-residual rms(bond) for Buffer     (excluding H)      0.0036
+
+ ############### Running initial check
+
+
+ Initial Geometry Sanity Check
+
+ Check for duplicate bonds: no duplicates found
+ 
+ Check for duplicate or missing bond angles: all are OK
+ Check for bond between an atom and itself not involving symmetry:  all are OK
+   There are no bad contacts where Delta/sigma is greater than     6.5
+   Worst contact dist=   3.033 std=   3.603 sigma=   0.198 abs(Delta/sigma)=    2.881 ats B|550:CG2 (THR) S|15:O (HOH)
+   It is likely that the geometry libraries, sequence info and links match the input molecule
+ GEOMETRY CHECK OVERALL:  PASS
+
+
+ ############### Creating geometry/screen report
+
+
+ ############### Option "tao" - run Tao optimizer
+
+ TAO: Toolkit for Advanced Optimization. Reference: 
+     Munson, T., Sarich, J., Wild, S., Benson, S., McInnes, L.C. (2018)
+     "TAO User Manual (Revision 3.9)", Mathematics and Computer Science
+     Division, Argonne National Laboratory
+     ANL/MCS-TM-322, http://www.mcs.anl.gov/petsc/
+ 
+ Have found -keeppdb flag so will write out a .pdb file every 1000000 its during opt
+ Will apply TAO optimization 
+ Maximum number of iterations      100
+ Convergence test on Grms       4.0000 (-glim)
+ Limit on rms displacement to original position (rmsD2init): NONE test inactive (-dlim)
+
+    analysing argument no 0 : -autoncs with j=0
+    analysing argument no 1 : -hydrogens_input_occ2zero with j=0
+    analysing argument no 2 : -hydrogens_output_occ2heavy with j=0
+    analysing argument no 3 : -screen with j=0
+    analysing argument no 4 : 100 with j=0
+    analysing argument no 5 : -screen_sigma with j=0
+    analysing argument no 6 : 3.0 with j=0
+    analysing argument no 7 : -keeppdb with j=0
+    analysing argument no 8 : 1000000 with j=0
+    analysing argument no 9 : -taomonitor_verbose with j=0
+    found argument starting with "-tao" : -taomonitor_verbose
+    analysing argument no 10 : 2 with j=1
+    found value after -tao/-options_/-viewer_ argument : "2"
+ PETSC/TAO: setting option "-taomonitor_verbose" = "2"
+
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0003.html">MaxLik Scaling Cycle 0003</A>
+   Iters     Tot_Funct    Xray_Funct    Geom_Funct          Grms     rmsD2init     maxD2init             R         Rfree         Rxpct     Rxpctfree           LLG       LLGfree     rms(bond)    rms(angle)       Opttag_H
+   Iters             K   B_IMPF_FRAG        K_MISS   B_TEMP_MISS   K_IMPF_MISS   B_IMPF_MISS        K_SOLV   B_TEMP_SOLV   K_IMPF_SOLV   B_IMPF_SOLV        B_TEMP     B_TEMP_11     B_TEMP_12     B_TEMP_22     B_TEMP_13     B_TEMP_23     B_TEMP_33      K_WILSON      B_WILSON      FGCYCLES       Scatag_H
+   Iters          BOND         ANGLE      IMPROPER       TORSION    SINTORSION      TRIGONAL        PLANAR  BCORRELATION       CONTACT     IDEALDIST        CHIRAL    SIMILARITY       OCCSSUM  UTILDISTANCE     UTILANGLE   UTILTORSION        RHOFIT        ADP-01        ADP-02        ADP-03        ADP-04        ADP-05        ADP-06        ADP-07        ADP-08        ADP-09        ADP-10      RHOFITPC            QM       Funtag_H
+       0  1.381976E+06  1.338724E+06       43252.2       18.1411  0.000000E+00  0.000000E+00      0.210222      0.233828      0.199417      0.224362  0.000000E+00  0.000000E+00    0.00811045      0.949753       Opttag_D
+       0      0.785828       1.57010       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760361       56.7435       1.00000       30.1407  0.000000E+00      -2.67774  0.000000E+00       2.16799       7.48437  0.000000E+00      0.509756      0.808191       3.16398        2       Scatag_D
+       0       1651.97       4221.64  0.000000E+00  0.000000E+00       1454.52  0.000000E+00       2357.76       6837.10  0.000000E+00       7847.22       12.1397       18869.9 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+   <A HREF="shell.01/screen_000000.txt">Geometry Restraint Deviations SCREEN Information</A>
+
+ 
+
+ WARNING: have displacement of 76.69 Angs from initial (> 15.00 Angs)
+          for variable number= 18739 (type Z        ; returned function value as   3.768452E+012 )
+          Involving atom B|690:O
+
+ WARNING: have displacement of 24.65 Angs from initial (> 15.00 Angs)
+          for variable number= 18739 (type Z        ; returned function value as   8.023413E+010 )
+          Involving atom B|690:O
+
+ An atom has moved more than     1.50 A from the initial/last
+ position - if this was an accepted trial point, probably need to update the
+ non-bonded contact list.
+
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0004.html">MaxLik Scaling Cycle 0004</A>
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0005.html">MaxLik Scaling Cycle 0005</A>
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0006.html">MaxLik Scaling Cycle 0006</A>
+
+   <A HREF="shell.01/Fplots/wilson_0001.mtv">Wilson plot</A>
+
+   <B>Statistics in resolution bins after refinement cycle 0001</B>
+   </PRE>
+   <TABLE><TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD>
+      <ul>
+        <li>&nbsp;<A HREF="shell.01/CCplots/R_Rfree.0001.mtv">Rxpct factors plot</A>
+        <li>&nbsp;<A HREF="shell.01/R_Rfree.html#Cycle0001">Rxpct factors table</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/LLG.0001.mtv">&lt;Log-Lik Gain&gt;</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/Ln_sigmaa.0001.mtv">Ln Sigma A</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/cos_ccoef.0001.mtv">Correlation Coefficients</A>
+      </ul>
+      </TD>
+   </TR></TABLE>
+   <PRE>
+   Iters     Tot_Funct    Xray_Funct    Geom_Funct          Grms     rmsD2init     maxD2init             R         Rfree         Rxpct     Rxpctfree           LLG       LLGfree     rms(bond)    rms(angle)
+   Iters             K   B_IMPF_FRAG        K_MISS   B_TEMP_MISS   K_IMPF_MISS   B_IMPF_MISS        K_SOLV   B_TEMP_SOLV   K_IMPF_SOLV   B_IMPF_SOLV        B_TEMP     B_TEMP_11     B_TEMP_12     B_TEMP_22     B_TEMP_13     B_TEMP_23     B_TEMP_33      K_WILSON      B_WILSON      FGCYCLES
+   Iters          BOND         ANGLE      IMPROPER       TORSION    SINTORSION      TRIGONAL        PLANAR  BCORRELATION       CONTACT     IDEALDIST        CHIRAL    SIMILARITY       OCCSSUM  UTILDISTANCE     UTILANGLE   UTILTORSION        RHOFIT        ADP-01        ADP-02        ADP-03        ADP-04        ADP-05        ADP-06        ADP-07        ADP-08        ADP-09        ADP-10      RHOFITPC            QM
+       1  1.381919E+06  1.338687E+06       43231.7       18.7806  3.935460E-04    0.00326285      0.210203      0.233836      0.199400      0.224350  1.270152E-04 -3.041752E-05    0.00810579      0.949842       Opttag_D
+       1      0.786105       1.57050       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760443       56.7094       1.00000       30.1932  0.000000E+00      -2.67572  0.000000E+00       2.16829       7.47940  0.000000E+00      0.507425      0.808191       3.16398        3       Scatag_D
+       1       1650.08       4222.43  0.000000E+00  0.000000E+00       1454.51  0.000000E+00       2356.76       6825.35  0.000000E+00       7846.51       11.8210       18864.3 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+   <A HREF="shell.01/screen_000001.txt">Geometry Restraint Deviations SCREEN Information</A>
+
+ 
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0007.html">MaxLik Scaling Cycle 0007</A>
+
+   <A HREF="shell.01/Fplots/wilson_0002.mtv">Wilson plot</A>
+
+   <B>Statistics in resolution bins after refinement cycle 0002</B>
+   </PRE>
+   <TABLE><TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD>
+      <ul>
+        <li>&nbsp;<A HREF="shell.01/CCplots/R_Rfree.0002.mtv">Rxpct factors plot</A>
+        <li>&nbsp;<A HREF="shell.01/R_Rfree.html#Cycle0002">Rxpct factors table</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/LLG.0002.mtv">&lt;Log-Lik Gain&gt;</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/Ln_sigmaa.0002.mtv">Ln Sigma A</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/cos_ccoef.0002.mtv">Correlation Coefficients</A>
+      </ul>
+      </TD>
+   </TR></TABLE>
+   <PRE>
+   Iters     Tot_Funct    Xray_Funct    Geom_Funct          Grms     rmsD2init     maxD2init             R         Rfree         Rxpct     Rxpctfree           LLG       LLGfree     rms(bond)    rms(angle)
+   Iters             K   B_IMPF_FRAG        K_MISS   B_TEMP_MISS   K_IMPF_MISS   B_IMPF_MISS        K_SOLV   B_TEMP_SOLV   K_IMPF_SOLV   B_IMPF_SOLV        B_TEMP     B_TEMP_11     B_TEMP_12     B_TEMP_22     B_TEMP_13     B_TEMP_23     B_TEMP_33      K_WILSON      B_WILSON      FGCYCLES
+   Iters          BOND         ANGLE      IMPROPER       TORSION    SINTORSION      TRIGONAL        PLANAR  BCORRELATION       CONTACT     IDEALDIST        CHIRAL    SIMILARITY       OCCSSUM  UTILDISTANCE     UTILANGLE   UTILTORSION        RHOFIT        ADP-01        ADP-02        ADP-03        ADP-04        ADP-05        ADP-06        ADP-07        ADP-08        ADP-09        ADP-10      RHOFITPC            QM
+       2  1.381855E+06  1.338660E+06       43195.4       24.4576    0.00165589     0.0194845      0.210176      0.233866      0.199382      0.224358  2.223655E-04 -2.825627E-04    0.00814274      0.950126       Opttag_D
+       2      0.786423       1.57123       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760436       56.6974       1.00000       30.2220  0.000000E+00      -2.67689  0.000000E+00       2.17453       7.47969  0.000000E+00      0.502366      0.808191       3.16398        1       Scatag_D
+       2       1665.16       4224.96  0.000000E+00  0.000000E+00       1454.44  0.000000E+00       2353.26       6785.53  0.000000E+00       7847.34       11.8753       18852.8 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+   <A HREF="shell.01/screen_000002.txt">Geometry Restraint Deviations SCREEN Information</A>
+
+ 
+       3  1.381802E+06  1.338647E+06       43154.8       17.5465    0.00222941     0.0278676      0.210166      0.233881      0.199372      0.224350  2.654154E-04 -2.681545E-04    0.00814921      0.949948       Opttag_D
+       3      0.786626       1.57183       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760508       56.6734       1.00000       30.2476  0.000000E+00      -2.67616  0.000000E+00       2.17411       7.47812  0.000000E+00      0.502050      0.808191       3.16398        1       Scatag_D
+       3       1667.80       4223.38  0.000000E+00  0.000000E+00       1454.39  0.000000E+00       2353.09       6748.08  0.000000E+00       7846.91       11.8234       18849.3 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+       4  1.381774E+06  1.338639E+06       43134.2       14.3311    0.00255883     0.0329118      0.210162      0.233892      0.199368      0.224350  2.920993E-04 -2.769595E-04    0.00814821      0.949775       Opttag_D
+       4      0.786762       1.57227       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760551       56.6614       1.00000       30.2648  0.000000E+00      -2.67605  0.000000E+00       2.17358       7.47719  0.000000E+00      0.502473      0.808191       3.16398        1       Scatag_D
+       4       1667.39       4221.84  0.000000E+00  0.000000E+00       1454.41  0.000000E+00       2353.39       6732.49  0.000000E+00       7846.20       11.7693       18846.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+       5  1.381732E+06  1.338625E+06       43107.3       13.9886    0.00357687     0.0472645      0.210148      0.233913      0.199357      0.224353  3.411976E-04 -3.562052E-04    0.00815679      0.949655       Opttag_D
+       5      0.787125       1.57360       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760637       56.6372       1.00000       30.3028  0.000000E+00      -2.67628  0.000000E+00       2.17364       7.47502  0.000000E+00      0.502631      0.808191       3.16398        1       Scatag_D
+       5       1670.91       4220.77  0.000000E+00  0.000000E+00       1454.49  0.000000E+00       2354.31       6708.78  0.000000E+00       7844.47       11.7240       18841.9 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+       6  1.381713E+06  1.338628E+06       43085.8       20.9357    0.00487651     0.0637502      0.210150      0.233942      0.199356      0.224355  3.330146E-04 -4.298476E-04    0.00816875      0.949566       Opttag_D
+       6      0.787499       1.57537       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760686       56.6221       1.00000       30.3312  0.000000E+00      -2.67726  0.000000E+00       2.17455       7.47319  0.000000E+00      0.502710      0.808191       3.16398        1       Scatag_D
+       6       1675.81       4219.98  0.000000E+00  0.000000E+00       1454.74  0.000000E+00       2355.59       6687.56  0.000000E+00       7841.85       11.8317       18838.4 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+       7  1.381684E+06  1.338624E+06       43060.2       12.7433    0.00511632     0.0659127      0.210148      0.233954      0.199355      0.224363  3.454670E-04 -4.770748E-04    0.00816769      0.949388       Opttag_D
+       7      0.787550       1.57554       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760673       56.6227       1.00000       30.3342  0.000000E+00      -2.67725  0.000000E+00       2.17454       7.47275  0.000000E+00      0.502709      0.808191       3.16398        1       Scatag_D
+       7       1675.38       4218.40  0.000000E+00  0.000000E+00       1454.79  0.000000E+00       2355.47       6667.13  0.000000E+00       7840.92       11.8815       18836.3 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+       8  1.381664E+06  1.338622E+06       43041.4       11.1429    0.00552263     0.0687813      0.210145      0.233969      0.199355      0.224373  3.508038E-04 -5.355084E-04    0.00816556      0.949251       Opttag_D
+       8      0.787624       1.57587       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760648       56.6249       1.00000       30.3364  0.000000E+00      -2.67746  0.000000E+00       2.17446       7.47196  0.000000E+00      0.502992      0.808191       3.16398        1       Scatag_D
+       8       1674.50       4217.19  0.000000E+00  0.000000E+00       1454.94  0.000000E+00       2355.08       6655.80  0.000000E+00       7839.34       11.9658       18832.6 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+       9  1.381646E+06  1.338620E+06       43025.9       11.5004    0.00614105     0.0725513      0.210147      0.233994      0.199357      0.224390  3.586310E-04 -6.083504E-04    0.00816508      0.949289       Opttag_D
+       9      0.787759       1.57648       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760642       56.6222       1.00000       30.3454  0.000000E+00      -2.67755  0.000000E+00       2.17389       7.47050  0.000000E+00      0.503665      0.808191       3.16398        1       Scatag_D
+       9       1674.31       4217.52  0.000000E+00  0.000000E+00       1455.15  0.000000E+00       2354.80       6645.47  0.000000E+00       7837.63       12.0154       18829.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      10  1.381629E+06  1.338619E+06       43010.9       17.3936    0.00732083     0.0795428      0.210149      0.234061      0.199359      0.224438  3.639678E-04 -8.464876E-04    0.00816137      0.949675       Opttag_D
+      10      0.788015       1.57774       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760629       56.6224       1.00000       30.3614  0.000000E+00      -2.67794  0.000000E+00       2.17211       7.46745  0.000000E+00      0.505828      0.808191       3.16398        1       Scatag_D
+      10       1672.78       4220.95  0.000000E+00  0.000000E+00       1455.69  0.000000E+00       2354.55       6636.69  0.000000E+00       7835.29       11.9628       18823.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      11  1.381606E+06  1.338612E+06       42994.6       10.1417    0.00794591     0.0887878      0.210148      0.234086      0.199355      0.224454  3.870938E-04 -9.001185E-04    0.00816008      0.949868       Opttag_D
+      11      0.788175       1.57834       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760660       56.6098       1.00000       30.3791  0.000000E+00      -2.67767  0.000000E+00       2.17101       7.46584  0.000000E+00      0.506660      0.808191       3.16398        1       Scatag_D
+      11       1672.25       4222.67  0.000000E+00  0.000000E+00       1455.87  0.000000E+00       2354.90       6620.82  0.000000E+00       7834.58       11.8987       18821.6 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      12  1.381596E+06  1.338605E+06       42990.4       8.98615    0.00810191     0.0923271      0.210144      0.234099      0.199352      0.224462  4.091525E-04 -9.301358E-04    0.00815534      0.949841       Opttag_D
+      12      0.788235       1.57847       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760684       56.6026       1.00000       30.3885  0.000000E+00      -2.67768  0.000000E+00       2.17048       7.46524  0.000000E+00      0.507204      0.808191       3.16398        1       Scatag_D
+      12       1670.31       4222.43  0.000000E+00  0.000000E+00       1455.92  0.000000E+00       2355.07       6620.06  0.000000E+00       7834.71       11.8201       18820.1 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      13  1.381581E+06  1.338594E+06       42987.5       9.65231    0.00860862      0.102701      0.210134      0.234131      0.199345      0.224481  4.504235E-04   -0.00101258    0.00814814      0.949843       Opttag_D
+      13      0.788402       1.57899       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760730       56.5896       1.00000       30.4086  0.000000E+00      -2.67786  0.000000E+00       2.16938       7.46387  0.000000E+00      0.508477      0.808191       3.16398        1       Scatag_D
+      13       1667.37       4222.44  0.000000E+00  0.000000E+00       1456.11  0.000000E+00       2355.63       6621.66  0.000000E+00       7835.00       11.7124       18817.6 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      14  1.381575E+06  1.338586E+06       42988.6       14.5894    0.00950195      0.119932      0.210130      0.234168      0.199340      0.224498  4.749727E-04   -0.00114066    0.00814266      0.949814       Opttag_D
+      14      0.788678       1.58013       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760797       56.5751       1.00000       30.4326  0.000000E+00      -2.67863  0.000000E+00       2.16823       7.46182  0.000000E+00      0.510405      0.808191       3.16398        1       Scatag_D
+      14       1665.12       4222.18  0.000000E+00  0.000000E+00       1456.35  0.000000E+00       2356.34       6625.49  0.000000E+00       7835.42       11.7006       18816.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      15  1.381562E+06  1.338585E+06       42976.7       8.58521    0.00959177      0.122102      0.210127      0.234171      0.199338      0.224497  4.799537E-04   -0.00111784    0.00814084      0.949700       Opttag_D
+      15      0.788713       1.58028       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760802       56.5748       1.00000       30.4353  0.000000E+00      -2.67884  0.000000E+00       2.16828       7.46189  0.000000E+00      0.510554      0.808191       3.16398        1       Scatag_D
+      15       1664.38       4221.17  0.000000E+00  0.000000E+00       1456.39  0.000000E+00       2356.10       6616.01  0.000000E+00       7835.39       11.7408       18815.6 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      16  1.381554E+06  1.338585E+06       42969.5       7.52277    0.00985274      0.127545      0.210127      0.234173      0.199338      0.224493  4.810210E-04   -0.00108783    0.00813862      0.949561       Opttag_D
+      16      0.788805       1.58073       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760820       56.5732       1.00000       30.4410  0.000000E+00      -2.67921  0.000000E+00       2.16816       7.46150  0.000000E+00      0.511060      0.808191       3.16398        1       Scatag_D
+      16       1663.47       4219.93  0.000000E+00  0.000000E+00       1456.45  0.000000E+00       2355.61       6612.32  0.000000E+00       7835.21       11.8175       18814.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      17  1.381546E+06  1.338584E+06       42962.1       7.99356     0.0103445      0.137774      0.210127      0.234178      0.199337      0.224487  4.820884E-04   -0.00105181    0.00813599      0.949429       Opttag_D
+      17      0.788987       1.58163       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760864       56.5681       1.00000       30.4535  0.000000E+00      -2.67981  0.000000E+00       2.16761       7.46057  0.000000E+00      0.512204      0.808191       3.16398        1       Scatag_D
+      17       1662.39       4218.76  0.000000E+00  0.000000E+00       1456.56  0.000000E+00       2354.90       6608.87  0.000000E+00       7835.02       11.9087       18813.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      18  1.381537E+06  1.338582E+06       42955.4       10.5632     0.0111746      0.156092      0.210131      0.234187      0.199332      0.224474  4.916945E-04 -9.637551E-04    0.00813178      0.949323       Opttag_D
+      18      0.789337       1.58332       1.00000  0.000000E+00       1.00000  0.000000E+00      0.760960       56.5563       1.00000       30.4804  0.000000E+00      -2.68066  0.000000E+00       2.16647       7.45841  0.000000E+00      0.514188      0.808191       3.16398        1       Scatag_D
+      18       1660.68       4217.82  0.000000E+00  0.000000E+00       1456.79  0.000000E+00       2353.60       6607.88  0.000000E+00       7834.54       11.9920       18812.1 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      19  1.381528E+06  1.338584E+06       42944.0       7.76374     0.0119372      0.172426      0.210137      0.234209      0.199329      0.224474  4.849347E-04 -9.385406E-04    0.00812911      0.949302       Opttag_D
+      19      0.789649       1.58497       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761047       56.5481       1.00000       30.5016  0.000000E+00      -2.68139  0.000000E+00       2.16518       7.45676  0.000000E+00      0.516211      0.808191       3.16398        1       Scatag_D
+      19       1659.58       4217.64  0.000000E+00  0.000000E+00       1456.98  0.000000E+00       2352.99       6598.71  0.000000E+00       7834.33       12.0397       18811.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      20  1.381522E+06  1.338582E+06       42940.2       6.66849     0.0120938      0.176851      0.210137      0.234220      0.199328      0.224481  4.920504E-04 -9.653561E-04    0.00812715      0.949271       Opttag_D
+      20      0.789741       1.58539       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761074       56.5443       1.00000       30.5096  0.000000E+00      -2.68141  0.000000E+00       2.16476       7.45616  0.000000E+00      0.516650      0.808191       3.16398        1       Scatag_D
+      20       1658.78       4217.36  0.000000E+00  0.000000E+00       1457.06  0.000000E+00       2352.88       6597.08  0.000000E+00       7833.99       12.0085       18811.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      21  1.381514E+06  1.338580E+06       42934.4       7.12343     0.0124215      0.186343      0.210138      0.234245      0.199323      0.224494  4.977429E-04 -9.865683E-04    0.00812496      0.949223       Opttag_D
+      21      0.789944       1.58642       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761129       56.5392       1.00000       30.5241  0.000000E+00      -2.68141  0.000000E+00       2.16375       7.45472  0.000000E+00      0.517664      0.808191       3.16398        1       Scatag_D
+      21       1657.89       4216.93  0.000000E+00  0.000000E+00       1457.28  0.000000E+00       2352.82       6594.45  0.000000E+00       7833.23       11.9467       18809.8 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      22  1.381510E+06  1.338575E+06       42935.1       8.64769     0.0129164      0.199155      0.210134      0.234272      0.199318      0.224512  5.158879E-04   -0.00100658    0.00812394      0.949170       Opttag_D
+      22      0.790216       1.58766       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761201       56.5279       1.00000       30.5486  0.000000E+00      -2.68141  0.000000E+00       2.16254       7.45288  0.000000E+00      0.518873      0.808191       3.16398        1       Scatag_D
+      22       1657.48       4216.46  0.000000E+00  0.000000E+00       1457.62  0.000000E+00       2352.68       6597.33  0.000000E+00       7832.48       11.9307       18809.1 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      23  1.381504E+06  1.338576E+06       42928.0       6.42279     0.0130500      0.202935      0.210135      0.234275      0.199316      0.224514  5.105512E-04 -9.881692E-04    0.00812345      0.949103       Opttag_D
+      23      0.790301       1.58817       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761220       56.5276       1.00000       30.5529  0.000000E+00      -2.68146  0.000000E+00       2.16207       7.45221  0.000000E+00      0.519392      0.808191       3.16398        1       Scatag_D
+      23       1657.27       4215.86  0.000000E+00  0.000000E+00       1457.75  0.000000E+00       2352.52       6591.74  0.000000E+00       7832.16       11.9411       18808.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      24  1.381499E+06  1.338578E+06       42921.0       6.02235     0.0133221      0.210082      0.210138      0.234276      0.199315      0.224513  5.055701E-04 -9.309362E-04    0.00812264      0.949006       Opttag_D
+      24      0.790468       1.58908       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761259       56.5244       1.00000       30.5642  0.000000E+00      -2.68149  0.000000E+00       2.16110       7.45092  0.000000E+00      0.520382      0.808191       3.16398        1       Scatag_D
+      24       1656.94       4215.00  0.000000E+00  0.000000E+00       1458.01  0.000000E+00       2352.05       6587.36  0.000000E+00       7831.60       11.9752       18808.1 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      25  1.381494E+06  1.338577E+06       42917.4       6.18998     0.0136135      0.217518      0.210139      0.234275      0.199312      0.224508  5.073491E-04 -8.697010E-04    0.00812194      0.948990       Opttag_D
+      25      0.790656       1.59004       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761308       56.5183       1.00000       30.5799  0.000000E+00      -2.68152  0.000000E+00       2.15999       7.44951  0.000000E+00      0.521530      0.808191       3.16398        1       Scatag_D
+      25       1656.66       4214.86  0.000000E+00  0.000000E+00       1458.28  0.000000E+00       2351.56       6585.46  0.000000E+00       7831.09       11.9940       18807.5 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      26  1.381491E+06  1.338577E+06       42913.9       8.79286     0.0142899      0.234050      0.210139      0.234272      0.199309      0.224493  5.080607E-04 -7.556353E-04    0.00812010      0.949127       Opttag_D
+      26      0.791105       1.59235       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761421       56.5062       1.00000       30.6168  0.000000E+00      -2.68166  0.000000E+00       2.15760       7.44612  0.000000E+00      0.524060      0.808191       3.16398        1       Scatag_D
+      26       1655.91       4216.08  0.000000E+00  0.000000E+00       1458.97  0.000000E+00       2350.72       6583.53  0.000000E+00       7829.95       12.0168       18806.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      27  1.381485E+06  1.338574E+06       42911.3       5.76876     0.0143755      0.236150      0.210139      0.234269      0.199307      0.224488  5.180226E-04 -7.228163E-04    0.00811909      0.949162       Opttag_D
+      27      0.791183       1.59266       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761444       56.5014       1.00000       30.6262  0.000000E+00      -2.68156  0.000000E+00       2.15696       7.44555  0.000000E+00      0.524598      0.808191       3.16398        1       Scatag_D
+      27       1655.50       4216.39  0.000000E+00  0.000000E+00       1459.06  0.000000E+00       2350.68       6581.56  0.000000E+00       7829.67       12.0061       18806.4 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      28  1.381483E+06  1.338572E+06       42910.4       5.32712     0.0143790      0.236372      0.210140      0.234267      0.199306      0.224484  5.244268E-04 -7.240170E-04    0.00811781      0.949202       Opttag_D
+      28      0.791217       1.59278       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761453       56.4995       1.00000       30.6305  0.000000E+00      -2.68166  0.000000E+00       2.15681       7.44523  0.000000E+00      0.524851      0.808191       3.16398        1       Scatag_D
+      28       1654.98       4216.74  0.000000E+00  0.000000E+00       1459.08  0.000000E+00       2350.75       6581.40  0.000000E+00       7829.40       11.9892       18806.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      29  1.381478E+06  1.338570E+06       42908.9       5.56314     0.0145414      0.240219      0.210138      0.234266      0.199302      0.224477  5.333214E-04 -7.112097E-04    0.00811618      0.949312       Opttag_D
+      29      0.791386       1.59357       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761494       56.4944       1.00000       30.6462  0.000000E+00      -2.68186  0.000000E+00       2.15597       7.44388  0.000000E+00      0.525892      0.808191       3.16398        1       Scatag_D
+      29       1654.31       4217.72  0.000000E+00  0.000000E+00       1459.27  0.000000E+00       2350.88       6580.49  0.000000E+00       7828.57       11.9686       18805.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      30  1.381476E+06  1.338570E+06       42906.0       8.51421     0.0149631      0.249150      0.210142      0.234264      0.199303      0.224464  5.329656E-04 -6.527760E-04    0.00811471      0.949450       Opttag_D
+      30      0.791760       1.59544       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761589       56.4796       1.00000       30.6809  0.000000E+00      -2.68246  0.000000E+00       2.15408       7.44051  0.000000E+00      0.528377      0.808191       3.16398        1       Scatag_D
+      30       1653.71       4218.95  0.000000E+00  0.000000E+00       1459.68  0.000000E+00       2350.97       6578.15  0.000000E+00       7826.80       11.9757       18805.8 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      31  1.381471E+06  1.338569E+06       42901.6       5.30864     0.0151177      0.252189      0.210142      0.234267      0.199299      0.224467  5.343888E-04 -6.635822E-04    0.00811421      0.949438       Opttag_D
+      31      0.791883       1.59606       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761616       56.4766       1.00000       30.6914  0.000000E+00      -2.68251  0.000000E+00       2.15348       7.43972  0.000000E+00      0.529036      0.808191       3.16398        1       Scatag_D
+      31       1653.51       4218.84  0.000000E+00  0.000000E+00       1459.81  0.000000E+00       2350.96       6574.17  0.000000E+00       7826.36       11.9841       18806.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      32  1.381468E+06  1.338570E+06       42898.5       4.77233     0.0153014      0.255610      0.210141      0.234270      0.199298      0.224468  5.329656E-04 -6.587795E-04    0.00811357      0.949403       Opttag_D
+      32      0.792028       1.59679       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761651       56.4706       1.00000       30.7051  0.000000E+00      -2.68258  0.000000E+00       2.15271       7.43862  0.000000E+00      0.529864      0.808191       3.16398        1       Scatag_D
+      32       1653.25       4218.53  0.000000E+00  0.000000E+00       1459.95  0.000000E+00       2350.75       6572.03  0.000000E+00       7825.85       12.0053       18806.1 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      33  1.381465E+06  1.338570E+06       42894.9       5.05689     0.0155860      0.260521      0.210144      0.234273      0.199298      0.224468  5.308309E-04 -6.471728E-04    0.00811248      0.949382       Opttag_D
+      33      0.792260       1.59793       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761710       56.4587       1.00000       30.7288  0.000000E+00      -2.68271  0.000000E+00       2.15143       7.43675  0.000000E+00      0.531280      0.808191       3.16398        1       Scatag_D
+      33       1652.80       4218.34  0.000000E+00  0.000000E+00       1460.16  0.000000E+00       2350.43       6569.59  0.000000E+00       7825.19       12.0365       18806.3 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      34  1.381461E+06  1.338572E+06       42889.3       6.36668     0.0160749      0.267709      0.210149      0.234281      0.199297      0.224470  5.254941E-04 -6.463723E-04    0.00810869      0.949390       Opttag_D
+      34      0.792671       1.59991       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761818       56.4338       1.00000       30.7749  0.000000E+00      -2.68292  0.000000E+00       2.14920       7.43346  0.000000E+00      0.533721      0.808191       3.16398        1       Scatag_D
+      34       1651.26       4218.41  0.000000E+00  0.000000E+00       1460.51  0.000000E+00       2349.83       6565.78  0.000000E+00       7824.68       12.0783       18806.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      35  1.381457E+06  1.338574E+06       42883.0       5.54051     0.0166210      0.274753      0.210156      0.234288      0.199301      0.224470  5.169553E-04 -6.339652E-04    0.00810535      0.949379       Opttag_D
+      35      0.793106       1.60199       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761932       56.4060       1.00000       30.8242  0.000000E+00      -2.68338  0.000000E+00       2.14685       7.42986  0.000000E+00      0.536526      0.808191       3.16398        1       Scatag_D
+      35       1649.90       4218.32  0.000000E+00  0.000000E+00       1460.83  0.000000E+00       2349.39       6560.40  0.000000E+00       7824.41       12.1302       18807.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      36  1.381455E+06  1.338575E+06       42879.9       4.76083     0.0166553      0.274233      0.210158      0.234288      0.199301      0.224467  5.155322E-04 -6.327645E-04    0.00810362      0.949327       Opttag_D
+      36      0.793154       1.60219       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761945       56.4007       1.00000       30.8319  0.000000E+00      -2.68346  0.000000E+00       2.14663       7.42945  0.000000E+00      0.536832      0.808191       3.16398        1       Scatag_D
+      36       1649.20       4217.85  0.000000E+00  0.000000E+00       1460.82  0.000000E+00       2349.30       6558.44  0.000000E+00       7824.71       12.1251       18807.5 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      37  1.381451E+06  1.338575E+06       42876.2       5.01056     0.0167560      0.272875      0.210162      0.234286      0.199303      0.224461  5.155322E-04 -6.359663E-04    0.00810123      0.949204       Opttag_D
+      37      0.793281       1.60267       1.00000  0.000000E+00       1.00000  0.000000E+00      0.761979       56.3866       1.00000       30.8523  0.000000E+00      -2.68382  0.000000E+00       2.14615       7.42840  0.000000E+00      0.537672      0.808191       3.16398        1       Scatag_D
+      37       1648.22       4216.77  0.000000E+00  0.000000E+00       1460.79  0.000000E+00       2349.25       6556.35  0.000000E+00       7825.32       12.1136       18807.4 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      38  1.381448E+06  1.338577E+06       42871.5       5.83627     0.0170229      0.272993      0.210165      0.234284      0.199304      0.224454  5.084164E-04 -6.335650E-04    0.00809997      0.949064       Opttag_D
+      38      0.793521       1.60375       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762036       56.3681       1.00000       30.8839  0.000000E+00      -2.68433  0.000000E+00       2.14523       7.42657  0.000000E+00      0.539096      0.808191       3.16398        1       Scatag_D
+      38       1647.71       4215.52  0.000000E+00  0.000000E+00       1460.83  0.000000E+00       2349.29       6552.55  0.000000E+00       7825.45       12.1149       18808.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      39  1.381445E+06  1.338577E+06       42868.1       4.85511     0.0172363      0.272802      0.210169      0.234280      0.199307      0.224447  5.080607E-04 -6.311635E-04    0.00810023      0.948916       Opttag_D
+      39      0.793707       1.60454       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762082       56.3519       1.00000       30.9102  0.000000E+00      -2.68479  0.000000E+00       2.14448       7.42505  0.000000E+00      0.540306      0.808191       3.16398        1       Scatag_D
+      39       1647.81       4214.21  0.000000E+00  0.000000E+00       1460.85  0.000000E+00       2349.45       6549.88  0.000000E+00       7825.14       12.1187       18808.6 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      40  1.381441E+06  1.338576E+06       42864.8       4.71429     0.0175623      0.272318      0.210174      0.234276      0.199311      0.224438  5.098396E-04 -6.243596E-04    0.00810148      0.948724       Opttag_D
+      40      0.793980       1.60568       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762148       56.3278       1.00000       30.9497  0.000000E+00      -2.68537  0.000000E+00       2.14334       7.42272  0.000000E+00      0.542030      0.808191       3.16398        1       Scatag_D
+      40       1648.32       4212.50  0.000000E+00  0.000000E+00       1460.87  0.000000E+00       2349.80       6547.57  0.000000E+00       7824.05       12.1391       18809.5 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      41  1.381438E+06  1.338578E+06       42860.7       5.61517     0.0179345      0.271204      0.210182      0.234272      0.199316      0.224428  5.055701E-04 -6.211578E-04    0.00810227      0.948645       Opttag_D
+      41      0.794278       1.60698       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762217       56.3027       1.00000       30.9926  0.000000E+00      -2.68584  0.000000E+00       2.14187       7.42018  0.000000E+00      0.543964      0.808191       3.16398        1       Scatag_D
+      41       1648.64       4211.80  0.000000E+00  0.000000E+00       1460.92  0.000000E+00       2350.26       6543.50  0.000000E+00       7822.70       12.1690       18810.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      42  1.381435E+06  1.338577E+06       42858.0       4.63468     0.0181565      0.269908      0.210186      0.234269      0.199319      0.224421  5.066375E-04 -6.215580E-04    0.00810176      0.948662       Opttag_D
+      42      0.794456       1.60772       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762257       56.2867       1.00000       31.0200  0.000000E+00      -2.68609  0.000000E+00       2.14109       7.41853  0.000000E+00      0.545004      0.808191       3.16398        1       Scatag_D
+      42       1648.44       4211.95  0.000000E+00  0.000000E+00       1460.95  0.000000E+00       2350.57       6540.70  0.000000E+00       7821.84       12.1942       18811.3 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      43  1.381432E+06  1.338576E+06       42856.2       4.41170     0.0183440      0.280095      0.210190      0.234265      0.199323      0.224416  5.105512E-04 -6.275615E-04    0.00809996      0.948770       Opttag_D
+      43      0.794606       1.60830       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762290       56.2714       1.00000       31.0458  0.000000E+00      -2.68628  0.000000E+00       2.14036       7.41699  0.000000E+00      0.545916      0.808191       3.16398        1       Scatag_D
+      43       1647.71       4212.91  0.000000E+00  0.000000E+00       1460.98  0.000000E+00       2350.82       6538.64  0.000000E+00       7821.23       12.2172       18811.7 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      44  1.381430E+06  1.338578E+06       42852.1       4.83566     0.0185865      0.295624      0.210197      0.234259      0.199328      0.224407  5.055701E-04 -6.219582E-04    0.00809833      0.948907       Opttag_D
+      44      0.794785       1.60906       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762326       56.2549       1.00000       31.0746  0.000000E+00      -2.68662  0.000000E+00       2.13963       7.41520  0.000000E+00      0.546993      0.808191       3.16398        1       Scatag_D
+      44       1647.04       4214.13  0.000000E+00  0.000000E+00       1461.05  0.000000E+00       2351.04       6533.40  0.000000E+00       7821.03       12.2165       18812.2 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      45  1.381427E+06  1.338576E+06       42851.1       4.58685     0.0188637      0.313372      0.210202      0.234250      0.199333      0.224396  5.112627E-04 -6.147541E-04    0.00809782      0.949020       Opttag_D
+      45      0.794974       1.60976       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762365       56.2341       1.00000       31.1087  0.000000E+00      -2.68699  0.000000E+00       2.13867       7.41317  0.000000E+00      0.548317      0.808191       3.16398        1       Scatag_D
+      45       1646.83       4215.13  0.000000E+00  0.000000E+00       1461.14  0.000000E+00       2351.22       6530.51  0.000000E+00       7821.30       12.1992       18812.8 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      46  1.381425E+06  1.338576E+06       42848.6       4.27043     0.0190641      0.326823      0.210207      0.234240      0.199338      0.224384  5.112627E-04 -5.883389E-04    0.00809863      0.949011       Opttag_D
+      46      0.795102       1.61024       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762395       56.2193       1.00000       31.1311  0.000000E+00      -2.68736  0.000000E+00       2.13819       7.41185  0.000000E+00      0.549168      0.808191       3.16398        1       Scatag_D
+      46       1647.16       4215.05  0.000000E+00  0.000000E+00       1461.21  0.000000E+00       2351.18       6526.95  0.000000E+00       7821.93       12.1569       18813.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      47  1.381422E+06  1.338576E+06       42846.3       4.27371     0.0193224      0.344185      0.210211      0.234226      0.199340      0.224368  5.123301E-04 -5.543193E-04    0.00810058      0.948949       Opttag_D
+      47      0.795258       1.61084       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762429       56.2024       1.00000       31.1576  0.000000E+00      -2.68782  0.000000E+00       2.13762       7.41029  0.000000E+00      0.550206      0.808191       3.16398        1       Scatag_D
+      47       1647.95       4214.50  0.000000E+00  0.000000E+00       1461.32  0.000000E+00       2350.99       6523.47  0.000000E+00       7822.90       12.0992       18813.1 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      48  1.381420E+06  1.338575E+06       42845.0       4.80328     0.0196467      0.365993      0.210216      0.234206      0.199343      0.224347  5.155322E-04 -4.994877E-04    0.00810245      0.948879       Opttag_D
+      48      0.795449       1.61155       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762475       56.1806       1.00000       31.1901  0.000000E+00      -2.68819  0.000000E+00       2.13684       7.40856  0.000000E+00      0.551352      0.808191       3.16398        1       Scatag_D
+      48       1648.72       4213.88  0.000000E+00  0.000000E+00       1461.45  0.000000E+00       2350.87       6520.56  0.000000E+00       7823.99       12.0573       18813.4 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      49  1.381417E+06  1.338574E+06       42843.2       4.14410     0.0198816      0.382366      0.210216      0.234194      0.199346      0.224334  5.183784E-04 -4.730725E-04    0.00810305      0.948840       Opttag_D
+      49      0.795583       1.61205       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762508       56.1659       1.00000       31.2123  0.000000E+00      -2.68855  0.000000E+00       2.13657       7.40743  0.000000E+00      0.551973      0.808191       3.16398        1       Scatag_D
+      49       1648.96       4213.53  0.000000E+00  0.000000E+00       1461.56  0.000000E+00       2350.70       6517.88  0.000000E+00       7824.87       12.0489       18813.6 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      50  1.381414E+06  1.338574E+06       42840.5       4.08768     0.0201949      0.404300      0.210221      0.234181      0.199346      0.224318  5.187342E-04 -4.450564E-04    0.00810172      0.948889       Opttag_D
+      50      0.795755       1.61272       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762551       56.1478       1.00000       31.2399  0.000000E+00      -2.68902  0.000000E+00       2.13632       7.40611  0.000000E+00      0.552700      0.808191       3.16398        1       Scatag_D
+      50       1648.42       4213.97  0.000000E+00  0.000000E+00       1461.74  0.000000E+00       2350.61       6514.15  0.000000E+00       7825.76       12.0728       18813.8 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      51  1.381412E+06  1.338575E+06       42837.6       4.84861     0.0206416      0.434712      0.210224      0.234166      0.199348      0.224298  5.162437E-04 -4.118372E-04    0.00810041      0.948979       Opttag_D
+      51      0.795976       1.61361       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762606       56.1249       1.00000       31.2758  0.000000E+00      -2.68954  0.000000E+00       2.13608       7.40440  0.000000E+00      0.553462      0.808191       3.16398        1       Scatag_D
+      51       1647.89       4214.76  0.000000E+00  0.000000E+00       1462.01  0.000000E+00       2350.68       6509.10  0.000000E+00       7827.04       12.1052       18814.0 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+      52  1.381410E+06  1.338575E+06       42834.8       3.98317     0.0208763      0.450828      0.210227      0.234154      0.199350      0.224285  5.137532E-04 -3.858222E-04    0.00809909      0.949052       Opttag_D
+      52      0.796080       1.61403       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762635       56.1129       1.00000       31.2930  0.000000E+00      -2.69003  0.000000E+00       2.13609       7.40354  0.000000E+00      0.553938      0.808191       3.16398        1       Scatag_D
+      52       1647.35       4215.41  0.000000E+00  0.000000E+00       1462.16  0.000000E+00       2350.79       6505.56  0.000000E+00       7827.51       12.1150       18813.9 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+
+   <A HREF="shell.01/MLoutputs/ml_norm.0058.html">MaxLik Scaling Cycle 0058</A>
+
+   <A HREF="shell.01/Fplots/wilson_0003.mtv">Wilson plot</A>
+
+   <B>Statistics in resolution bins after refinement cycle 0003</B>
+   </PRE>
+   <TABLE><TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD>
+      <ul>
+        <li>&nbsp;<A HREF="shell.01/CCplots/R_Rfree.0003.mtv">Rxpct factors plot</A>
+        <li>&nbsp;<A HREF="shell.01/R_Rfree.html#Cycle0003">Rxpct factors table</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/LLG.0003.mtv">&lt;Log-Lik Gain&gt;</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/Ln_sigmaa.0003.mtv">Ln Sigma A</A>
+        <li>&nbsp;<A HREF="shell.01/CCplots/cos_ccoef.0003.mtv">Correlation Coefficients</A>
+      </ul>
+      </TD>
+   </TR></TABLE>
+   <PRE>
+   Iters     Tot_Funct    Xray_Funct    Geom_Funct          Grms     rmsD2init     maxD2init             R         Rfree         Rxpct     Rxpctfree           LLG       LLGfree     rms(bond)    rms(angle)
+   Iters             K   B_IMPF_FRAG        K_MISS   B_TEMP_MISS   K_IMPF_MISS   B_IMPF_MISS        K_SOLV   B_TEMP_SOLV   K_IMPF_SOLV   B_IMPF_SOLV        B_TEMP     B_TEMP_11     B_TEMP_12     B_TEMP_22     B_TEMP_13     B_TEMP_23     B_TEMP_33      K_WILSON      B_WILSON      FGCYCLES
+   Iters          BOND         ANGLE      IMPROPER       TORSION    SINTORSION      TRIGONAL        PLANAR  BCORRELATION       CONTACT     IDEALDIST        CHIRAL    SIMILARITY       OCCSSUM  UTILDISTANCE     UTILANGLE   UTILTORSION        RHOFIT        ADP-01        ADP-02        ADP-03        ADP-04        ADP-05        ADP-06        ADP-07        ADP-08        ADP-09        ADP-10      RHOFITPC            QM
+      53  1.381408E+06  1.338575E+06       42832.7       3.78137     0.0211099      0.467181      0.210230      0.234143      0.199352      0.224272  5.130416E-04 -3.642098E-04    0.00809841      0.949112       Opttag_D
+      53      0.796171       1.61438       1.00000  0.000000E+00       1.00000  0.000000E+00      0.762660       56.1027       1.00000       31.3082  0.000000E+00      -2.69053  0.000000E+00       2.13617       7.40268  0.000000E+00      0.554365      0.808191       3.16398        1       Scatag_D
+      53       1647.07       4215.95  0.000000E+00  0.000000E+00       1462.32  0.000000E+00       2351.03       6502.96  0.000000E+00       7827.75       12.1104       18813.5 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10 -1.000000E+10  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00       Funtag_D
+   <A HREF="shell.01/screen_000053.txt">Geometry Restraint Deviations SCREEN Information</A>
+
+ 
+
+ The refinement has converged on gradient RMS limit (-glim).
+
+ No -bcorrel_zeroocchydrogens_factor flag found - keeping default: will set B for OCC=0 hydrogens to    1.000 times heavy-atom B
+
+
+ TLS information. Total number of groups:     4
+
+
+ Group   Natoms    FixRB   FixTLS   Group Tag    Group Spec
+     1     1527      Y        Y     tlsA1    {A|389 - 595}
+     2      856      Y        Y     tlsA2    {A|596 - 702}
+     3     1518      Y        Y     tlsB1    {B|389 - 595}
+     4      887      Y        Y     tlsB2    {B|596 - 702}
+ 
+NOTE BUSTER_TLS_SET tlsA1 {A|389 - 595}
+NOTE BUSTER_TLS_T   tlsA1     -6.76301E-02 -1.97818E-01  1.15710E-01 -2.04817E-02 -1.49688E-01  3.90529E-02
+NOTE BUSTER_TLS_L   tlsA1      2.30434E+00  1.65840E+00  1.25686E+00 -1.01990E-01  6.07362E-01  3.31570E-01
+NOTE BUSTER_TLS_S   tlsA1      7.92435E-02 -2.96390E-01  1.52990E-02  1.60734E-01 -1.23618E-01  9.75445E-02 -1.00710E-01  8.06970E-02
+NOTE BUSTER_TLS_O   tlsA1     -3.72649E+00  2.79826E+01  7.47941E+01
+NOTE BUSTER_TLS_FIX tlsA1 ALL
+ 
+NOTE BUSTER_TLS_SET tlsA2 {A|596 - 702}
+NOTE BUSTER_TLS_T   tlsA2     -2.28552E-01 -1.22258E-02  2.52841E-01  6.47599E-02 -7.24842E-02  1.44690E-01
+NOTE BUSTER_TLS_L   tlsA2      3.08367E+00  3.07281E+00  3.87353E+00 -7.12800E-01  1.87387E+00 -1.63058E-01
+NOTE BUSTER_TLS_S   tlsA2     -3.52992E-01  6.09022E-02  3.32845E-01  1.84459E-01 -8.36246E-01 -1.43421E-01  1.82842E-01  9.16353E-01
+NOTE BUSTER_TLS_O   tlsA2      2.38820E+01  1.59046E+01  7.05495E+01
+NOTE BUSTER_TLS_FIX tlsA2 ALL
+ 
+NOTE BUSTER_TLS_SET tlsB1 {B|389 - 595}
+NOTE BUSTER_TLS_T   tlsB1     -9.11816E-02 -1.32602E-01  1.44003E-01 -8.41788E-03  4.78170E-02  3.58809E-02
+NOTE BUSTER_TLS_L   tlsB1      3.38815E+00  1.04865E+00  1.21053E+00 -1.95429E-01  9.95891E-01 -9.21828E-02
+NOTE BUSTER_TLS_S   tlsB1     -3.17432E-02 -1.61726E-01  3.50702E-01  1.21610E-01 -2.85045E-01 -2.16057E-01 -7.29747E-04  1.57731E-01
+NOTE BUSTER_TLS_O   tlsB1     -8.37626E+00  6.09231E+00  4.35055E+01
+NOTE BUSTER_TLS_FIX tlsB1 ALL
+ 
+NOTE BUSTER_TLS_SET tlsB2 {B|596 - 702}
+NOTE BUSTER_TLS_T   tlsB2     -6.67362E-02 -1.09744E-01  1.09021E-01  2.23519E-03 -6.33374E-02  6.19242E-03
+NOTE BUSTER_TLS_L   tlsB2      1.10947E+00  1.78411E+00  8.38876E-01  3.34948E-01  5.79115E-01  6.31662E-01
+NOTE BUSTER_TLS_S   tlsB2     -7.93271E-02  5.62806E-02 -6.20356E-02 -6.99153E-03  2.25352E-01 -6.25858E-03 -3.16099E-02 -6.25147E-02
+NOTE BUSTER_TLS_O   tlsB2     -3.67094E+01  1.14452E+01  5.28750E+01
+NOTE BUSTER_TLS_FIX tlsB2 ALL
+
+ For final position, Geometry function summary
+     term                           number     weight       rms        GooF      function     fn/numb
+     ================================================================================================
+     BOND bond lengths (angs)       4921       2.000      0.0081       0.409      1647.07       0.335
+     ANGL bond angles (degs)        6633       2.000        0.95       0.564      4215.95       0.636
+     TORS split-harmonic tors       1105       0.000       14.27       0.914         0.00       0.000
+     SINTOR sinusoidal tors         1105       2.000       14.27                  1462.32       1.323
+     PLAN general plane (angs)       822       5.000      0.0151       0.756      2351.03       2.860
+     BCORrelations (angs^2)         4921      10.000       1.017       0.364      6502.96       1.321
+     CONT (bad contacts)               0       5.000                                 0.00
+     IDEAL(ideal-dist contact)      3783       4.000                              7827.75
+     CHIRAL (gelly semiharmon)       664       5.000                                12.11
+     SIM similarity restraint for NCS and/or TARGET                              18813.50
+     OCCSUM restraint on sum of occupanies                                           0.00       as none defined
+     DISTAN utility restraints interatomic distance                                  0.00       as none defined
+     UTILANGLE utility angle restraints                                              0.00       as none defined
+     UTILTOR utility restraints on torsion angles                                    0.00       as none defined
+     Peptide omega torsion angles                           3.09 degs - monitor only
+
+ Weighted rms      0.0081         0.949  (temporary rms bond and angle for BUSTER to pick up!)
+ Weighted intra-residual rms(bond) for StdProtein (excluding H)      0.0080
+ Weighted intra-residual rms(bond) for Buffer     (excluding H)      0.0036
+ Outputing geometry progress graph in plotmtv format to file:Geom_Res.mtv
+
+ ############### Running final geometry/screen analysis (screen_final.txt)
+
+ s/r gelly normal termination
+</pre>
+
+   <B>Statistics and scale factors <I>vs.</I> cycle number</B>
+  </PRE><TABLE><TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD>
+   <ul>
+          <li>&nbsp;<A HREF="shell.01/R_Rfree.mtv">Rxpct factors</A>
+          <li>&nbsp;<A HREF="shell.01/llg.mtv">&lt;Log-Lik Gain&gt;</A>
+          <li>&nbsp;<A HREF="shell.01/Geom_Res.mtv">GEOM Residuals</A>
+          <li>&nbsp;<A HREF="shell.01/Ln_sigmaa.mtv">Ln Sigma<SUB>A</SUB></A>
+   </ul>
+</TD><TD VALIGN=TOP>
+   <ul>
+          <li>&nbsp;<A HREF="shell.01/Scales.mtv">Scale Factors</A>
+          <li>&nbsp;<A HREF="shell.01/Bfactors.mtv">B Factors</A>
+          <li>&nbsp;<A HREF="shell.01/Bimpf.mtv">Imperfection Factors</A>
+   </ul>
+      </TD></TR></TABLE><PRE>
+
+ <B>Writing F_calc(model+solvent) to complete.mtz</B>
+
+   <A HREF="shell.01/screen_final.txt">Final Geometry Information</A>
+
+<HR NOSHADE>
+<H3>2.&nbsp;Final results</H3>
+
+   <B>Statistics and scale factors <I>vs.</I> cycle number</B>
+  </PRE><TABLE><TR>
+      <TD>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</TD><TD>
+   <ul>
+          <li>&nbsp;<A HREF="shell.01/R_Rfree.mtv">Rxpct factors</A>
+          <li>&nbsp;<A HREF="shell.01/llg.mtv">&lt;Log-Lik Gain&gt;</A>
+          <li>&nbsp;<A HREF="shell.01/Geom_Res.mtv">GEOM Residuals</A>
+          <li>&nbsp;<A HREF="shell.01/Ln_sigmaa.mtv">Ln Sigma<SUB>A</SUB></A>
+   </ul>
+</TD><TD VALIGN=TOP>
+   <ul>
+          <li>&nbsp;<A HREF="shell.01/Scales.mtv">Scale Factors</A>
+          <li>&nbsp;<A HREF="shell.01/Bfactors.mtv">B Factors</A>
+          <li>&nbsp;<A HREF="shell.01/Bimpf.mtv">Imperfection Factors</A>
+   </ul>
+      </TD></TR></TABLE><PRE>
+
+   <A HREF="shell.01/FOMs/cycle_0057.mtv">Average Figure of Merit</A>
+   <A HREF="shell.01/Fplots/avgf.0057.mtv">Structure Factor Amplitudes</A>
+
+
+ <B># normal termination</B>
+
+  Program stopped.
+</BODY>
+</HTML>
+ closesok message: time spent in tree =   556.53 (user)        7.57 (sys)
+</PRE></TABLE></UL></OL>
+<P><HR NOSHADE><P>
+<FONT COLOR="#FF0000"><CENTER><H1>Normal termination</H1></CENTER></FONT>
+<PRE>
+
+ Resources usage summary:
+     Time spent in client ...................   556.55 (user)        7.58 (system)
+     Time spent in scripts (    27 calls) ...     1.16 (user)        0.05 (system)
+     Time spent in server ...................     0.00 (user)        0.00 (system)
+
+     Max resident memory used (kb) .......... 239460
+     Number of page faults .................. 0 (major)    126348 (minor)
+     Number of context switches ............. 74388 (niced)    4630 (other)
+</PRE></BODY></HTML>

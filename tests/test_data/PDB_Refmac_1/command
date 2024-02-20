@@ -1,0 +1,1 @@
+pdb_extract -r REFMAC -iLOG Refmac.log -iPDB deposited_XRAY.pdb -o output.cif

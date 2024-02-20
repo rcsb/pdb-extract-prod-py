@@ -1,0 +1,76 @@
+2023-02-13 13:12:29,254 - PDB_EX - INFO - pdb_extract - runPdbExtract:550 - Current working directory: /autofs/pdb_extract_prod/users_data/EM_2023_2_13_13_11_1069
+2023-02-13 13:12:29,254 - PDB_EX - INFO - pdb_extract - runPdbExtract:552 - initiate pdb_extract processs
+2023-02-13 13:12:29,254 - PDB_EX - INFO - pdb_extract - runPdbExtract:555 - Parse input arguments starts
+2023-02-13 13:12:29,254 - PDB_EX - INFO - pdb_extract - runPdbExtract:556 - Author's arguments 
+2023-02-13 13:12:29,254 - PDB_EX - INFO - pdb_extract - runPdbExtract:557 - temp folder clean up set as True
+2023-02-13 13:12:29,255 - PDB_EX - DEBUG - pdb_extract - parseArgsInput:134 - d_manager after parsing input args: {'method': 'EM', 'folder': {}, 'model': {'format': 'CIF', 'filepath_author_in': 'pdb_extract_cgi_out.cif', 'filepath_author_out': '/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data/EM_2023_2_13_13_11_1069/pdb_extract_1122.cif'}, 'software': {}, 'template': {'filepath_author_in': 'entity_poly.cif'}, 'status': {'parseArgsInput_OK': True}, 'log': {}, 'phasing_method': ''}
+2023-02-13 13:12:29,255 - PDB_EX - INFO - pdb_extract - runPdbExtract:563 - Parse input arguments finishes
+2023-02-13 13:12:29,255 - PDB_EX - INFO - pdb_extract - runPdbExtract:567 - Create temp run folder starts
+2023-02-13 13:12:29,255 - PDB_EX - INFO - pdb_extract - runPdbExtract:572 - Create temp run folder finishes
+2023-02-13 13:12:29,255 - PDB_EX - INFO - pdb_extract - runPdbExtract:575 - Copy input files to temp folder starts
+2023-02-13 13:12:29,271 - PDB_EX - INFO - pdb_extract - runPdbExtract:580 - Copy input files to temp folder finishes
+2023-02-13 13:12:29,272 - PDB_EX - INFO - pdb_extract - runPdbExtract:583 - Process input model file starts
+2023-02-13 13:12:29,272 - PDB_EX - INFO - pdb_extract - processModel:246 - input file in CIF format, no conversion
+2023-02-13 13:12:29,272 - PDB_EX - DEBUG - pdb_extract - processModel:248 - cif input file: /tmp/pdb_extract_um5v8pp7/in.cif
+2023-02-13 13:12:29,691 - PDB_EX.extract.util.cifFileCheck - INFO - cifFileCheck - __init__:44 - Parse cif file /tmp/pdb_extract_um5v8pp7/in.cif OK
+2023-02-13 13:12:29,694 - PDB_EX - INFO - pdb_extract - runPdbExtract:588 - Process input model file finishes
+2023-02-13 13:12:29,694 - PDB_EX - INFO - pdb_extract - runPdbExtract:591 - Process software names and logs starts
+2023-02-13 13:12:29,694 - PDB_EX - WARNING - pdb_extract - parseSoftwareLog:271 - log parsing for method EM currently not supported
+2023-02-13 13:12:29,694 - PDB_EX - INFO - pdb_extract - runPdbExtract:598 - Process software names and logs finishes
+2023-02-13 13:12:29,694 - PDB_EX - INFO - pdb_extract - runPdbExtract:601 - Process author's template starts
+2023-02-13 13:12:29,695 - PDB_EX - DEBUG - pdb_extract - parseTemplate:366 - process author's template: /tmp/pdb_extract_um5v8pp7/template
+2023-02-13 13:12:29,695 - PDB_EX.extract.util.cifFileCheck - INFO - cifFileCheck - __init__:44 - Parse cif file /tmp/pdb_extract_um5v8pp7/template OK
+2023-02-13 13:12:29,695 - PDB_EX - DEBUG - pdb_extract - parseTemplate:378 - stored parsed template data self.d_template with keys:dict_keys(['entity_poly'])
+2023-02-13 13:12:29,695 - PDB_EX - INFO - pdb_extract - runPdbExtract:605 - Process author's template finishes
+2023-02-13 13:12:29,695 - PDB_EX - INFO - pdb_extract - runPdbExtract:608 - Merge log and template data into model file starts
+2023-02-13 13:12:29,695 - PDB_EX.extract.merge.mergeLogTemplateToModel - DEBUG - mergeLogTemplateToModel - readModel:47 - Merge starts by opening converted file at /tmp/pdb_extract_um5v8pp7/in.cif
+2023-02-13 13:12:30,109 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - readModel:52 - Read converted model file into merger
+2023-02-13 13:12:30,109 - PDB_EX - INFO - pdb_extract - mergeLogTemplate:411 - add software category from author command line
+2023-02-13 13:12:30,109 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeLog:170 - No log data parsed, no merge
+2023-02-13 13:12:30,109 - PDB_EX.extract.merge.mergeLogTemplateToModel - DEBUG - mergeLogTemplateToModel - addCat:79 - added cat entity_poly to model
+2023-02-13 13:12:30,109 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeTemplate:241 - added template data for entity_poly OK
+2023-02-13 13:12:30,109 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - mergeTemplate:249 - merged/added 1 categories from template to model
+2023-02-13 13:12:30,109 - PDB_EX - DEBUG - pdb_extract - mergeLogTemplate:444 - write merged file to: /tmp/pdb_extract_um5v8pp7/out.cif
+2023-02-13 13:12:31,801 - PDB_EX.extract.merge.mergeLogTemplateToModel - INFO - mergeLogTemplateToModel - write:329 - wrote merged model data to file /tmp/pdb_extract_um5v8pp7/out.cif
+2023-02-13 13:12:31,804 - PDB_EX - INFO - pdb_extract - runPdbExtract:614 - Merge log and template data into model file finishes
+2023-02-13 13:12:31,804 - PDB_EX - INFO - pdb_extract - runPdbExtract:617 - Run comprehensive mmCIF check against mmCIF dictionary starts
+2023-02-13 13:12:31,804 - PDB_EX.extract.util.cifDictCheck - INFO - cifDictCheck - __init__:45 - use dictionary file at /data/wwpdb/pdb_extract_service/pdb-extract-prod-py/data/dictionary/mmcif_pdbx_v5_next.dic
+2023-02-13 13:12:33,545 - PDB_EX.extract.util.cifDictCheck - INFO - cifDictCheck - readModelCif:72 - check /tmp/pdb_extract_um5v8pp7/out.cif against dictionary
+2023-02-13 13:12:34,038 - PDB_EX - DEBUG - pdb_extract - checkAgainstDict:472 - check output mmcif /tmp/pdb_extract_um5v8pp7/out.cif against dictionary /data/wwpdb/pdb_extract_service/pdb-extract-prod-py/data/dictionary/mmcif_pdbx_v5_next.dic
+2023-02-13 13:12:34,218 - PDB_EX.extract.util.cifDictCheck - INFO - cifDictCheck - reportError:242 - report error in /tmp/pdb_extract_um5v8pp7/dictionary_violation.log
+2023-02-13 13:12:34,252 - PDB_EX - INFO - pdb_extract - runPdbExtract:621 - Run comprehensive mmCIF check against mmCIF dictionary finishes
+2023-02-13 13:12:34,252 - PDB_EX - INFO - pdb_extract - runPdbExtract:624 - Copy result files from temp folder to user's folder starts
+2023-02-13 13:12:34,292 - PDB_EX - INFO - pdb_extract - runPdbExtract:629 - Copy result files from temp folder to user's folder finishes
+2023-02-13 13:12:34,292 - PDB_EX - WARNING - pdb_extract - runPdbExtract:632 - ######Review operational dictionary######
+method:	EM
+##########
+status:
+	parseArgsInput_OK:	True
+	createTempFolder_OK:	True
+	copyToTemp_OK:	True
+	processModel_OK:	True
+	parseTemplate_OK:	True
+	mergeLog_OK:	None
+	mergeTemplate_OK:	True
+	checkAgainstDict_OK:	True
+	copyResultFromTemp_OK:	True
+##########
+folder:
+	current:	/autofs/pdb_extract_prod/users_data/EM_2023_2_13_13_11_1069
+	temp:	/tmp/pdb_extract_um5v8pp7
+##########
+model:
+	format:	CIF
+	filepath_author_in:	pdb_extract_cgi_out.cif
+	filepath_author_out:	/data/wwpdb/pdb_extract_service/pdb-extract-server/http/docs/users_data/EM_2023_2_13_13_11_1069/pdb_extract_1122.cif
+	filepath_temp_in:	/tmp/pdb_extract_um5v8pp7/in.cif
+	filepath_temp_process:	/tmp/pdb_extract_um5v8pp7/in.cif
+	filepath_temp_out:	/tmp/pdb_extract_um5v8pp7/out.cif
+##########
+template:
+	filepath_author_in:	entity_poly.cif
+	filepath_temp_in:	/tmp/pdb_extract_um5v8pp7/template
+##########
+software:
+##########
+2023-02-13 13:12:34,294 - PDB_EX - INFO - pdb_extract - runPdbExtract:637 - Remove temp folder finishes

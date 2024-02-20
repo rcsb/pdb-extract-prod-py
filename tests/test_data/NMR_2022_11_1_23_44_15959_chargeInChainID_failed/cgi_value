@@ -1,0 +1,2 @@
+a= ? :b= ? :c= ? :alpha= ? :beta= ? :gamma= ? :space_group= ?
+ENTITY_ID=1 : ENTITY_TYPE=polypeptide(L) : ONE_LETTER_SEQUNCE=KK : CHAIN_ID=+A : TARGET_DB=? : SEQUNCE_DB=  : SEQUNCE_NAME=  ; ENTITY_ID=2 : ENTITY_TYPE=polypeptide(L) : ONE_LETTER_SEQUNCE=CISTGVNYYC : CHAIN_ID=A : TARGET_DB=? : SEQUNCE_DB=  : SEQUNCE_NAME= 
