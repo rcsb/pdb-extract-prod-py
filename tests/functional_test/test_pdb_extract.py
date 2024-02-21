@@ -30,7 +30,7 @@ class TestPdbExtract(unittest.TestCase):
         test_run_folder = os.path.join(self.test_data, "PDB_Template_Scalepack_1")
         os.chdir(test_run_folder)
         args = "-iPDB %s -r CNS -s Scalepack %s -iENT %s -o testout.cif" % \
-            ("deposited_XRAY.pdb", "scalepack.log", "template_new_XRAY.cif")
+            ("deposited_XRAY.pdb", "scalepack_log", "template_new_XRAY.cif")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
         self.assertTrue(os.path.isfile("dictionary_violation.log"))
