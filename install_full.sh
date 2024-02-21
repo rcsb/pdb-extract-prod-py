@@ -12,5 +12,5 @@ runUser=wwwdev
 scrDir=`dirname ${0}`
 scrAbsDir="`( cd \"${scrDir}\" && pwd )`"
 
-runuser -l ${runUser} -c ". ${scrAbsDir}/install.sh"
+runuser -l ${runUser} -c "cd ${scrAbsDir}; ./install.sh"
 
