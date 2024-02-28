@@ -1,7 +1,11 @@
-include LICENSE.txt
 include CHANGES.txt
+include LICENSE.txt
+include README.txt
 include REQUIREMENTS.txt
-recursive-include data *
+include install.sh
+include updateDictionary.sh
 recursive-include bin *
+recursive-include data *
+recursive-include extract *
 recursive-exclude packages
 recursive-exclude tests
