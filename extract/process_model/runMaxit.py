@@ -33,7 +33,7 @@ class Maxit:
 
         """
         TOP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        MAXIT_DIR = os.path.join(TOP_DIR, "packages", "maxit-v11.100-prod-src")
+        MAXIT_DIR = os.path.join(TOP_DIR, "packages", "maxit-v11.200-prod-src")
         os.environ["RCSBROOT"] = MAXIT_DIR
         self.maxit_command = os.path.join(MAXIT_DIR, "bin", "maxit")
 

@@ -104,6 +104,17 @@ class LogXscale(LogScaling):  # parent class in parent folder's __init__.py
             logger.warning("no data parsed from log file %s" % filepath)
             return False
 
+    def getLineIndex(self, l_pattern_to_search):
+        l_index = list(range(self.n_lines))
+        # l_index.reverse()
+        for i in l_index:
+            line = self.l_file[i]
+            for pattern in l_pattern_to_search:
+                if line.strip() == pattern:
+                    i_start = i+3
+                    return (pattern, i_start)
+        return (None, None)
+        
     def parseSummary(self):
         """
         Parse Summary section
@@ -113,60 +124,88 @@ class LogXscale(LogScaling):  # parent class in parent folder's __init__.py
         None.
 
         """
-        line_summary_start = "RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano"
-        i_start = 0
-        l_index = list(range(self.n_lines))
-        l_index.reverse()
-        for i in l_index:
-            line = self.l_file[i]
-            if line.strip() == line_summary_start:
-                i_start = i+3
-                break
+        l_summary_line_header = []
+        l_summary_line_header.append("RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano")
+        l_summary_line_header.append("RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  Rmrgd-F  S_norm/")
+
+        (header, i_start) = self.getLineIndex(l_summary_line_header)
         
-        if i_start:
-            ll_shell_matrix = []
-            l_all = []
-            l_resolution = []
-            for i in range(i_start, self.n_lines):
-                line = self.l_file[i]
-                if line.strip():
-                    l_line = line.strip().split()
-                    try: 
-                        l_resolution.append(str(float(l_line[0])))
-                        ll_shell_matrix.append(l_line)
-                    except ValueError:
-                        if l_line[0] == "total":
-                            l_all = l_line
-                        break
-                    
+        if not i_start:
+            logger.warning("cannot find suitable XSCAlE header for the summary table, skip parsing")
+            return False
+        
+        ll_shell_matrix = []
+        l_all = []
+        l_resolution = []
+        
+        for i in range(i_start, self.n_lines):
+            line = self.l_file[i]
+            if line.strip():
+                l_line = line.strip().split()
+                try: 
+                    l_resolution.append(str(float(l_line[0])))
+                    ll_shell_matrix.append(l_line)
+                except ValueError:
+                    if l_line[0] == "total":
+                        l_all = l_line
+                    break
+        
         if l_all:
-            try:
-                self.d_["reflns"]["_reflns.d_resolution_high"].append(l_resolution[-1])
-                self.d_["reflns"]["_reflns.d_resolution_low"].append('?')
-                self.d_["reflns"]["_reflns.pdbx_number_measured_all"].append(l_all[1].strip())
-                self.d_["reflns"]["_reflns.number_obs"].append(l_all[2].strip())
-                self.d_["reflns"]["_reflns.percent_possible_obs"].append(l_all[4].strip('%'))
-                self.d_["reflns"]["_reflns.pdbx_Rmerge_I_obs"].append(str(float(l_all[5].strip('%'))/100))
-                self.d_["reflns"]["_reflns.pdbx_netI_over_sigmaI"].append(l_all[8].strip())
-                self.d_["reflns"]["_reflns.pdbx_Rrim_I_all"].append(str(float(l_all[9].strip('%'))/100))
-                self.d_["reflns"]["_reflns.pdbx_CC_half"].append(str(float(l_all[10].strip('*'))/100))
-            except Exception as msg:
-                logger.warning(msg)
-            try:
-                l_resolution.insert(0, "?")  # add unknown low resolution limit
-                for i in range(len(ll_shell_matrix)):
-                    l_shell = ll_shell_matrix[i]
-                    self.d_["reflns_shell"]["_reflns_shell.d_res_high"].append(l_shell[0].strip())
-                    self.d_["reflns_shell"]["_reflns_shell.d_res_low"].append(l_resolution[i])
-                    self.d_["reflns_shell"]["_reflns_shell.number_measured_obs"].append(l_shell[1].strip())
-                    self.d_["reflns_shell"]["_reflns_shell.number_unique_obs"].append(l_shell[2].strip())
-                    self.d_["reflns_shell"]["_reflns_shell.percent_possible_obs"].append(l_shell[4].strip('%'))
-                    self.d_["reflns_shell"]["_reflns_shell.Rmerge_I_obs"].append(str(float(l_shell[5].strip('%'))/100))
-                    self.d_["reflns_shell"]["_reflns_shell.pdbx_netI_over_sigmaI_obs"].append(l_shell[8].strip())
-                    self.d_["reflns_shell"]["_reflns_shell.pdbx_Rrim_I_all"].append(str(float(l_shell[9].strip('%'))/100))
-                    self.d_["reflns_shell"]["_reflns_shell.pdbx_CC_half"].append(str(float(l_shell[10].strip('*'))/100))
-            except Exception as msg:
-                logger.warning(msg)
+            if header == "RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  CC(1/2)  Anomal  SigAno   Nano":
+                try:
+                    self.d_["reflns"]["_reflns.d_resolution_high"].append(l_resolution[-1])
+                    self.d_["reflns"]["_reflns.d_resolution_low"].append('?')
+                    self.d_["reflns"]["_reflns.pdbx_number_measured_all"].append(l_all[1].strip())
+                    self.d_["reflns"]["_reflns.number_obs"].append(l_all[2].strip())
+                    self.d_["reflns"]["_reflns.percent_possible_obs"].append(l_all[4].strip('%'))
+                    self.d_["reflns"]["_reflns.pdbx_Rmerge_I_obs"].append(str(round(float(l_all[5].strip('%'))/100,3)))
+                    self.d_["reflns"]["_reflns.pdbx_netI_over_sigmaI"].append(l_all[8].strip())
+                    self.d_["reflns"]["_reflns.pdbx_Rrim_I_all"].append(str(round(float(l_all[9].strip('%'))/100,3)))
+                    self.d_["reflns"]["_reflns.pdbx_CC_half"].append(str(round(float(l_all[10].strip('*'))/100,3)))
+                except Exception as msg:
+                    logger.warning(msg)
+                try:
+                    l_resolution.insert(0, "?")  # add unknown low resolution limit
+                    for i in range(len(ll_shell_matrix)):
+                        l_shell = ll_shell_matrix[i]
+                        self.d_["reflns_shell"]["_reflns_shell.d_res_high"].append(l_shell[0].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.d_res_low"].append(l_resolution[i])
+                        self.d_["reflns_shell"]["_reflns_shell.number_measured_obs"].append(l_shell[1].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.number_unique_obs"].append(l_shell[2].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.percent_possible_obs"].append(l_shell[4].strip('%'))
+                        self.d_["reflns_shell"]["_reflns_shell.Rmerge_I_obs"].append(str(round(float(l_shell[5].strip('%'))/100,3)))
+                        self.d_["reflns_shell"]["_reflns_shell.pdbx_netI_over_sigmaI_obs"].append(l_shell[8].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.pdbx_Rrim_I_all"].append(str(round(float(l_shell[9].strip('%'))/100,3)))
+                        self.d_["reflns_shell"]["_reflns_shell.pdbx_CC_half"].append(str(round(float(l_shell[10].strip('*'))/100,3)))
+                except Exception as msg:
+                    logger.warning(msg)
+            elif header == "RESOLUTION     NUMBER OF REFLECTIONS    COMPLETENESS R-FACTOR  R-FACTOR COMPARED I/SIGMA   R-meas  Rmrgd-F  S_norm/":
+                try:
+                    self.d_["reflns"]["_reflns.d_resolution_high"].append(l_resolution[-1])
+                    self.d_["reflns"]["_reflns.d_resolution_low"].append('?')
+                    self.d_["reflns"]["_reflns.pdbx_number_measured_all"].append(l_all[1].strip())
+                    self.d_["reflns"]["_reflns.number_obs"].append(l_all[2].strip())
+                    self.d_["reflns"]["_reflns.percent_possible_obs"].append(l_all[4].strip('%'))
+                    self.d_["reflns"]["_reflns.pdbx_Rmerge_I_obs"].append(str(round(float(l_all[5].strip('%'))/100,3)))
+                    self.d_["reflns"]["_reflns.pdbx_netI_over_sigmaI"].append(l_all[8].strip())
+                    self.d_["reflns"]["_reflns.pdbx_Rrim_I_all"].append(str(round(float(l_all[9].strip('%'))/100,3)))
+                except Exception as msg:
+                    logger.warning(msg)
+                try:
+                    l_resolution.insert(0, "?")  # add unknown low resolution limit
+                    for i in range(len(ll_shell_matrix)):
+                        l_shell = ll_shell_matrix[i]
+                        self.d_["reflns_shell"]["_reflns_shell.d_res_high"].append(l_shell[0].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.d_res_low"].append(l_resolution[i])
+                        self.d_["reflns_shell"]["_reflns_shell.number_measured_obs"].append(l_shell[1].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.number_unique_obs"].append(l_shell[2].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.percent_possible_obs"].append(l_shell[4].strip('%'))
+                        self.d_["reflns_shell"]["_reflns_shell.Rmerge_I_obs"].append(str(round(float(l_shell[5].strip('%'))/100,3)))
+                        self.d_["reflns_shell"]["_reflns_shell.pdbx_netI_over_sigmaI_obs"].append(l_shell[8].strip())
+                        self.d_["reflns_shell"]["_reflns_shell.pdbx_Rrim_I_all"].append(str(round(float(l_shell[9].strip('%'))/100,3)))
+                except Exception as msg:
+                    logger.warning(msg)
+        return True
 
     def verifyData(self):
         """

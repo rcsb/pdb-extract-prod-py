@@ -27,7 +27,7 @@ fi
 echo "[*] Change directory to Maxit installation folder"
 cd packages
 
-maxit_name="maxit-v11.100-prod-src"
+maxit_name="maxit-v11.200-prod-src"
 maxit_filename=${maxit_name}.tar.gz
 url_maxit=https://sw-tools.rcsb.org/apps/MAXIT/$maxit_filename
 echo "[*] Downloading Maxit suite from $(highlight_text $url_maxit)"
