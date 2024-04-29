@@ -21,6 +21,8 @@ data_template_Xray_GroupDep
 #      Comment line is either help text for users, or examples that are commented out.
 #      To put the example line into use, simply remove the "#" sign.
 #
+#      Do not make change to items with value "ToBeAssigned" that will be assigned during deposition.
+#
 #      FAQ of mmCIF file process can be found at 
 #      http://mmcif.wwpdb.org/docs/faqs/pdbx-mmcif-faq-general.html
 #      
@@ -28,18 +30,25 @@ data_template_Xray_GroupDep
 #
 ######################################################################
 #
+# 
+_audit_conform.dict_name       mmcif_pdbx.dic 
+_audit_conform.dict_version    5.287 
+_audit_conform.dict_location   http://mmcif.pdb.org/dictionaries/ascii/mmcif_pdbx.dic 
+# 
 #_pdbx_database_status category below records author's instruction on information release 
 #            
 _pdbx_database_status.entry_id                       ToBeAssigned
 _pdbx_database_status.dep_release_code_coordinates   "HOLD FOR PUBLICATION"
 _pdbx_database_status.dep_release_code_sequence      "HOLD FOR RELEASE"
 _pdbx_database_status.title_suppression              ?
+_pdbx_database_status.status_code                    PROC
 #
 ##### audit_group #####
 #
 #_pdbx_audit_support category below records information about grant support
-#      
-_pdbx_audit_support.funding_organization "National Institutes of Health/National Institute of General Medical Sciences"
+#
+_pdbx_audit_support.ordinal		1
+_pdbx_audit_support.funding_organization "National Institutes of Health/National Institute of General Medical Sciences (NIH/NIGMS)"
 _pdbx_audit_support.country              "United States"
 _pdbx_audit_support.grant_number         XX000000
 #
@@ -47,10 +56,10 @@ _pdbx_audit_support.grant_number         XX000000
 #Name must be provided as quoted text of lastname, comma, a space, and firstname initial with dot
 #            
 loop_
+_audit_author.pdbx_ordinal
 _audit_author.name
-"Lastname, F."   
-"Lastnameb, F."  
-"Lastnamec, F."  
+1 "Lastnamea, F."   
+2 "Lastnameb, F.M."  
 #
 #_pdbx_contact_author category below records list of authors who should receive communication regarding the deposition
 #Each entry must have at least one author with _pdbx_contact_author.role of "principal investigator/group leader"
@@ -73,14 +82,15 @@ _pdbx_contact_author.phone
 _pdbx_contact_author.role                
 _pdbx_contact_author.organization_type   
 _pdbx_contact_author.identifier_ORCID    
-1 Lastname  Firstname  M. "1 academy drive" ? City State 00000 "United States" xtal1@academy.edu 0000000000 "principal investigator/group leader" academic 0000-0000-0000-0000
+1 Lastnamea Firstname  ? "1 academy drive" ? City State 00000 "United States" xtal1@academy.edu 0000000000 "principal investigator/group leader" academic 0000-0000-0000-0000
 2 Lastnameb Firstnameb M. "1 academy drive" ? City State 00000 "United States" xtal2@academy.edu 0000000000 investigator academic 0000-0000-0000-0000
 #
 #_pdbx_deposit_group category below records Group information only for GroupDep deposition
-#            
+#
+_pdbx_deposit_group.group_id            ToBeAssigned
 _pdbx_deposit_group.group_title         "the group title you wish to show"
 _pdbx_deposit_group.group_description   "further description of the group"
-_pdbx_deposit_group.group_type          "ground state or changed state"       
+_pdbx_deposit_group.group_type          undefined
 #      
 ##### citation_group #####
 #
@@ -101,9 +111,8 @@ _citation.pdbx_database_id_DOI      ?
 loop_
 _citation_author.citation_id 
 _citation_author.name 
-primary "Last, F."     
-primary "Lastb, F."    
-primary "Lastc, F." 
+primary "Lastnamea, F."     
+primary "Lastnameb, F.M."    
 #
 ###### struct_group #####     
 #
@@ -128,6 +137,7 @@ _pdbx_struct_assembly_depositor_info.oligomeric_count    1
 #
 #_pdbx_struct_assembly_gen_depositor category below records operations to generate biological assembly
 #
+_pdbx_struct_assembly_gen_depositor_info.id                  1           
 _pdbx_struct_assembly_gen_depositor_info.assembly_id         1
 _pdbx_struct_assembly_gen_depositor_info.chain_id_list       A
 _pdbx_struct_assembly_gen_depositor_info.all_chains          Y
@@ -163,6 +173,7 @@ _pdbx_entity_instance_feature.feature_type  "SUBJECT OF INVESTIGATION"
 #
 #_exptl catetory below records experimental method and crystal number
 #
+_exptl.entry_id                   ToBeAssigned
 _exptl.method                     "X-RAY DIFFRACTION"
 _exptl.crystals_number            1 
 #
