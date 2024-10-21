@@ -15,6 +15,9 @@ import warnings
 import subprocess
 import argparse
 
+TOP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, TOP_DIR)
+
 from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
 from extract.util.exceptions import *
@@ -38,7 +41,6 @@ logger = logging.getLogger("PDB_EX")
 logger.setLevel(logging.DEBUG)
 logger.addHandler(f_handler)
 logger.addHandler(c_handler)
-
 
 # def generateErrorLog(error, filename_error_log="pdb_extract_cgi_error_log"):
 #     file = open(filename_error_log, 'w')
@@ -84,6 +86,8 @@ def create_parser():
                              help="input filename, if in PDB format")
     group_input.add_argument('-iCIF', dest="cif_input", metavar='mmCIF-input',
                              help="input filename, if in mmCIF format")
+    parser.add_argument('-o', dest='cif_output', 
+                        help="optional output filename, mmCIF format")
     return parser
 
 
@@ -94,7 +98,13 @@ def parseArgs(args):
     elif args.cif_input:
         file_format = "CIF"
         filename_author_in = args.cif_input
-    return (file_format, filename_author_in)
+        
+    if args.cif_output:
+        filepath_out = args.cif_output
+    else:
+        filepath_out = "pdb_extract_cgi_out.cif"
+        
+    return (file_format, filename_author_in, filepath_out)
 
 
 def processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
@@ -254,12 +264,12 @@ def generateSummaryForCGI(filename_processed, filename_cgi_value="cgi_value"):
 def main():
     parser = create_parser()
     args = parser.parse_args()
-    (file_format, filepath_in) = parseArgs(args)
+    (file_format, filepath_in, filepath_out) = parseArgs(args)
 
     logger.info("Current working directory: %s" % os.path.abspath(os.getcwd()))
     logger.debug("Input file format: %s" % file_format)
     logger.debug("Input file path: %s" % filepath_in)
-    filepath_out = "pdb_extract_cgi_out.cif"
+    
     if file_format == "PDB":
         filepath_maxit_out = "maxit_out.cif"
         if processPdbModel(filepath_in, filepath_maxit_out, filepath_out):

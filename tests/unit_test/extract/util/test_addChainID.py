@@ -15,8 +15,8 @@ import unittest
 TOP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 sys.path.insert(0, TOP_DIR)
 
+from extract.util.addChainID import addChainID
 from extract.util.pdbFileCheck import Check
-
 
 class TestCheck(unittest.TestCase):
     def setUp(self):
