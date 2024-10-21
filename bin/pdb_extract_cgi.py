@@ -18,6 +18,12 @@ import argparse
 TOP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, TOP_DIR)
 
+import config
+maxit_version = config.ProductionConfig.MAXIT_VERSION
+maxit_name = f'maxit-{maxit_version}-prod-src'
+maxit_dir = os.path.join(TOP_DIR, "packages", maxit_name)
+os.environ["RCSBROOT"] = maxit_dir
+
 from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
 from extract.util.exceptions import *

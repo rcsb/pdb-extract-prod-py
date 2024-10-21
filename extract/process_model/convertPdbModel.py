@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # =============================================================================
 # Author:  Chenghua Shao
 # Date:    2021-12-07
@@ -98,19 +97,3 @@ class PdbModel():
                 return True
             else:
                 return False
-
-
-def main():
-    pdb_extract_folder = os.getenv("PDB_EXTRACT" )
-    run_folder = os.path.join(pdb_extract_folder, "tests/test_data/PDB4test")
-    filepath_in = os.path.join(run_folder, "in.pdb")
-    filepath_out = os.path.join(run_folder, "maxit_out.cif")
-    filepath_log = os.path.join(run_folder, "maxit.log")
-
-    model = PdbModel()
-    conversion_status = model.convert(filepath_in, filepath_out, filepath_log)
-    print(conversion_status)
-
-
-if __name__ == "__main__":
-    main()

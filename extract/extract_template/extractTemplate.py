@@ -1,16 +1,12 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
 Created on Mon Dec  6 11:51:18 2021
 
 @author: chenghua
 """
 import os
-#from extract.pdbx_v2.PdbxReader import PdbxReader
 from mmcif.io.IoAdapterCore import IoAdapterCore
 import extract.util.cifFileCheck as cifFileCheck
 
-## os.environ["PDB_EXTRACT"] = "/Users/chenghua/Projects/pdb_extract"
 
 class Template():
     def __init__(self):
@@ -111,15 +107,3 @@ class Template():
             return False
 
         return True
-
-
-def main():
-    filepath = "/Users/chenghua/Projects/pdb-extract-prod-py/tests/test_data/Templates/template_new_XRAY.cif"
-    template = Template()
-    template.parse(filepath)
-    print(template.d_template)
-    print(template.d_track)
-
-
-if __name__ == "__main__":
-    main()
