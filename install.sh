@@ -13,9 +13,13 @@ function download_file {
     fi
 }
 
-read maxit_version < "maxit_latest_version"
+url_maxit_latest_version_marker=https://sw-tools.rcsb.org/apps/MAXIT/maxit-latest-version.txt
+echo "[*] To get the lastest Maxit version marker from ${url_maxit_latest_version_marker}"
+curl $url_maxit_latest_version_marker -O
+
+read maxit_version < "maxit-latest-version.txt"
 echo "[*] Get Maxit latest version ${maxit_version}"
-maxit_name=maxit-${maxit_version}-prod-src
+maxit_name=maxit-v${maxit_version}-prod-src
 maxit_filename=${maxit_name}.tar.gz
 echo "[*] Get Maxit package name ${maxit_filename}"
 url_maxit=https://sw-tools.rcsb.org/apps/MAXIT/$maxit_filename
@@ -35,11 +39,11 @@ echo "[*] Start to download Maxit suite from ${url_maxit}"
 download_file $url_maxit
 echo "[*] Finish downloading ${maxit_filename}"
 echo "[*] Start to decompress ${maxit_filename}"
-#tar -zxvf $maxit_filename
+tar -zxvf $maxit_filename
 echo "[*] Finish decompressing ${maxit_filename}"
 echo "[*] Start to install Maxit"
-#cd $maxit_name
-#make binary
+cd $maxit_name
+make binary
 
 cd ../..
 echo "[*] Finish installating Maxit"

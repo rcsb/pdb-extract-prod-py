@@ -20,7 +20,7 @@ sys.path.insert(0, TOP_DIR)
 
 import config
 maxit_version = config.ProductionConfig.MAXIT_VERSION
-maxit_name = f'maxit-{maxit_version}-prod-src'
+maxit_name = f'maxit-v{maxit_version}-prod-src'
 maxit_dir = os.path.join(TOP_DIR, "packages", maxit_name)
 os.environ["RCSBROOT"] = maxit_dir
 
