@@ -46,4 +46,4 @@ cd $maxit_name
 make binary
 
 cd ../..
-echo "[*] Finish installating Maxit"
+echo "[*] Finish Maxit installation"
