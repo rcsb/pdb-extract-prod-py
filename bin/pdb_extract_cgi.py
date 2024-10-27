@@ -14,6 +14,7 @@ import sys
 import warnings
 import subprocess
 import argparse
+import json
 
 TOP_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, TOP_DIR)
@@ -112,21 +113,42 @@ def parseArgs(args):
         
     return (file_format, filename_author_in, filepath_out)
 
+def check_for_non_ascii(filepath):
+    """Checks if a file contains non-ASCII characters."""
+    # must use 'rb' to open file, or else foreigh char leads to UnicodeDecodeError
+    # exception without giving line number return
+    with open(filepath, 'rb') as file:
+        i = 0
+        for line in file:
+            logger.info(line)
+            i += 1
+            if not line.isascii():
+                return i
+    return 0
 
 def processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
     filepath_log = "maxit.log"
     logger.info("Check input PDB format")
+
+    non_ascii_line = check_for_non_ascii(filepath_in)
+    if non_ascii_line:
+        logger.error('Found non-ASCII char in input file line %s', non_ascii_line)
+        generateErrorLog('Error: Only ASCII characters are allowed in the input file. Please remove non-ASCII character starting from line %s.' % non_ascii_line)
+        return False
+
     try:
         pdb_checker = pdbFileCheck.Check(filepath_in)
     except UnicodeDecodeError:
-        logger.error("PDB input file is not Unicode file, likely in wrong format or with special character. STOP!!!")
-        generateErrorLog("Error: PDB input file is not Unicode file, likely in wrong format or with special character.")
+        logger.error("PDB input file does not follow Unicode standard, likely in wrong format or with special character. STOP!!!")
+        generateErrorLog("Error: PDB input file does not follow Unicode standard, likely in wrong format or with special character.")
         return False
+
     if not pdb_checker.checkFormat():
         logger.error("Failed PDB format check")
         generateErrorLog("Error: uploaded file is not standard PDB format file. Please make sure the file complies with PDB format.")
         return False
     logger.info("Passed prelimnary PDB format check, chain ID not checked yet")
+
     if not pdb_checker.checkChainID():
         logger.warning("Missing Chain ID. Try adding chain ID")
         filepath_checked = filepath_in + "_add_chainID"
@@ -189,7 +211,7 @@ def processCifModel(filepath_in, filepath_out):
         generateErrorLog("Error: CIF input file is not Unicode file, likely in wrong format or with special character.")
         return False
 
-def generateSummaryForCGI(filename_processed, filename_cgi_value="cgi_value"):
+def generateSummaryForCGI(filename_processed, filename_summary="converted_summary.json"):
     try:
         # with open(filename_processed) as file:
         #     reader = PdbxReader(file)
@@ -216,55 +238,76 @@ def generateSummaryForCGI(filename_processed, filename_cgi_value="cgi_value"):
         generateErrorLog("Error: Failed to read converted mmCIF.")
 
     logger.info("Extract information from processed file %s" % filename_processed)
-    if "symmetry" in dc0.getObjNameList():
-        d_symmetry = convertCatObjToDict(dc0.getObj("symmetry"))
-    else:
-        d_symmetry = {}
-    if "cell" in dc0.getObjNameList():
-        d_cell = convertCatObjToDict(dc0.getObj("cell"))
-    else:
-        d_cell = {}
-    if "entity_poly" in dc0.getObjNameList():
-        d_entity_poly = convertCatObjToDict(dc0.getObj("entity_poly"))
-    else:
-        d_entity_poly = {}
 
-    logger.info("Write to cgi_value")
-    file = open(filename_cgi_value, 'w')
-    if d_symmetry and d_cell:
-        file.write('a=  %s :b=  %s :c= %s :alpha= %s :beta= %s :gamma= %s :space_group="%s"' %
-                   (d_cell["_cell.length_a"][0], d_cell["_cell.length_b"][0], d_cell["_cell.length_c"][0],
-                    d_cell["_cell.angle_alpha"][0], d_cell["_cell.angle_beta"][0], d_cell["_cell.angle_gamma"][0],
-                    d_symmetry["_symmetry.space_group_name_H-M"][0]))
-    else:
-        file.write('a= ? :b= ? :c= ? :alpha= ? :beta= ? :gamma= ? :space_group= ?')
-    file.write('\n')
+    d_summary = {}
     
-    if d_entity_poly:
-        l_entities = []
-        for i in range(len(list(d_entity_poly.values())[0])):
-            l_entity = []
-            l_entity.append("ENTITY_ID=%s" % d_entity_poly["_entity_poly.entity_id"][i])
-            l_entity.append("ENTITY_TYPE=%s" % d_entity_poly["_entity_poly.type"][i])
-            l_entity.append("ONE_LETTER_SEQUNCE=%s" % ''.join(d_entity_poly["_entity_poly.pdbx_seq_one_letter_code"][i].split()))
-            l_entity.append("CHAIN_ID=%s" % d_entity_poly["_entity_poly.pdbx_strand_id"][i])
-            l_entity.append("TARGET_DB=%s" % d_entity_poly["_entity_poly.pdbx_target_identifier"][i])
-            l_entity.append("SEQUNCE_DB= ")
-            l_entity.append("SEQUNCE_NAME= ")
-            l_entities.append(" : ".join(l_entity))
-        file.write(" ; ".join(l_entities))
+    if "atom_site" not in dc0.getObjNameList():
+        generateErrorLog("Error: converted mmCIF has no coordinates")
     else:
-        l_entity = []
-        l_entity.append("ENTITY_ID= ")
-        l_entity.append("ENTITY_TYPE= ")
-        l_entity.append("ONE_LETTER_SEQUNCE= ")
-        l_entity.append("CHAIN_ID= ")
-        l_entity.append("TARGET_DB= ")
-        l_entity.append("SEQUNCE_DB= ")
-        l_entity.append("SEQUNCE_NAME= ")
-        file.write(" : ".join(l_entity))
-    file.write('\n')
-    file.close()
+        d_summary['atom_count'] = dc0.getObj('atom_site').getRowCount()
+
+    for cat in ['symmetry', 'cell', 'entity', 'entity_poly']:
+        if cat in dc0.getObjNameList():
+            d_summary[cat] = convertCatObjToDict(dc0.getObj(cat))
+        else:
+            d_summary[key] = {}
+
+    with open(filename_summary, 'w') as file:
+        json.dump(d_summary, file, indent=2)
+
+    # if "symmetry" in dc0.getObjNameList():
+    #     d_symmetry = convertCatObjToDict(dc0.getObj("symmetry"))
+    # else:
+    #     d_symmetry = {}
+    # if "cell" in dc0.getObjNameList():
+    #     d_cell = convertCatObjToDict(dc0.getObj("cell"))
+    # else:
+    #     d_cell = {}
+    # if "entity_poly" in dc0.getObjNameList():
+    #     d_entity_poly = convertCatObjToDict(dc0.getObj("entity_poly"))
+    # else:
+    #     d_entity_poly = {}
+    # if "entity" in dc0.getObjNameList():
+    #     d_entity = convertCatObjToDict(dc0.getObj("entity"))
+    # else:
+    #     d_entity = {}
+
+    # logger.info("Write to cgi_value")
+    # file = open(filename_cgi_value, 'w')
+    # if d_symmetry and d_cell:
+    #     file.write('a=  %s :b=  %s :c= %s :alpha= %s :beta= %s :gamma= %s :space_group="%s"' %
+    #                (d_cell["_cell.length_a"][0], d_cell["_cell.length_b"][0], d_cell["_cell.length_c"][0],
+    #                 d_cell["_cell.angle_alpha"][0], d_cell["_cell.angle_beta"][0], d_cell["_cell.angle_gamma"][0],
+    #                 d_symmetry["_symmetry.space_group_name_H-M"][0]))
+    # else:
+    #     file.write('a= ? :b= ? :c= ? :alpha= ? :beta= ? :gamma= ? :space_group= ?')
+    # file.write('\n')
+    
+    # if d_entity_poly:
+    #     l_entities = []
+    #     for i in range(len(list(d_entity_poly.values())[0])):
+    #         l_entity = []
+    #         l_entity.append("ENTITY_ID=%s" % d_entity_poly["_entity_poly.entity_id"][i])
+    #         l_entity.append("ENTITY_TYPE=%s" % d_entity_poly["_entity_poly.type"][i])
+    #         l_entity.append("ONE_LETTER_SEQUNCE=%s" % ''.join(d_entity_poly["_entity_poly.pdbx_seq_one_letter_code"][i].split()))
+    #         l_entity.append("CHAIN_ID=%s" % d_entity_poly["_entity_poly.pdbx_strand_id"][i])
+    #         l_entity.append("TARGET_DB=%s" % d_entity_poly["_entity_poly.pdbx_target_identifier"][i])
+    #         l_entity.append("SEQUNCE_DB= ")
+    #         l_entity.append("SEQUNCE_NAME= ")
+    #         l_entities.append(" : ".join(l_entity))
+    #     file.write(" ; ".join(l_entities))
+    # else:
+    #     l_entity = []
+    #     l_entity.append("ENTITY_ID= ")
+    #     l_entity.append("ENTITY_TYPE= ")
+    #     l_entity.append("ONE_LETTER_SEQUNCE= ")
+    #     l_entity.append("CHAIN_ID= ")
+    #     l_entity.append("TARGET_DB= ")
+    #     l_entity.append("SEQUNCE_DB= ")
+    #     l_entity.append("SEQUNCE_NAME= ")
+    #     file.write(" : ".join(l_entity))
+    # file.write('\n')
+    # file.close()
 
 
 def main():
