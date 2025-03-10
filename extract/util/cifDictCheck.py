@@ -12,6 +12,7 @@ Skip the parent-child relationship check
 import sys
 import os
 import re
+import json
 from mmcif.io.IoAdapterCore import IoAdapterCore
 from mmcif.io.IoAdapterPy import IoAdapterPy
 #from extract.pdbx_v2.PdbxReader import PdbxReader
@@ -52,13 +53,14 @@ class Dict:
         io = IoAdapterPy()
         __containerList = io.readFile(inputFilePath=filepath_dict, enforceAscii=False)
         self.dApi=DictionaryApi(containerList=__containerList,consolidate=True,verbose=__verbose,log=__lfh)
-        self.catIndex = self.dApi.getCategoryIndex()
+        self.catIndex = self.dApi.getCategoryIndex()  # dict {<cat name>: <list of attr>}
         self.l_dc = []
         self.l_cat_not_in_dict = []
         self.l_item_not_in_dict = []
         self.d_value_failRE = {}
         self.d_value_failEnum = {}
         self.d_value_failBoundary = {}
+        self.l_mandatory_item_missing_value = []
         self.l_item_with_duplicate_value = []
 
     def readModelCif(self, filepath):
@@ -82,13 +84,44 @@ class Dict:
         #     reader = PdbxReader(file)
         #     reader.read(self.l_dc)    
     
+    def getMandatoryAttrByCat(self, cat, check_for="DepUI"):
+        """get the list of mandatory attributes for a category
+        mmcif.api.DictionaryApi.getMandatoryCode() to check the mandatory setting for Archive
+            def getMandatoryCode(self, category, attribute):
+                return self.__get("ITEM_MANDATORY_CODE", category, attribute)
+        mmcif.api.DictionaryApi.getMandatoryCodePdbx() to check the mandatory setting for Deposition
+           def getMandatoryCodePdbx(self, category, attribute):
+                return self.__get("ITEM_MANDATORY_CODE_PDBX", category, attribute)
+        DepUI uses ITEM_MANDATORY_CODE_PDBX if present - and falls back on ITEM_MANDATORY_CODE if not,
+        i.e. DepUI use mmcif.api.DictionaryApi.getMandatoryCodeAlt()
+
+        Args:
+            cat (str): category name
+
+        Returns:
+            list: list of mandatory attributes for either archive or deposition
+        """        
+        l_attr = self.catIndex[cat]
+        l_mandatory = []
+        for attr in l_attr:
+            if check_for == "DepUI":
+                if self.dApi.getMandatoryCodeAlt(cat, attr) == "yes":
+                    l_mandatory.append(attr)
+            elif check_for == "Archive":
+                if self.dApi.getMandatoryCode(cat, attr) == "yes":
+                    l_mandatory.append(attr)
+            elif check_for == "Deposition":
+                if self.dApi.getMandatoryCodePdbx(cat, attr) == "yes":
+                    l_mandatory.append(attr)
+
+        l_mandatory.sort()
+        return l_mandatory
 
     def valueInBoundary(self, value, l_boundary):
         """
         Check whether a value is within a defined dictionary boundary
         The input value must be either number or string that with code
         of ("int","float","non_negative_int","positive_int") in dictionary
-
 
         Parameters
         ----------
@@ -179,7 +212,7 @@ class Dict:
         return d_enum_lower
             
     
-    def checkCat(self, cat_obj):
+    def checkCat(self, cat_obj, b_skip_atom_site=True):
         """
         Check category object against the dictionary
 
@@ -194,28 +227,45 @@ class Dict:
 
         """
         cat = cat_obj.getName()
+        l_item = cat_obj.getItemNameList()
+
+        if cat == "atom_site" and b_skip_atom_site:
+            return
+
+        l_mandatory_attr = self.getMandatoryAttrByCat(cat)
+        for mandatory_attr in l_mandatory_attr:
+            mandatory_item = ''.join(['_', cat, '.', mandatory_attr])
+            if mandatory_item not in l_item:
+                self.l_mandatory_item_missing_value.append(mandatory_item)
+
         if cat == "diffrn":
             l_diffrn_id = cat_obj.getAttributeValueList("id")
             if len(l_diffrn_id) != len(set(l_diffrn_id)):
                 self.l_item_with_duplicate_value.append("_diffrn.id")
-        d_cat = convertCatObjToDict(cat_obj)
-        for item in cat_obj.getItemNameList():
-            attr = item.split('.')[1]            
-            if attr in self.catIndex[cat]:
-                code = self.dApi.getTypeCode(cat, attr)
-                pattern = self.dApi.getTypeRegex(cat, attr)
-                re_pattern = re.compile(r'%s' % pattern)
-                l_enum = self.dApi.getEnumListAlt(cat, attr)
-                if l_enum:
-                    d_enum_lower = self.getLowerCaseEnum(l_enum)
-                if code in ("int","float","non_negative_int","positive_int"):
-                    l_boundary = self.dApi.getBoundaryList(cat, attr)
-                else:
-                    l_boundary = []
-                l_values = d_cat[item]
-                for value in l_values:
-                    if value in ("?", "."):
-                        continue
+
+        d_cat = convertCatObjToDict(cat_obj)  # convert cat obj to dictionary for easy tracking
+
+        for item in l_item:
+            attr = item.split('.')[1]
+            if attr not in self.catIndex[cat]:
+                self.l_item_not_in_dict.append(item)
+                continue
+
+            code = self.dApi.getTypeCode(cat, attr)
+            pattern = self.dApi.getTypeRegex(cat, attr)
+            re_pattern = re.compile(r'%s' % pattern)
+            l_enum = self.dApi.getEnumListAlt(cat, attr)
+            if l_enum:
+                d_enum_lower = self.getLowerCaseEnum(l_enum)
+            if code in ("int","float","non_negative_int","positive_int"):
+                l_boundary = self.dApi.getBoundaryList(cat, attr)
+            else:
+                l_boundary = []
+            l_values = d_cat[item]
+            b_all_empty_values = True
+            for value in l_values:
+                if value.strip() and value.lower() not in ("?", "."):
+                    b_all_empty_values = False
                     if re_pattern.search(value):
                         if l_enum:
                             if value.lower() not in d_enum_lower:
@@ -234,8 +284,22 @@ class Dict:
                             self.d_value_failRE[item].append(value)
                         else:
                             self.d_value_failRE[item] = [value]
-            else:
-                self.l_item_not_in_dict.append(item)
+            if attr in l_mandatory_attr:
+                if b_all_empty_values:
+                    self.l_mandatory_item_missing_value.append(item)
+
+    def reportErrorJson(self, filepath):
+        d_error = {}
+        d_error["mandatory-item-missing-value"] = self.l_mandatory_item_missing_value
+        d_error["value-not-in-regular-expressoin"] = self.d_value_failRE
+        d_error["value-not-in-enumeration"] = self.d_value_failEnum
+        d_error["value-not-in-boundary"] = self.d_value_failBoundary
+        d_error["catetory-not-in-dictionary"] = self.l_cat_not_in_dict
+        d_error["item-not-in-dictionary"] = self.l_item_not_in_dict
+        d_error["item-with-duplicate-value"] = self.l_item_with_duplicate_value
+        with open(filepath, 'w') as file:
+            json.dump(d_error, file, indent=2)
+        logger.info("wrote dictionary check into json file %s", filepath)
 
     def reportError(self, filepath):
         """
@@ -327,6 +391,17 @@ class Dict:
         file.write("\n")
         if self.l_item_with_duplicate_value:
             for item in self.l_item_with_duplicate_value:
+                file.write("Item name: %s" % item)
+                file.write("\n")
+        else:
+            file.write("None")
+            file.write("\n")
+        file.write("\n")
+
+        file.write("## List of mandatory data items with missing or empty values:")
+        file.write("\n")
+        if self.l_mandatory_item_missing_value:
+            for item in self.l_mandatory_item_missing_value:
                 file.write("Item name: %s" % item)
                 file.write("\n")
         else:

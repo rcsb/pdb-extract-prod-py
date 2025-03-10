@@ -22,7 +22,6 @@ sys.path.insert(0, TOP_DIR)
 
 import config
 maxit_version = config.ProductionConfig.MAXIT_VERSION
-print(maxit_version)
 maxit_name = f'maxit-v{maxit_version}-prod-src'
 maxit_dir = os.path.join(TOP_DIR, "packages", maxit_name)
 os.environ["RCSBROOT"] = maxit_dir
@@ -137,7 +136,7 @@ class Process():
         else:
             args = parser.parse_args()
         d_arg = parseArgs(args)
-        # print(d_arg)
+        logger.info("input parameters dictionary: %s", d_arg)
         if d_arg:
             for key in d_arg:
                 self.d_manager[key] = d_arg[key]  # args to start d_manager
@@ -242,7 +241,7 @@ class Process():
 
         """
         if self.d_manager["model"]["format"] == "PDB":
-            logger.info("input file in PDB format, run maxit to convert")
+            logger.info("input file in PDB format, run maxit version %s to convert", maxit_version)
             filepath_in = self.d_manager["model"]["filepath_temp_in"]
             logger.debug("maxit input file: %s" % filepath_in)
             filepath_maxit_out = os.path.join(
@@ -365,7 +364,7 @@ class Process():
                                "scaling",
                                software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
-            print(import_path)
+            logger.info("import path for software parser %s", import_path)
             try:
                 # import log parser from __init__.py of the specific folder
                 # the __init__.py chooses version specific parser
@@ -520,9 +519,10 @@ class Process():
             logger.debug("check output mmcif %s against dictionary %s" %
                          (filepath, filepath_dict))
             dict.check()  # check against mmCIF dictionary
-            filepath_report = os.path.join(
-                self.d_manager["folder"]["temp"], "dictionary_violation.log")
-            dict.reportError(filepath_report)
+            # filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_violation.log")
+            # dict.reportError(filepath_report)
+            filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_check.json")
+            dict.reportErrorJson(filepath_report)
             self.d_manager["log"]["filepath_temp_dictionary_check"] = filepath_report
             self.d_manager["status"]["checkAgainstDict_OK"] = True
         except Exception as e:
@@ -550,7 +550,7 @@ class Process():
 
         if "filepath_temp_dictionary_check" in self.d_manager["log"]:
             filepath_author_dictionary_check = os.path.join(
-                self.d_manager["folder"]["current"], "dictionary_violation.log")
+                self.d_manager["folder"]["current"], "dictionary_check.json")
             if self.__fileCopy(self.d_manager["log"]["filepath_temp_dictionary_check"], filepath_author_dictionary_check):
                 self.d_manager["log"]["filepath_author_dictionary_check"] = filepath_author_dictionary_check
 

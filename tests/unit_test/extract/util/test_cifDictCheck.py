@@ -91,6 +91,20 @@ class TestCheck(unittest.TestCase):
         print("")
         self.assertFalse(self.dict.d_value_failBoundary=={})
 
+    def testGetMandatoryAttrByCat(self):
+        l_mandatory = self.dict.getMandatoryAttrByCat("em_imaging")
+        self.assertEqual(l_mandatory, ['accelerating_voltage', 'electron_source', 'entry_id', 'id', 
+                                       'illumination_mode', 'microscope_model', 'mode', 'specimen_id'])
+
+
+    def testCheckMandatoryItemMissingValue(self):
+        filename = "maxit_out.cif"
+        filepath = os.path.join(self.folder, filename)
+        self.dict.readModelCif(filepath)
+        self.dict.check()
+        print("test good example")
+        print("")
+        self.assertTrue('_refine.pdbx_ls_cross_valid_method' in self.dict.l_mandatory_item_missing_value)
 
 if __name__ == "__main__":
     test_suite = unittest.TestSuite()
@@ -99,5 +113,7 @@ if __name__ == "__main__":
     test_suite.addTest(TestCheck("testWrongItem"))
     test_suite.addTest(TestCheck("testWrongValueType"))
     test_suite.addTest(TestCheck("testValueNotInEnum"))
-    test_suite.addTest(TestCheck("testValueOutBound"))        
+    test_suite.addTest(TestCheck("testValueOutBound"))
+    test_suite.addTest(TestCheck("testGetMandatoryAttrByCat"))
+    test_suite.addTest(TestCheck("testCheckMandatoryItemMissingValue"))
     unittest.TextTestRunner(verbosity=2).run(test_suite)
