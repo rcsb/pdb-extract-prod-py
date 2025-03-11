@@ -60,6 +60,7 @@ class DictCheck:
         self.d_value_failRE = {}
         self.d_value_failEnum = {}
         self.d_value_failBoundary = {}
+        self.l_missing_mandatory_cat = []
         self.l_mandatory_item_missing_value = []
         self.l_item_with_duplicate_value = []
 
@@ -188,30 +189,40 @@ class DictCheck:
                             return True
                 return False
 
-    def check(self, l_cat_to_check=[], b_check_multi_blocks=False):
+    def check(self, b_check_multi_blocks=False, l_mandatory_cat=[]):
         """
         Check model file against the dictionary
 
-        Returns
+        if b_check_multi_blocks==True, check mandatory categories' presence, and within each mandatory
+        category, check the mandatory mmCIF items, but only in the 1st block and this is the only 
+        scenario with pdb_extract usage. 
+
+        if b_check_multi_blocks==True, check 2nd/3rd/... blocks if they are present.
         -------
         None.
 
         """
         dc = self.l_dc[0]
-        if not l_cat_to_check:
-            l_cat_to_check = dc.getObjNameList()
+        l_cat = dc.getObjNameList()
+        if l_mandatory_cat:
+            for cat in l_mandatory_cat:
+                if cat not in l_cat:
+                    self.l_missing_mandatory_cat.append(cat)
 
-        for cat in l_cat_to_check:
+        for cat in l_cat:
             if cat in self.catIndex:
                 cat_obj = dc.getObj(cat)
-                self.checkCat(cat_obj)
+                if cat in l_mandatory_cat:
+                    self.checkCat(cat_obj, b_check_mandatory=True)
+                else:
+                    self.checkCat(cat_obj)
             else:
                 self.l_cat_not_in_dict.append(cat)
+
         if b_check_multi_blocks:
             for dc in self.l_dc[1:]:
-                if not l_cat_to_check:
-                    l_cat_to_check = dc.getObjNameList()
-                for cat in l_cat_to_check:
+                l_cat = dc.getObjNameList()
+                for cat in l_cat:
                     if cat in self.catIndex:
                         cat_obj = dc.getObj(cat)
                         self.checkCat(cat_obj)
@@ -225,7 +236,7 @@ class DictCheck:
         return d_enum_lower
             
     
-    def checkCat(self, cat_obj, b_skip_atom_site=True):
+    def checkCat(self, cat_obj, b_skip_atom_site=True, b_check_mandatory=False):
         """
         Check category object against the dictionary
 
@@ -244,12 +255,13 @@ class DictCheck:
 
         if cat == "atom_site" and b_skip_atom_site:
             return
-
-        l_mandatory_attr = self.getMandatoryAttrByCat(cat)
-        for mandatory_attr in l_mandatory_attr:
-            mandatory_item = ''.join(['_', cat, '.', mandatory_attr])
-            if mandatory_item not in l_item:
-                self.l_mandatory_item_missing_value.append(mandatory_item)
+        
+        if b_check_mandatory:
+            l_mandatory_attr = self.getMandatoryAttrByCat(cat)
+            for mandatory_attr in l_mandatory_attr:
+                mandatory_item = ''.join(['_', cat, '.', mandatory_attr])
+                if mandatory_item not in l_item:
+                    self.l_mandatory_item_missing_value.append(mandatory_item)
 
         if cat == "diffrn":
             l_diffrn_id = cat_obj.getAttributeValueList("id")
@@ -297,12 +309,13 @@ class DictCheck:
                             self.d_value_failRE[item].append(value)
                         else:
                             self.d_value_failRE[item] = [value]
-            if attr in l_mandatory_attr:
+            if b_check_mandatory and attr in l_mandatory_attr:
                 if b_all_empty_values:
                     self.l_mandatory_item_missing_value.append(item)
 
     def reportErrorJson(self, filepath):
         d_error = {}
+        d_error["missing-mandatory-category"] = self.l_missing_mandatory_cat
         d_error["mandatory-item-missing-value"] = self.l_mandatory_item_missing_value
         d_error["value-not-in-regular-expressoin"] = self.d_value_failRE
         d_error["value-not-in-enumeration"] = self.d_value_failEnum

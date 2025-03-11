@@ -101,7 +101,7 @@ class TestCheck(unittest.TestCase):
         filename = "maxit_out.cif"
         filepath = os.path.join(self.folder, filename)
         self.dict.readModelCif(filepath)
-        self.dict.check()
+        self.dict.check(l_mandatory_cat=["refine"])
         print("test good example")
         print("")
         self.assertTrue('_refine.pdbx_ls_cross_valid_method' in self.dict.l_mandatory_item_missing_value)

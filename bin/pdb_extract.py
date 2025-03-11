@@ -511,13 +511,19 @@ class Process():
             folder_dict = os.path.join(pdb_extract_folder, "data/dictionary")
             filename_dict = "mmcif_pdbx_v5_next.dic"
             filepath_dict = os.path.join(folder_dict, filename_dict)
+            folder_mandatory_cat = os.path.join(pdb_extract_folder, "data/templates")
+            filename_mandatory_cat = self.d_manager["method"].lower() + "_mandatory_cat.list"
+            filepath_mandatory_cat = os.path.join(folder_mandatory_cat, filename_mandatory_cat)
+
+            with open(filepath_mandatory_cat) as f:
+                l_mandatory_cat = f.read().splitlines()
 
             dict_check = DictCheck(filepath_dict)
 
             filepath = self.d_manager["model"]["filepath_temp_out"]
             dict_check.readModelCif(filepath)
             logger.debug("check output mmcif %s against dictionary %s", filepath, filepath_dict)
-            dict_check.check()  # check against mmCIF dictionary
+            dict_check.check(l_mandatory_cat=l_mandatory_cat)  # check against mmCIF dictionary
             # filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_violation.log")
             # dict.reportError(filepath_report)
             filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_check.json")
