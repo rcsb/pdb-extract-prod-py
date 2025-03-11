@@ -31,7 +31,7 @@ from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
 from extract.extract_template.extractTemplate import Template
 from extract.merge.mergeLogTemplateToModel import Merger
-from extract.util.cifDictCheck import Dict
+from extract.util.cifDictCheck import DictCheck
 from extract.util.exceptions import *
 
 import logging
@@ -512,17 +512,16 @@ class Process():
             filename_dict = "mmcif_pdbx_v5_next.dic"
             filepath_dict = os.path.join(folder_dict, filename_dict)
 
-            dict = Dict(filepath_dict)
+            dict_check = DictCheck(filepath_dict)
 
             filepath = self.d_manager["model"]["filepath_temp_out"]
-            dict.readModelCif(filepath)
-            logger.debug("check output mmcif %s against dictionary %s" %
-                         (filepath, filepath_dict))
-            dict.check()  # check against mmCIF dictionary
+            dict_check.readModelCif(filepath)
+            logger.debug("check output mmcif %s against dictionary %s", filepath, filepath_dict)
+            dict_check.check()  # check against mmCIF dictionary
             # filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_violation.log")
             # dict.reportError(filepath_report)
             filepath_report = os.path.join(self.d_manager["folder"]["temp"], "dictionary_check.json")
-            dict.reportErrorJson(filepath_report)
+            dict_check.reportErrorJson(filepath_report)
             self.d_manager["log"]["filepath_temp_dictionary_check"] = filepath_report
             self.d_manager["status"]["checkAgainstDict_OK"] = True
         except Exception as e:

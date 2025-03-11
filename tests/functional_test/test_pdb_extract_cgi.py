@@ -32,8 +32,7 @@ class TestPdbExtract(unittest.TestCase):
         args_text = "-iPDB deposited_XRAY.pdb"
         parser = create_parser()
         args = parser.parse_args(args_text.split())
-        (file_format, filepath_in) = parseArgs(args)
-        filepath_out = "pdb_extract_cgi_out.cif"
+        (file_format, filepath_in, filepath_out) = parseArgs(args)
         if file_format == "PDB":
             filepath_maxit_out = "maxit_out.cif"
             if processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
@@ -42,13 +41,13 @@ class TestPdbExtract(unittest.TestCase):
             if processCifModel(filepath_in, filepath_out):
                 generateSummaryForCGI(filepath_out)
         self.assertTrue(os.path.isfile("pdb_extract_cgi_out.cif"))
-        self.assertTrue(os.path.isfile("cgi_value"))
+        self.assertTrue(os.path.isfile("converted_summary.json"))
         try:
             os.remove("pdb_extract_cgi_out.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("cgi_value")
+            os.remove("converted_summary.json")
         except FileNotFoundError:
             pass
         try:
@@ -69,13 +68,13 @@ class TestPdbExtract(unittest.TestCase):
         if processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
             generateSummaryForCGI(filepath_maxit_out)
         self.assertTrue(os.path.isfile("pdb_extract_cgi_out.cif"))
-        self.assertTrue(os.path.isfile("cgi_value"))
+        self.assertTrue(os.path.isfile("converted_summary.json"))
         try:
             os.remove("pdb_extract_cgi_out.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("cgi_value")
+            os.remove("converted_summary.json")
         except FileNotFoundError:
             pass
         try:
@@ -96,13 +95,13 @@ class TestPdbExtract(unittest.TestCase):
         if processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
             generateSummaryForCGI(filepath_maxit_out)
         self.assertTrue(os.path.isfile("pdb_extract_cgi_out.cif"))
-        self.assertTrue(os.path.isfile("cgi_value"))
+        self.assertTrue(os.path.isfile("converted_summary.json"))
         try:
             os.remove("pdb_extract_cgi_out.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("cgi_value")
+            os.remove("converted_summary.json")
         except FileNotFoundError:
             pass
         try:
@@ -123,13 +122,13 @@ class TestPdbExtract(unittest.TestCase):
         if processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
             generateSummaryForCGI(filepath_maxit_out)
         self.assertTrue(os.path.isfile("pdb_extract_cgi_out.cif"))
-        self.assertTrue(os.path.isfile("cgi_value"))
+        self.assertTrue(os.path.isfile("converted_summary.json"))
         try:
             os.remove("pdb_extract_cgi_out.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("cgi_value")
+            os.remove("converted_summary.json")
         except FileNotFoundError:
             pass
         try:
@@ -149,13 +148,13 @@ class TestPdbExtract(unittest.TestCase):
         if processCifModel(filepath_in, filepath_out):
             generateSummaryForCGI(filepath_out)
         self.assertTrue(os.path.isfile("pdb_extract_cgi_out.cif"))
-        self.assertTrue(os.path.isfile("cgi_value"))
+        self.assertTrue(os.path.isfile("converted_summary.json"))
         try:
             os.remove("pdb_extract_cgi_out.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("cgi_value")
+            os.remove("converted_summary.json")
         except FileNotFoundError:
             pass
         try:

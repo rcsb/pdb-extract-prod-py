@@ -33,14 +33,14 @@ class TestPdbExtract(unittest.TestCase):
             ("deposited_XRAY.pdb", "scalepack_log", "template_new_XRAY.cif")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:
@@ -59,14 +59,14 @@ class TestPdbExtract(unittest.TestCase):
             ("deposited_XRAY.pdb", "file_index_1", "file_scl_1")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))        
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:
@@ -85,14 +85,14 @@ class TestPdbExtract(unittest.TestCase):
             ("deposited_XRAY.pdb", "file_index_1", "file_scl_1")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))        
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:
@@ -111,14 +111,14 @@ class TestPdbExtract(unittest.TestCase):
             ("deposited_XRAY.pdb", "file_scl_1")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))        
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:
@@ -137,14 +137,14 @@ class TestPdbExtract(unittest.TestCase):
             ("D_1000267334_model-upload_P1.cif.V1")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:
@@ -162,14 +162,14 @@ class TestPdbExtract(unittest.TestCase):
         args = "-EM -iPDB %s -iENT %s -o testout.cif" % ("deposited_EM.pdb", "template_new_EM_with_software.cif")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:
@@ -187,14 +187,14 @@ class TestPdbExtract(unittest.TestCase):
         args = "-NMR -iPDB %s -iENT %s -o testout.cif" % ("deposited_NMR.pdb", "data_template_nmr.cif")
         runPdbExtract(args)
         self.assertTrue(os.path.isfile("testout.cif"))
-        self.assertTrue(os.path.isfile("dictionary_violation.log"))
+        self.assertTrue(os.path.isfile("dictionary_check.json"))
         self.assertTrue(validateCif("testout.cif"))
         try:
             os.remove("testout.cif")
         except FileNotFoundError:
             pass
         try:
-            os.remove("dictionary_violation.log")
+            os.remove("dictionary_check.json")
         except FileNotFoundError:
             pass
         try:

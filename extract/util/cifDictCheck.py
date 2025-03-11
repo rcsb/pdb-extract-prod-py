@@ -26,7 +26,7 @@ logger_name = '.'.join(["PDB_EX", __name__])
 logger = logging.getLogger(logger_name)
 
 
-class Dict:
+class DictCheck:
     """ Dictionary check 
     """
     
@@ -188,7 +188,7 @@ class Dict:
                             return True
                 return False
 
-    def check(self):
+    def check(self, l_cat_to_check=[], b_check_multi_blocks=False):
         """
         Check model file against the dictionary
 
@@ -197,14 +197,27 @@ class Dict:
         None.
 
         """
-        for dc in self.l_dc:
-            for cat in dc.getObjNameList():
-                if cat in self.catIndex:
-                    cat_obj = dc.getObj(cat)
-                    self.checkCat(cat_obj)
-                else:
-                    self.l_cat_not_in_dict.append(cat)
-    
+        dc = self.l_dc[0]
+        if not l_cat_to_check:
+            l_cat_to_check = dc.getObjNameList()
+
+        for cat in l_cat_to_check:
+            if cat in self.catIndex:
+                cat_obj = dc.getObj(cat)
+                self.checkCat(cat_obj)
+            else:
+                self.l_cat_not_in_dict.append(cat)
+        if b_check_multi_blocks:
+            for dc in self.l_dc[1:]:
+                if not l_cat_to_check:
+                    l_cat_to_check = dc.getObjNameList()
+                for cat in l_cat_to_check:
+                    if cat in self.catIndex:
+                        cat_obj = dc.getObj(cat)
+                        self.checkCat(cat_obj)
+                    else:
+                        self.l_cat_not_in_dict.append(cat)
+
     def getLowerCaseEnum(self, l_enum):
         d_enum_lower = {}
         for each in l_enum:
