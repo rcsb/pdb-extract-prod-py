@@ -15,14 +15,14 @@ import unittest
 TOP_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 sys.path.insert(0, TOP_DIR)
 
-from extract.util.cifDictCheck import Dict
+from extract.util.cifDictCheck import DictCheck
 
 
 class TestCheck(unittest.TestCase):
     def setUp(self):
         filepath_dict = os.path.join(TOP_DIR,
                                      "data/dictionary/mmcif_pdbx_v5_next.dic")
-        self.dict = Dict(filepath_dict)
+        self.dict = DictCheck(filepath_dict)
         self.folder = os.path.join(TOP_DIR, "tests/test_data/CIF4test")
 
     def tearDown(self):
