@@ -12,7 +12,6 @@ exptl_crystal
 exptl_crystal_grow
 pdbx_audit_support
 pdbx_contact_author
-pdbx_struct_assembly_depositor_info
 struct
 struct_keywords
 reflns

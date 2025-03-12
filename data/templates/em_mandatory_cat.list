@@ -4,7 +4,6 @@ citation_author
 em_3d_reconstruction
 em_buffer
 em_ctf_correction
-em_entity_assembly
 em_euler_angle_assignment
 em_experiment
 em_image_processing
@@ -18,6 +17,5 @@ entity
 entity_poly
 pdbx_audit_support
 pdbx_contact_author
-pdbx_struct_assembly_depositor_info
 struct
 struct_keywords
