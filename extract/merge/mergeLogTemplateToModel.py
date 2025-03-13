@@ -250,23 +250,23 @@ class Merger():
             return True
 
     def truncateMaxitCat(self):
-        l_cat_to_keep = ["atom_site",
-                         "atom_site_anisotrop",
-                         "atom_sites",
-                         "cell",
-                         "symmetry",
-                         "refine",
-                         "refine_ls_restr",
-                         "refine_ls_shell",
-                         "pdbx_refine_tls",
-                         "pdbx_refine_tls_group",
-                         "refine_analyze",
-                         "refine_hist",
-                         "refine_ls_restr_ncs",
-                         "software",
-                         "em_software",
-                         "pdbx_nmr_software"
-                         ]
+        # l_cat_to_keep = ["atom_site",
+        #                  "atom_site_anisotrop",
+        #                  "atom_sites",
+        #                  "cell",
+        #                  "symmetry",
+        #                  "refine",
+        #                  "refine_ls_restr",
+        #                  "refine_ls_shell",
+        #                  "pdbx_refine_tls",
+        #                  "pdbx_refine_tls_group",
+        #                  "refine_analyze",
+        #                  "refine_hist",
+        #                  "refine_ls_restr_ncs",
+        #                  "software",
+        #                  "em_software",
+        #                  "pdbx_nmr_software"
+        #                  ]
         # l_cat_to_remove = ["pdbx_database_status",
         #                    "entity_poly_seq",
         #                    "entity",
@@ -280,14 +280,28 @@ class Merger():
         #                    "atom_type",
         #                    "pdbx_entity_nonpoly"
         #                    ]
+        l_cat_to_remove = ["pdbx_database_status",
+                           "entity_poly_seq",
+                           "pdbx_poly_seq_scheme",
+                           "pdbx_nonpoly_scheme",
+                           "chem_comp",
+                           "struct_asym",
+                           "pdbx_validate_close_contact",
+                           "pdbx_validate_torsion",
+                           "pdbx_unobs_or_zero_occ_atoms",
+                           "atom_type",
+                           "pdbx_entity_nonpoly"
+                           ]
         l_cat = []  # must create a separate list to go though during deletion
         for each in self.dc0.getObjNameList():
             l_cat.append(each)
 
         for cat_name in l_cat:  # cannot use "for cat_name in self.dc0.getObjNameList() because of deletion will mess up iteration"
-            if cat_name not in l_cat_to_keep:
+            if cat_name in l_cat_to_remove:
                 self.dc0.remove(cat_name)
-        # print(self.dc0.getObjNameList())
+        #     if cat_name not in l_cat_to_keep:
+        #         self.dc0.remove(cat_name)
+        # # print(self.dc0.getObjNameList())
 
     def processSoftwareXRAY(self, d_software_author):
         """Process X-ray software

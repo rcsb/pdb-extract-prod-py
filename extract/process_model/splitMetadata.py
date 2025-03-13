@@ -28,6 +28,7 @@ class Spliter():
     def __init__(self):
         self.l_dc = None  # container list for model file
         self.dc0 = None  # container for the 1st data section of model file
+        self.l_cat_kept = []
 
     def readModel(self, filepath_model):
         """
@@ -110,9 +111,16 @@ class Spliter():
 
         try:
             for cat in l_cat:  # cannot use "for cat_name in self.dc0.getObjNameList() because of deletion will mess up iteration"
-                if cat not in l_cat_to_keep:
+                if cat in l_cat_to_keep:
+                    self.l_cat_kept.append(cat)
+                else:
                     self.dc0.remove(cat)
-            return True
+            if self.l_cat_kept:
+                logger.info("split metadata categories of %s", self.l_cat_kept)
+                return True
+            else:
+                logger.warning("no common metadata categories have been found in the result file, continue without writting metadata.cif")
+                return False
         except Exception as e:
             logger.error(e)
             return False
