@@ -1,0 +1,865 @@
+data_Xa29c6-01_Aly39_1-5A_201203x12a_refine
+# 
+_exptl.method   'X-RAY DIFFRACTION' 
+# 
+loop_
+_citation.id 
+_citation.title 
+_citation.journal_abbrev 
+_citation.journal_volume 
+_citation.page_first 
+_citation.page_last 
+_citation.year 
+_citation.journal_id_ASTM 
+_citation.journal_id_ISSN 
+_citation.journal_id_CSD 
+phenix.refine 'Towards automated crystallographic structure refinement with phenix.refine.'                                'Acta Crystallogr., Sect. D: Biol. Crystallogr.' 68 352 67  2012 ABCRE6 0907-4449 0766 
+phenix        'Macromolecular structure determination using X-rays, neutrons and electrons: recent developments in Phenix' 'Acta Crystallogr., Sect. D: Biol. Crystallogr.' 75 861 877 2019 ABCRE6 0907-4449 0766 
+# 
+_entity.id                 1 
+_entity.pdbx_description   'Chains: A,B,C,D' 
+# 
+_entity_poly.entity_id                      1 
+_entity_poly.nstd_linkage                   no 
+_entity_poly.nstd_monomer                   yes 
+_entity_poly.pdbx_seq_one_letter_code       'GDVEKGKKIFVQKCAQCHTVEKGGKHKTGPNLHGLFGR(ALY)TGQAPGFSYTDANKNKGITWGEETLMEYLENPKKYIPGTKMIFAGIKKKGEREDLIAYLKKATNE' 
+_entity_poly.pdbx_seq_one_letter_code_can   GDVEKGKKIFVQKCAQCHTVEKGGKHKTGPNLHGLFGRKTGQAPGFSYTDANKNKGITWGEETLMEYLENPKKYIPGTKMIFAGIKKKGEREDLIAYLKKATNE 
+_entity_poly.pdbx_strand_id                 A,B,C,D 
+_entity_poly.pdbx_target_identifier         ? 
+_entity_poly.type                           'polypeptide(L)' 
+# 
+data_comp_ALY
+# 
+loop_
+_chem_comp_atom.comp_id 
+_chem_comp_atom.atom_id 
+_chem_comp_atom.type_symbol 
+_chem_comp_atom.type_energy 
+_chem_comp_atom.partial_charge 
+_chem_comp_atom.x 
+_chem_comp_atom.y 
+_chem_comp_atom.z 
+ALY OH   O O    . 1.1946  -0.1536 4.7653  
+ALY CH   C C    . 0.0202  0.0827  4.5657  
+ALY CH3  C CH3  . -0.8750 0.4889  5.6730  
+ALY NZ   N NH1  . -0.4805 0.2157  3.2788  
+ALY CE   C CH2  . 0.2482  -0.1250 2.1147  
+ALY CD   C CH2  . -0.4878 0.1154  0.8390  
+ALY CG   C CH2  . 0.3537  -0.2668 -0.3032 
+ALY CB   C CH2  . -0.3552 0.0079  -1.6068 
+ALY CA   C CH1  . 0.4592  -0.3611 -2.7460 
+ALY N    N NH2  . 1.7704  0.1165  -2.7650 
+ALY C    C C    . -0.2453 0.0760  -3.9188 
+ALY O    O O    . -0.1898 1.1735  -4.5055 
+ALY OXT  O OH1  . -1.1695 -0.8244 -4.3612 
+ALY HH31 H HCH3 . -0.2768 0.5432  6.6181  
+ALY HH32 H HCH3 . -1.3225 1.4907  5.4686  
+ALY HH33 H HCH3 . -1.6998 -0.2605 5.8078  
+ALY HZ   H HNH1 . -1.4365 0.4674  3.1591  
+ALY HE3  H HCH2 . 1.2130  0.4576  2.0981  
+ALY HE2  H HCH2 . 0.5055  -1.2121 2.1712  
+ALY HD3  H HCH2 . -1.4478 -0.4862 0.8237  
+ALY HD2  H HCH2 . -0.7659 1.1814  0.7548  
+ALY HG3  H HCH2 . 1.3294  0.3133  -0.2553 
+ALY HG2  H HCH2 . 0.6155  -1.3732 -0.2331 
+ALY HB3  H HCH2 . -1.3082 -0.5902 -1.6492 
+ALY HB2  H HCH2 . -0.6395 1.1112  -1.6726 
+ALY HCA  H HCH1 . 0.5229  -1.4895 -2.7808 
+ALY H    H HNH2 . 1.8098  1.0921  -2.4928 
+ALY H2   H HNH2 . 2.3463  -0.4317 -2.1484 
+ALY HXT  H HOH1 . -1.6566 -0.4472 -5.1494 
+# 
+loop_
+_chem_comp_bond.comp_id 
+_chem_comp_bond.atom_id_1 
+_chem_comp_bond.atom_id_2 
+_chem_comp_bond.type 
+_chem_comp_bond.value_dist 
+_chem_comp_bond.value_dist_esd 
+ALY OH  CH   double 1.247 0.02 
+ALY CH  CH3  single 1.510 0.02 
+ALY CH  NZ   single 1.384 0.02 
+ALY CH3 HH31 single 1.117 0.02 
+ALY CH3 HH32 single 1.116 0.02 
+ALY CH3 HH33 single 1.117 0.02 
+ALY NZ  CE   single 1.435 0.02 
+ALY NZ  HZ   single 0.990 0.02 
+ALY CE  CD   single 1.531 0.02 
+ALY CE  HE3  single 1.129 0.02 
+ALY CE  HE2  single 1.129 0.02 
+ALY CD  CG   single 1.514 0.02 
+ALY CD  HD3  single 1.121 0.02 
+ALY CD  HD2  single 1.121 0.02 
+ALY CG  CB   single 1.512 0.02 
+ALY CG  HG3  single 1.122 0.02 
+ALY CG  HG2  single 1.122 0.02 
+ALY CB  CA   single 1.539 0.02 
+ALY CB  HB3  single 1.122 0.02 
+ALY CB  HB2  single 1.121 0.02 
+ALY CA  N    single 1.447 0.02 
+ALY CA  C    single 1.520 0.02 
+ALY CA  HCA  single 1.133 0.02 
+ALY N   H    single 1.002 0.02 
+ALY N   H2   single 1.001 0.02 
+ALY C   O    double 1.233 0.02 
+ALY C   OXT  single 1.361 0.02 
+ALY OXT HXT  single 0.972 0.02 
+# 
+loop_
+_chem_comp_angle.comp_id 
+_chem_comp_angle.atom_id_1 
+_chem_comp_angle.atom_id_2 
+_chem_comp_angle.atom_id_3 
+_chem_comp_angle.value_angle 
+_chem_comp_angle.value_angle_esd 
+ALY NZ   CH  CH3  117.01 3.0 
+ALY NZ   CH  OH   121.65 3.0 
+ALY CH3  CH  OH   121.35 3.0 
+ALY HH33 CH3 HH32 109.12 3.0 
+ALY HH33 CH3 HH31 108.95 3.0 
+ALY HH32 CH3 HH31 108.98 3.0 
+ALY HH33 CH3 CH   110.52 3.0 
+ALY HH32 CH3 CH   110.57 3.0 
+ALY HH31 CH3 CH   108.66 3.0 
+ALY HZ   NZ  CE   117.39 3.0 
+ALY HZ   NZ  CH   118.96 3.0 
+ALY CE   NZ  CH   123.65 3.0 
+ALY HE2  CE  HE3  107.88 3.0 
+ALY HE2  CE  CD   108.28 3.0 
+ALY HE3  CE  CD   109.04 3.0 
+ALY HE2  CE  NZ   108.04 3.0 
+ALY HE3  CE  NZ   109.12 3.0 
+ALY CD   CE  NZ   114.29 3.0 
+ALY HD2  CD  HD3  107.43 3.0 
+ALY HD2  CD  CG   109.64 3.0 
+ALY HD3  CD  CG   109.68 3.0 
+ALY HD2  CD  CE   110.02 3.0 
+ALY HD3  CD  CE   110.20 3.0 
+ALY CG   CD  CE   109.82 3.0 
+ALY HG2  CG  HG3  107.27 3.0 
+ALY HG2  CG  CB   109.72 3.0 
+ALY HG3  CG  CB   110.19 3.0 
+ALY HG2  CG  CD   109.67 3.0 
+ALY HG3  CG  CD   109.13 3.0 
+ALY CB   CG  CD   110.78 3.0 
+ALY HB2  CB  HB3  107.53 3.0 
+ALY HB2  CB  CA   109.91 3.0 
+ALY HB3  CB  CA   108.17 3.0 
+ALY HB2  CB  CG   110.03 3.0 
+ALY HB3  CB  CG   109.51 3.0 
+ALY CA   CB  CG   111.59 3.0 
+ALY HCA  CA  C    107.91 3.0 
+ALY HCA  CA  N    106.89 3.0 
+ALY C    CA  N    110.10 3.0 
+ALY HCA  CA  CB   108.23 3.0 
+ALY C    CA  CB   106.70 3.0 
+ALY N    CA  CB   116.72 3.0 
+ALY H2   N   H    109.71 3.0 
+ALY H2   N   CA   110.04 3.0 
+ALY H    N   CA   111.16 3.0 
+ALY OXT  C   O    117.41 3.0 
+ALY OXT  C   CA   113.48 3.0 
+ALY O    C   CA   129.12 3.0 
+ALY HXT  OXT C    109.61 3.0 
+# 
+loop_
+_chem_comp_tor.comp_id 
+_chem_comp_tor.id 
+_chem_comp_tor.atom_id_1 
+_chem_comp_tor.atom_id_2 
+_chem_comp_tor.atom_id_3 
+_chem_comp_tor.atom_id_4 
+_chem_comp_tor.value_angle 
+_chem_comp_tor.value_angle_esd 
+_chem_comp_tor.period 
+ALY CONST_01 CE   NZ  CH OH  0.00   0.0  0 
+ALY CONST_02 HZ   NZ  CH OH  180.00 0.0  0 
+ALY CONST_03 HXT  OXT C  CA  180.00 0.0  0 
+ALY Var_01   CD   CE  NZ CH  180.00 30.0 3 
+ALY Var_02   CG   CD  CE NZ  180.00 30.0 3 
+ALY Var_03   CB   CG  CD CE  180.00 30.0 3 
+ALY Var_04   CA   CB  CG CD  180.00 30.0 3 
+ALY Var_05   HH31 CH3 CH OH  0.00   30.0 3 
+ALY Var_06   CE   NZ  CH CH3 180.00 30.0 1 
+# 
+loop_
+_chem_comp_plane_atom.comp_id 
+_chem_comp_plane_atom.plane_id 
+_chem_comp_plane_atom.atom_id 
+_chem_comp_plane_atom.dist_esd 
+ALY plan-1 OH  0.020 
+ALY plan-1 CH  0.020 
+ALY plan-1 CH3 0.020 
+ALY plan-1 NZ  0.020 
+ALY plan-1 CE  0.020 
+ALY plan-1 HZ  0.020 
+ALY plan-2 CA  0.020 
+ALY plan-2 C   0.020 
+ALY plan-2 O   0.020 
+ALY plan-2 OXT 0.020 
+ALY plan-2 HXT 0.020 
+# 
+_chem_comp_chir.comp_id          ALY 
+_chem_comp_chir.id               chir_01 
+_chem_comp_chir.atom_id_centre   CA 
+_chem_comp_chir.atom_id_1        CB 
+_chem_comp_chir.atom_id_2        N 
+_chem_comp_chir.atom_id_3        C 
+_chem_comp_chir.volume_sign      positiv 
+# 
+loop_
+_chem_comp_plane.comp_id 
+_chem_comp_plane.id 
+ALY plan-1 
+ALY plan-2 
+# 
+_chem_comp.id                  ALY 
+_chem_comp.three_letter_code   ALY 
+_chem_comp.name                'N~6~-acetyl-L-lysine ' 
+_chem_comp.group               L-peptide 
+_chem_comp.number_atoms_all    29 
+_chem_comp.number_atoms_nh     13 
+_chem_comp.desc_level          . 
+# 
+data_comp_HEC
+# 
+loop_
+_chem_comp_atom.comp_id 
+_chem_comp_atom.atom_id 
+_chem_comp_atom.type_symbol 
+_chem_comp_atom.type_energy 
+_chem_comp_atom.partial_charge 
+HEC CHA  C  CR1H 0.030  
+HEC HHA  H  HCR1 0.010  
+HEC C1A  C  CR5  0.030  
+HEC C2A  C  CR5  -0.020 
+HEC CAA  C  CH2  -0.010 
+HEC HAA1 H  HCH2 0.025  
+HEC HAA2 H  HCH2 0.025  
+HEC CBA  C  CH2  -0.020 
+HEC HBA1 H  HCH2 0.000  
+HEC HBA2 H  HCH2 0.000  
+HEC CGA  C  C    0.300  
+HEC O1A  O  OC   -0.210 
+HEC O2A  O  OC   -0.210 
+HEC C3A  C  CR5  0.020  
+HEC CMA  C  CH3  -0.100 
+HEC HMA1 H  HCH3 0.020  
+HEC HMA2 H  HCH3 0.020  
+HEC HMA3 H  HCH3 0.020  
+HEC C4A  C  CR5  0.020  
+HEC NA   N  NPA  -0.180 
+HEC CHB  C  CR1H 0.030  
+HEC HHB  H  HCR1 0.010  
+HEC C1B  C  CR5  0.030  
+HEC C2B  C  CR5  0.020  
+HEC CMB  C  CH3  -0.100 
+HEC HMB1 H  HCH3 0.020  
+HEC HMB2 H  HCH3 0.020  
+HEC HMB3 H  HCH3 0.020  
+HEC C3B  C  CR5  -0.050 
+HEC CAB  C  CH2  0.020  
+HEC HAB  H  HC1  0.010  
+HEC CBB  C  CH3  -0.060 
+HEC HBB1 H  HCH3 0.010  
+HEC HBB2 H  HCH3 0.010  
+HEC HBB3 H  HCH3 0.010  
+HEC C4B  C  CR5  0.020  
+HEC NB   N  NPB  -0.180 
+HEC CHC  C  CR1H 0.030  
+HEC HHC  H  HCR1 0.010  
+HEC C1C  C  CR5  0.030  
+HEC C2C  C  CR5  0.020  
+HEC CMC  C  CH3  -0.100 
+HEC HMC1 H  HCH3 0.020  
+HEC HMC2 H  HCH3 0.020  
+HEC HMC3 H  HCH3 0.020  
+HEC C3C  C  CR5  -0.050 
+HEC CAC  C  CH2  0.020  
+HEC HAC  H  HCH2 0.010  
+HEC CBC  C  CH3  -0.060 
+HEC HBC1 H  HCH3 0.010  
+HEC HBC2 H  HCH3 0.010  
+HEC HBC3 H  HCH3 0.010  
+HEC C4C  C  CR5  0.020  
+HEC NC   N  NPA  -0.180 
+HEC CHD  C  CR1H 0.030  
+HEC HHD  H  HCR1 0.010  
+HEC C1D  C  CR5  0.030  
+HEC C2D  C  CR5  0.020  
+HEC CMD  C  CH3  -0.100 
+HEC HMD1 H  HCH3 0.020  
+HEC HMD2 H  HCH3 0.020  
+HEC HMD3 H  HCH3 0.020  
+HEC C3D  C  CR5  -0.020 
+HEC CAD  C  CH2  -0.010 
+HEC HAD1 H  HCH2 0.025  
+HEC HAD2 H  HCH2 0.025  
+HEC CBD  C  CH2  -0.020 
+HEC HBD1 H  HCH2 0.000  
+HEC HBD2 H  HCH2 0.000  
+HEC CGD  C  C    0.300  
+HEC O1D  O  OC   -0.210 
+HEC O2D  O  OC   -0.210 
+HEC C4D  C  CR5  0.020  
+HEC ND   N  NPB  -0.180 
+HEC FE   FE FE   0.240  
+# 
+loop_
+_chem_comp_tree.comp_id 
+_chem_comp_tree.atom_id 
+_chem_comp_tree.atom_back 
+_chem_comp_tree.atom_forward 
+_chem_comp_tree.connect_type 
+HEC CHA  n/a C1A  START 
+HEC HHA  CHA .    .     
+HEC C1A  CHA C2A  .     
+HEC C2A  C1A C3A  .     
+HEC CAA  C2A CBA  .     
+HEC HAA1 CAA .    .     
+HEC HAA2 CAA .    .     
+HEC CBA  CAA CGA  .     
+HEC HBA1 CBA .    .     
+HEC HBA2 CBA .    .     
+HEC CGA  CBA O2A  .     
+HEC O1A  CGA .    .     
+HEC O2A  CGA .    .     
+HEC C3A  C2A C4A  .     
+HEC CMA  C3A HMA3 .     
+HEC HMA1 CMA .    .     
+HEC HMA2 CMA .    .     
+HEC HMA3 CMA .    .     
+HEC C4A  C3A CHB  .     
+HEC NA   C4A .    .     
+HEC CHB  C4A C1B  .     
+HEC HHB  CHB .    .     
+HEC C1B  CHB C2B  .     
+HEC C2B  C1B C3B  .     
+HEC CMB  C2B HMB3 .     
+HEC HMB1 CMB .    .     
+HEC HMB2 CMB .    .     
+HEC HMB3 CMB .    .     
+HEC C3B  C2B C4B  .     
+HEC CAB  C3B CBB  .     
+HEC HAB  CAB .    .     
+HEC CBB  CAB HBB3 .     
+HEC HBB1 CBB .    .     
+HEC HBB2 CBB .    .     
+HEC HBB3 CBB .    .     
+HEC C4B  C3B CHC  .     
+HEC NB   C4B .    .     
+HEC CHC  C4B C1C  .     
+HEC HHC  CHC .    .     
+HEC C1C  CHC C2C  .     
+HEC C2C  C1C C3C  .     
+HEC CMC  C2C HMC3 .     
+HEC HMC1 CMC .    .     
+HEC HMC2 CMC .    .     
+HEC HMC3 CMC .    .     
+HEC C3C  C2C C4C  .     
+HEC CAC  C3C CBC  .     
+HEC HAC  CAC .    .     
+HEC CBC  CAC HBC3 .     
+HEC HBC1 CBC .    .     
+HEC HBC2 CBC .    .     
+HEC HBC3 CBC .    .     
+HEC C4C  C3C CHD  .     
+HEC NC   C4C .    .     
+HEC CHD  C4C C1D  .     
+HEC HHD  CHD .    .     
+HEC C1D  CHD C2D  .     
+HEC C2D  C1D C3D  .     
+HEC CMD  C2D HMD3 .     
+HEC HMD1 CMD .    .     
+HEC HMD2 CMD .    .     
+HEC HMD3 CMD .    .     
+HEC C3D  C2D C4D  .     
+HEC CAD  C3D CBD  .     
+HEC HAD1 CAD .    .     
+HEC HAD2 CAD .    .     
+HEC CBD  CAD CGD  .     
+HEC HBD1 CBD .    .     
+HEC HBD2 CBD .    .     
+HEC CGD  CBD O2D  .     
+HEC O1D  CGD .    .     
+HEC O2D  CGD .    .     
+HEC C4D  C3D ND   .     
+HEC ND   C4D FE   .     
+HEC FE   ND  .    END   
+HEC C4D  CHA .    ADD   
+HEC C1A  NA  .    ADD   
+HEC C1B  NB  .    ADD   
+HEC C1C  NC  .    ADD   
+HEC C1D  ND  .    ADD   
+HEC FE   NA  .    ADD   
+HEC FE   NB  .    ADD   
+HEC FE   NC  .    ADD   
+# 
+loop_
+_chem_comp_bond.comp_id 
+_chem_comp_bond.atom_id_1 
+_chem_comp_bond.atom_id_2 
+_chem_comp_bond.type 
+_chem_comp_bond.value_dist 
+_chem_comp_bond.value_dist_esd 
+HEC CHA C1A  coval 1.378 0.020 
+HEC CHA HHA  coval 0.980 0.020 
+HEC C1A C2A  coval 1.449 0.020 
+HEC C1A NA   coval 1.384 0.020 
+HEC C2A CAA  coval 1.544 0.020 
+HEC C2A C3A  coval 1.334 0.020 
+HEC CAA CBA  coval 1.525 0.020 
+HEC CAA HAA1 coval 0.970 0.020 
+HEC CAA HAA2 coval 0.970 0.020 
+HEC CBA CGA  coval 1.506 0.020 
+HEC CBA HBA1 coval 0.970 0.020 
+HEC CBA HBA2 coval 0.970 0.020 
+HEC CGA O1A  coval 1.258 0.020 
+HEC CGA O2A  coval 1.258 0.020 
+HEC C3A CMA  coval 1.544 0.020 
+HEC C3A C4A  coval 1.449 0.020 
+HEC CMA HMA1 coval 0.980 0.020 
+HEC CMA HMA2 coval 0.980 0.020 
+HEC CMA HMA3 coval 0.980 0.020 
+HEC C4A NA   coval 1.384 0.020 
+HEC C4A CHB  coval 1.378 0.020 
+HEC CHB C1B  coval 1.378 0.020 
+HEC CHB HHB  coval 0.980 0.020 
+HEC C1B C2B  coval 1.449 0.020 
+HEC C1B NB   coval 1.384 0.020 
+HEC C2B CMB  coval 1.544 0.020 
+HEC C2B C3B  coval 1.334 0.020 
+HEC CMB HMB1 coval 0.970 0.020 
+HEC CMB HMB2 coval 0.970 0.020 
+HEC CMB HMB3 coval 0.970 0.020 
+HEC C3B CAB  coval 1.544 0.020 
+HEC C3B C4B  coval 1.449 0.020 
+HEC CAB CBB  coval 1.544 0.020 
+HEC CAB HAB  coval 0.960 0.020 
+HEC CBB HBB1 coval 0.970 0.020 
+HEC CBB HBB2 coval 0.970 0.020 
+HEC CBB HBB3 coval 0.970 0.020 
+HEC C4B NB   coval 1.384 0.020 
+HEC C4B CHC  coval 1.378 0.020 
+HEC CHC C1C  coval 1.378 0.020 
+HEC CHC HHC  coval 0.980 0.020 
+HEC C1C C2C  coval 1.449 0.020 
+HEC C1C NC   coval 1.384 0.020 
+HEC C2C CMC  coval 1.544 0.020 
+HEC C2C C3C  coval 1.334 0.020 
+HEC CMC HMC1 coval 0.970 0.020 
+HEC CMC HMC2 coval 0.970 0.020 
+HEC CMC HMC3 coval 0.970 0.020 
+HEC C3C CAC  coval 1.544 0.020 
+HEC C3C C4C  coval 1.449 0.020 
+HEC CAC CBC  coval 1.544 0.020 
+HEC CAC HAC  coval 0.960 0.020 
+HEC CBC HBC1 coval 0.970 0.020 
+HEC CBC HBC2 coval 0.970 0.020 
+HEC CBC HBC3 coval 0.970 0.020 
+HEC C4C NC   coval 1.384 0.020 
+HEC C4C CHD  coval 1.378 0.020 
+HEC CHD HHD  coval 0.980 0.020 
+HEC C3D C2D  coval 1.544 0.020 
+HEC C2D CMD  coval 1.544 0.020 
+HEC C2D C1D  coval 1.449 0.020 
+HEC CMD HMD1 coval 0.980 0.020 
+HEC CMD HMD2 coval 0.980 0.020 
+HEC CMD HMD3 coval 0.980 0.020 
+HEC C1D ND   coval 1.384 0.020 
+HEC C1D CHD  coval 1.378 0.020 
+HEC CHA C4D  coval 1.378 0.020 
+HEC C4D C3D  coval 1.449 0.020 
+HEC C4D ND   coval 1.384 0.020 
+HEC C3D CAD  coval 1.544 0.020 
+HEC CAD CBD  coval 1.525 0.020 
+HEC CAD HAD1 coval 0.970 0.020 
+HEC CAD HAD2 coval 0.970 0.020 
+HEC CBD CGD  coval 1.506 0.020 
+HEC CBD HBD1 coval 0.970 0.020 
+HEC CBD HBD2 coval 0.970 0.020 
+HEC CGD O1D  coval 1.258 0.020 
+HEC CGD O2D  coval 1.258 0.020 
+HEC FE  NA   metal 2.080 0.070 
+HEC FE  NB   metal 2.080 0.070 
+HEC FE  NC   metal 2.080 0.070 
+HEC FE  ND   metal 2.080 0.070 
+# 
+loop_
+_chem_comp_angle.comp_id 
+_chem_comp_angle.atom_id_1 
+_chem_comp_angle.atom_id_2 
+_chem_comp_angle.atom_id_3 
+_chem_comp_angle.value_angle 
+_chem_comp_angle.value_angle_esd 
+HEC C4D  CHA C1A  126.000 3.000  
+HEC HHA  CHA C1A  117.000 3.000  
+HEC HHA  CHA C4D  117.000 3.000  
+HEC CHA  C1A C2A  126.000 3.000  
+HEC CHA  C1A NA   126.000 3.000  
+HEC C2A  C1A NA   108.000 3.000  
+HEC CHA  C4D C3D  126.000 3.000  
+HEC CHA  C4D ND   126.000 3.000  
+HEC C3D  C4D ND   108.000 3.000  
+HEC C1A  C2A CAA  126.000 3.000  
+HEC CAA  C2A C3A  126.000 3.000  
+HEC C1A  C2A C3A  108.000 3.000  
+HEC C4D  C3D CAD  126.000 3.000  
+HEC CAD  C3D C2D  126.000 3.000  
+HEC C4D  C3D C2D  108.000 3.000  
+HEC C2A  CAA CBA  109.500 3.000  
+HEC C2A  CAA HAA1 109.500 3.000  
+HEC C2A  CAA HAA2 109.500 3.000  
+HEC CBA  CAA HAA1 109.500 3.000  
+HEC CBA  CAA HAA2 109.500 3.000  
+HEC HAA1 CAA HAA2 109.500 3.000  
+HEC C3D  CAD CBD  109.500 3.000  
+HEC C3D  CAD HAD1 109.500 3.000  
+HEC C3D  CAD HAD2 109.500 3.000  
+HEC CBD  CAD HAD1 109.500 3.000  
+HEC CBD  CAD HAD2 109.500 3.000  
+HEC HAD1 CAD HAD2 109.500 3.000  
+HEC CAA  CBA CGA  109.500 3.000  
+HEC CAA  CBA HBA1 109.500 3.000  
+HEC CAA  CBA HBA2 109.500 3.000  
+HEC CGA  CBA HBA1 109.500 3.000  
+HEC CGA  CBA HBA2 109.500 3.000  
+HEC HBA1 CBA HBA2 109.500 3.000  
+HEC CAD  CBD CGD  109.500 3.000  
+HEC CAD  CBD HBD1 109.500 3.000  
+HEC CAD  CBD HBD2 109.500 3.000  
+HEC CGD  CBD HBD1 109.500 3.000  
+HEC CGD  CBD HBD2 109.500 3.000  
+HEC HBD1 CBD HBD2 109.500 3.000  
+HEC CBA  CGA O1A  118.500 3.000  
+HEC CBA  CGA O2A  118.500 3.000  
+HEC O1A  CGA O2A  123.000 3.000  
+HEC CBD  CGD O1D  118.500 3.000  
+HEC CBD  CGD O2D  118.500 3.000  
+HEC O1D  CGD O2D  123.000 3.000  
+HEC C2A  C3A CMA  126.000 3.000  
+HEC C2A  C3A C4A  108.000 3.000  
+HEC C4A  C3A CMA  126.000 3.000  
+HEC C3D  C2D CMD  126.000 3.000  
+HEC C3D  C2D C1D  108.000 3.000  
+HEC C1D  C2D CMD  126.000 3.000  
+HEC C3A  CMA HMA1 109.500 3.000  
+HEC C3A  CMA HMA2 109.500 3.000  
+HEC C3A  CMA HMA3 109.500 3.000  
+HEC HMA1 CMA HMA2 109.500 3.000  
+HEC HMA1 CMA HMA3 109.500 3.000  
+HEC HMA2 CMA HMA3 109.500 3.000  
+HEC C2D  CMD HMD1 109.500 3.000  
+HEC C2D  CMD HMD2 109.500 3.000  
+HEC C2D  CMD HMD3 109.500 3.000  
+HEC HMD1 CMD HMD2 109.500 3.000  
+HEC HMD1 CMD HMD3 109.500 3.000  
+HEC HMD2 CMD HMD3 109.500 3.000  
+HEC C3A  C4A CHB  126.000 3.000  
+HEC C3A  C4A NA   108.000 3.000  
+HEC NA   C4A CHB  126.000 3.000  
+HEC C2D  C1D CHD  126.000 3.000  
+HEC C2D  C1D ND   108.000 3.000  
+HEC ND   C1D CHD  126.000 3.000  
+HEC C1A  NA  C4A  108.000 3.000  
+HEC C1A  NA  FE   126.000 10.000 
+HEC FE   NA  C4A  126.000 10.000 
+HEC C4D  ND  C1D  108.000 3.000  
+HEC C4D  ND  FE   126.000 10.000 
+HEC FE   ND  C1D  126.000 10.000 
+HEC C4A  CHB C1B  126.000 3.000  
+HEC HHB  CHB C1B  117.000 3.000  
+HEC HHB  CHB C4A  117.000 3.000  
+HEC C4C  CHD C1D  126.000 3.000  
+HEC HHD  CHD C1D  117.000 3.000  
+HEC HHD  CHD C4C  117.000 3.000  
+HEC CHB  C1B C2B  126.000 3.000  
+HEC CHB  C1B NB   126.000 3.000  
+HEC C2B  C1B NB   108.000 3.000  
+HEC CHC  C1C C2C  126.000 3.000  
+HEC CHC  C1C NC   126.000 3.000  
+HEC C2C  C1C NC   108.000 3.000  
+HEC C1B  C2B CMB  126.000 3.000  
+HEC CMB  C2B C3B  126.000 3.000  
+HEC C1B  C2B C3B  108.000 3.000  
+HEC C1C  C2C CMC  126.000 3.000  
+HEC CMC  C2C C3C  126.000 3.000  
+HEC C1C  C2C C3C  108.000 3.000  
+HEC C2B  CMB HMB1 109.500 3.000  
+HEC C2B  CMB HMB2 109.500 3.000  
+HEC C2B  CMB HMB3 109.500 3.000  
+HEC HMB1 CMB HMB2 109.500 3.000  
+HEC HMB1 CMB HMB3 109.500 3.000  
+HEC HMB2 CMB HMB3 109.500 3.000  
+HEC C2C  CMC HMC1 109.500 3.000  
+HEC C2C  CMC HMC2 109.500 3.000  
+HEC C2C  CMC HMC3 109.500 3.000  
+HEC HMC1 CMC HMC2 109.500 3.000  
+HEC HMC1 CMC HMC3 109.500 3.000  
+HEC HMC2 CMC HMC3 109.500 3.000  
+HEC C2B  C3B CAB  126.000 3.000  
+HEC C4B  C3B CAB  126.000 3.000  
+HEC C4B  C3B C2B  108.000 3.000  
+HEC C2C  C3C CAC  126.000 3.000  
+HEC C4C  C3C CAC  126.000 3.000  
+HEC C4C  C3C C2C  108.000 3.000  
+HEC C3B  CAB CBB  109.000 3.000  
+HEC C3B  CAB HAB  109.000 3.000  
+HEC HAB  CAB CBB  109.000 3.000  
+HEC CAB  CBB HBB1 109.000 3.000  
+HEC CAB  CBB HBB2 109.000 3.000  
+HEC CAB  CBB HBB3 109.000 3.000  
+HEC HBB1 CBB HBB2 109.000 3.000  
+HEC HBB1 CBB HBB3 109.000 3.000  
+HEC HBB2 CBB HBB3 109.000 3.000  
+HEC C3C  CAC CBC  109.000 3.000  
+HEC C3C  CAC HAC  109.000 3.000  
+HEC HAC  CAC CBC  109.000 3.000  
+HEC CAC  CBC HBC1 109.000 3.000  
+HEC CAC  CBC HBC2 109.000 3.000  
+HEC CAC  CBC HBC3 109.000 3.000  
+HEC HBC1 CBC HBC2 109.000 3.000  
+HEC HBC1 CBC HBC3 109.000 3.000  
+HEC HBC2 CBC HBC3 109.000 3.000  
+HEC C3B  C4B CHC  126.000 3.000  
+HEC CHC  C4B NB   126.000 3.000  
+HEC NB   C4B C3B  108.000 3.000  
+HEC C3C  C4C CHD  126.000 3.000  
+HEC CHD  C4C NC   126.000 3.000  
+HEC NC   C4C C3C  108.000 3.000  
+HEC C4B  NB  C1B  108.000 3.000  
+HEC C4B  NB  FE   126.000 10.000 
+HEC FE   NB  C1B  126.000 10.000 
+HEC C4C  NC  C1C  108.000 3.000  
+HEC C4C  NC  FE   126.000 10.000 
+HEC FE   NC  C1C  126.000 10.000 
+HEC C4B  CHC C1C  126.000 3.000  
+HEC HHC  CHC C1C  117.000 3.000  
+HEC HHC  CHC C4B  117.000 3.000  
+HEC NA   FE  NB   90.000  10.000 
+HEC NA   FE  ND   90.000  10.000 
+HEC NB   FE  NC   90.000  10.000 
+HEC NC   FE  ND   90.000  10.000 
+HEC NB   FE  ND   180.000 10.000 
+HEC NA   FE  NC   180.000 10.000 
+# 
+loop_
+_chem_comp_tor.comp_id 
+_chem_comp_tor.id 
+_chem_comp_tor.atom_id_1 
+_chem_comp_tor.atom_id_2 
+_chem_comp_tor.atom_id_3 
+_chem_comp_tor.atom_id_4 
+_chem_comp_tor.value_angle 
+_chem_comp_tor.value_angle_esd 
+_chem_comp_tor.period 
+HEC CONST_01 CHA C1A C2A C3A  180.000 0.000  0 
+HEC chi1     C1A C2A CAA CBA  180.000 20.000 2 
+HEC chi2     C2A CAA CBA CGA  180.000 20.000 2 
+HEC chi3     CAA CBA CGA O2A  180.000 20.000 2 
+HEC CONST_02 C1A C2A C3A C4A  0.000   0.000  0 
+HEC hh1      C2A C3A CMA HMA3 0.000   20.000 3 
+HEC CONST_03 C2A C3A C4A CHB  180.000 0.000  0 
+HEC CONST_04 C3A C4A CHB C1B  180.000 0.000  0 
+HEC CONST_05 C4A CHB C1B C2B  180.000 0.000  0 
+HEC CONST_06 CHB C1B C2B C3B  180.000 0.000  0 
+HEC hh2      C1B C2B CMB HMB3 0.000   20.000 3 
+HEC CONST_07 C1B C2B C3B C4B  0.000   0.000  0 
+HEC chi4     C2B C3B CAB CBB  60.000  10.000 2 
+HEC hh3      C3B CAB CBB HBB2 180.000 20.000 2 
+HEC CONST_08 C2B C3B C4B CHC  180.000 0.000  0 
+HEC CONST_09 C3B C4B CHC C1C  180.000 0.000  0 
+HEC CONST_10 C4B CHC C1C C2C  180.000 0.000  0 
+HEC CONST_11 CHC C1C C2C C3C  180.000 0.000  0 
+HEC hh4      C1C C2C CMC HMC3 0.000   20.000 3 
+HEC CONST_12 C1C C2C C3C C4C  0.000   0.000  0 
+HEC chi5     C2C C3C CAC CBC  60.000  10.000 2 
+HEC hh5      C3C CAC CBC HBC2 180.000 20.000 2 
+HEC CONST_13 C2C C3C C4C CHD  180.000 0.000  0 
+HEC CONST_14 C3C C4C CHD C1D  180.000 0.000  0 
+HEC CONST_15 C4C CHD C1D C2D  180.000 0.000  0 
+HEC CONST_16 CHD C1D C2D C3D  180.000 0.000  0 
+HEC hh6      C1D C2D CMD HMD3 0.000   20.000 3 
+HEC CONST_17 C1D C2D C3D C4D  0.000   0.000  0 
+HEC chi6     C2D C3D CAD CBD  180.000 20.000 2 
+HEC chi7     C3D CAD CBD CGD  180.000 20.000 2 
+HEC chi8     CAD CBD CGD O2D  180.000 20.000 2 
+HEC CONST_18 C2D C3D C4D ND   0.000   0.000  0 
+HEC CONST_19 C3D C4D ND  FE   180.000 0.000  0 
+HEC CONST_20 C2A C1A CHA HHA  0.000   0.000  0 
+HEC CONST_21 C2B C1B CHB HHB  0.000   0.000  0 
+HEC CONST_22 C2C C1C CHC HHC  0.000   0.000  0 
+HEC CONST_23 C2D C1D CHD HHD  0.000   0.000  0 
+# 
+loop_
+_chem_comp_plane_atom.comp_id 
+_chem_comp_plane_atom.plane_id 
+_chem_comp_plane_atom.atom_id 
+_chem_comp_plane_atom.dist_esd 
+HEC A     C1A 0.020 
+HEC A     NA  0.020 
+HEC A     C4A 0.020 
+HEC A     C3A 0.020 
+HEC A     CMA 0.020 
+HEC A     C2A 0.020 
+HEC A     CAA 0.020 
+HEC A     CHA 0.020 
+HEC A     CHB 0.020 
+HEC B     C1B 0.020 
+HEC B     NB  0.020 
+HEC B     C4B 0.020 
+HEC B     C3B 0.020 
+HEC B     CMB 0.020 
+HEC B     C2B 0.020 
+HEC B     CAB 0.020 
+HEC B     CHB 0.020 
+HEC B     CHC 0.020 
+HEC C     C1C 0.020 
+HEC C     NC  0.020 
+HEC C     C4C 0.020 
+HEC C     C3C 0.020 
+HEC C     CMC 0.020 
+HEC C     C2B 0.020 
+HEC C     CAC 0.020 
+HEC C     CHC 0.020 
+HEC C     CHD 0.020 
+HEC D     C1D 0.020 
+HEC D     ND  0.020 
+HEC D     C4D 0.020 
+HEC D     C3D 0.020 
+HEC D     CMD 0.020 
+HEC D     C2D 0.020 
+HEC D     CAD 0.020 
+HEC D     CHD 0.020 
+HEC D     CHA 0.020 
+HEC plan1 CBD 0.020 
+HEC plan1 CGD 0.020 
+HEC plan1 O1D 0.020 
+HEC plan1 O2D 0.020 
+HEC plan2 CBA 0.020 
+HEC plan2 CGA 0.020 
+HEC plan2 O1A 0.020 
+HEC plan2 O2A 0.020 
+HEC plan3 CHA 0.020 
+HEC plan3 HHA 0.020 
+HEC plan3 C1A 0.020 
+HEC plan3 C4D 0.020 
+HEC plan4 CHB 0.020 
+HEC plan4 HHB 0.020 
+HEC plan4 C1B 0.020 
+HEC plan4 C4A 0.020 
+HEC plan5 CHC 0.020 
+HEC plan5 HHC 0.020 
+HEC plan5 C1C 0.020 
+HEC plan5 C4B 0.020 
+HEC plan6 CHD 0.020 
+HEC plan6 HHD 0.020 
+HEC plan6 C1D 0.020 
+HEC plan6 C4C 0.020 
+# 
+loop_
+_chem_comp_plane.comp_id 
+_chem_comp_plane.id 
+HEC A     
+HEC B     
+HEC C     
+HEC D     
+HEC plan1 
+HEC plan2 
+HEC plan3 
+HEC plan4 
+HEC plan5 
+HEC plan6 
+# 
+_chem_comp.id                  HEC 
+_chem_comp.three_letter_code   . 
+_chem_comp.name                'heme-C                              ' 
+_chem_comp.group               non-polymer 
+_chem_comp.number_atoms_all    75 
+_chem_comp.number_atoms_nh     43 
+_chem_comp.desc_level          . 
+# 
+data_comp_FC6
+# 
+loop_
+_chem_comp_atom.comp_id 
+_chem_comp_atom.atom_id 
+_chem_comp_atom.type_symbol 
+_chem_comp_atom.type_energy 
+_chem_comp_atom.charge 
+_chem_comp_atom.partial_charge 
+_chem_comp_atom.x 
+_chem_comp_atom.y 
+_chem_comp_atom.z 
+FC6 N24 N  NS  0 . 29.3426 -1.4895 39.4813 
+FC6 C24 C  CSP 0 . 30.0294 -2.3074 38.9796 
+FC6 FE2 FE FE  0 . 31.0956 -3.5773 38.2007 
+FC6 C21 C  CSP 0 . 30.6737 -4.7512 39.5369 
+FC6 N25 N  NS  0 . 30.4030 -5.5045 40.3944 
+FC6 C22 C  CSP 0 . 29.6664 -4.1773 37.2224 
+FC6 N22 N  NS  0 . 28.7533 -4.5606 36.5974 
+FC6 C26 C  CSP 0 . 32.5171 -2.9806 39.1737 
+FC6 N21 N  NS  0 . 33.4161 -2.6032 39.7891 
+FC6 C23 C  CSP 0 . 31.5184 -2.4009 36.8615 
+FC6 N23 N  NS  0 . 31.7922 -1.6392 35.9945 
+FC6 C11 C  CSP 0 . 32.1596 -4.8444 37.4235 
+FC6 N11 N  NS  0 . 32.8376 -5.6520 36.9281 
+# 
+loop_
+_chem_comp_bond.comp_id 
+_chem_comp_bond.atom_id_1 
+_chem_comp_bond.atom_id_2 
+_chem_comp_bond.type 
+_chem_comp_bond.value_dist 
+_chem_comp_bond.value_dist_esd 
+_chem_comp_bond.value_dist_neutron 
+FC6 N24 C24 triple 1.180 0.02 1.180 
+FC6 C24 FE2 single 1.830 0.02 1.830 
+FC6 FE2 C21 single 1.830 0.02 1.830 
+FC6 FE2 C22 single 1.830 0.02 1.830 
+FC6 FE2 C26 single 1.830 0.02 1.830 
+FC6 FE2 C23 single 1.830 0.02 1.830 
+FC6 FE2 C11 single 1.830 0.02 1.830 
+FC6 C21 N25 triple 1.180 0.02 1.180 
+FC6 C22 N22 triple 1.180 0.02 1.180 
+FC6 C26 N21 triple 1.180 0.02 1.180 
+FC6 C23 N23 triple 1.180 0.02 1.180 
+FC6 C11 N11 triple 1.180 0.02 1.180 
+# 
+loop_
+_chem_comp_angle.comp_id 
+_chem_comp_angle.atom_id_1 
+_chem_comp_angle.atom_id_2 
+_chem_comp_angle.atom_id_3 
+_chem_comp_angle.value_angle 
+_chem_comp_angle.value_angle_esd 
+FC6 FE2 C24 N24 180.00 3.0 
+FC6 C11 FE2 C23 90.00  3.0 
+FC6 C11 FE2 C26 90.00  3.0 
+FC6 C23 FE2 C26 90.00  3.0 
+FC6 C11 FE2 C22 90.00  3.0 
+FC6 C23 FE2 C22 90.00  3.0 
+FC6 C26 FE2 C22 180.00 3.0 
+FC6 C11 FE2 C21 90.00  3.0 
+FC6 C23 FE2 C21 180.00 3.0 
+FC6 C26 FE2 C21 90.00  3.0 
+FC6 C22 FE2 C21 90.00  3.0 
+FC6 C11 FE2 C24 180.00 3.0 
+FC6 C23 FE2 C24 90.00  3.0 
+FC6 C26 FE2 C24 90.00  3.0 
+FC6 C22 FE2 C24 90.00  3.0 
+FC6 C21 FE2 C24 90.00  3.0 
+FC6 N25 C21 FE2 180.00 3.0 
+FC6 N22 C22 FE2 180.00 3.0 
+FC6 N21 C26 FE2 180.00 3.0 
+FC6 N23 C23 FE2 180.00 3.0 
+FC6 N11 C11 FE2 180.00 3.0 
+# 
+_chem_comp.id                  FC6 
+_chem_comp.three_letter_code   FC6 
+_chem_comp.name                'hexakis(cyano-kappaC)iron' 
+_chem_comp.group               ligand 
+_chem_comp.number_atoms_all    13 
+_chem_comp.number_atoms_nh     13 
+_chem_comp.desc_level          . 
+# 

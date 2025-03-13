@@ -160,6 +160,12 @@ _entity_src_gen.pdbx_host_org_ncbi_taxonomy_id   562
 _entity_src_gen.pdbx_host_org_vector_type        plasmid 
 _entity_src_gen.plasmid_name                     pET100 
 # 
+loop_
+_software.classification 
+_software.name 
+refinement     CNS       
+'data scaling' Scalepack 
+# 
 _refine.pdbx_refine_id   'X-RAY DIFFRACTION' 
 _refine.pdbx_diffrn_id   1 
 # 

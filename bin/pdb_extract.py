@@ -31,6 +31,7 @@ from extract.process_model.convertPdbModel import PdbModel
 from extract.process_model.validateCifModel import validateCif
 from extract.extract_template.extractTemplate import Template
 from extract.merge.mergeLogTemplateToModel import Merger
+from extract.process_model.splitMetadata import Spliter
 from extract.util.cifDictCheck import DictCheck
 from extract.util.exceptions import *
 
@@ -85,6 +86,7 @@ class Process():
         self.d_manager["template"] = {}  # record template filepaths
         self.d_manager["status"] = {}  # record run status of each step
         self.d_manager["log"] = {}  # record individual run log filepath
+
         self.d_software = {}  # record software categoory for Xray and EC
         self.d_em_software = {}  # record em_software category for EM
         self.d_nmr_software = {}  # record pdbx_nmr_software category for NMR
@@ -534,6 +536,46 @@ class Process():
             self.d_manager["status"]["checkAgainstDict_OK"] = False
             logger.exception(e)
 
+    def splitMetadataTemplate(self):
+        """
+        split metadata into templates for download and next run
+
+        Returns
+        -------
+        None.
+
+        """
+        try:
+            pdb_extract_folder = TOP_DIR
+            folder_cat = os.path.join(pdb_extract_folder, "data/templates")
+            filename_cat = self.d_manager["method"].lower() + "_metadata_cat.list"
+            filepath_cat = os.path.join(folder_cat, filename_cat)
+
+            filepath_all = self.d_manager["model"]["filepath_temp_out"]
+            logger.debug("split metadata from output mmcif %s", filepath_all)
+
+            filepath_metadata = os.path.join(self.d_manager["folder"]["temp"], "metadata.cif")
+
+            spliter = Spliter()
+            if spliter.splitMetadata(filepath_all, filepath_cat):
+                spliter.writeMetadata(filepath_metadata)
+                self.d_manager["model"]["filepath_temp_metadata"] = filepath_metadata
+                self.d_manager["status"]["splitMetadataTemplate_OK"] = True
+            else:
+                self.d_manager["status"]["splitMetadataTemplate_OK"] = False
+
+            if self.d_manager["method"] == "EM":
+                filename_map_only_cat = self.d_manager["method"].lower() + "_metadata_map_only_cat.list"
+                filepath_map_only_cat = os.path.join(folder_cat, filename_map_only_cat)         
+                filepath_metadata_map_only = os.path.join(self.d_manager["folder"]["temp"], "map_only_metadata.cif")
+                if spliter.splitMetadata(filepath_all, filepath_map_only_cat):
+                    spliter.writeMetadata(filepath_metadata_map_only)
+                    self.d_manager["model"]["filepath_temp_metadata_map_only"] = filepath_metadata_map_only
+
+        except Exception as e:
+            self.d_manager["status"]["splitMetadataTemplate_OK"] = False
+            logger.exception(e)
+
     def copyResultFromTemp(self):
         """
         copy final model file and necessary logging file for PDB_extract run
@@ -553,18 +595,33 @@ class Process():
             self.d_manager["status"]["copyResultFromTemp_OK"] = False
             logger.exception(e)
 
-        if "filepath_temp_dictionary_check" in self.d_manager["log"]:
-            filepath_author_dictionary_check = os.path.join(
-                self.d_manager["folder"]["current"], "dictionary_check.json")
-            if self.__fileCopy(self.d_manager["log"]["filepath_temp_dictionary_check"], filepath_author_dictionary_check):
-                self.d_manager["log"]["filepath_author_dictionary_check"] = filepath_author_dictionary_check
-
         if "filepath_temp_maxit_log" in self.d_manager["log"]:
             filepath_author_maxit_log = os.path.join(
                 self.d_manager["folder"]["current"], "maxit.log")
             if self.__fileCopy(self.d_manager["log"]["filepath_temp_maxit_log"], filepath_author_maxit_log):
                 self.d_manager["log"]["filepath_author_maxit_log"] = filepath_author_maxit_log
 
+        if "filepath_temp_dictionary_check" in self.d_manager["log"]:
+            fp_temp_dictionary_check = self.d_manager["log"]["filepath_temp_dictionary_check"]
+            fn_dict_check = os.path.basename(fp_temp_dictionary_check)
+            fp_author_dictionary_check = os.path.join(self.d_manager["folder"]["current"], fn_dict_check)
+            if self.__fileCopy(fp_temp_dictionary_check, fp_author_dictionary_check):
+                self.d_manager["log"]["filepath_author_dictionary_check"] = fp_author_dictionary_check
+        
+        if "filepath_temp_metadata" in self.d_manager["model"]:
+            fp_temp_metadata = self.d_manager["model"]["filepath_temp_metadata"]
+            fn_temp_metadata = os.path.basename(fp_temp_metadata)
+            fp_author_metadata = os.path.join(self.d_manager["folder"]["current"], fn_temp_metadata)
+            if self.__fileCopy(fp_temp_metadata, fp_author_metadata):
+                self.d_manager["filepath_author_metadata"] = fp_author_metadata
+
+        if self.d_manager["method"] == "EM":
+            if "filepath_temp_metadata_map_only" in self.d_manager["model"]:
+                fp_temp_metadata_map_only = self.d_manager["model"]["filepath_temp_metadata_map_only"]
+                fn_temp_metadata_map_only = os.path.basename(fp_temp_metadata_map_only)
+                fp_author_metadata_map_only = os.path.join(self.d_manager["folder"]["current"], fn_temp_metadata_map_only)
+                if self.__fileCopy(fp_temp_metadata_map_only, fp_author_metadata_map_only):
+                    self.d_manager["filepath_author_metadata_map_only"] = fp_author_metadata_map_only
 
 def reviewDict(d_):
     l_lines = []
@@ -683,14 +740,23 @@ def runPdbExtract(args="", tf_cleanup=True):
             "Fail Step 8: Check merged file against mmCIF dictionary, continue")
     logger.info(
         "Run comprehensive mmCIF check against mmCIF dictionary finishes")
+    
+    # Step 9: Split metadata from the output file, to be used for related entries
+    logger.info("Split metadata")
+    p.splitMetadataTemplate()
+    if not p.d_manager["status"]["splitMetadataTemplate_OK"]:
+        warnings.warn(
+            "Fail Step 9: Split metadata from the output file, continue")
+    logger.info(
+        "Split metadata from the output file finishes")
 
-    # Step 9: Copy result files from temp folder to user's default folder
+    # Step 10: Copy result files from temp folder to user's default folder
     logger.info("Copy result files from temp folder to user's folder starts")
     p.copyResultFromTemp()
     if not p.d_manager["status"]["copyResultFromTemp_OK"]:
         generateErrorLog("Fail to copy result file from temp folder.")
         raise FileCopyError(
-            "Fail Step 9: Copy result files from temp folder to user's default folder, stop")
+            "Fail Step 10: Copy result files from temp folder to user's default folder, stop")
     logger.info("Copy result files from temp folder to user's folder finishes")
 
     # Review tracking dictionary

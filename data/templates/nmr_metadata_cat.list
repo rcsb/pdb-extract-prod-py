@@ -1,0 +1,17 @@
+audit_author
+audit_conform
+citation
+citation_author
+entity
+entity_poly
+entity_src_gen
+pdbx_audit_support
+pdbx_contact_author
+pdbx_nmr_ensemble
+pdbx_nmr_refine
+pdbx_nmr_representative
+pdbx_nmr_software
+pdbx_nmr_spectrometer
+pdbx_struct_assembly_depositor_info
+struct
+struct_keywords
