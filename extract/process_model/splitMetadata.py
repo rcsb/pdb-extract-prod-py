@@ -140,6 +140,6 @@ class Spliter():
 
         """
         try:
-            self.io.writeFile(filepath_metadata, self.l_dc)
+            self.io.writeFile(filepath_metadata, [self.dc0])
         except IOError as e:
             logger.exception(e)

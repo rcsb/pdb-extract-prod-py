@@ -242,7 +242,7 @@ def generateSummaryForCGI(filename_processed, filename_summary="converted_summar
     d_summary = {}
     
     if "atom_site" not in dc0.getObjNameList():
-        generateErrorLog("Error: converted mmCIF has no coordinates")
+        generateErrorLog("Error: uploaded file has no atomic coordinates")
     else:
         d_summary['atom_count'] = dc0.getObj('atom_site').getRowCount()
 
@@ -250,7 +250,7 @@ def generateSummaryForCGI(filename_processed, filename_summary="converted_summar
         if cat in dc0.getObjNameList():
             d_summary[cat] = convertCatObjToDict(dc0.getObj(cat))
         else:
-            d_summary[key] = {}
+            d_summary[cat] = {}
 
     with open(filename_summary, 'w') as file:
         json.dump(d_summary, file, indent=2)
