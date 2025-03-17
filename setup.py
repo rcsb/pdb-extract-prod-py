@@ -1,3 +1,4 @@
+import os
 from setuptools import find_packages
 from setuptools import setup
 # from setuptools.command.egg_info import egg_info
@@ -15,10 +16,19 @@ from setuptools import setup
 
 #         egg_info.run(self)
 
+folder = os.path.dirname(os.path.abspath(__file__))
+fp_version = os.path.join(folder, "VERSION")
+try:
+    with open(fp_version) as f:
+        ver = f.readline().strip()
+except FileNotFoundError:
+    ver = None
+if not ver:
+    ver = "4.3"  # fall back
 
 setup(
     name="pdb-extract-prod-py",
-    version="4.3",
+    version=ver,
     author="Chenghua Shao",
     author_email="chenghua.shao@rcsb.org",
     description="pdb_extract is a pre-deposition service for assembling structure files for wwPDB OneDep deposition",

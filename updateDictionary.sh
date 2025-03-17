@@ -20,15 +20,10 @@ function download_file {
     fi
 }
 
-if [ -z "$PDB_EXTRACT_PY" ] 
-then
-    echo "[*] Please run source setup.sh before executing this script"
-	exit 1
-else 
-	echo "[*] Change directory to dictionary folder of"
-	cd $PDB_EXTRACT_PY/data/dictionary
-	pwd
-fi
+
+echo "[*] Change directory to dictionary folder of"
+cd data/dictionary
+pwd
 
 dict_name="mmcif_pdbx_v5_next.dic.gz"
 url_dict=https://mmcif.wwpdb.org/dictionaries/ascii/$dict_name
