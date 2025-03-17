@@ -43,8 +43,9 @@ _audit_conform.dict_location   http://mmcif.pdb.org/dictionaries/ascii/mmcif_pdb
 loop_
 _audit_author.pdbx_ordinal
 _audit_author.name
-1 "Lastname, F.M."
-2 ' '             
+_audit_author.identifier_ORCID
+1 "Lastname, F.M."  ' '
+2 ' '  ' '           
 #
 #_pdbx_contact_author category below records list of authors who should receive communication regarding the deposition
 #Each entry must have at least one author with _pdbx_contact_author.role of "principal investigator/group leader"
@@ -94,8 +95,9 @@ loop_
 _citation_author.citation_id 
 _citation_author.ordinal
 _citation_author.name
-primary 1 "Lastname, F.M."
-primary 2 ' '             
+_citation_author.identifier_ORCID
+primary 1 "Lastname, F.M."  ' '
+primary 2 ' '  ' '           
 #
 ###### struct_group #####     
 #
