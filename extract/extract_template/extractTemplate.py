@@ -100,7 +100,10 @@ class Template():
                 for i in range(cat.getRowCount()):
                     d_row = cat.getRowItemDict(i)
                     for item_name in d_row:
-                        self.d_template[cat_name][item_name].append(d_row[item_name])
+                        value = d_row[item_name].strip()
+                        if not value:
+                            value = "?"
+                        self.d_template[cat_name][item_name].append(value)
             self.d_track["processValues_OK"] = True
         except Exception:
             self.d_track["processValues_OK"] = False
