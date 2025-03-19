@@ -34,6 +34,7 @@ from extract.merge.mergeLogTemplateToModel import Merger
 from extract.process_model.splitMetadata import Spliter
 from extract.util.cifDictCheck import DictCheck
 from extract.util.exceptions import *
+import extract.util.cifFileCheck as cifFileCheck
 
 import logging
 log_format = logging.Formatter(
@@ -400,21 +401,37 @@ class Process():
 
         """
         self.d_template = {}  # dictionary to store parsed template data
+
         try:
             filepath_template = self.d_manager["template"]["filepath_temp_in"]
             logger.debug("process author's template: %s" % filepath_template)
         except KeyError:
             logger.info("no author-provided template")
             self.d_manager["status"]["parseTemplate_OK"] = None
+            return False
         else:
+            cif_checker = cifFileCheck.Check(filepath_template)
+            
+            if not cif_checker.checkHeader(filepath_template):
+                logger.error("author template %s has no proper mmCIF header", filepath_template)
+                self.d_manager["status"]["parseTemplate_OK"] = False
+                return False
+            
+            if not cif_checker.checkFormat():
+                logger.error("author template %s has no proper mmCIF format", filepath_template)
+                self.d_manager["status"]["parseTemplate_OK"] = False
+                return False
+  
             template = Template()  # create template parser instance
             if template.parse(filepath_template):
+                logger.info("succeeded to parse author template %s", filepath_template)
                 self.d_manager["status"]["parseTemplate_OK"] = True
                 self.d_template = template.d_template
+                return True
             else:
+                logger.error("failed to parse author template %s", filepath_template)
                 self.d_manager["status"]["parseTemplate_OK"] = False
-        logger.debug("stored parsed template data self.d_template with keys:%s"
-                     % self.d_template.keys())
+                return False
 
     def mergeLogTemplate(self):
         """
