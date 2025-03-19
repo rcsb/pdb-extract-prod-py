@@ -315,7 +315,13 @@ class Merger():
             bool: merge succeeds or fails
         """
         if not d_software_author:
-            return False
+            d_software_author = {}
+            d_software_author["_software.classification"] = ["data extraction"]
+            d_software_author["_software.name"] = ["PDB_EXTRACT"]
+        else:
+            d_software_author["_software.classification"].append("data extraction")
+            d_software_author["_software.name"].append("PDB_EXTRACT")
+
         if "software" in self.dc0.getObjNameList():
             d_software_model = convertCatObjToDict(self.dc0.getObj("software"))
             d_software = mergeCatItemsUnionValuesByKeys(d_software_model, d_software_author, [
