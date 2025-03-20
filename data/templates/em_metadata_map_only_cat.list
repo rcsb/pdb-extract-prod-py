@@ -9,6 +9,7 @@ em_entity_assembly
 em_entity_assembly_molwt
 em_entity_assembly_naturalsource
 em_entity_assembly_recombinant
+em_entity_assembly_synthetic
 em_euler_angle_assignment
 em_experiment
 em_grid_pretreatment
