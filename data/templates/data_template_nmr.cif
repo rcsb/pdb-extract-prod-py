@@ -137,9 +137,9 @@ _pdbx_struct_assembly_depositor_info.oligomeric_count    ' '
 #"syn" if the polymer was chemically synthesized without using living organism
 #      and then _pdbx_entity_src_syn category must be filled with match between _entity.id and _pdbx_entity_src_syn.entity_id.
 #
-_entity.id 		 1						
+_entity.id 		         1						
 _entity.type             polymer              
-_entity.src_method 	 man	                
+_entity.src_method 	     ' '	                
 _entity.pdbx_description ' '
 _entity.pdbx_mutation    ' '
 #
@@ -157,7 +157,7 @@ _entity_poly.pdbx_seq_db_name         UNP
 #
 #_entity_src_gen category below records source information only for polymer where _entity.src_method has value of "man"     
 # 
-_entity_src_gen.entity_id                      1
+_entity_src_gen.entity_id                      ' '
 _entity_src_gen.pdbx_src_id                    1
 _entity_src_gen.pdbx_gene_src_scientific_name  ' '
 _entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id ' '
@@ -168,19 +168,20 @@ _entity_src_gen.plasmid_name                   ' '
 #
 #_entity_src_nat category below records source information only for polymer where _entity.src_method has value of "nat"
 #
-#_entity_src_nat.entity_id                 1
-#_entity_src_nat.pdbx_src_id               1
-#_entity_src_nat.pdbx_organism_scientific  "Homo sapiens"
-#_entity_src_nat.pdbx_ncbi_taxonomy_id     9606
-#_entity_src_nat.details                   ?
+_entity_src_nat.entity_id                 ' '
+_entity_src_nat.pdbx_src_id               1
+_entity_src_nat.pdbx_organism_scientific  ' '
+_entity_src_nat.pdbx_ncbi_taxonomy_id     ' '
+#_entity_src_nat.details                   ' '
 #
 #_pdbx_entity_src_syn category below records source information only for polymer where _entity.src_method has value of "syn"
 #
-#_pdbx_entity_src_syn.entity_id              1
-#_pdbx_entity_src_syn.pdbx_src_id            1
-#_pdbx_entity_src_syn.organism_scientific    "Homo sapiens"
-#_pdbx_entity_src_syn.ncbi_taxonomy_id       9606
-#_pdbx_entity_src_syn.details                ?
+_pdbx_entity_src_syn.entity_id              ' '
+_pdbx_entity_src_syn.pdbx_src_id            1
+_pdbx_entity_src_syn.organism_scientific    ' '
+_pdbx_entity_src_syn.ncbi_taxonomy_id       ' '
+#_pdbx_entity_src_syn.details               ' '
+#
 ##### nmr_group #####
 # 
 _pdbx_nmr_spectrometer.spectrometer_id   1 

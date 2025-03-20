@@ -281,7 +281,9 @@ class Merger():
         #                    "pdbx_entity_nonpoly"
         #                    ]
         l_cat_to_remove = ["pdbx_database_status",
+                           "entity_poly",
                            "entity_poly_seq",
+                           "entity",
                            "pdbx_poly_seq_scheme",
                            "pdbx_nonpoly_scheme",
                            "chem_comp",

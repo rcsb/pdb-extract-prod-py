@@ -136,9 +136,9 @@ _pdbx_struct_assembly_depositor_info.oligomeric_count    ' '
 #"syn" if the polymer was chemically synthesized without using living organism
 #      and then _pdbx_entity_src_syn category must be filled with match between _entity.id and _pdbx_entity_src_syn.entity_id.
 #
-_entity.id 		 1						
+_entity.id 		         1						
 _entity.type             polymer              
-_entity.src_method 	 man	                
+_entity.src_method 	     ' '	                
 _entity.pdbx_description ' '
 _entity.pdbx_mutation    ' '
 #
@@ -156,7 +156,7 @@ _entity_poly.pdbx_seq_db_name         UNP
 #
 #_entity_src_gen category below records source information only for polymer where _entity.src_method has value of "man"     
 # 
-_entity_src_gen.entity_id                      1
+_entity_src_gen.entity_id                      ' '
 _entity_src_gen.pdbx_src_id                    1
 _entity_src_gen.pdbx_gene_src_scientific_name  ' '
 _entity_src_gen.pdbx_gene_src_ncbi_taxonomy_id ' '
@@ -167,19 +167,19 @@ _entity_src_gen.plasmid_name                   ' '
 #
 #_entity_src_nat category below records source information only for polymer where _entity.src_method has value of "nat"
 #
-#_entity_src_nat.entity_id                 1
-#_entity_src_nat.pdbx_src_id               1
-#_entity_src_nat.pdbx_organism_scientific  "Homo sapiens"
-#_entity_src_nat.pdbx_ncbi_taxonomy_id     9606
-#_entity_src_nat.details                   ?
+_entity_src_nat.entity_id                 ' '
+_entity_src_nat.pdbx_src_id               1
+_entity_src_nat.pdbx_organism_scientific  ' '
+_entity_src_nat.pdbx_ncbi_taxonomy_id     ' '
+#_entity_src_nat.details                   ' '
 #
 #_pdbx_entity_src_syn category below records source information only for polymer where _entity.src_method has value of "syn"
 #
-#_pdbx_entity_src_syn.entity_id              1
-#_pdbx_entity_src_syn.pdbx_src_id            1
-#_pdbx_entity_src_syn.organism_scientific    "Homo sapiens"
-#_pdbx_entity_src_syn.ncbi_taxonomy_id       9606
-#_pdbx_entity_src_syn.details                ?
+_pdbx_entity_src_syn.entity_id              ' '
+_pdbx_entity_src_syn.pdbx_src_id            1
+_pdbx_entity_src_syn.organism_scientific    ' '
+_pdbx_entity_src_syn.ncbi_taxonomy_id       ' '
+#_pdbx_entity_src_syn.details               ' '
 #
 ###### pdbx_group #####
 ## mark the following as N will make "Related_entries" page green from file upload
@@ -195,23 +195,28 @@ _em_experiment.entity_assembly_id      1
 _em_experiment.aggregation_state       ' '
 _em_experiment.reconstruction_method   ' '
 #
-## assembly 
+## EM assembly 
 #
 _em_entity_assembly.id                             1
 _em_entity_assembly.parent_id                      0
-_em_entity_assembly.source                         RECOMBINANT
+_em_entity_assembly.source                         ' '
 _em_entity_assembly.type                           ' '
 _em_entity_assembly.name                           ' '
 #
 _em_entity_assembly_naturalsource.id                  1
-_em_entity_assembly_naturalsource.entity_assembly_id  1
+_em_entity_assembly_naturalsource.entity_assembly_id  ' '
 _em_entity_assembly_naturalsource.organism            ' '
 _em_entity_assembly_naturalsource.ncbi_tax_id         ' '
 #
 _em_entity_assembly_recombinant.id                  1
-_em_entity_assembly_recombinant.entity_assembly_id  1
+_em_entity_assembly_recombinant.entity_assembly_id  ' '
 _em_entity_assembly_recombinant.organism            ' '
 _em_entity_assembly_recombinant.ncbi_tax_id         ' '
+#
+_em_entity_assembly_synthetic.id                    1
+_em_entity_assembly_synthetic.entity_assembly_id    ' '
+_em_entity_assembly_synthetic.organism              ' '
+_em_entity_assembly_synthetic.ncbi_tax_id           ' '
 #
 ## specimen
 #
