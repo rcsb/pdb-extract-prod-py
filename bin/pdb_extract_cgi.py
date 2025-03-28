@@ -329,6 +329,7 @@ def main():
     else:
         logger.info("Error: Wrong file format selected %s" % file_format)
         generateErrorLog("Error: Wrong file format selected %s" % file_format)
+    sys.exit(0)
 
 
 if __name__ == "__main__":
