@@ -13,16 +13,16 @@ import argparse
 # add -EM, -ECRYSTAL to differentiate experimenal method
 # remove -iLOG, it can not be easily incorprated with argparse and it's really not necessary
 # remove -d, -sp, these options only recorded software but do not offer log parsing, these are complimentary info that can be collected at DepUI 
-# The new PDB_extract only handles file format conversion, log parse, and template incorporation
+# The new pdb_extract only handles file format conversion, log parse, and template incorporation
 
 def create_parser():
-    parser = argparse.ArgumentParser(description="PDB-extract is a program for \
+    parser = argparse.ArgumentParser(description="pdb_extract is a program for \
                                      converting structure file format, \
                                          parsing log files, \
                                      and incorporating meta data of your \
                                          structure solution.",
                                      epilog="**Attention! DO NOT use '-iLOG' \
-                                     before log file in PDB_extract 4.0 onward. \
+                                     before log file in pdb_extract 4.0 onward. \
                                          'README' file shows examples of usage.")
     # skip allow_abbrev option because it's not compatible with python 2
 

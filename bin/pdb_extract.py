@@ -334,8 +334,10 @@ class Process():
                 logger.info("no software log to parse for %s in process %s" %
                             (software_name, process))
 
-        # parse log files, 4.0 only handles one log file for scaling or
+        # parse log files, 4.3 handles one log file for refinement and scaling or
         # indexing_integration. If both log files exist, parse scaling log only
+
+        # parse scaling log
         try:
             log2parse = self.d_manager["software"]["scaling"]["filepath_temp_in"]
             logger.debug("process scaling log: %s" % log2parse)
@@ -361,22 +363,49 @@ class Process():
             software_name_clean = re.sub('[-/ *\.]', '', software2parse)
 
             # locate folder of individual log parser
-            l_import_folder = ["extract",
-                               "extract_log",
-                               self.d_manager["method"],
-                               "scaling",
-                               software_name_clean.lower()]
+            l_import_folder = ["extract", "extract_log", self.d_manager["method"], "scaling", software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
             logger.info("import path for software parser %s", import_path)
             try:
                 # import log parser from __init__.py of the specific folder
                 # the __init__.py chooses version specific parser
                 log_parser = importlib.import_module(import_path)
-                logger.debug("software %s log parser import from %s" %
-                             (software_name, import_path))
+                logger.debug("software %s log parser import from %s", software_name, import_path)
             except ModuleNotFoundError:
-                logger.warning("not support parsing log for software %s in process %s" %
-                               (software_name, process2parse))
+                logger.warning("not support parsing log for software %s in process %s", software_name, process2parse)
+                self.d_manager["software"][process2parse]["parseOK"] = False
+            else:
+                try:
+                    self.d_log[process2parse] = log_parser.run(log2parse)
+                    self.d_manager["software"][process2parse]["parseOK"] = True
+                except Exception as e:
+                    self.d_log[process2parse] = {}
+                    self.d_manager["software"][process2parse]["parseOK"] = False
+
+        # parse refinment log
+        try:
+            log2parse = self.d_manager["software"]["refinement"]["filepath_temp_in"]
+            logger.debug("process refinement log: %s" % log2parse)
+            software2parse = self.d_manager["software"]["refinement"]["name"]
+            process2parse = "refinement"
+        except KeyError as e:
+            logger.info("no log file for refinement")
+            log2parse = None
+            software2parse = None
+            process2parse = None
+        if process2parse:
+            software_name_clean = re.sub('[-/ *\.]', '', software2parse)
+            # locate folder of individual log parser
+            l_import_folder = ["extract", "extract_log", self.d_manager["method"], "refinement", software_name_clean.lower()]
+            import_path = '.'.join(l_import_folder)
+            logger.info("import path for software parser %s", import_path)
+            try:
+                # import log parser from __init__.py of the specific folder
+                # the __init__.py chooses version specific parser if applicable
+                log_parser = importlib.import_module(import_path)
+                logger.debug("software %s log parser import from %s", software_name, import_path)
+            except ModuleNotFoundError:
+                logger.warning("not support parsing log for software %s in process %s", software_name, process2parse)
                 self.d_manager["software"][process2parse]["parseOK"] = False
             else:
                 try:
@@ -386,8 +415,7 @@ class Process():
                     self.d_log[process2parse] = {}
                     self.d_manager["software"][process2parse]["parseOK"] = False
         logger.debug("created new _software category: %s" % self.d_software)
-        logger.debug("stored parsed log data in self.d_log with keys: %s" %
-                     self.d_log.keys())
+        logger.debug("stored parsed log data in self.d_log with keys: %s", self.d_log.keys())
 
     def parseTemplate(self):
         """
@@ -678,7 +706,7 @@ def generateErrorLog(error, filename_error_log="pdb_extract_error_log"):
     return True
 
 
-def runPdbExtract(args="", tf_cleanup=True):
+def runPdbExtract(args="", tf_cleanup=False):
     logger.info("Current working directory: %s" % os.path.abspath(os.getcwd()))
     p = Process()  # p.d_manager is the overall tracking dictionary
     logger.info("initiate pdb_extract processs")

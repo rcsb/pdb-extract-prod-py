@@ -1,0 +1,1517 @@
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<html> <!-- CCP4 HTML LOGFILE -->
+<hr>
+<!--SUMMARY_END--></FONT></B>
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+<pre>
+ 
+ ###############################################################
+ ###############################################################
+ ###############################################################
+ ### CCP4 8.0.015: Refmac          version 5.8.0425 : 10/24/23##
+ ###############################################################
+ User: ac367817  Run date: 23/ 9/2024 Run time: 15:32:22 
+
+
+ Please reference: Collaborative Computational Project, Number 4. 2011.
+ "Overview of the CCP4 suite and current developments". Acta Cryst. D67, 235-242.
+ as well as any specific reference in the program write-up.
+
+<!--SUMMARY_END--></FONT></B>
+ $TEXT:Reference1: $$ Primary reference $$ 
+   "Overview of refinement procedures within REFMAC5: utilizing data from different sources"
+   O.Kovalevskiy, R.A.Nicholls, F.Long, G.N.Murshudov,(2018) 
+   Acta Crystallogr. D74, 492-505
+
+ $$
+ $SUMMARY :Reference1:  $$ Refmac: $$
+ :TEXT:Reference1: $$
+
+ $TEXT:Reference1: $$ Primary reference for EM $$ 
+   "Current approaches for the fitting and refinement of atomic models into cryo-EM maps using CCP-EM
+   R.A. Nicholls, M. Tykac, O.Kovalevskiy, G.N.Murshudov,(2018) 
+   Acta Crystallogr. D74, 215-227
+
+ $$
+ $SUMMARY :Reference2:  $$ Refmac: $$
+ :TEXT:Reference1: $$
+
+ $TEXT:Reference1: $$ Secondary reference $$ 
+   "REFMAC5 for the refinement of macromolecular crystal structures:"
+   G.N.Murshudov, P.Skubak, A.A.Lebedev, N.S.Pannu, R.A.Steiner, R.A.Nicholls, M.D.Winn, F.Long and A.A.Vagin,(2011) 
+   Acta Crystallogr. D67, 355-367
+
+ $$
+ $SUMMARY :Reference3:  $$ Refmac: $$
+ :TEXT:Reference1: $$
+
+ $TEXT:Reference2: $$ Secondary reference $$ 
+   "Refinement of Macromolecular Structures by the  Maximum-Likelihood Method:"
+   G.N. Murshudov, A.A.Vagin and E.J.Dodson,(1997)
+   Acta Crystallogr. D53, 240-255
+   EU  Validation contract: BIO2CT-92-0524
+
+ $$
+ $SUMMARY :Reference4:  $$ Refmac: $$
+ :TEXT:Reference2: $$
+
+  Data line--- NCYCLES 10
+  Data line--- WEIGHT MATRIX 0.075
+  Data line--- TWIN
+  Data line--- MAKE HYDR ALL
+  Data line--- REFI BREF ISOT
+  Data line--- REFI TLSC 5
+  Data line--- TLSOUT ADDU
+  Data line--- BFAC SET 30.0
+  Data line--- NCSR LOCAL
+  Data line--- MAKE LINK YES
+  Data line--- REFI RESO 58.39 2.1
+  Data line--- MAKE NEWLIGAND EXIT
+  Data line--- SCALE TYPE SIMPLE
+  Data line--- SOLVENT YES
+  Data line--- PHOUT
+  Data line--- MONI DIST 1000000
+  Data line--- PDBOUT KEEP USERS
+  Data line--- angle 1.5
+  Data line--- tlsd waters exclude
+  Data line--- LABIN FP=F SIGFP=SIGF FREE=FREER
+  Data line--- END
+
+ OPENED INPUT MTZ FILE 
+ Logical Name: HKLIN   Filename: /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_JOBS/job_7/job_1/hklin.mtz 
+
+
+    ****                     Input and Default parameters#                      ****
+
+
+Input coordinate file.  Logical name - XYZIN actual file name  - /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_JOBS/job_7/XYZIN-coordinates.pdb
+Output coordinate file. Logical name - XYZOUT actual file name - /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_JOBS/job_7/job_1/XYZOUT.pdb
+Input reflection file.  Logical name - HKLIN actual file name  - /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_JOBS/job_7/job_1/hklin.mtz
+Output reflection file. Logical name - HKLOUT actual file name - /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_JOBS/job_7/job_1/hklout.mtz
+
+Cell from mtz :    58.410    57.933   133.241    90.000    91.314    90.000
+Space group from mtz: number -    4; name - P 1 21 1
+
+  Refinement type                        : Restrained
+
+Initial B values of all atoms will be set to     30.000
+
+
+    ****                           Makecif parameters                           ****
+
+Dictionary files for restraints : /programs/x86_64-linux/ccp4/8.0/ccp4-8.0/lib/data/monomers/mon*cif
+Parameters for neW entry and VDW: /programs/x86_64-linux/ccp4/8.0/ccp4-8.0/lib/data/monomers/ener_lib.cif
+User supplied dictionary entries: /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_IMPORTED_FILES/Grade2-GSK5819992A-LIG_1_1_1.cif
+    Apart from amino acids and DNA/RNA all monomers will be checked to see if atom names and connectivity is correct
+    Hydrogens will be restored in their riding positions
+    Links between monomers will be checked and corrected
+    Standard sugar links will be analysed and used
+    For new ligands "ideal restraint" values will be taken from the energetic libary ener_lib.cif
+    Symmetry related links will be analysed and used
+    Cis peptides will be found and used automatically
+
+
+  Residual                               : Rice Maximum Likelihood for Fs
+
+    ****                    Least-square scaling parameters                     ****
+
+Overall scale
+Overall B value
+Overall anisotropic B with tr(B) = 0.0
+Constant bulk solvent in non protein region
+Probe radii for non-ions     1.200
+Probe radii for ions         0.800
+Shrinkage of the mask  by    0.800
+
+
+    ****                 Map sharpening parameters and methods                  ****
+
+No map sharpening will be performed
+
+  Method of minimisation                 : Sparse Matrix
+  Experimental sigmas used for weighting
+  Number of Bins and width:    20       0.0113
+  Refinement of individual isotropic Bfactors
+  Refinement resln        :    58.3968  2.1000
+  Estimated number of reflections :      70246
+  Free R exclusion - flag equals:     0
+  Weighting by comparison of trace of matrix
+  Weighting parameters   :     0.0750
+  Refinement cycles       :         10
+  Scaling type                           :
+          Wilson scaling type with Guassians
+
+  Estimation of D/Sigma in resolution bins
+  using  free set of reflns with experimental sigmas
+  using  free set of reflns with experimental sigmas
+
+  Scaling and SigmaA resln:    58.3968  2.1000
+
+  Damping factors:     1.0000  1.0000  1.0000
+
+
+    ****                    Geometry restraints and weights                     ****
+
+
+                                              Sigma:
+ Bonding distances
+          Weight =  1.00
+
+ Bond angles
+          Weight =  1.50
+
+ Planar groups (all and main chain)
+          WEIGHT= 1.00 1.00
+
+ Chiral centers
+          Weight= 1.00
+
+ NON-BONDED CONTACTS
+          Overall weight                          =  1.00
+          Sigma for simple VDW                    =  0.20
+          Sigma for VDW trhough torsion angle     =  0.20
+          Sigma for HBOND                         =  0.20
+          Sigma for metal-ion                     =  0.20
+          Sigma for DUMMY and other atom          =  0.30
+          Distance for donor-accepetor = vdw1+vdw2+(-0.30)
+          Distance for acceptor - H    = vdw1+     ( 0.10)
+          VDW distance through torsion = vdw1+vdw2+(-0.30)
+          Distance for DUMMY-others    = vdw1+vdw2+(-0.70)
+
+ TORSION ANGLES
+          Weight= 1.00
+
+ THERMAL FACTORS
+          Weight= 1.00
+     Main chain bond (1-2 neighbour)          1.5A**2
+     Main chain angle (1-3 neighbour)         2.0A**2
+     Side chain bond                          3.0A**2
+     Side chain angle                         4.5A**2
+
+ NCS will defined automatically and applied
+
+    ****                          Alignment parameters                          ****
+
+     Alignment leve                   80.000%
+     Aligment cut                    2.000A
+     Iterative aligment              N
+
+    ****                          Local NCS parameters                          ****
+
+     Maximum distance                 4.2000A
+     Maximum difference of distances  1.0000A
+     Geman-Mcclure parameter          0.1000
+     Weights
+                       sigx =   0.0500                         if dist1+dist2<8.0
+                       sigx =   0.0500*sqrt((dist1+dist2)/8.0) if dist1+dist2>=8.0
+
+ RESTRAINTS AGAINST EXCESSIVE SHIFTS
+     Positional parameters                   0.00A
+     Thermal parameters                      0.00A
+     Occupancy parameters                    0.00
+
+ RADIUS OF CONFIDENCE
+     Positional parameters 0.00A
+     Thermal parameters    0.00A**2
+     Occupancy parameters  0.00
+
+Monitoring style is "MEDIUM". Complete information will be printed out in the
+first and last cycle. In all other cycles minimum information will be printed out
+Sigma cutoffs for printing out outliers
+If deviation of restraint parameter > alpha*sigma then information will be printed out
+Distance outliers      ******
+Angle outliers         10.000
+Torsion outliers       10.000
+Chiral volume outliers 10.000
+Plane outliers         10.000
+Non-bonding outliers   10.000
+B value  outliers      10.000
+
+The number of potential twin domains =    4
+ Twin domains ((pseudo)merohedral only):
+ Non-zero obliquity may mean that some of the reflections at high resolution are split
+ In these cases you should check images
+ Potential twin domain   1 with  operator: H,  K,  L , obliquity(deg) 0.000
+ Potential twin domain   2 with  operator: K,  H, -L , obliquity(deg) 1.038
+ Potential twin domain   3 with  operator:-K, -H, -L , obliquity(deg) 1.038
+ Potential twin domain   4 with  operator:-H, -K,  L , obliquity(deg) 1.314
+---------------------------------------------------------------
+
+ Input file :/EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_p
+  NUMBER OF MONOMERS IN THE LIBRARY          : 35299
+                with complete description    : 35299
+  NUMBER OF MODIFICATIONS                    :   127
+  NUMBER OF LINKS                            :   109
+  I am reading libraries. Please wait.
+      - energy parameters
+      - monomer"s description (links & mod )
+  set_mod
+  Number of atoms    :    7063
+  Number of residues :    1037
+  Number of chains   :       9
+ ---------
+  I am reading library. Please wait.
+                mon_lib.cif
+
+                    **** Process existing links ****
+
+ Check and add links defined by users (input file)
+  In subroutine def_link_mod
+
+ Status     Link  Mon1 At1 alt1 ch1  res1 Mon2 At2 alt2 Ch2  Res2  distM   distI
+New     :   CYSLIG  CYS   SG    .  A      727  LIG   C16   .  A     1001   1.785   1.787
+ This link may be suboptimal. Use of AceDRG for link generation is recommended
+Existing:   CYSLIG  CYS   SG    .  B      727  LIG   C16   .  B     1001   1.780   1.787
+Existing:   ZN-CYS  ZN    ZN    .  D        1  CYS   SG    .  A      908   2.281   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        1  CYS   SG    .  A      935   2.293   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        1  CYS   SG    .  A      936   2.139   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        1  CYS   SG    .  A      939   2.364   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        2  CYS   SG    .  B      908   2.362   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        2  CYS   SG    .  B      935   2.327   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        2  CYS   SG    .  B      936   2.273   2.340
+Existing:   ZN-CYS  ZN    ZN    .  D        2  CYS   SG    .  B      939   2.339   2.340
+Existing:     PCIS  TRP   C     .  A      529  PRO   N     .  A      530   1.349   1.352
+Existing:     PCIS  TRP   C     .  B      529  PRO   N     .  B      530   1.353   1.352
+
+
+                ******Default connectivity*******
+
+
+                    **** Automatic generation of links ****
+  --------------------------------
+  --- title of input coord file ---
+
+  PDB_code:xxxx
+  PDB_name:----
+  PDB_date:23-SEP-24
+  --------------------------------
+  ATTENTION: atom:OXT  SER               941  B4_  is missing in the structure
+  Number of chains                  :       9
+  Total number of monomers          :    1037
+  Number of atoms                   :   14345
+  Number of missing atoms           :       1
+  Number of rebuilt atoms           :    6925
+  Number of unknown atoms           :       0
+  Number of deleted atoms           :       0
+  --------------------------------
+  --- title of input coord file ---
+
+  PDB_code:xxxx
+  PDB_name:----
+  PDB_date:23-SEP-24
+  --------------------------------
+  ATTENTION: atom:OXT  SER               941  B4_  is missing in the structure
+  Number of chains                  :       9
+  Total number of monomers          :    1037
+  Number of atoms                   :   14345
+  Number of missing atoms           :       1
+  Number of rebuilt atoms           :       0
+  Number of unknown atoms           :       0
+  Number of deleted atoms           :       0
+
+  Number of bonds restraints    :   13757
+  Number of angles restraints   :   24992
+  Number of torsions restraints :    5836
+  Number of chiralities         :    1037
+  Number of planar groups       :    2299
+
+
+                                             ********* Alignment results *********
+ -----------------------------------------------------------------------------------------------------------------------
+:   Ncsr group :           Chain 1 :           Chain 2 :  No of aligned :          Score :           RMS  :    Ave(RmsLoc) : 
+ -----------------------------------------------------------------------------------------------------------------------
+:            1 : A1_ ( 517 - 940 ) : B4_ ( 517 - 940 ) :         424 :         1.0000 :         1.7332 :         0.6502 : 
+ -----------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+
+    ****                Assign all residues to one of the chains                ****
+
+--------------------------------------------------------------------------------
+ The number of assigned atoms =          303  in shell            1
+ The number of assigned atoms =           15  in shell            2
+ The number of assigned atoms =            0  in shell            3
+
+    ****         Move residues to the closest symmetry related molecule         ****
+
+ Round =            1
+ The number of moved residues in round            1 is            0
+
+ The total number of moved residues =            0
+
+    ****                     The list of isolated residues                      ****
+
+
+ The number of isolotated residues =            0
+--------------------------------------------------------------------------------
+
+     The program will use local ncs restraints
+     I.e. corresonding distances between ncs related molecules will be restrained.
+     Covalent bonds and angles will not be included in these restraints.
+ ----------------------------------------------------------------------------------------------
+
+
+ Scattering factors file : /programs/x86_64-linux/ccp4/8.0/ccp4-8.0/lib/data/atomsf.lib
+
+
+_ccp4_form_factor.scat_method    'Sum of Gaussians'
+_ccp4_form_factor.scat_data_source  X-ray
+
+
+ loop_
+     _atom_type_symbol
+     _atom_type_scat_Cromer_Mann_a1
+     _atom_type_scat_Cromer_Mann_b1
+     _atom_type_scat_Cromer_Mann_a2
+     _atom_type_scat_Cromer_Mann_b2
+     _atom_type_scat_Cromer_Mann_a3
+     _atom_type_scat_Cromer_Mann_b3
+     _atom_type_scat_Cromer_Mann_a4
+     _atom_type_scat_Cromer_Mann_b4
+     _atom_type_scat_Cromer_Mann_c
+
+
+  N     12.2220   0.0057   3.1346   9.8933   2.0141  28.9975   1.1672   0.5826 -11.5379
+  C      2.3103  20.8439   1.0201  10.2075   1.5888   0.5687   0.8651  51.6512   0.2156
+  O      3.0487  13.2771   2.2870   5.7011   1.5464   0.3239   0.8671  32.9089   0.2508
+  H      0.4930  10.5109   0.3229  26.1257   0.1402   3.1424   0.0408  57.7997   0.0030
+  S      6.9054   1.4679   5.2035  22.2151   1.4379   0.2536   1.5863  56.1720   1.0455
+  F      3.5395  10.2825   2.6414   4.2944   1.5171   0.2615   1.0244  26.1476   0.3033
+  ZN    14.0812   3.2655   7.0352   0.2333   5.1677  10.3163   2.4112  58.7097   1.0405
+
+
+ Number of distances         :           0
+ Number of angles            :           0
+ Number of torsions          :           0
+ Number of planes            :           0
+ Number of chirals           :           0
+ Number of intervals         :           0
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+                        Standard  External       All
+                Bonds:     13757         0     13757
+               Angles:     24992         0     24992
+              Chirals:      1037         0      1037
+               Planes:      2299         0      2299
+             Torsions:      5836         0      5836
+            Intervals:         0         0         0
+--------------------------------------------------------------------------------
+
+
+  Number of harmonic restraints       =            0
+  Number of atoms in special position =            0
+ -----------------------------------------------------
+
+
+    ****                             Info from mtz                              ****
+
+free R flag                           0
+Number of "free" reflections       2385
+Number of   all  reflections      49685
+--------------------------------------------------------------------------------
+
+    ****                Filtering out small twin domains, step 1                ****
+
+ Twin operators with Rmerge >    0.439999998      will be removed 
+
+Symmetry operator  K,  H, -L : R_merge =0.469: Twin is unlikely
+Symmetry operator -K, -H, -L : R_merge =0.457: Twin is unlikely
+Symmetry operator -H, -K,  L : R_merge =0.275: twin is probable
+
+--------------------------------------------------------------------------------------------------------------
+
+    ****                Filtering out small twin domains, step 2                ****
+
+ Twin domains with fraction <    7.00000003E-02  are removed
+
+    ****              Twin operators with estimated twin fractions              ****
+
+Twin operator:  H,  K,  L: Fraction = 0.782; Equivalent operators: -H,  K, -L
+Twin operator: -H, -K,  L: Fraction = 0.218; Equivalent operators:  H, -K, -L
+--------------------------------------------------------------------------------------------------------------
+
+
+   Current auto weighting coefficient =    7.63705969    
+
+ Data line--- TLS For Peptide chain A
+ Data line--- RANGE  'A 517.' 'A 942.' ALL
+ Data line--- TLS For Peptide chain B
+ Data line--- RANGE  'B 515.' 'B 941.' ALL
+
+
+######  TLS Group Definitions ######
+
+  Group:   1:    No. of pieces:   1
+ Chain:  A    Span:  517  942
+
+  Group:   2:    No. of pieces:   1
+ Chain:  B    Span:  515  941
+
+
+Calculating TLS origin of group  1 from centroid of group.
+
+
+Calculating TLS origin of group  2 from centroid of group.
+
+ TLS origin for group            1   52.5360832      -13.0416899       27.6370049    
+ TLS origin for group            2   23.2608185       10.6095171       39.3156929    
+
+ Initial TLS parameters 
+
+ TLS group    1: For Peptide chain A                                                             
+ T tensor (  1) =    0.000   0.000   0.000   0.000   0.000   0.000
+ L tensor (  1) =    0.000   0.000   0.000   0.000   0.000   0.000
+ S tensor (  1) =    0.000   0.000   0.000   0.000   0.000   0.000   0.000   0.000
+
+ Initial TLS parameters 
+
+ TLS group    2: For Peptide chain B                                                             
+ T tensor (  2) =    0.000   0.000   0.000   0.000   0.000   0.000
+ L tensor (  2) =    0.000   0.000   0.000   0.000   0.000   0.000
+ S tensor (  2) =    0.000   0.000   0.000   0.000   0.000   0.000   0.000   0.000
+
+
+ ***TLS refinement cycle***    1
+
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.7826   0.2174
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.8743, B  =   13.5814
+Partial structure    1: scale =     0.3710, B  =   19.6978
+Overall anisotropic scale factors
+   B11 =   1.55 B22 =  -0.07 B33 =  -1.48 B12 =   0.00 B13 =  -1.62 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+
+    ****                Things for loggraph, R factor and others                ****
+
+
+$TABLE: Cycle    1. Rfactor analysis, F distribution v resln  :
+$GRAPHS:Cycle    1. <Rfactor> v. resln :N:1,6,7,11,12:
+:Cycle    1. <Fobs> and <Fc> v. resln :N:1,4,5,9,10:
+:Cycle    1. % observed v. resln :N:1,3:
+$$
+M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used
+NR_free M(Fo_free) M(Fc_free) Rf_free   WR_free $$
+$$
+ 0.006     650  96.86   931.0   837.6  0.16  0.18      28   988.1   786.7  0.25  0.26
+ 0.018    1100  98.57   590.2   591.7  0.20  0.22      71   546.5   552.2  0.21  0.23
+ 0.030    1438  99.61   488.1   527.2  0.25  0.25      75   554.5   580.9  0.28  0.28
+ 0.042    1721  99.66   633.1   636.0  0.21  0.22      58   612.8   655.2  0.30  0.31
+ 0.054    1879  99.75   656.6   620.1  0.21  0.21     111   693.8   635.7  0.24  0.24
+ 0.065    1837  86.74   542.9   506.6  0.22  0.22      92   539.1   473.8  0.25  0.24
+ 0.077    1947  85.95   476.8   433.7  0.25  0.23     114   484.3   443.1  0.31  0.28
+ 0.089    2070  85.62   379.3   355.5  0.25  0.23     110   367.2   353.0  0.26  0.24
+ 0.101    2598 100.04   299.7   290.9  0.28  0.25     156   290.0   281.3  0.30  0.27
+ 0.113    2740  99.97   243.6   247.9  0.29  0.25     136   231.2   247.9  0.38  0.31
+ 0.124    2917 101.50   208.7   212.2  0.30  0.27     133   211.6   224.8  0.35  0.30
+ 0.136    2362  78.09   182.9   187.3  0.31  0.27     112   181.5   190.4  0.36  0.31
+ 0.148    3130 100.27   160.8   164.2  0.31  0.27     181   159.6   165.9  0.34  0.30
+ 0.160    3263  99.04   146.4   147.0  0.31  0.27     156   149.3   151.3  0.35  0.31
+ 0.172    3433 100.54   138.8   131.0  0.30  0.28     125   149.5   130.4  0.34  0.32
+ 0.184    3509 100.22   129.6   116.1  0.32  0.31     174   132.6   119.6  0.34  0.33
+ 0.195    2713  76.65   117.8   104.2  0.32  0.31     153   120.7   104.9  0.33  0.32
+ 0.207    3679  99.40   116.4    92.4  0.34  0.34     148   114.0    88.7  0.37  0.37
+ 0.219    3763  98.56    98.8    79.4  0.37  0.37     214   100.2    78.8  0.40  0.41
+ 0.231     550  14.41    91.4    74.8  0.36  0.37      38    89.6    75.4  0.45  0.45
+$$
+
+    ****                      Fom and SigmaA vs resolution                      ****
+
+ $TABLE: Cycle    1. FSC and  Fom(<cos(DelPhi)>-acentric, centric, overall v resln:
+ $GRAPHS:Cycle    1. M(Fom) v. resln :N:1,3,5,7,8,9,10,11,12:
+ $$
+ <4SSQ/LL> NREFa  FOMa  NREFc FOMc NREFall FOMall  SigmaA_Fc1 FSCfree  FSCwork CorrFoFcFree CorrFoFcWork$$
+ $$
+  0.0062    526   0.866    130   0.773    656   0.848  0.962  0.9508  0.9826  0.8577  0.9447
+  0.0180    972   0.748    141   0.740   1113   0.747  0.962  0.9543  0.9610  0.9001  0.8842
+  0.0299   1310   0.730    138   0.576   1448   0.715  0.926  0.9464  0.9535  0.7645  0.8221
+  0.0417   1592   0.757    140   0.646   1732   0.748  0.929  0.9356  0.9566  0.7093  0.8323
+  0.0535   1748   0.758    131   0.749   1879   0.757  0.938  0.9406  0.9524  0.7919  0.8276
+  0.0653   1898   0.759    124   0.612   2022   0.750  0.952  0.9455  0.9509  0.7119  0.7924
+  0.0772   2109   0.704    139   0.591   2248   0.697  0.937  0.9196  0.9432  0.6940  0.7756
+  0.0890   2114   0.736    122   0.647   2236   0.731  0.941  0.9226  0.9397  0.7155  0.7581
+  0.1008   2465   0.699    134   0.604   2599   0.695  0.892  0.9122  0.9295  0.6757  0.7178
+  0.1127   2603   0.617    138   0.593   2741   0.616  0.810  0.8652  0.9233  0.2975  0.6775
+  0.1245   2774   0.635    144   0.528   2918   0.630  0.815  0.9014  0.9210  0.4976  0.6505
+  0.1363   2491   0.657    118   0.452   2609   0.648  0.820  0.9011  0.9285  0.5163  0.6379
+  0.1481   3206   0.663    146   0.551   3352   0.658  0.819  0.8970  0.9329  0.5111  0.6330
+  0.1600   3141   0.646    123   0.458   3264   0.639  0.837  0.9102  0.9323  0.5130  0.6184
+  0.1718   3279   0.701    155   0.541   3434   0.694  0.909  0.9102  0.9402  0.4224  0.5969
+  0.1836   3390   0.686    138   0.597   3528   0.683  0.922  0.9104  0.9323  0.3806  0.5150
+  0.1954   3004   0.694    122   0.492   3126   0.686  0.919  0.9211  0.9320  0.5019  0.5358
+  0.2073   3753   0.776    148   0.629   3901   0.770  1.053  0.9285  0.9404  0.2931  0.4860
+  0.2191   4116   0.628    155   0.383   4271   0.619  0.905  0.9017  0.9222  0.3026  0.4380
+  0.2309    761   0.597     30   0.301    791   0.586  0.832  0.8722  0.9235  0.1650  0.4423
+ $$
+Resolution limits                    =     58.395     2.055
+Number of used reflections           =      47299
+Percentage observed                  =    88.9900
+Percentage of free reflections       =     4.8003
+Overall R factor                     =     0.2605
+Free R factor                        =     0.2984
+Average Fourier shell correlation    =     0.9361
+AverageFree Fourier shell correlation=     0.9136
+Overall weighted R factor            =     0.2415
+Free weighted R factor               =     0.2765
+Overall weighted R2 factor           =     0.2707
+Average correlation coefficient      =     0.6428
+Overall correlation coefficient      =     0.9207
+Free correlation coefficient         =     0.8877
+Cruickshanks DPI for coordinate error=     0.0463
+DPI based on free R factor           =     0.0531
+Overall figure of merit              =     0.6861
+ML based su of positional parameters =     0.2311
+ML based su of thermal parameters    =    16.9397
+-----------------------------------------------------------------------------
+
+TLS group    1: For Peptide chain A                                                             
+ T tensor ( 1) =    0.009   0.018   0.040   0.001  -0.013  -0.005
+ L tensor ( 1) =    0.323   0.231   0.501   0.073  -0.204  -0.022
+ S tensor ( 1) =   -0.022   0.031  -0.062  -0.012   0.010   0.026   0.014   0.029
+
+TLS group    2: For Peptide chain B                                                             
+ T tensor ( 2) =    0.042   0.063   0.061  -0.009  -0.013  -0.007
+ L tensor ( 2) =    0.114   0.119   0.541  -0.050   0.197   0.010
+ S tensor ( 2) =    0.018   0.003  -0.010   0.017  -0.018   0.044   0.006   0.063
+
+
+ ***TLS refinement cycle***    2
+
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.7903   0.2097
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.8765, B  =    3.1832
+Partial structure    1: scale =     0.3710, B  =   25.5589
+Overall anisotropic scale factors
+   B11 =   1.89 B22 =  -0.57 B33 =  -1.33 B12 =   0.00 B13 =  -0.84 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2525
+Free R factor                        =     0.2901
+Average Fourier shell correlation    =     0.9424
+AverageFree Fourier shell correlation=     0.9206
+Average correlation coefficient      =     0.6729
+Overall figure of merit              =     0.7053
+-----------------------------------------------------------------------------
+
+TLS group    1: For Peptide chain A                                                             
+ T tensor ( 1) =    0.016   0.028   0.060   0.001  -0.022  -0.008
+ L tensor ( 1) =    0.544   0.396   0.852   0.115  -0.354  -0.039
+ S tensor ( 1) =   -0.031   0.041  -0.103  -0.019   0.018   0.046   0.025   0.051
+
+TLS group    2: For Peptide chain B                                                             
+ T tensor ( 2) =    0.061   0.102   0.093  -0.017  -0.023  -0.013
+ L tensor ( 2) =    0.196   0.212   0.941  -0.089   0.328   0.018
+ S tensor ( 2) =    0.030   0.005  -0.021   0.028  -0.028   0.077   0.006   0.113
+
+
+ ***TLS refinement cycle***    3
+
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.7935   0.2065
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.8919, B  =   -2.0761
+Partial structure    1: scale =     0.3712, B  =   28.9933
+Overall anisotropic scale factors
+   B11 =   2.11 B22 =  -0.87 B33 =  -1.25 B12 =   0.00 B13 =  -0.35 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2481
+Free R factor                        =     0.2857
+Average Fourier shell correlation    =     0.9455
+AverageFree Fourier shell correlation=     0.9239
+Average correlation coefficient      =     0.6876
+Overall figure of merit              =     0.7152
+-----------------------------------------------------------------------------
+
+TLS group    1: For Peptide chain A                                                             
+ T tensor ( 1) =    0.021   0.034   0.068   0.001  -0.026  -0.008
+ L tensor ( 1) =    0.706   0.509   1.100   0.146  -0.472  -0.056
+ S tensor ( 1) =   -0.037   0.045  -0.133  -0.023   0.024   0.060   0.033   0.069
+
+TLS group    2: For Peptide chain B                                                             
+ T tensor ( 2) =    0.069   0.123   0.108  -0.023  -0.031  -0.018
+ L tensor ( 2) =    0.260   0.290   1.258  -0.120   0.422   0.023
+ S tensor ( 2) =    0.040   0.005  -0.031   0.036  -0.035   0.102   0.004   0.154
+
+
+ ***TLS refinement cycle***    4
+
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.7954   0.2046
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.9136, B  =   -4.8949
+Partial structure    1: scale =     0.3714, B  =   30.4266
+Overall anisotropic scale factors
+   B11 =   2.17 B22 =  -1.11 B33 =  -1.06 B12 =   0.00 B13 =   0.02 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2455
+Free R factor                        =     0.2829
+Average Fourier shell correlation    =     0.9471
+AverageFree Fourier shell correlation=     0.9256
+Average correlation coefficient      =     0.6952
+Overall figure of merit              =     0.7198
+-----------------------------------------------------------------------------
+
+TLS group    1: For Peptide chain A                                                             
+ T tensor ( 1) =    0.024   0.039   0.070   0.002  -0.028  -0.008
+ L tensor ( 1) =    0.829   0.585   1.279   0.170  -0.570  -0.073
+ S tensor ( 1) =   -0.042   0.047  -0.157  -0.026   0.028   0.070   0.039   0.086
+
+TLS group    2: For Peptide chain B                                                             
+ T tensor ( 2) =    0.073   0.136   0.113  -0.027  -0.037  -0.022
+ L tensor ( 2) =    0.312   0.356   1.513  -0.147   0.494   0.026
+ S tensor ( 2) =    0.049   0.005  -0.039   0.042  -0.041   0.120   0.003   0.187
+
+
+ ***TLS refinement cycle***    5
+
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.7965   0.2035
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.9329, B  =   -6.3264
+Partial structure    1: scale =     0.3717, B  =   31.2856
+Overall anisotropic scale factors
+   B11 =   2.04 B22 =  -1.24 B33 =  -0.80 B12 =   0.00 B13 =   0.16 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+
+    ****                Things for loggraph, R factor and others                ****
+
+
+$TABLE: Cycle    5. Rfactor analysis, F distribution v resln  :
+$GRAPHS:Cycle    5. <Rfactor> v. resln :N:1,6,7,11,12:
+:Cycle    5. <Fobs> and <Fc> v. resln :N:1,4,5,9,10:
+:Cycle    5. % observed v. resln :N:1,3:
+$$
+M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used
+NR_free M(Fo_free) M(Fc_free) Rf_free   WR_free $$
+$$
+ 0.006     650  96.86   931.0   846.2  0.16  0.18      28   988.1   792.0  0.25  0.27
+ 0.018    1100  98.57   590.2   594.3  0.20  0.21      71   546.5   560.3  0.20  0.23
+ 0.030    1438  99.61   488.1   527.1  0.24  0.24      75   554.5   577.3  0.26  0.27
+ 0.042    1721  99.66   633.1   636.5  0.20  0.21      58   612.8   653.9  0.27  0.28
+ 0.054    1879  99.75   656.6   618.8  0.20  0.20     111   693.8   632.5  0.23  0.24
+ 0.065    1837  86.74   542.9   503.0  0.21  0.21      92   539.1   467.8  0.24  0.23
+ 0.077    1947  85.95   476.8   433.9  0.23  0.22     114   484.3   444.0  0.29  0.26
+ 0.089    2070  85.62   379.3   356.7  0.24  0.22     110   367.2   349.6  0.25  0.23
+ 0.101    2598 100.04   299.7   290.0  0.26  0.23     156   290.0   283.7  0.28  0.25
+ 0.113    2740  99.97   243.6   248.1  0.27  0.24     136   231.2   245.6  0.36  0.29
+ 0.124    2917 101.50   208.7   212.8  0.28  0.24     133   211.6   228.9  0.31  0.26
+ 0.136    2362  78.09   182.9   189.2  0.28  0.24     112   181.5   192.4  0.32  0.28
+ 0.148    3130 100.27   160.8   165.1  0.28  0.24     181   159.6   166.6  0.31  0.27
+ 0.160    3263  99.04   146.4   148.6  0.28  0.25     156   149.3   150.1  0.30  0.27
+ 0.172    3433 100.54   138.8   132.8  0.27  0.25     125   149.5   130.7  0.31  0.29
+ 0.184    3509 100.22   129.6   117.6  0.29  0.27     174   132.6   120.1  0.33  0.32
+ 0.195    2713  76.65   117.8   105.7  0.30  0.29     153   120.7   107.8  0.32  0.32
+ 0.207    3679  99.40   116.4    94.8  0.32  0.31     148   114.0    87.7  0.35  0.36
+ 0.219    3763  98.56    98.8    81.4  0.35  0.34     214   100.2    81.9  0.38  0.38
+ 0.231     550  14.41    91.4    76.8  0.34  0.34      38    89.6    76.7  0.42  0.41
+$$
+
+    ****                      Fom and SigmaA vs resolution                      ****
+
+ $TABLE: Cycle    5. FSC and  Fom(<cos(DelPhi)>-acentric, centric, overall v resln:
+ $GRAPHS:Cycle    5. M(Fom) v. resln :N:1,3,5,7,8,9,10,11,12:
+ $$
+ <4SSQ/LL> NREFa  FOMa  NREFc FOMc NREFall FOMall  SigmaA_Fc1 FSCfree  FSCwork CorrFoFcFree CorrFoFcWork$$
+ $$
+  0.0062    526   0.872    130   0.779    656   0.853  0.956  0.9520  0.9836  0.8588  0.9462
+  0.0180    972   0.754    141   0.743   1113   0.753  0.956  0.9545  0.9640  0.9004  0.8905
+  0.0299   1310   0.757    138   0.598   1448   0.742  0.931  0.9548  0.9578  0.7945  0.8361
+  0.0417   1592   0.786    140   0.690   1732   0.778  0.941  0.9458  0.9619  0.7587  0.8489
+  0.0535   1748   0.784    131   0.761   1879   0.782  0.954  0.9489  0.9592  0.8137  0.8495
+  0.0653   1898   0.777    124   0.630   2022   0.768  0.967  0.9522  0.9582  0.7525  0.8216
+  0.0772   2109   0.733    139   0.617   2248   0.726  0.959  0.9306  0.9519  0.7305  0.8083
+  0.0890   2114   0.764    122   0.667   2236   0.759  0.956  0.9322  0.9482  0.7455  0.7937
+  0.1008   2465   0.732    134   0.632   2599   0.727  0.913  0.9271  0.9407  0.7144  0.7602
+  0.1127   2603   0.645    138   0.621   2741   0.644  0.828  0.8799  0.9346  0.3747  0.7226
+  0.1245   2774   0.701    144   0.578   2918   0.695  0.854  0.9184  0.9364  0.5976  0.7065
+  0.1363   2491   0.711    118   0.508   2609   0.702  0.846  0.9238  0.9431  0.6052  0.7035
+  0.1481   3206   0.729    146   0.597   3352   0.724  0.861  0.9199  0.9494  0.6230  0.7050
+  0.1600   3141   0.723    123   0.532   3264   0.715  0.881  0.9356  0.9490  0.6367  0.6817
+  0.1718   3279   0.746    155   0.567   3434   0.738  0.930  0.9285  0.9536  0.5353  0.6768
+  0.1836   3390   0.727    138   0.628   3528   0.724  0.951  0.9165  0.9490  0.4195  0.6159
+  0.1954   3004   0.705    122   0.491   3126   0.696  0.924  0.9242  0.9429  0.5145  0.6085
+  0.2073   3753   0.776    148   0.620   3901   0.770  1.049  0.9314  0.9533  0.3576  0.5700
+  0.2191   4116   0.674    155   0.419   4271   0.665  0.937  0.9161  0.9352  0.3617  0.5019
+  0.2309    761   0.666     30   0.363    791   0.654  0.868  0.9060  0.9366  0.2944  0.5247
+ $$
+Resolution limits                    =     58.395     2.055
+Number of used reflections           =      47299
+Percentage observed                  =    88.9900
+Percentage of free reflections       =     4.8003
+Overall R factor                     =     0.2439
+Free R factor                        =     0.2812
+Average Fourier shell correlation    =     0.9480
+AverageFree Fourier shell correlation=     0.9266
+Overall weighted R factor            =     0.2264
+Free weighted R factor               =     0.2605
+Overall weighted R2 factor           =     0.2560
+Average correlation coefficient      =     0.6998
+Overall correlation coefficient      =     0.9298
+Free correlation coefficient         =     0.8987
+Cruickshanks DPI for coordinate error=     0.0434
+DPI based on free R factor           =     0.0500
+Overall figure of merit              =     0.7233
+ML based su of positional parameters =     0.2055
+ML based su of thermal parameters    =    14.7014
+-----------------------------------------------------------------------------
+
+TLS group    1: For Peptide chain A                                                             
+ T tensor ( 1) =    0.029   0.047   0.072   0.001  -0.031  -0.008
+ L tensor ( 1) =    0.926   0.635   1.411   0.189  -0.650  -0.089
+ S tensor ( 1) =   -0.046   0.048  -0.176  -0.027   0.031   0.079   0.043   0.099
+
+TLS group    2: For Peptide chain B                                                             
+ T tensor ( 2) =    0.080   0.148   0.118  -0.030  -0.040  -0.025
+ L tensor ( 2) =    0.355   0.409   1.716  -0.171   0.551   0.028
+ S tensor ( 2) =    0.055   0.006  -0.045   0.047  -0.047   0.135   0.001   0.214
+
+
+     CGMAT cycle number =        1
+
+    ****                          Bond angle outliers                           ****
+
+Bond angle deviations from the ideal >10.000Sigma will be monitored
+
+A    523 ASP CA    - A    523 ASP H     mod.= 102.11 id.= 118.73 dev= 16.619 sig.=  1.500
+A    523 ASP C     - A    524 ASP CA    mod.= 103.11 id.= 122.10 dev= 18.985 sig.=  1.760
+A    524 ASP CA    - A    524 ASP H     mod.= 137.71 id.= 118.73 dev=-18.981 sig.=  1.500
+A    525 LYS CA    - A    526 ASP N     mod.= 131.73 id.= 115.92 dev=-15.817 sig.=  1.500
+A    525 LYS C     - A    525 LYS HA    mod.= 131.16 id.= 108.82 dev=-22.340 sig.=  1.500
+A    525 LYS O     - A    526 ASP N     mod.= 106.92 id.= 123.47 dev= 16.546 sig.=  1.500
+A    571 MET CA    - A    571 MET H     mod.= 101.43 id.= 118.73 dev= 17.299 sig.=  1.500
+A    918 GLU CA    - A    918 GLU H     mod.= 102.14 id.= 118.73 dev= 16.589 sig.=  1.500
+A    918 GLU CA    - A    919 ASP N     mod.= 148.23 id.= 115.92 dev=-32.313 sig.=  1.500
+A    918 GLU O     - A    919 ASP N     mod.=  90.96 id.= 123.47 dev= 32.512 sig.=  1.500
+
+    ****                         Torsion angle outliers                         ****
+
+Torsion angle deviations from the ideal >10.000Sigma will be monitored
+
+A    711 ARG CD    - A    711 ARG NH2   mod.=-107.36 id.= 180.00 per.= 2 dev= -72.64 sig.=   5.00
+B    940 ARG CD    - B    940 ARG NH2   mod.=-123.82 id.= 180.00 per.= 2 dev= -56.18 sig.=   5.00
+
+ Weight matrix    7.50000030E-02
+ Actual weight    26.9787045      is applied to the X-ray term
+Norm of X_ray positional gradient                73.5
+Norm of Geom. positional gradient                99.8
+Norm of X_ray B-factor gradient                  126.
+Norm of Geom. B-factor gradient                  2.52
+Product of X_ray and Geom posit. gradients     -0.782E+08
+ Cosine of angle between them                      -0.258
+Product of X_ray and Geom B-fact gradients     -0.157E+05
+ Cosine of angle between them                      -0.004
+
+
+Residuals: XRAY=     0.8484E+07 GEOM=     0.4931E+05 TOTAL=     0.8533E+07
+ function value    8533232.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.014     0.012
+Bond distances: others                         6718     0.002     0.016
+Bond angles  : refined atoms                   9507     1.548     1.661
+Bond angles  : others                         15485     0.841     1.592
+Torsion angles, period  1. refined              859     8.225     5.000
+Torsion angles, period  2. refined               53    17.344     5.000
+Torsion angles, period  3. refined             1278    15.213    10.000
+Torsion angles, period  3. others                10    35.191    10.000
+Torsion angles, period  6. refined              319    16.145    10.000
+Chiral centres: refined atoms                  1037     0.072     0.200
+Planar groups: refined atoms                   8306     0.011     0.020
+Planar groups: others                          1618     0.015     0.020
+VDW repulsions: refined_atoms                  1497     0.230     0.200
+VDW repulsions.others                          6307     0.232     0.200
+VDW; torsion: refined_atoms                    3460     0.185     0.200
+VDW; torsion.others                            3719     0.085     0.200
+HBOND: refined_atoms                            236     0.182     0.200
+HBOND.others                                      1     0.074     0.200
+VDW repulsions: symmetry: refined_atoms          51     0.250     0.200
+VDW repulsions: symmetry: others                138     0.319     0.200
+HBOND: symmetry: refined_atoms                   15     0.365     0.200
+HBOND: symmetry: others                           3     0.072     0.200
+M. chain bond B values: refined atoms          3418     0.000     3.000
+M. chain bond B values: others                 3418     0.000     3.000
+M. chain angle B values: refined atoms         4271     0.000     5.388
+M. chain angle B values: others                4272     0.000     5.388
+S. chain bond B values: refined atoms          3621     0.386     3.017
+S. chain bond B values: others                 3622     0.386     3.018
+S. chain angle B values: refined atoms         5224     0.287     5.564
+S. chain angle B values: others                5225     0.287     5.564
+Long range B values: refined atoms             7922     1.192    31.084
+Long range B values: others                    7901     1.194    31.004
+ncsr local: group    1                        13338     0.127     0.050
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.7982   0.2018
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.9497, B  =   -7.7560
+Partial structure    1: scale =     0.3720, B  =   31.8738
+Overall anisotropic scale factors
+   B11 =   1.94 B22 =  -1.42 B33 =  -0.52 B12 =   0.00 B13 =   0.33 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+
+    ****                Things for loggraph, R factor and others                ****
+
+
+$TABLE: Cycle    6. Rfactor analysis, F distribution v resln  :
+$GRAPHS:Cycle    6. <Rfactor> v. resln :N:1,6,7,11,12:
+:Cycle    6. <Fobs> and <Fc> v. resln :N:1,4,5,9,10:
+:Cycle    6. % observed v. resln :N:1,3:
+$$
+M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used
+NR_free M(Fo_free) M(Fc_free) Rf_free   WR_free $$
+$$
+ 0.006     650  96.86   931.0   848.1  0.16  0.18      28   988.1   792.7  0.25  0.27
+ 0.018    1100  98.57   590.2   595.2  0.20  0.21      71   546.5   561.9  0.20  0.23
+ 0.030    1438  99.61   488.1   527.3  0.24  0.24      75   554.5   576.6  0.26  0.27
+ 0.042    1721  99.66   633.1   636.7  0.20  0.21      58   612.8   654.0  0.27  0.27
+ 0.054    1879  99.75   656.6   618.9  0.20  0.20     111   693.8   632.4  0.23  0.24
+ 0.065    1837  86.74   542.9   502.8  0.21  0.21      92   539.1   467.5  0.24  0.23
+ 0.077    1947  85.95   476.8   434.2  0.23  0.22     114   484.3   444.3  0.28  0.26
+ 0.089    2070  85.62   379.3   357.0  0.24  0.22     110   367.2   349.7  0.25  0.23
+ 0.101    2598 100.04   299.7   290.2  0.26  0.23     156   290.0   284.2  0.28  0.25
+ 0.113    2740  99.97   243.6   248.3  0.27  0.24     136   231.2   245.6  0.36  0.29
+ 0.124    2917 101.50   208.7   213.1  0.28  0.24     133   211.6   229.3  0.31  0.26
+ 0.136    2362  78.09   182.9   189.5  0.28  0.24     112   181.5   192.9  0.32  0.28
+ 0.148    3130 100.27   160.8   165.4  0.28  0.24     181   159.6   166.8  0.31  0.27
+ 0.160    3263  99.04   146.4   149.0  0.28  0.25     156   149.3   150.2  0.30  0.26
+ 0.172    3433 100.54   138.8   133.3  0.27  0.25     125   149.5   130.9  0.30  0.29
+ 0.184    3509 100.22   129.6   118.0  0.29  0.27     174   132.6   120.4  0.33  0.32
+ 0.195    2713  76.65   117.8   106.1  0.30  0.28     153   120.7   108.2  0.32  0.32
+ 0.207    3679  99.40   116.4    95.3  0.32  0.31     148   114.0    87.8  0.35  0.36
+ 0.219    3763  98.56    98.8    81.8  0.34  0.34     214   100.2    82.3  0.38  0.38
+ 0.231     550  14.41    91.4    77.3  0.34  0.34      38    89.6    77.3  0.42  0.40
+$$
+
+    ****                      Fom and SigmaA vs resolution                      ****
+
+ $TABLE: Cycle    6. FSC and  Fom(<cos(DelPhi)>-acentric, centric, overall v resln:
+ $GRAPHS:Cycle    6. M(Fom) v. resln :N:1,3,5,7,8,9,10,11,12:
+ $$
+ <4SSQ/LL> NREFa  FOMa  NREFc FOMc NREFall FOMall  SigmaA_Fc1 FSCfree  FSCwork CorrFoFcFree CorrFoFcWork$$
+ $$
+  0.0062    526   0.874    130   0.781    656   0.855  0.956  0.9522  0.9838  0.8587  0.9464
+  0.0180    972   0.758    141   0.746   1113   0.756  0.956  0.9545  0.9644  0.9006  0.8916
+  0.0299   1310   0.763    138   0.603   1448   0.748  0.932  0.9557  0.9582  0.7981  0.8378
+  0.0417   1592   0.789    140   0.694   1732   0.782  0.942  0.9467  0.9623  0.7639  0.8504
+  0.0535   1748   0.786    131   0.761   1879   0.784  0.955  0.9495  0.9598  0.8155  0.8515
+  0.0653   1898   0.779    124   0.632   2022   0.770  0.968  0.9527  0.9588  0.7556  0.8240
+  0.0772   2109   0.735    139   0.619   2248   0.728  0.959  0.9314  0.9525  0.7332  0.8108
+  0.0890   2114   0.765    122   0.670   2236   0.760  0.955  0.9327  0.9488  0.7476  0.7960
+  0.1008   2465   0.734    134   0.635   2599   0.729  0.914  0.9279  0.9414  0.7166  0.7630
+  0.1127   2603   0.648    138   0.624   2741   0.647  0.829  0.8804  0.9351  0.3787  0.7250
+  0.1245   2774   0.708    144   0.584   2918   0.702  0.856  0.9195  0.9374  0.6045  0.7100
+  0.1363   2491   0.715    118   0.512   2609   0.706  0.847  0.9249  0.9438  0.6102  0.7068
+  0.1481   3206   0.734    146   0.599   3352   0.728  0.861  0.9207  0.9502  0.6276  0.7085
+  0.1600   3141   0.728    123   0.537   3264   0.721  0.882  0.9371  0.9499  0.6451  0.6850
+  0.1718   3279   0.748    155   0.568   3434   0.740  0.928  0.9300  0.9539  0.5444  0.6799
+  0.1836   3390   0.709    138   0.613   3528   0.705  0.935  0.9161  0.9492  0.4224  0.6209
+  0.1954   3004   0.703    122   0.486   3126   0.695  0.919  0.9234  0.9433  0.5131  0.6116
+  0.2073   3753   0.774    148   0.617   3901   0.768  1.044  0.9309  0.9538  0.3576  0.5726
+  0.2191   4116   0.676    155   0.424   4271   0.667  0.935  0.9170  0.9359  0.3644  0.5038
+  0.2309    761   0.667     30   0.367    791   0.655  0.862  0.9083  0.9365  0.3030  0.5268
+ $$
+Resolution limits                    =     58.395     2.055
+Number of used reflections           =      47299
+Percentage observed                  =    88.9900
+Percentage of free reflections       =     4.8003
+Overall R factor                     =     0.2428
+Free R factor                        =     0.2801
+Average Fourier shell correlation    =     0.9485
+AverageFree Fourier shell correlation=     0.9272
+Overall weighted R factor            =     0.2253
+Free weighted R factor               =     0.2593
+Overall weighted R2 factor           =     0.2548
+Average correlation coefficient      =     0.7026
+Overall correlation coefficient      =     0.9305
+Free correlation coefficient         =     0.8994
+Cruickshanks DPI for coordinate error=     0.0681
+DPI based on free R factor           =     0.0498
+Overall figure of merit              =     0.7243
+ML based su of positional parameters =     0.2061
+ML based su of thermal parameters    =    14.6582
+-----------------------------------------------------------------------------
+ iters          800   3.24119213E-07   5.50975354E-09  0.704024374       7.82608378E-09
+ Not converging with gamma equal    0.00000000    
+ Trying gamma equal    5.24999984E-02   0.00000000    
+ Gamma decreased to    4.19999994E-02
+  Iterations           90
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    9.93525027E-05  0.641287267       1.92768537E-02
+   8533232.00       0.00000000       1.00000000       1.00000000     T
+ fvalues    314467.500       49305.5273       8533232.00       1.00000003E+32
+
+
+     CGMAT cycle number =        2
+
+ Weight matrix    7.50000030E-02
+ Actual weight    21.1564465      is applied to the X-ray term
+
+
+ function value    6588611.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.015     0.012
+Bond distances: others                         6718     0.003     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8114   0.1886
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     1.9821, B  =   -0.2147
+Partial structure    1: scale =     0.3738, B  =   31.3606
+Overall anisotropic scale factors
+   B11 =   1.99 B22 =  -1.28 B33 =  -0.71 B12 =   0.00 B13 =   0.31 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2181
+Free R factor                        =     0.2680
+Average Fourier shell correlation    =     0.9630
+AverageFree Fourier shell correlation=     0.9362
+Average correlation coefficient      =     0.7847
+Overall figure of merit              =     0.7470
+-----------------------------------------------------------------------------
+ Gamma decreased to    3.24545428E-02
+  Iterations          104
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    4.28875210E-05  0.174779341       1.00351740E-02
+   6588611.00       8533232.00       1.00000000       1.00000000     F
+ fvalues    308843.375       54582.6602       6588611.00       8533232.00    
+
+
+     CGMAT cycle number =        3
+
+ Weight matrix    7.50000104E-02
+ Actual weight    19.6527729      is applied to the X-ray term
+
+
+ function value    6090040.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.014     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8182   0.1818
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.0069, B  =   -0.8564
+Partial structure    1: scale =     0.3748, B  =   32.2263
+Overall anisotropic scale factors
+   B11 =   1.92 B22 =  -1.20 B33 =  -0.72 B12 =   0.00 B13 =   0.23 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2104
+Free R factor                        =     0.2623
+Average Fourier shell correlation    =     0.9663
+AverageFree Fourier shell correlation=     0.9393
+Average correlation coefficient      =     0.8023
+Overall figure of merit              =     0.7555
+-----------------------------------------------------------------------------
+ Gamma decreased to    2.37768572E-02
+  Iterations          120
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    8.47887568E-05  0.209118709       8.59845988E-03
+   6090040.00       6588611.00       1.00000000       1.00000000     F
+ fvalues    307227.250       52172.3359       6090040.00       6588611.00    
+
+
+     CGMAT cycle number =        4
+
+ Weight matrix    7.50000030E-02
+ Actual weight    18.6159630      is applied to the X-ray term
+
+
+ function value    5753511.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.013     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8213   0.1787
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.0394, B  =   -0.6458
+Partial structure    1: scale =     0.3752, B  =   32.8419
+Overall anisotropic scale factors
+   B11 =   1.89 B22 =  -1.15 B33 =  -0.74 B12 =   0.00 B13 =   0.17 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2057
+Free R factor                        =     0.2580
+Average Fourier shell correlation    =     0.9680
+AverageFree Fourier shell correlation=     0.9412
+Average correlation coefficient      =     0.8113
+Overall figure of merit              =     0.7614
+-----------------------------------------------------------------------------
+ Gamma decreased to    1.58880539E-02
+  Iterations          140
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    9.36684592E-05  0.191199899       8.92134570E-03
+   5753511.00       6090040.00       1.00000000       1.00000000     F
+ fvalues    306258.875       52206.9023       5753511.00       6090040.00    
+
+
+     CGMAT cycle number =        5
+
+ Weight matrix    7.49999955E-02
+ Actual weight    18.1123466      is applied to the X-ray term
+
+
+ function value    5589108.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.013     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8226   0.1774
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.0596, B  =   -0.7995
+Partial structure    1: scale =     0.3752, B  =   33.1716
+Overall anisotropic scale factors
+   B11 =   1.84 B22 =  -1.09 B33 =  -0.74 B12 =   0.00 B13 =   0.16 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2028
+Free R factor                        =     0.2550
+Average Fourier shell correlation    =     0.9689
+AverageFree Fourier shell correlation=     0.9425
+Average correlation coefficient      =     0.8159
+Overall figure of merit              =     0.7645
+-----------------------------------------------------------------------------
+ Gamma decreased to    8.71641375E-03
+  Iterations          171
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    1.24245140E-04  0.270392209       1.01872422E-02
+   5589108.00       5753511.00       1.00000000       1.00000000     F
+ fvalues    305720.250       51796.9414       5589108.00       5753511.00    
+
+
+     CGMAT cycle number =        6
+
+ Weight matrix    7.50000030E-02
+ Actual weight    17.7121239      is applied to the X-ray term
+
+
+ function value    5460113.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.012     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8235   0.1765
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.0802, B  =   -0.7214
+Partial structure    1: scale =     0.3749, B  =   33.2393
+Overall anisotropic scale factors
+   B11 =   1.79 B22 =  -1.04 B33 =  -0.75 B12 =   0.00 B13 =   0.21 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.2010
+Free R factor                        =     0.2531
+Average Fourier shell correlation    =     0.9694
+AverageFree Fourier shell correlation=     0.9434
+Average correlation coefficient      =     0.8185
+Overall figure of merit              =     0.7671
+-----------------------------------------------------------------------------
+ iters          200   9.12046882E-09   1.34377025E-14  0.857610881       1.56687644E-14
+ Not converging with gamma equal    8.71641375E-03
+ Trying gamma equal    4.29446921E-02   0.00000000    
+ Gamma decreased to    3.60990353E-02
+  Iterations          105
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    3.82080652E-05  0.173213646       5.34271775E-03
+   5460113.00       5589108.00       1.00000000       1.00000000     F
+ fvalues    305360.688       51526.4766       5460113.00       5589108.00    
+
+
+     CGMAT cycle number =        7
+
+ Weight matrix    7.50000104E-02
+ Actual weight    17.3975697      is applied to the X-ray term
+
+
+ function value    5359201.50    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.012     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8243   0.1757
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.0935, B  =   -0.8174
+Partial structure    1: scale =     0.3749, B  =   33.5429
+Overall anisotropic scale factors
+   B11 =   1.77 B22 =  -1.02 B33 =  -0.75 B12 =   0.00 B13 =   0.22 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.1998
+Free R factor                        =     0.2516
+Average Fourier shell correlation    =     0.9697
+AverageFree Fourier shell correlation=     0.9440
+Average correlation coefficient      =     0.8200
+Overall figure of merit              =     0.7692
+-----------------------------------------------------------------------------
+ Gamma decreased to    2.98757106E-02
+  Iterations          115
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    3.90896930E-05  0.213943198       5.75741660E-03
+   5359201.50       5460113.00       1.00000000       1.00000000     F
+ fvalues    305095.250       51285.7070       5359201.50       5460113.00    
+
+
+     CGMAT cycle number =        8
+
+ Weight matrix    7.50000104E-02
+ Actual weight    17.2316818      is applied to the X-ray term
+
+
+ function value    5304962.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.012     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8255   0.1745
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.1063, B  =   -0.8158
+Partial structure    1: scale =     0.3754, B  =   33.6824
+Overall anisotropic scale factors
+   B11 =   1.77 B22 =  -1.02 B33 =  -0.75 B12 =   0.00 B13 =   0.25 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.1988
+Free R factor                        =     0.2508
+Average Fourier shell correlation    =     0.9700
+AverageFree Fourier shell correlation=     0.9445
+Average correlation coefficient      =     0.8211
+Overall figure of merit              =     0.7705
+-----------------------------------------------------------------------------
+ Gamma decreased to    2.42181439E-02
+  Iterations          126
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    2.49070054E-05  0.257615566       6.09993376E-03
+   5304962.00       5359201.50       1.00000000       1.00000000     F
+ fvalues    304898.250       51052.5234       5304962.00       5359201.50    
+
+
+     CGMAT cycle number =        9
+
+ Weight matrix    7.50000030E-02
+ Actual weight    17.0082703      is applied to the X-ray term
+
+
+ function value    5233559.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.012     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8266   0.1734
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.1211, B  =   -0.7573
+Partial structure    1: scale =     0.3756, B  =   33.6295
+Overall anisotropic scale factors
+   B11 =   1.76 B22 =  -1.02 B33 =  -0.74 B12 =   0.00 B13 =   0.29 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.1980
+Free R factor                        =     0.2502
+Average Fourier shell correlation    =     0.9701
+AverageFree Fourier shell correlation=     0.9449
+Average correlation coefficient      =     0.8218
+Overall figure of merit              =     0.7720
+-----------------------------------------------------------------------------
+ Gamma decreased to    1.90749019E-02
+  Iterations          140
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts    1.12412563E-05  0.273333699       6.63970737E-03
+   5233559.00       5304962.00       1.00000000       1.00000000     F
+ fvalues    304723.188       50744.3633       5233559.00       5304962.00    
+
+
+     CGMAT cycle number =       10
+
+ Weight matrix    7.50000030E-02
+ Actual weight    16.9248562      is applied to the X-ray term
+
+
+ function value    5206144.00    
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.012     0.012
+Bond distances: others                         6718     0.001     0.016
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8271   0.1729
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.1294, B  =   -0.7929
+Partial structure    1: scale =     0.3750, B  =   33.3812
+Overall anisotropic scale factors
+   B11 =   1.77 B22 =  -1.00 B33 =  -0.77 B12 =   0.00 B13 =   0.26 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Overall R factor                     =     0.1975
+Free R factor                        =     0.2497
+Average Fourier shell correlation    =     0.9703
+AverageFree Fourier shell correlation=     0.9451
+Average correlation coefficient      =     0.8222
+Overall figure of merit              =     0.7728
+-----------------------------------------------------------------------------
+ Gamma decreased to    1.43992268E-02
+  Iterations          157
+  Convergence reached with no gamma cycles 
+ average, maximum and rms of positional shifts   -5.40276005E-07  0.217738137       7.20136892E-03
+   5206144.00       5233559.00       1.00000000       1.00000000     F
+ fvalues    304625.594       50399.5234       5206144.00       5233559.00    
+
+ LABOUT FREER=FREER F=F SIGF=SIGF FC=FC PHIC=PHIC FC_ALL=FC_ALL PHIC_ALL=PHIC_ALL FWT=FWT PHWT=PHWT DELFWT=DELFWT PHDELWT=PHDELWT FOM=FOM PHCOMB=PHCOMB HLACOMB=HLACOMB HLBCOMB=HLBCOMB HLCCOMB=HLCCOMB HLDCOMB=HLDCOMB FC_ALL_LS=FC_ALL_LS PHIC_ALL_LS=PHIC_ALL_LS
+
+ WRITTEN OUTPUT MTZ FILE 
+ Logical Name: HKLOUT   Filename: /EDGE/projects/ac367817/WRN/20240912-ESRF-ELN338742/x131-cps0801_pos6/CCP4_JOBS/job_7/job_1/hklout.mtz 
+
+
+
+
+-------------------------------------------------------------------------------
+             Restraint type              N restraints   Rms Delta   Av(Sigma)
+Bond distances: refined atoms                  7039     0.012     0.012
+Bond distances: others                         6718     0.001     0.016
+Bond angles  : refined atoms                   9507     1.235     1.661
+Bond angles  : others                         15485     0.409     1.592
+Torsion angles, period  1. refined              859     8.389     5.000
+Torsion angles, period  2. refined               53    13.379     5.000
+Torsion angles, period  3. refined             1278    15.524    10.000
+Torsion angles, period  3. others                10    20.518    10.000
+Torsion angles, period  6. refined              319    15.728    10.000
+Chiral centres: refined atoms                  1037     0.064     0.200
+Planar groups: refined atoms                   8306     0.011     0.020
+Planar groups: others                          1618     0.001     0.020
+VDW repulsions: refined_atoms                  1497     0.232     0.200
+VDW repulsions.others                          6367     0.217     0.200
+VDW; torsion: refined_atoms                    3455     0.185     0.200
+VDW; torsion.others                            3734     0.082     0.200
+HBOND: refined_atoms                            251     0.187     0.200
+HBOND.others                                      1     0.109     0.200
+VDW repulsions: symmetry: refined_atoms          55     0.233     0.200
+VDW repulsions: symmetry: others                135     0.270     0.200
+HBOND: symmetry: refined_atoms                   15     0.361     0.200
+HBOND: symmetry: others                           2     0.059     0.200
+M. chain bond B values: refined atoms          3418     3.920     3.031
+M. chain bond B values: others                 3418     3.920     3.031
+M. chain angle B values: refined atoms         4271     5.653     5.428
+M. chain angle B values: others                4272     5.653     5.428
+S. chain bond B values: refined atoms          3621     4.369     3.371
+S. chain bond B values: others                 3622     4.369     3.371
+S. chain angle B values: refined atoms         5224     6.327     6.017
+S. chain angle B values: others                5225     6.327     6.017
+Long range B values: refined atoms             7929     8.770    33.596
+Long range B values: others                    7907     8.767    33.531
+ncsr local: group    1                        13351     0.124     0.050
+-------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+The number of twin domains    =   2
+Twin fractions                =    0.8277   0.1723
+Overall scale should be multiplied by       0.5450
+Overall               : scale =     2.1368, B  =   -0.8613
+Partial structure    1: scale =     0.3754, B  =   33.5387
+Overall anisotropic scale factors
+   B11 =   1.76 B22 =  -0.98 B33 =  -0.78 B12 =   0.00 B13 =   0.25 B23 =  -0.00
+-----------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+
+    ****                Things for loggraph, R factor and others                ****
+
+
+$TABLE: Cycle   16. Rfactor analysis, F distribution v resln  :
+$GRAPHS:Cycle   16. <Rfactor> v. resln :N:1,6,7,11,12:
+:Cycle   16. <Fobs> and <Fc> v. resln :N:1,4,5,9,10:
+:Cycle   16. % observed v. resln :N:1,3:
+$$
+M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used
+NR_free M(Fo_free) M(Fc_free) Rf_free   WR_free $$
+$$
+ 0.006     650  96.86   931.0   877.1  0.15  0.17      28   988.1   795.6  0.26  0.28
+ 0.018    1100  98.57   590.2   604.0  0.17  0.19      71   546.5   570.1  0.19  0.22
+ 0.030    1438  99.61   488.1   524.1  0.20  0.20      75   554.5   573.6  0.22  0.22
+ 0.042    1721  99.66   633.1   640.6  0.17  0.17      58   612.8   652.4  0.24  0.25
+ 0.054    1879  99.75   656.6   620.0  0.17  0.17     111   693.8   640.3  0.19  0.19
+ 0.065    1837  86.74   542.9   494.9  0.18  0.18      92   539.1   460.8  0.21  0.20
+ 0.077    1947  85.95   476.8   427.8  0.20  0.19     114   484.3   439.8  0.25  0.23
+ 0.089    2070  85.62   379.3   352.2  0.20  0.19     110   367.2   340.9  0.24  0.22
+ 0.101    2598 100.04   299.7   287.6  0.20  0.18     156   290.0   287.5  0.25  0.23
+ 0.113    2740  99.97   243.6   246.8  0.22  0.19     136   231.2   241.6  0.30  0.25
+ 0.124    2917 101.50   208.7   214.6  0.21  0.18     133   211.6   221.7  0.28  0.24
+ 0.136    2362  78.09   182.9   192.1  0.20  0.17     112   181.5   195.8  0.28  0.25
+ 0.148    3130 100.27   160.8   169.5  0.20  0.17     181   159.6   169.5  0.26  0.21
+ 0.160    3263  99.04   146.4   151.4  0.21  0.18     156   149.3   150.1  0.28  0.26
+ 0.172    3433 100.54   138.8   136.5  0.20  0.17     125   149.5   132.3  0.24  0.22
+ 0.184    3509 100.22   129.6   121.1  0.22  0.20     174   132.6   122.3  0.30  0.29
+ 0.195    2713  76.65   117.8   109.8  0.24  0.22     153   120.7   112.8  0.30  0.29
+ 0.207    3679  99.40   116.4   102.0  0.25  0.24     148   114.0    90.4  0.34  0.34
+ 0.219    3763  98.56    98.8    87.6  0.28  0.27     214   100.2    87.7  0.36  0.35
+ 0.231     550  14.41    91.4    82.7  0.27  0.25      38    89.6    83.2  0.37  0.35
+$$
+
+    ****                      Fom and SigmaA vs resolution                      ****
+
+ $TABLE: Cycle   16. FSC and  Fom(<cos(DelPhi)>-acentric, centric, overall v resln:
+ $GRAPHS:Cycle   16. M(Fom) v. resln :N:1,3,5,7,8,9,10,11,12:
+ $$
+ <4SSQ/LL> NREFa  FOMa  NREFc FOMc NREFall FOMall  SigmaA_Fc1 FSCfree  FSCwork CorrFoFcFree CorrFoFcWork$$
+ $$
+  0.0062    526   0.887    130   0.798    656   0.870  0.938  0.9520  0.9852  0.8543  0.9465
+  0.0180    972   0.776    141   0.767   1113   0.775  0.938  0.9628  0.9749  0.9117  0.9203
+  0.0299   1310   0.803    138   0.638   1448   0.787  0.927  0.9669  0.9722  0.8600  0.8940
+  0.0417   1592   0.831    140   0.746   1732   0.824  0.946  0.9553  0.9745  0.8011  0.8995
+  0.0535   1748   0.837    131   0.808   1879   0.835  0.978  0.9657  0.9725  0.8765  0.8968
+  0.0653   1898   0.834    124   0.693   2022   0.825  1.008  0.9643  0.9722  0.8034  0.8774
+  0.0772   2109   0.784    139   0.661   2248   0.776  1.010  0.9515  0.9683  0.8053  0.8724
+  0.0890   2114   0.808    122   0.691   2236   0.802  0.998  0.9445  0.9667  0.7832  0.8650
+  0.1008   2465   0.778    134   0.643   2599   0.771  0.957  0.9431  0.9660  0.7687  0.8554
+  0.1127   2603   0.741    138   0.685   2741   0.738  0.898  0.9201  0.9614  0.5610  0.8221
+  0.1245   2774   0.781    144   0.666   2918   0.776  0.901  0.9410  0.9677  0.6931  0.8402
+  0.1363   2491   0.802    118   0.558   2609   0.791  0.891  0.9542  0.9750  0.7546  0.8593
+  0.1481   3206   0.812    146   0.611   3352   0.803  0.893  0.9508  0.9773  0.7400  0.8555
+  0.1600   3141   0.777    123   0.550   3264   0.769  0.898  0.9498  0.9757  0.7349  0.8316
+  0.1718   3279   0.812    155   0.574   3434   0.801  0.952  0.9585  0.9787  0.7464  0.8335
+  0.1836   3390   0.761    138   0.603   3528   0.755  0.958  0.9389  0.9725  0.5212  0.7924
+  0.1954   3004   0.731    122   0.490   3126   0.722  0.913  0.9348  0.9648  0.5827  0.7611
+  0.2073   3753   0.771    148   0.568   3901   0.763  0.994  0.9335  0.9710  0.4209  0.7303
+  0.2191   4116   0.722    155   0.450   4271   0.712  0.929  0.9310  0.9604  0.5011  0.6749
+  0.2309    761   0.734     30   0.388    791   0.721  0.878  0.9361  0.9609  0.4528  0.7024
+ $$
+Resolution limits                    =     58.395     2.055
+Number of used reflections           =      47299
+Percentage observed                  =    88.9900
+Percentage of free reflections       =     4.8003
+Overall R factor                     =     0.1970
+Free R factor                        =     0.2494
+Average Fourier shell correlation    =     0.9704
+AverageFree Fourier shell correlation=     0.9453
+Overall weighted R factor            =     0.1845
+Free weighted R factor               =     0.2309
+Overall weighted R2 factor           =     0.2165
+Average correlation coefficient      =     0.8227
+Overall correlation coefficient      =     0.9518
+Free correlation coefficient         =     0.9177
+Cruickshanks DPI for coordinate error=     0.0552
+DPI based on free R factor           =     0.0444
+Overall figure of merit              =     0.7739
+ML based su of positional parameters =     0.1632
+ML based su of thermal parameters    =    11.8777
+-----------------------------------------------------------------------------
+  Time in seconds: CPU =        44.87
+             Elapsed =           0.00
+
+    ****           Things for loggraph, R factor and others vs cycle            ****
+
+
+$TABLE: Rfactor analysis, stats vs cycle  :
+$GRAPHS:<Rfactor> vs cycle :N:1,2,3:
+:FOM vs cycle :N:1,4:
+:-LL vs cycle :N:1,5:
+:-LLfree vs cycle :N:1,6:
+:Geometry vs cycle:N:1,7,8,9,10,11:
+$$
+    Ncyc    Rfact    Rfree     FOM      -LL     -LLfree  rmsBOND  zBOND rmsANGL  zANGL rmsCHIRAL $$
+$$
+       0   0.2605   0.2984   0.686      318654.   16308   0.0      0.0    0.0     0.0      0.0
+       1   0.2525   0.2901   0.705      316629.   16232   0.0      0.0    0.0     0.0      0.0
+       2   0.2481   0.2857   0.715      315588.   16192   0.0      0.0    0.0     0.0      0.0
+       3   0.2455   0.2829   0.720      315036.   16170   0.0      0.0    0.0     0.0      0.0
+       4   0.2439   0.2812   0.723      314672.   16157   0.0      0.0    0.0     0.0      0.0
+       5   0.2428   0.2801   0.724      314468.   16147.0   0.0145  1.192   1.548  0.910   0.072
+       6   0.2181   0.2680   0.747      308843.   16015.7   0.0155  1.192   1.375  0.783   0.074
+       7   0.2104   0.2623   0.756      307227.   15958.0   0.0137  1.048   1.333  0.754   0.070
+       8   0.2057   0.2580   0.761      306259.   15922.2   0.0130  0.998   1.308  0.738   0.069
+       9   0.2028   0.2550   0.765      305720.   15898.4   0.0126  0.966   1.289  0.727   0.067
+      10   0.2010   0.2531   0.767      305361.   15881.6   0.0123  0.946   1.274  0.718   0.066
+      11   0.1998   0.2516   0.769      305095.   15869.5   0.0121  0.933   1.265  0.712   0.066
+      12   0.1988   0.2508   0.771      304898.   15859.5   0.0119  0.923   1.256  0.707   0.065
+      13   0.1980   0.2502   0.772      304723.   15851.4   0.0118  0.915   1.248  0.703   0.065
+      14   0.1975   0.2497   0.773      304626.   15845.3   0.0117  0.908   1.241  0.698   0.065
+      15   0.1970   0.2494   0.774      304518.   15841.3   0.0116  0.904   1.235  0.695   0.064
+ $$
+ $TEXT:Result: $$ Final results $$
+                      Initial    Final
+           R factor    0.2605   0.1970
+             R free    0.2984   0.2494
+     Rms BondLength    0.0145   0.0116
+      Rms BondAngle    1.5478   1.2351
+     Rms ChirVolume    0.0718   0.0643
+ $$
+ Harvest: NO PNAME_KEYWRD given - no deposit file created
+<B><FONT COLOR="#FF0000"><!--SUMMARY_BEGIN-->
+ Refmac:  End of Refmac_5.8.0425   
+Times: User:      62.4s System:    0.4s Elapsed:     1:03  
+</pre>
+</html>
+<!--SUMMARY_END--></FONT></B>
+JOB TITLE SECTION
+round 5 - tls ligand water protein
