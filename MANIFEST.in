@@ -4,6 +4,7 @@ include README.txt
 include REQUIREMENTS.txt
 include install.sh
 include updateDictionary.sh
+include config.py
 recursive-include bin *
 recursive-include data *
 recursive-include extract *
