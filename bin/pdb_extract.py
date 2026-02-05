@@ -706,7 +706,7 @@ def generateErrorLog(error, filename_error_log="pdb_extract_error_log"):
     return True
 
 
-def runPdbExtract(args="", tf_cleanup=False):
+def runPdbExtract(args="", tf_cleanup=True):
     logger.info("Current working directory: %s" % os.path.abspath(os.getcwd()))
     p = Process()  # p.d_manager is the overall tracking dictionary
     logger.info("initiate pdb_extract processs")
