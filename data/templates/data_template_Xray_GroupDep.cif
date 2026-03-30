@@ -287,3 +287,11 @@ _entity_src_gen.plasmid_name                   ?
 #_pdbx_entity_src_syn.ncbi_taxonomy_id       9606
 #_pdbx_entity_src_syn.details                ?
 #
+###### pdbx_group #####
+#
+_pdbx_initial_refinement_model.id               1
+_pdbx_initial_refinement_model.type             ?
+_pdbx_initial_refinement_model.source_name      ?
+_pdbx_initial_refinement_model.accession_code   ?
+_pdbx_initial_refinement_model.details          ?
+#
