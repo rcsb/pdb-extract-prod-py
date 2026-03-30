@@ -18,3 +18,4 @@ reflns
 reflns_shell
 refine
 refine_ls_shell
+pdbx_initial_refinement_model
