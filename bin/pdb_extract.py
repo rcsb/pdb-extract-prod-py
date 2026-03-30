@@ -360,7 +360,7 @@ class Process():
             # match the software's parser filename in extract/extract_log
             # folder, so that the corresponding parser can be imported
             # e.g. d*TREK, cctbx.xfel
-            software_name_clean = re.sub('[-/ *\.]', '', software2parse)
+            software_name_clean = re.sub(r'[-/ *\.]', '', software2parse)
 
             # locate folder of individual log parser
             l_import_folder = ["extract", "extract_log", self.d_manager["method"], "scaling", software_name_clean.lower()]
@@ -394,7 +394,7 @@ class Process():
             software2parse = None
             process2parse = None
         if process2parse:
-            software_name_clean = re.sub('[-/ *\.]', '', software2parse)
+            software_name_clean = re.sub(r'[-/ *\.]', '', software2parse)
             # locate folder of individual log parser
             l_import_folder = ["extract", "extract_log", self.d_manager["method"], "refinement", software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
