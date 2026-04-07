@@ -1,3 +1,6 @@
+pdb_extract 4.3.1 
+Update author templates and maxit version
+
 pdb_extract 4.3 2025-03
 Improve common metadata templates for better coverage of OneDep mandatory data;
 Check output file and generate a OneDep deposition readiness report;
