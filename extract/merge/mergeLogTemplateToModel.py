@@ -513,7 +513,7 @@ class Merger():
             bool: process succeeds or fails
         """
         d_refine = {}
-        d_refine["_refine.pdbx_refine_id"] = ["X-RAY DIFFRACTION"]
+        d_refine["_refine.pdbx_refine_id"] = ["?"]
         d_refine["_refine.pdbx_diffrn_id"] = ['1']
         if phasing_method:
             d_refine["_refine.pdbx_method_to_determine_struct"] = [

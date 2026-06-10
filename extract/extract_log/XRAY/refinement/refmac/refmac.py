@@ -73,12 +73,12 @@ class LogRefmac(LogRefinement):  # parent class in parent folder's __init__.py
             if not self.isCatEmpty(self.d_["refine"]):
                 self.d_["refine"]["_refine.entry_id"].append("UNNAMED")
                 self.d_["refine"]["_refine.pdbx_diffrn_id"].append("1")
-                self.d_["refine"]["_refine.pdbx_refine_id"].append("X-RAY DIFFRACTION")
+                self.d_["refine"]["_refine.pdbx_refine_id"].append("?")
 
             # add pdbx_refine_id for _refine_ls_restr
             if not self.isCatEmpty(self.d_["refine_ls_restr"]):
                 for i in range(len(self.d_["refine_ls_restr"]["_refine_ls_restr.type"])):
-                    self.d_["refine_ls_restr"]["_refine_ls_restr.pdbx_refine_id"].append("X-RAY DIFFRACTION")
+                    self.d_["refine_ls_restr"]["_refine_ls_restr.pdbx_refine_id"].append("?")
 
         except Exception as e:
             logger.exception(e)
