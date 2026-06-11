@@ -298,12 +298,17 @@ class Process():
         None.
 
         """
-        if self.d_manager["method"] != "XRAY":
+        if self.d_manager["method"] not in ["XRAY","ECRYSTAL"]:
             self.d_software = {}
             self.d_log = {}
             logger.warning(
                 "log parsing for method %s currently not supported" % self.d_manager["method"])
             return
+
+        if self.d_manager["method"] == "XRAY":
+            import_folder_by_method = "XRAY"
+        elif self.d_manager["method"] == "ECRYSTAL":  # consider ECRYSTAL same as XRAY for log parsing purpose
+            import_folder_by_method = "XRAY"
 
         self.d_software = {"_software.classification": [],
                            "_software.name": []}  # record software in dict
@@ -363,7 +368,7 @@ class Process():
             software_name_clean = re.sub(r'[-/ *\.]', '', software2parse)
 
             # locate folder of individual log parser
-            l_import_folder = ["extract", "extract_log", self.d_manager["method"], "scaling", software_name_clean.lower()]
+            l_import_folder = ["extract", "extract_log", import_folder_by_method, "scaling", software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
             logger.info("import path for software parser %s", import_path)
             try:
@@ -396,7 +401,8 @@ class Process():
         if process2parse:
             software_name_clean = re.sub(r'[-/ *\.]', '', software2parse)
             # locate folder of individual log parser
-            l_import_folder = ["extract", "extract_log", self.d_manager["method"], "refinement", software_name_clean.lower()]
+
+            l_import_folder = ["extract", "extract_log", import_folder_by_method, "refinement", software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
             logger.info("import path for software parser %s", import_path)
             try:
