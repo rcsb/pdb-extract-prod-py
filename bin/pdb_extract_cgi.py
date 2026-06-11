@@ -120,7 +120,7 @@ def check_for_non_ascii(filepath):
     with open(filepath, 'rb') as file:
         i = 0
         for line in file:
-            logger.info(line)
+            # logger.info(line)
             i += 1
             if not line.isascii():
                 return i

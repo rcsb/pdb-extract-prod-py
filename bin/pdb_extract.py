@@ -298,12 +298,17 @@ class Process():
         None.
 
         """
-        if self.d_manager["method"] != "XRAY":
+        if self.d_manager["method"] not in ["XRAY","ECRYSTAL"]:
             self.d_software = {}
             self.d_log = {}
             logger.warning(
                 "log parsing for method %s currently not supported" % self.d_manager["method"])
             return
+
+        if self.d_manager["method"] == "XRAY":
+            import_folder_by_method = "XRAY"
+        elif self.d_manager["method"] == "ECRYSTAL":  # consider ECRYSTAL same as XRAY for log parsing purpose
+            import_folder_by_method = "XRAY"
 
         self.d_software = {"_software.classification": [],
                            "_software.name": []}  # record software in dict
@@ -363,7 +368,7 @@ class Process():
             software_name_clean = re.sub(r'[-/ *\.]', '', software2parse)
 
             # locate folder of individual log parser
-            l_import_folder = ["extract", "extract_log", self.d_manager["method"], "scaling", software_name_clean.lower()]
+            l_import_folder = ["extract", "extract_log", import_folder_by_method, "scaling", software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
             logger.info("import path for software parser %s", import_path)
             try:
@@ -396,7 +401,8 @@ class Process():
         if process2parse:
             software_name_clean = re.sub(r'[-/ *\.]', '', software2parse)
             # locate folder of individual log parser
-            l_import_folder = ["extract", "extract_log", self.d_manager["method"], "refinement", software_name_clean.lower()]
+
+            l_import_folder = ["extract", "extract_log", import_folder_by_method, "refinement", software_name_clean.lower()]
             import_path = '.'.join(l_import_folder)
             logger.info("import path for software parser %s", import_path)
             try:
@@ -514,7 +520,7 @@ class Process():
         #  For NMR entries, convert software to pdbx_nmr_software and merge
         logger.info(
             "process software and merge software info from author command line")
-        if self.d_manager["method"] == "XRAY":
+        if self.d_manager["method"] in ["XRAY", "ECRYSTAL"]:
             merger.processSoftwareXRAY(self.d_software)
         elif self.d_manager["method"] == "EM":
             merger.processSoftwareEM(self.d_em_software)
@@ -523,7 +529,7 @@ class Process():
 
         #  For X-ray, merge phasing method from author's commandline or webpage input into refine category
         #  If refine cat doesn't exist, add an empty refine category that is mandatory for X-ray OneDep DepUI
-        if self.d_manager["method"] == "XRAY":
+        if self.d_manager["method"] in ["XRAY", "ECRYSTAL"]:
             if self.d_manager["phasing_method"]:
                 phasing_method = self.d_manager["phasing_method"]
             elif "molecular_replacement" in self.d_manager["software"]:
