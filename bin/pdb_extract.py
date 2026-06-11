@@ -520,7 +520,7 @@ class Process():
         #  For NMR entries, convert software to pdbx_nmr_software and merge
         logger.info(
             "process software and merge software info from author command line")
-        if self.d_manager["method"] == "XRAY":
+        if self.d_manager["method"] in ["XRAY", "ECRYSTAL"]:
             merger.processSoftwareXRAY(self.d_software)
         elif self.d_manager["method"] == "EM":
             merger.processSoftwareEM(self.d_em_software)
@@ -529,7 +529,7 @@ class Process():
 
         #  For X-ray, merge phasing method from author's commandline or webpage input into refine category
         #  If refine cat doesn't exist, add an empty refine category that is mandatory for X-ray OneDep DepUI
-        if self.d_manager["method"] == "XRAY":
+        if self.d_manager["method"] in ["XRAY", "ECRYSTAL"]:
             if self.d_manager["phasing_method"]:
                 phasing_method = self.d_manager["phasing_method"]
             elif "molecular_replacement" in self.d_manager["software"]:
