@@ -2,11 +2,14 @@
 
 pythonVersion=3.12
 
-pythonExe=/usr/bin/python${pythonVersion}
+webBaseDir=/data/wwpdb/pdb_extract_service/pdb-extract-web
 
-yum -y install python${pythonVersion}-pip
+source ${webBaseDir}/venv/bin/activate
+
+pythonExe=python${pythonVersion}
 
 ${pythonExe} -m pip install --upgrade pip
+
 # ${pythonExe} -m pip install six
 # ${pythonExe} -m pip install scikit-build
 ${pythonExe} -m pip install cmake
