@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
-python3 -m pip install --upgrade pip
-# python3 -m pip install six
-# python3 -m pip install scikit-build
-python3 -m pip install cmake
-python3 -m pip install mmcif
+pythonVersion=3.12
+
+pythonExe=/usr/bin/python${pythonVersion}
+
+yum -y install python${pythonVersion}-pip
+
+${pythonExe} -m pip install --upgrade pip
+# ${pythonExe} -m pip install six
+# ${pythonExe} -m pip install scikit-build
+${pythonExe} -m pip install cmake
+${pythonExe} -m pip install mmcif
 
 
 runUser=wwwdev
