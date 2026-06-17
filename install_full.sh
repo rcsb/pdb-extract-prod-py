@@ -13,7 +13,7 @@ ${pythonExe} -m pip install --upgrade pip
 # ${pythonExe} -m pip install six
 # ${pythonExe} -m pip install scikit-build
 ${pythonExe} -m pip install cmake
-${pythonExe} -m pip install mmcif
+${pythonExe} -m pip install mmcif==0.92.0
 
 
 runUser=wwwdev
