@@ -233,9 +233,11 @@ def generateSummaryForCGI(filename_processed, filename_summary="converted_summar
         except Exception as e:
             logger.exception(e)
             generateErrorLog("Error: Failed to parse converted mmCIF.")
+            return False
     except IOError as e:
         logger.exception(e)
         generateErrorLog("Error: Failed to read converted mmCIF.")
+        return False
 
     logger.info("Extract information from processed file %s" % filename_processed)
 
@@ -243,6 +245,7 @@ def generateSummaryForCGI(filename_processed, filename_summary="converted_summar
     
     if "atom_site" not in dc0.getObjNameList():
         generateErrorLog("Error: uploaded file has no atomic coordinates")
+        return False
     else:
         d_summary['atom_count'] = dc0.getObj('atom_site').getRowCount()
 
@@ -252,8 +255,15 @@ def generateSummaryForCGI(filename_processed, filename_summary="converted_summar
         else:
             d_summary[cat] = {}
 
-    with open(filename_summary, 'w') as file:
-        json.dump(d_summary, file, indent=2)
+    try:
+        with open(filename_summary, 'w') as file:
+            json.dump(d_summary, file, indent=2)
+    except Exception as e:
+        logger.exception(e)
+        generateErrorLog("Error: Failed to generate converted model summary.")
+        return False
+
+    return True
 
     # if "symmetry" in dc0.getObjNameList():
     #     d_symmetry = convertCatObjToDict(dc0.getObj("symmetry"))
@@ -322,13 +332,20 @@ def main():
     if file_format == "PDB":
         filepath_maxit_out = "maxit_out.cif"
         if processPdbModel(filepath_in, filepath_maxit_out, filepath_out):
-            generateSummaryForCGI(filepath_maxit_out)
+            if not generateSummaryForCGI(filepath_maxit_out):
+                sys.exit(1)
+        else:
+            sys.exit(1)
     elif file_format == "CIF":
         if processCifModel(filepath_in, filepath_out):
-            generateSummaryForCGI(filepath_out)
+            if not generateSummaryForCGI(filepath_out):
+                sys.exit(1)
+        else:
+            sys.exit(1)
     else:
         logger.info("Error: Wrong file format selected %s" % file_format)
         generateErrorLog("Error: Wrong file format selected %s" % file_format)
+        sys.exit(1)
     sys.exit(0)
 
 
